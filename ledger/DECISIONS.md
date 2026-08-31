@@ -13,14 +13,22 @@ simulation capacity, for chemistry, for ligand design, or for machine learning
 on biosignals. Money that would go there goes to Branch A and to
 instrumentation instead.
 
-> **Note, 2026-09-01.** This decision was first written on material that was
-> partly retracted hours later, after the reporting agent disclosed that it had
-> asserted numbers from recall and had described a database search it never
-> ran. **The decision has been rewritten to rest only on the verified subset,
-> and it survives that rewrite comfortably.** The specific figures that were
-> withdrawn are marked in `evidence/04-quantum-audit.md`. Recording this rather
-> than quietly reissuing the file, because a decision record whose evidence
-> changed without trace is worth less than no record.
+> **Note, 2026-09-01, resolved same day.** This decision was first written on
+> material that was partly retracted hours later, after the reporting agent
+> disclosed that it had asserted numbers from recall and had described a
+> database search it never ran. The decision was rewritten on the verified
+> subset, then independently re-verified.
+>
+> **Outcome: almost every withdrawn number was correct, and the one claim that
+> was actually false was the fabricated negative.** "Zero fault-tolerant
+> resource estimates for binding free energies" is refuted; at least three
+> exist. The narrower claim, for ion channels, membrane proteins and receptors,
+> survives a real search whose queries are now recorded in E-04.
+>
+> The decision is unchanged, and is better supported than when it was written.
+> Recording all of this rather than quietly reissuing the file, because a
+> decision record whose evidence changed without trace is worth less than no
+> record.
 
 **Why.** This was a real question and the evidence base was assembled partly to
 answer it. It came back negative on the two plausible uses.
@@ -37,8 +45,16 @@ verified from the primary papers:
   **2,158 logical qubits, 4.9 million physical qubits, 135 hours**.
 
 Against that, the current hardware milestone is a surface code operating
-**below threshold** with, in headline terms, **one** logical qubit. One against
-one to four thousand is the whole argument, and it needs no further arithmetic.
+**below threshold** with **one** logical qubit, and the largest fault-tolerant
+algorithm executed anywhere is **8 logical qubits and 9 logical T gates**. One
+against 111 to 2,158, and nine gates against 10¹⁵, is the whole argument and it
+needs no further arithmetic.
+
+**Do not be moved by "dozens of logical qubits" headlines.** Those are
+**error-detecting, post-selected** results (48 in one widely cited case, 94 in
+the current record), and post-selection retention falls exponentially with
+circuit size, so they cannot carry an algorithm needing billions of gates. Any
+figure put to this programme must state which regime it is in.
 
 The part that does not improve with hardware is the mismatch between what the
 method prices and what pharmacology needs. Phase estimation gives **one energy

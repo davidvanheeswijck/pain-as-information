@@ -42,11 +42,33 @@ clinical device. ACCURATE (PMID 28030470) established efficacy against dorsal
 column stimulation without a sham arm and without any mechanistic endpoint, and
 no sham-controlled DRG trial exists anywhere.
 
-Second, the failure it would explain is large and documented. Vanloon et al.
-(PMID 39601733), 13 studies and 634 patients, report pooled complication
-prevalence of 37% and **explantation in 12%, primarily for insufficient pain
-relief**. That is a substantial population whose devices are being removed for
-a reason nobody has mechanistically characterised.
+Second, the failure it would explain is large and documented, and the numbers
+got worse when E-05 was compiled. Vanloon et al. (PMID 39601733), 13 studies
+and 634 patients, report pooled complication prevalence of 37% and
+**explantation in 12%, primarily for insufficient pain relief**. Gatzinsky et
+al. (PMID 39084704), n=400, gives the long horizon: cumulative explantation
+**17% at 3 years, 23% at 5 years and 38% at 10 years**, with explantation
+**specifically for diminished pain relief at 10%, 14% and 23%**. Eldabe et al.
+(PMID 35302973) followed 32 implants for 5 to 7 years and found **only 50%
+still using the device**, with only 2 of the 16 survivors still on their
+original pulse generator.
+
+That is a substantial population whose devices are being removed for a reason
+nobody has mechanistically characterised.
+
+**A support this conjecture originally leaned on has been withdrawn.** The
+first draft cited Levy et al. (PMID 31494275) for the claim that DRG
+stimulation habituates less than spinal cord stimulation. That study is
+12-month, two of its authors are employees of the company that makes the DRG
+device, and **Gatzinsky's independent 400-patient data find DRG carrying a
+higher risk of explantation for diminished relief than SCS, not a lower one.**
+
+The correction cuts both ways and it should be recorded as cutting both ways.
+It removes a convenient citation. It also **strengthens the conjecture's
+premise**, because the phenomenon to be explained is now larger and better
+evidenced than when the conjecture was written. What it forbids is any future
+version of this conjecture arguing that DRG is special because it does not
+habituate. It is not, and it does.
 
 Third, the alternative is now cheap to distinguish. ECAP-capable hardware
 demonstrates that delivered neural dose can be measured to about 2.8 µV in the

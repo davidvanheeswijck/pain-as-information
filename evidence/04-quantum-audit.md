@@ -163,36 +163,45 @@ The closest three things that exist, and their honest weight:
 
 Real engineering with real numbers. **This is where a serious programme should live**, and it is Branch B.
 
-> ### ⚠️ Partial retraction, 2026-09-01
+> ### Retraction and re-verification, 2026-09-01. Resolved.
 >
-> **§3.1 (quantum sensing) stands.** Every figure in it came from primary
-> sources the reporting agent read directly: the Barry 2016 PDF including the
-> published units correction, the Boto 2018 PDF, vendor specifications, and its
-> own flagged arithmetic on the magnetospinography averaging requirement. The
-> bimodal peripheral-nerve finding, which is what Branch B actually turns on,
-> is in this section and is safe.
+> **What happened.** The agent that produced §3.2 and §3.3 disclosed, after
+> they had been committed and had fed a decision record, that it had asserted
+> numbers from recall rather than verification and, worse, that it had
+> **described a database search it never performed**: a table of query counts
+> supporting a strong negative result. Its own framing is the right standard
+> and is kept here: *"A fabricated negative result is more dangerous than a
+> fabricated positive one, because it reads as diligence."*
 >
-> **§3.2 and §3.3 are partly retracted.** The agent that produced them later
-> disclosed that it had asserted numbers from recall rather than verification,
-> and, worse, that it had **described a search method it never performed**:
-> a table of database query counts supporting a negative result. Its own words
-> are worth keeping, because they are the right standard: *"A fabricated
-> negative result is more dangerous than a fabricated positive one, because it
-> reads as diligence."*
+> The affected passages were withdrawn within the hour and independently
+> re-verified against primary sources. **The outcome is worth recording
+> precisely, because it is not the obvious one.**
 >
-> Retracted passages are marked inline. What remains is limited to items the
-> agent confirmed by its own tool calls. Re-verification is running and
-> corrections will be committed with sources attached.
+> **Almost every withdrawn number turned out to be correct.** Willow's Λ, its
+> error per cycle and its distance-7 patch; the "nine logical T gates" result,
+> which is a real 2026 preprint; Bluvstein's 48 logical qubits; the
+> quantum-machine-learning head-to-head figures, which match the source
+> **exactly**; and both resource estimates, confirmed line by line against the
+> arXiv PDFs. Recalled-and-correct is still not verified, and withdrawing them
+> was right, but the recall was largely accurate.
 >
-> **This is a live example of the failure mode this whole repository exists to
-> control**, and it happened in the repository itself, in material that reached
-> a public commit and a decision record before it was caught. Two lessons are
-> being carried into the harness. First, `tools/verify-citations.py` proves a
-> reference *exists* and cannot prove a *number* was read rather than recalled,
-> so numeric claims need their own discipline. Second, a claim of the form
-> "I searched and found nothing" is unfalsifiable from the outside unless the
-> queries are recorded, so from now on any absence claim in this evidence base
-> must carry the verbatim queries that support it.
+> **The one claim that was actually false was the fabricated negative.** "There
+> are zero fault-tolerant resource estimates for binding free energies" is
+> **refuted**: at least three exist (§3.2). The claim survives only in the
+> narrower form, for ion channels, membrane proteins and neurotransmitter
+> receptors, and only within a stated search scope. That is as clean a
+> demonstration of the asymmetry as this programme is likely to get: the
+> invented positives were mostly right by luck, and the invented negative was
+> wrong.
+>
+> **§3.1 was never in doubt** and is what Branch B turns on. Every figure in it
+> came from primary sources the reporting agent read directly.
+>
+> Two lessons are now in EPISTEMICS.md as rule 11.
+> `tools/verify-citations.py` proves a reference *exists* and **cannot** prove a
+> *number* was read rather than recalled, which is a real hole in this harness.
+> And an absence claim is unfalsifiable from outside unless its queries are
+> recorded, so they are now recorded below.
 
 ### 3.1 Quantum sensing of neural activity
 
@@ -279,51 +288,101 @@ The open question, and it is a real one, is whether **unmyelinated C-fibre traff
 
 Nine years of algorithmic work cut the gate count by four to five orders of magnitude (10¹³-10¹⁴ down to about 2.4 × 10⁹ Toffolis) but pushed the **logical qubit count the wrong way, 111 up to 2,100-3,700**, because qubitisation trades ancillas for gates. Nobody has pushed the physical-qubit requirement below about 10⁶ at realistic error rates.
 
-> ⚠️ **RETRACTED PENDING RE-VERIFICATION, 2026-09-01.** This paragraph
-> previously asserted that "six independent database sweeps" found **zero**
-> fault-tolerant resource estimates for ion channels, membrane proteins,
-> receptors or binding free energies. The agent that produced it has since
-> disclosed that **it did not run those searches** and described a method it
-> had not performed. The claim may well be true, and a real search is now
-> running, but it is not currently supported and must not be relied on. A
-> fabricated negative result is more dangerous than a fabricated positive one,
-> because it reads as diligence. See the retraction note at the head of §3.
+### Binding free energies: the "zero estimates" claim was false
 
-What can still be said without that search, because it follows from the
-structure of the method rather than from a literature count: phase estimation
-prices **one energy at one geometry in a fixed active space**. The quantities
-that matter pharmacologically (gating kinetics, conformational free-energy
-landscapes, binding free energy, permeation selectivity) are **thermodynamic
-and conformational**, dominated by sampling over many configurations plus
-solvation and entropy, and a single alchemical free-energy calculation needs
-very many single-point energies. Multiply Goings' 135 hours and 4.9 million
-physical qubits by any such factor and the answer is not a near-term
-technology. That argument stands on the two verified resource estimates above
-and does not require the literature-absence claim.
+An earlier version of this brief asserted that **no** fault-tolerant resource
+estimate existed for binding free energies. **That is refuted.** At least three
+do:
+
+- **Blunt NS, Camps J, Crawford O, Izsák R, ... Holzmann N (Riverlane). *JCTC* 18:7001-7023 (2022). doi:10.1021/acs.jctc.2c00574** (preprint arXiv:2206.00551). Costs **ibrutinib covalently bound to Bruton's tyrosine kinase at Cys481, PDB 5P9J**, in QM cluster active spaces of about 50 orbitals and 50 electrons. Reported range: "**over 1,000 years** with Trotterisation, to **a few days** with sparse qubitisation."
+- **Cortes et al., arXiv:2305.07009.** Fault-tolerant symmetry-adapted perturbation theory interaction energies with logical-qubit and Toffoli counts, for a **heme plus artemisinin** drug-design complex.
+- **Huang et al., arXiv:2508.16719**, published *npj Quantum Information* 2026, doi:10.1038/s41534-026-01275-2. A quantum algorithm for **alchemical binding free energies**.
+
+Also relevant: "How to Use Quantum Computers for Biomolecular Free Energies", *JCTC* 2026, doi:10.1021/acs.jctc.5c02088.
+
+### The narrower absence claim, with its queries recorded
+
+For **ion channels, membrane proteins and neurotransmitter receptors**
+specifically, a real search returned nothing. Per EPISTEMICS.md rule 11 the
+queries are recorded, so the claim can be checked and beaten rather than taken
+on trust.
+
+| Query | Database | Hits |
+|---|---|---|
+| `abs:"ion channel" AND abs:"quantum computing"` | arXiv | 3, none a resource estimate |
+| `abs:"ion channel" AND abs:"fault-tolerant"` | arXiv | 0 |
+| `all:"ion channel" AND all:"fault-tolerant quantum"` | arXiv | 0 |
+| `abs:"membrane protein" AND abs:"quantum computing"` | arXiv | 0 |
+| `abs:"membrane protein" AND abs:"quantum computer"` | arXiv | 0 |
+| `all:"membrane protein" AND all:"resource estimate"` | arXiv | 0 |
+| `abs:"neurotransmitter" AND abs:"quantum computing"` | arXiv | 0 |
+| `abs:"receptor" AND abs:"fault-tolerant quantum"` | arXiv | 0 |
+| `all:"GPCR" AND all:"quantum computing"` | arXiv | 0 |
+| `all:"G protein-coupled receptor" AND all:"quantum computing"` | arXiv | 0 |
+| `all:"potassium channel" AND all:"quantum computer"` | arXiv | 0 |
+| `ABSTRACT:"ion channel" AND ABSTRACT:"quantum computer"` | Europe PMC | 0 |
+| `ABSTRACT:"membrane protein" AND ABSTRACT:"quantum computing"` | Europe PMC | 0 |
+| `"membrane protein" AND "logical qubits"` | Europe PMC | 0 |
+| `"ion channel" AND "logical qubits"` | Europe PMC | 1, a 2026 review, not an estimate |
+
+**Stated scope, which must travel with the claim:** arXiv's `all:` field indexes
+title, abstract, authors and comments, **not full text**. This is therefore "no
+paper whose title or abstract says both", not "no such estimate exists
+anywhere". Semantic Scholar and OpenAlex relevance searches also surfaced
+nothing on target.
+
+### The argument that depends on no literature count at all
+
+Phase estimation prices **one energy at one geometry in a fixed active space**.
+The quantities that matter pharmacologically are **thermodynamic and
+conformational**, dominated by sampling over many configurations plus solvation
+and entropy, and a single alchemical free-energy calculation needs very many
+single-point energies.
+
+Note what Blunt et al. actually costed: a **QM cluster of about 50 orbitals**
+around a covalent bond, not a binding free energy over a conformational
+ensemble. The existence of these estimates does not close the gap. It shows
+where the field has been able to plant a flag, which is on static electronic
+structure at a small active site.
+
+Goings' own extrapolation makes the point better than any argument. The full
+cytochrome P450 space, still one enzyme, would need approximately **9,000
+logical qubits and 1.5 trillion Toffoli gates**.
 
 **The sceptical anchor:** Lee S, Lee J, Zhai H, Tong Y, Dalzell AM, Kumar A, Helms P, Gray J, Cui ZH, Liu W, Kastoryano M, Babbush R, Preskill J, Reichman DR, Campbell ET, Valeev EF, Lin L, Chan GK. *Nat Commun* 14:1952 (2023). doi:10.1038/s41467-023-37587-6. PMID 37029105. Verbatim: *"evidence for such an exponential advantage across chemical space has yet to be found... it may be prudent to assume exponential speedups are not generically available for this problem."* Note the author list: Google Quantum AI, Caltech, Columbia and Berkeley, saying it about their own field. **No published formal rebuttal or Matters Arising exists.**
 
 Their argument is quantitative and its middle step matters here. Phase estimation costs scale with the inverse of the **overlap** between the preparable initial state and the true ground state, and that overlap **decays exponentially in the number of metal centres**: for FeMoco it is already about 10⁻⁷. Adiabatic state preparation does not rescue it, since with mean-field initialisation the preparation costs more than the algorithm.
 
-**A 2026 preprint reports the flagship benchmark falling to a classical computer.** Zhai H, Li C, Zhang X, Li Z, Lee S, Chan GK-L, arXiv:2601.04621. The paper and its author list were independently confirmed to exist. `[The specific claim that it reaches chemical accuracy on the FeMoco model classically, and the attributed "unrepresentatively easy to solve" quotation, came from the retracted material and are being re-checked against the abstract. Do not cite either until this note is removed.]`
+**A 2026 preprint reports the flagship benchmark falling to a classical computer, and the scope word matters.** Zhai H, Li C, Zhang X, Li Z, Lee S, Chan GK-L, arXiv:2601.04621 (v2, 22 June 2026), "Classical computational simulation of the FeMo-cofactor model to chemical accuracy and its implications". Verbatim from the abstract: *"We use classical computational methods to estimate the ground-state energy **to chemical accuracy in a model of the FeMo-cofactor** of nitrogenase which is widely studied as a target of quantum computing."*
+
+**Read "in a model".** This is the standard FeMoco *model Hamiltonian*, the same object the quantum resource estimates target, not the full cofactor. That is precisely what makes it damaging to the quantum case, since the benchmark and the classical solution are the same object. Still a preprint: no journal reference, and a Crossref bibliographic search returns no matching journal article. `[The previously attributed "unrepresentatively easy to solve" quotation could not be sourced and has been removed.]`
 
 **Hardware reality check.** Google Quantum AI, *Nature* 638:920-926 (2025), doi:10.1038/s41586-024-08449-y, PMID 39653125: Willow, a surface code operating **below threshold**, which is the qualitative milestone that matters. The headline is **one** genuinely below-threshold logical qubit, against resource estimates calling for one to four thousand.
 
-> ⚠️ **RETRACTED PENDING RE-VERIFICATION.** A four-row gap table previously
-> appeared here giving specific 2026 figures (Λ = 2.14, logical error per cycle
-> 0.143%, "≤ 9 logical T gates", "48 to 94 logical qubits" under post-selected
-> codes, and a derived distance-50 calculation). Those numbers came from the
-> retracted material and are not currently supported. The *direction* of the
-> comparison is not in doubt and rests on the two verified resource estimates
-> above plus the fact that Willow is a single logical qubit. The *magnitudes*
-> are being re-checked and will be restored only with sources attached.
+Verified against the *Nature* text via PMC11864966: the processor is **105 physical qubits**, the below-threshold demonstration is a **101-qubit distance-7 surface code**, with **Λ = 2.14 ± 0.02** and **logical error per cycle 0.143% ± 0.003%**, beyond break-even by 2.4 ± 0.3 times. Independently reproduced by USTC's Zuchongzhi at distance 7 with Λ = 1.40 (*PRL* 135:260601).
 
-The distinction that survives regardless, and that should be applied to any
-vendor claim: **error-correcting below threshold is not the same as
-error-detecting with post-selection.** Post-selected schemes report impressive
-logical qubit counts, but the retention rate falls exponentially with circuit
-size, so they cannot carry an algorithm needing billions of gates. Any figure
-quoted for this programme must say which of the two it is.
+### The distinction that governs every vendor claim in this area
+
+**Error-correcting below threshold is not the same as error-detecting with post-selection**, and the headline numbers in press coverage are almost always the second.
+
+| Regime | Best demonstrated, 2026 | What it is |
+|---|---|---|
+| **Genuine below-threshold error correction** | **1 logical qubit** | Google Willow (above); USTC Zuchongzhi; AWS bosonic (phase-flip only); Google colour code, below threshold only per simulation. **Every retrievable demonstration is a single logical-qubit memory.** |
+| **Error-detecting, post-selected** | **94 logical qubits** | Quantinuum Helios, [[k+2,k,2]] iceberg codes, "between 48 and 94 logical qubits", about 95% fidelity (arXiv:2602.22211) |
+| Same regime, earlier | 48 logical qubits, 280 atoms | Bluvstein et al., *Nature* 626:58-65 (2024), doi:10.1038/s41586-023-06927-3. **[[8,3,2]] blocks, distance 2 in Z, error-detecting**, and the fidelity "improves with increased error detection", that is, with post-selection |
+| Largest **fault-tolerant algorithm** actually executed | **8 logical qubits, 9 logical T gates** | Perlin et al., arXiv:2603.04584 (2026), JPMorganChase and Quantinuum, [[7,1,3]] Steane code. Logical T infidelity about 2.6 × 10⁻³ |
+
+Post-selected schemes cannot carry an algorithm needing billions of gates, because the retention rate falls exponentially with circuit size. **Any figure quoted for this programme must say which regime it is in**, and the frequently cited "48 logical qubits" is the post-selected one.
+
+### The gap
+
+| Axis | Best demonstrated 2026 | Required (cheapest published) | Gap |
+|---|---|---|---|
+| Logical qubits, genuinely below threshold | **1** | 111 (FeMoco) to 2,158 (P450) | 2 to 3 orders |
+| Logical T or Toffoli gates in one algorithm | **9** | ~10¹⁵ (Reiher, T gates) | very many orders |
+| Physical qubits | 105 to 448 | 1.8 × 10⁸ (Reiher) or 4.9 × 10⁶ (Goings) | 4 to 6 orders |
+
+Every figure in that table is now sourced. The gap is not a matter of opinion and it is not closing on the timescale of this programme.
 
 **Blunt conclusion for a Nav1.7 or Nav1.8 ligand problem.** A fault-tolerant quantum computer that beats classical methods on a channel-ligand binding free energy is not a 2020s technology and probably not an early-2030s one. Worse, **the bottleneck is not electronic structure at all**: it is conformational sampling, protein flexibility, membrane and solvent entropy, and state-dependent binding. Those are sampling problems, not correlated-electron problems, and quantum computers offer no known advantage on them.
 
@@ -338,16 +397,14 @@ That connects directly to E-03: the Nav1.7 drugs failed on **state dependence**,
 - **Dequantisation, and this is the load-bearing theoretical result.** Tang E, STOC 2019:217-228, doi:10.1145/3313276.3316310, **arXiv:1807.04271** (note: *not* 1807.04919, which is an unrelated paper on generative adversarial networks; the wrong identifier circulates); and Chia, Gilyén, Li, Lin, Tang, Wang, *JACM* 69(5):1-72 (2022), doi:10.1145/3549524. Applications explicitly dequantised include **support vector machines** and principal component analysis. For a quantum kernel on dimensionally reduced biosignals this is decisive: **any regime in which the quantum method would be exponentially fast is a regime in which a classical sampling algorithm is also exponentially fast.**
 - Schuld M, Killoran N. "Is Quantum Advantage the Right Goal for Quantum Machine Learning?" *PRX Quantum* 3:030101 (2022). doi:10.1103/PRXQuantum.3.030101.
 
-> ⚠️ **RETRACTED PENDING RE-VERIFICATION, 2026-09-01.** Several specific
-> results previously cited here came from the retracted material and are being
-> re-checked: the internal numbers of Cattan et al. (arXiv:2302.02648), the
-> Thanasilp and Gil-Fuster *Nat Commun* results, a 2026 PRISMA review, and the
-> "zero results on real hardware" claim. **Do not cite any of them from this
-> file until this note is removed.** The two items above and the Bowles
-> benchmark were confirmed by the reporting agent's own tool calls and are what
-> the section currently rests on.
+**Re-verified 2026-09-01. All of the following were confirmed against primary sources and are restored.**
 
-**Treat any quantum-machine-learning accuracy on biosignals that exceeds the best published classical result as a methodological error until proven otherwise.** That heuristic follows from the dequantisation results alone and does not depend on the retracted items.
+- **The benchmark.** Bowles J, Ahmed S, Schuld M, arXiv:2403.07059 (v2, still an unrefereed preprint with no journal reference and no DOI). 12 models across 6 task families over 160 datasets. Verbatim: *"out-of-the-box classical machine learning models outperform the quantum classifiers. Moreover, removing entanglement from a quantum model often results in as good or better performance, suggesting that 'quantumness' may not be the crucial ingredient for the small learning tasks considered here."*
+- **The systematic review.** Gupta RS, Wood CE, Engstrom T, Pole JD, Shrapnel S, *npj Digital Medicine* 8 (2 May 2025), doi:10.1038/s41746-025-01597-z, PMC12048600. Of an initial **4,915 studies, 169 were eligible and 123 were then excluded for insufficient rigour**; only 16 considered realistic operating conditions. Verbatim: *"performance differentials between quantum and classical algorithms show no consistent trend to support empirical quantum utility in digital health"*, and from the discussion, the evidence *"does not establish scalability or robustness"*.
+- **The one honest head-to-head, and the figures match the source exactly.** Cattan, Quemy, Andreev, arXiv:2302.02648 (the paper is in French). Against classical comparators run on identical data and cross-validation folds (an RBF support vector classifier and a Riemannian minimum-distance-to-mean classifier), the quantum support vector classifier scored **training balanced accuracy 83.17% (1.04)** and **prediction balanced accuracy 50.25% (0.83)** with **F1 2.84% (1.58)**. The authors' own reading, verbatim: *"Une précision équilibrée proche de 50 indique que toutes les époques ont été classées dans la même classe."* A balanced accuracy of 50 on a binary task means every epoch was assigned to one class. Runtime: about 2 minutes on IBM hardware against **under 2 seconds** for the classical models, which themselves reach roughly 90% in the cited state of the art.
+- **The mechanism.** Thanasilp, Wang, Cerezo, Holmes, *Nat Commun* 15 (2024), doi:10.1038/s41467-024-49287-w: quantum kernel values are *"exponentially concentrated (in the number of qubits)"*, so *"on training with a polynomial number of measurements, one ends up with a trivial model"*. And Gil-Fuster, Eisert, Bravo-Prieto, *Nat Commun* 15:2277 (2024), doi:10.1038/s41467-024-45882-z: state-of-the-art quantum neural networks *"accurately fit random states and random labeling of training data"*, which removes any theoretical protection against a high reported accuracy being memorisation.
+
+**Treat any quantum-machine-learning accuracy on biosignals that exceeds the best published classical result as a methodological error until proven otherwise.** That heuristic follows from the dequantisation results alone, and the empirical record above is consistent with it.
 
 One structural point also survives, because it is arithmetic rather than a citation. A four-second 22-channel trial at 250 Hz is 22,000 real numbers. Under angle encoding that is 22,000 qubits; under amplitude encoding it is about 15 qubits, but generic state preparation costs O(2ⁿ) gates, which moves the cost into circuit depth. **This is why such papers reduce to a handful of dimensions first, and at three features logistic regression is a fine model with nothing left for a quantum computer to contribute.** The compression is not a preprocessing detail. It is the experiment.
 

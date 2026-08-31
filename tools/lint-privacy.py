@@ -50,7 +50,13 @@ KBO_RE = re.compile(r"\bBE ?0\d{9}\b")
 DOB_DATE_RE = re.compile(
     r"\b\d{2}[/\-:]\d{2}[/\-:]\d{4}\b|\b\d{4}-\d{2}-\d{2}\b"
 )
-DOB_KEYWORDS = ["born", "DOB", "geboren", "birth", "°", "(19", "(20"]
+# A bare year in parentheses, "(19.." or "(20..", was originally in this list to
+# catch "Name (1978)" birth-year notation. In a repository whose evidence base is
+# mostly citations it matches a publication year on nearly every line, and a
+# detector that fires constantly is a detector everyone learns to ignore. The
+# explicit words below are the real signal; a date is only a date of birth if
+# something nearby says so.
+DOB_KEYWORDS = ["born", "DOB", "geboren", "birth", "date of birth", "geboortedatum", "°"]
 DOB_WINDOW = 60
 
 # --- Clinical identifier keywords ---------------------------------------------

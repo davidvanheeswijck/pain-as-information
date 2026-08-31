@@ -9,8 +9,8 @@ resolve, and marks what it could not verify.
 | [E-01](01-nociceptive-coding.md) | How pain information is encoded on nerves | HC-1, HC-2 |
 | [E-02](02-reading-the-signal.md) | Reading neural signals from nerve and cord in humans | HC-2, HC-4 |
 | [E-03](03-writing-the-signal.md) | Writing to, tuning and selectively blocking nerve signals | HC-1, HC-3, HC-4, PB-4 |
-| E-04 | Quantum effects in biology, and quantum technology for neuroscience | Branch B, Branch C |
-| E-05 | CRPS: mechanism, natural history, and why treatment fails | PB-2, PB-3, PB-5 |
+| [E-04](04-quantum-audit.md) | Quantum effects in biology, and quantum technology for neuroscience | Branch B, Branch C |
+| [E-05](05-crps.md) | CRPS: mechanism, natural history, and why treatment fails | PB-2, PB-3, PB-5 |
 | [E-06](06-prior-art-ai-harness.md) | Prior art on multi-model harnesses for hypothesis evaluation | the harness itself |
 
 ## Rules
