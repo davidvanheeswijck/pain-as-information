@@ -23,3 +23,16 @@ ETHICS.md:institution-name
 # evidence brief.
 LICENSE:personal-name
 CITATION.cff:personal-name
+
+# E-05 §8b is a directory of European CRPS reference centres, drawn from the
+# published literature and from public commissioning documents. The rule exists
+# to stop a repository naming *a patient's* treating institution; naming the
+# reference centres of a field is the same act as naming its research groups,
+# which every other brief does throughout.
+#
+# Residual risk, stated so it is not forgotten: a future edit to this one file
+# could add a genuine treating-institution reference and it would not be
+# caught here. The primary control remains the personal-name list, which is
+# still active on this file, so an institution would have to appear with no
+# person attached to slip through.
+evidence/05-crps.md:institution-name
