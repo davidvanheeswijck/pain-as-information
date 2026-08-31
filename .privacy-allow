@@ -15,3 +15,11 @@ tools/lint-privacy.py:*
 # order to forbid them. Naming a category is not disclosing an instance.
 ETHICS.md:clinical-keyword
 ETHICS.md:institution-name
+
+# The copyright line names the author deliberately, and the author's name is
+# their public identity on a public repository. Suppressed here rather than
+# removed from the name list, so the token stays guarded in every other file:
+# a surname that is intentional in a licence header is still a leak in an
+# evidence brief.
+LICENSE:personal-name
+CITATION.cff:personal-name
