@@ -48,7 +48,6 @@ done
 CID="$(basename "$SUBJECT" .md)"
 STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
 OUTDIR="${OUTDIR:-$ROOT/pipeline/reviews/$CID/$STAMP}"
-mkdir -p "$OUTDIR"
 
 # --- lint before spending anything -------------------------------------
 # A conjecture that fails structure or citations does not deserve a panel, and
@@ -60,6 +59,15 @@ echo "== lint ==" >&2
 # --- assemble the panel ------------------------------------------------
 mapfile -t PANEL < <("$HERE/panel.py" --size "$SIZE" "${EXCLUDE[@]+"${EXCLUDE[@]}"}")
 (( ${#PANEL[@]} == SIZE )) || { echo "panel.py returned ${#PANEL[@]} models, wanted $SIZE" >&2; exit 1; }
+printf 'panel:\n'; printf '  %s\n' "${PANEL[@]}"
+
+# A dry run must leave no trace. It previously wrote panel.json.md into a fresh
+# timestamped directory before exiting, which the dashboard then counted as a
+# review run that never happened. Nothing is created until a model is actually
+# about to be called.
+if (( DRY )); then echo "(dry run: stopping before any model call, nothing written)"; exit 0; fi
+
+mkdir -p "$OUTDIR"
 {
   echo "# Panel record: $CID"
   echo
@@ -67,9 +75,6 @@ mapfile -t PANEL < <("$HERE/panel.py" --size "$SIZE" "${EXCLUDE[@]+"${EXCLUDE[@]
   echo
   "$HERE/panel.py" --size "$SIZE" "${EXCLUDE[@]+"${EXCLUDE[@]}"}" --json
 } > "$OUTDIR/panel.json.md"
-printf 'panel:\n'; printf '  %s\n' "${PANEL[@]}"
-
-if (( DRY )); then echo "(dry run: stopping before any model call)"; exit 0; fi
 
 # --- phase 1: gates, rotated across laboratories -----------------------
 # The ledger and the programme are context for every gate. Gate 05 in
