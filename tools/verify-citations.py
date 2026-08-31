@@ -330,18 +330,21 @@ def make_context(line: str, start: int, end: int) -> str:
 def clean_doi(raw: str) -> str:
     """Strip trailing sentence punctuation without eating real DOI characters.
 
-    Trailing '.', ',', ';' are always sentence punctuation and are stripped.
-    A trailing ')' is only stripped if the DOI contains no '(' at all, since
-    DOIs legitimately end in a balanced parenthetical (e.g. old ISBN-derived
-    DOIs of the form 10.1002/(SICI)...).
+    Trailing '.', ',', ';', ':' are always sentence punctuation and are
+    stripped unconditionally. A trailing ')' is only stripped while it is
+    unbalanced (more ')' than '(' in the candidate so far), since DOIs
+    legitimately end in a balanced parenthetical (e.g. 10.1016/0304-3959
+    (83)90164-1) that must survive while a sentence-closing paren tacked on
+    after it must not. This loops until nothing more can be stripped, so a
+    sentence-closing ')' following other punctuation (e.g. "...):") is
+    peeled off in the right order.
     """
-    has_open_paren = "(" in raw
     doi = raw
     while doi:
-        if doi[-1] in ".,;":
+        if doi[-1] in ".,;:":
             doi = doi[:-1]
             continue
-        if doi[-1] == ")" and not has_open_paren:
+        if doi[-1] == ")" and doi.count(")") > doi.count("("):
             doi = doi[:-1]
             continue
         break
@@ -509,10 +512,42 @@ def normalise_title(title: str) -> set:
     return set(w for w in title.split(" ") if w)
 
 
+def normalise_title_tokens(title: str) -> List[str]:
+    title = title.lower()
+    title = re.sub(r"[^a-z0-9\s]", " ", title)
+    title = re.sub(r"\s+", " ", title).strip()
+    return [w for w in title.split(" ") if w]
+
+
 def jaccard(a: set, b: set) -> float:
     if not a or not b:
         return 0.0
     return len(a & b) / len(a | b)
+
+
+def titles_match(title_a: str, title_b: str) -> bool:
+    """True if the titles should be treated as the same work.
+
+    Crossref frequently stores a truncated title (main title only) while
+    PubMed/DataCite store the full title including a subtitle, e.g.
+    "Consciousness in the universe" vs "Consciousness in the universe: a
+    review of the 'Orch OR' theory". A plain Jaccard word-overlap comparison
+    scores that as a mismatch even though it is the same paper, so a
+    prefix/containment check runs first: if the shorter (normalised) title's
+    tokens are exactly the leading tokens of the longer one, it is a subtitle
+    truncation, not a different paper, regardless of the Jaccard score. The
+    3-token minimum stops a one- or two-word title from spuriously "matching"
+    as a prefix of an unrelated longer title. Do not remove this in favour of
+    "just use Jaccard": the threshold below is load-bearing for catching real
+    DOI/PMID mismatches, so this containment check has to be resolved before
+    Jaccard, not folded into it.
+    """
+    tokens_a = normalise_title_tokens(title_a)
+    tokens_b = normalise_title_tokens(title_b)
+    shorter, longer = (tokens_a, tokens_b) if len(tokens_a) <= len(tokens_b) else (tokens_b, tokens_a)
+    if len(shorter) >= 3 and longer[: len(shorter)] == shorter:
+        return True
+    return jaccard(set(tokens_a), set(tokens_b)) >= MISMATCH_THRESHOLD
 
 
 # --------------------------------------------------------------------------
@@ -859,7 +894,7 @@ def build_findings(
         if not result_a.title or not result_b.title:
             continue
         overlap = jaccard(normalise_title(result_a.title), normalise_title(result_b.title))
-        if overlap < MISMATCH_THRESHOLD:
+        if not titles_match(result_a.title, result_b.title):
             message = (
                 f"MISMATCH vs {b.display}: titles disagree (overlap {overlap:.2f}): "
                 f"'{result_a.title}' vs '{result_b.title}'"

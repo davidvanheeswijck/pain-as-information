@@ -1,0 +1,32 @@
+cff-version: 1.2.0
+title: "Pain as Information"
+message: >-
+  If you use the evidence base, the gate prompts or the harness, please cite
+  this repository. If you use a finding, cite the primary source it came from:
+  every identifier in evidence/ resolves, and the point of that is that you
+  should not have to take this repository's word for anything.
+type: software
+authors:
+  - given-names: David
+    family-names: Vanheeswijck
+    email: david@vanheeswijck.com
+repository-code: "https://github.com/davidvanheeswijck/pain-as-information"
+abstract: >-
+  A research programme on whether chronic neuropathic pain can be treated as a
+  signalling problem rather than a tissue problem: read what the nerve is
+  actually sending and rewrite it, instead of silencing the nerve by drug,
+  current or knife. Contains an evidence base with mechanically verified
+  citations, a Lakatosian statement of the programme's hard core and its
+  killers, an adversarial multi-model harness in which refutation is the
+  default verdict, and a public ledger of refuted conjectures. Contains no
+  patient data and produces no medical advice.
+keywords:
+  - neuropathic pain
+  - nociception
+  - neuromodulation
+  - dorsal root ganglion
+  - research programme
+  - adversarial evaluation
+  - reproducibility
+license: MIT
+license-url: "https://github.com/davidvanheeswijck/pain-as-information/blob/main/LICENSE"

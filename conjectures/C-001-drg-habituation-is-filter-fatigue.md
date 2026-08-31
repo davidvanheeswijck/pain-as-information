@@ -176,10 +176,10 @@ That is the outcome this conjecture is designed to be able to deliver.
 
 ## References
 
-- Chao D, Zhang Z, Mecca CM, Hogan QH, Pan B. *Pain* 2020;161(12):2872-86. PMID 32658148. doi:10.1097/j.pain.0000000000001954
+- Chao D, Zhang Z, Mecca CM, Hogan QH, Pan B. *Pain* 2020;161(12):2872-86. PMID 32658148. doi:10.1097/j.pain.0000000000001982
 - Kent AR, Min X, Hogan QH, Kramer JM. *Neuromodulation* 2018;21(3):234-46. PMID 29377442. doi:10.1111/ner.12754
 - Deer TR, Levy RM, Kramer J, Poree L, et al. *Pain* 2017;158(4):669-81. PMID 28030470. doi:10.1097/j.pain.0000000000000814
-- Vanloon M, et al. *Neuromodulation* 2025;28(2):234-48. PMID 39601733. doi:10.1016/j.neurom.2024.10.001
+- Vanloon M, et al. *Neuromodulation* 2025;28(2):234-48. PMID 39601733. doi:10.1016/j.neurom.2024.10.010
 - Bhadra N, Lahowetz EA, Foldes ST, Kilgore KL. *J Comput Neurosci* 2007;22(3):313-26. PMID 17200886. doi:10.1007/s10827-006-0015-5
 - Thomson SJ, et al. *Neuromodulation* 2018;21(1):67-76. PMID 29220121. doi:10.1111/ner.12746
 - Levy RM, et al. *Neuromodulation* 2024;27(8):1393-1405. PMID 39254621. doi:10.1016/j.neurom.2024.07.003

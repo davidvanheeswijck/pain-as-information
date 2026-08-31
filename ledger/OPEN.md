@@ -35,7 +35,35 @@ later drifts back towards the stronger claim, the drift is visible.
 
 ## Live conjectures
 
-*None yet.*
+**C-001 — Loss of benefit in chronic DRG stimulation is decay of T-junction
+filtering, not tolerance to charge.** Branch A, prior 0.25. Drafted, lints
+clean, citations resolve. Not yet panelled.
+
+**C-002 — Magnetic field modulation of antinociception is radical-pair mediated
+and shows a magnetic isotope effect.** Branch C, prior 0.12. Drafted, lints
+clean, citations resolve. **Triage returned `CHEAP KILL AVAILABLE` and the
+panel has therefore not been run**, which is the pipeline working as designed:
+
+> Check the literature on 25Mg quadrupolar relaxation rates in macromolecular
+> binding sites to confirm spin decoherence occurs too rapidly to affect
+> radical-pair kinetics.
+
+That is a good objection and it was not anticipated. 25Mg has nuclear spin 5/2,
+so it is **quadrupolar**, and quadrupolar relaxation in an asymmetric
+macromolecular environment can be fast enough to destroy the hyperfine
+coherence the mechanism needs, before any biology is reached. The isotope was
+chosen for its small mass difference, which defeats the classical
+transport confound, and the spin quantum number was not checked against
+relaxation. If the objection holds, the conjecture is not refuted but its
+proposed isotope is, and 13C or 17O (both spin-1/2 or low-quadrupole
+alternatives) would have to be substituted with their own mass-confound
+analysis.
+
+Verdict recorded at
+`pipeline/reviews/C-002-magnetic-isotope-antinociception/20260831T223052Z/`.
+**Next action is the cheap literature check, not a panel round.** Spending
+thirteen model calls on a conjecture whose isotope may be excluded by a known
+relaxation rate is exactly the waste gate 00 exists to prevent.
 
 ## Known gaps in the evidence base
 
