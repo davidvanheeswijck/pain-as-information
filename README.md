@@ -58,14 +58,27 @@ work connecting quantum effects specifically to nociception. Anything entering
 this repository through that door has to pass a quantitative decoherence gate
 before anyone spends another sentence on it.
 
-There is a third reading of "quantum" that is neither of these and is entirely
-defensible: **quantum technology applied to neuroscience** rather than quantum
-effects inside neurons. Diamond NV-centre magnetometry and optically pumped
-magnetometers as a way to *read* nerve traffic without touching it, and
-quantum chemistry on a fault-tolerant machine as a way to *design* a
-subtype-selective channel ligand. Those are engineering questions with real
-error bars. The evidence base treats all three readings separately and says so
-in every verdict.
+There is a third reading of "quantum" that is neither of these: **quantum
+technology applied to neuroscience** rather than quantum effects inside
+neurons. That reading splits, and the evidence base has now split it.
+
+**Quantum sensing survives and is where the programme spends.** Optically
+pumped magnetometers read nerve traffic without touching it, they work today,
+and a superficial limb nerve gives about 1 pT at 6.5 mm, which has already been
+recovered in humans. Worth noting that the benefit is *geometric*, not quantum
+mechanical: a room-temperature sensor 13 times noisier than a SQUID wins
+because it sits 5 mm from the skin instead of 30 mm.
+
+**Quantum computation for ligand design does not survive.** The gap between
+what the algorithms need and what the hardware does is four to seven orders of
+magnitude, there are zero fault-tolerant resource estimates for any ion channel
+or membrane protein, the real bottleneck is conformational sampling rather than
+electronic structure, and in 2026 the field's flagship benchmark was solved
+classically. That is written up as a decision, with the evidence that would
+reverse it, in [ledger/DECISIONS.md](ledger/DECISIONS.md).
+
+The evidence base treats all these readings separately and says which one it is
+talking about in every verdict.
 
 ## How the programme runs
 
@@ -107,7 +120,7 @@ The design commitments behind that loop are in
 | `conjectures/` | Numbered hypotheses. One file each, template enforced. |
 | `pipeline/gates/` | The adversarial prompts. The interesting part. |
 | `pipeline/reviews/` | Verbatim model verdicts, committed, failures included. |
-| `ledger/` | What survived, what died and what killed it. |
+| `ledger/` | What survived, what died and what killed it, and the programme's spend decisions with the evidence that would reverse them. |
 | `tools/` | The runner, the panel selector, the linter, the citation verifier. |
 
 ## Use
@@ -125,8 +138,29 @@ actually said is stamped into every verdict. See [tools/README.md](tools/README.
 
 ## Status
 
-Early. The evidence base is being assembled and no conjecture has yet been
-through a full panel. `ledger/OPEN.md` is the honest current state.
+Early, and already pointing somewhere other than where it started.
+
+The first evidence pass presses hard on hard-core commitment 2. What is
+readable outside the central nervous system is fibre class, intensity and a
+pathological ongoing-activity signature. Pain *quality* is not, and allodynia
+is a counterexample in principle, because the traffic that hurts arrives on Aβ
+fibres indistinguishable from normal touch and the pathology is in the dorsal
+horn.
+
+It also moves the programme off the spinal cord. Frequency specificity there is
+probably dose: a double-blind crossover found 1, 4, 7 and 10 kHz equivalent
+once electrode position and charge were controlled, and the same waveform is
+null when blinded and large when open-label **in the same patients**. The
+tuning thesis is alive one level out, at the dorsal root ganglion, where 20 Hz
+field stimulation abates C-fibre trains while Aβ passes unattenuated, by a
+named anatomical mechanism, in work with no industry conflict.
+
+Two conjectures are drafted. One has been through triage, which returned
+`CHEAP KILL AVAILABLE` and stopped the panel before it ran. `ledger/OPEN.md` is
+the honest current state and lists what is still missing, including the fact
+that **nobody has ever measured the information rate of a nociceptor axon in
+bits per second**, which is a conspicuous hole for a programme premised on pain
+being an information problem.
 
 ## Licence
 
