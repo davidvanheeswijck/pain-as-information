@@ -8,6 +8,7 @@ posterior:
 lineage:
 supersedes:
 created: 2026-09-01
+bears_on: HC-4
 ---
 
 ## Claim

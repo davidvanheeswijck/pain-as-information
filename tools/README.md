@@ -122,3 +122,22 @@ linter that prints the private data into a CI log has defeated itself.
 To have it check for specific names, create `tools/.privacy-names`, one
 lowercase token per line. That file is gitignored by design, since a list of
 the names that must not appear is itself something you would not publish.
+
+## Dashboard
+
+    tools/build-dashboard.py
+
+Regenerates `docs/index.html`, a single self-contained page: conjecture
+status, the lineage graph, the calibration plot, the hard core board, panel
+history, the evidence base and the decision ledger. Standard library only,
+inline SVG, no CDN, no build step, so it works offline and from `file://`.
+Nothing on it is hand-maintained; it is read from the same files everything
+else in this table reads from.
+
+    tools/build-dashboard.py --check
+
+Regenerates into a temp file and exits 1 if it differs from the committed
+`docs/index.html`, printing that the dashboard is stale. CI runs this after
+the other checks, so a conjecture, ledger or evidence edit that was not
+followed by a regeneration fails the build rather than shipping a page that
+quietly stopped being true.

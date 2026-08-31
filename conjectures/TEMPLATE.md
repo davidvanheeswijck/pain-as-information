@@ -8,6 +8,7 @@ posterior:
 lineage:
 supersedes:
 created: YYYY-MM-DD
+# bears_on: HC-1, PB-2   (optional — comma-separated HC-N/PB-N ids from PROGRAMME.md)
 ---
 
 <!--
@@ -20,6 +21,10 @@ created: YYYY-MM-DD
            what posterior is for, and the difference between them is the only
            record of what you learned.
   lineage: the conjecture this was rebuilt from, if any (e.g. C-004)
+  bears_on: optional. Which hard-core commitments or protective-belt hypotheses
+           from PROGRAMME.md this conjecture is a test of, e.g. "HC-1, PB-2".
+           Read by tools/build-dashboard.py to populate the hard core board;
+           leaving it out is honest if nothing has been decided yet.
   Every section below is required. tools/lint-conjecture.py enforces it.
 -->
 

@@ -59,3 +59,10 @@ jobs:
         # ignore this job, which is exactly the failure it exists to prevent.
         # Unresolvable identifiers still fail. Unreachable ones only warn.
         run: tools/verify-citations.py evidence/ conjectures/
+
+      # Every number on docs/index.html is derived from this repository, and
+      # a dashboard that has drifted from the data is worse than no dashboard,
+      # because it reads as current. This is the mechanical guarantee that it
+      # never does.
+      - name: dashboard
+        run: tools/build-dashboard.py --check

@@ -83,6 +83,24 @@ as a decision, with the evidence that would reverse it, in
 The evidence base treats all these readings separately and says which one it is
 talking about in every verdict.
 
+## Watching it
+
+**[davidvanheeswijck.github.io/pain-as-information](https://davidvanheeswijck.github.io/pain-as-information/)**
+
+A dashboard showing the conjecture lineage graph, the prior-against-posterior
+calibration plot, the hard-core board, panel history and evidence coverage.
+
+It is **generated from this repository** by `tools/build-dashboard.py`, and CI
+fails the build if it is stale. That is deliberate. A hand-maintained summary
+goes quietly out of date and then misleads the people relying on it, which has
+already happened twice in this repository's first day: once when the README
+described a route the briefs behind it had closed, and once when material was
+asserted rather than derived and had to be retracted. Anything on that page can
+be traced back to a file here.
+
+The calibration plot is the part worth looking at first. If every posterior sits
+above its prior, the programme is not learning, it is agreeing with itself.
+
 ## How the programme runs
 
 Conjecture in, adversarial panel, verdict, ledger. Repeat.
