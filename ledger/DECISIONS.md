@@ -64,6 +64,36 @@ should go: **optically pumped magnetometry** of nerve traffic. That is quantum
 technology, it works today, and the benefit is geometric rather than
 computational.
 
+**Where simulation compute would actually help, since the question was asked in
+the form of an offer.** The programme does have real compute needs. They are
+all classical, and all of them are cheap by comparison:
+
+1. **Biophysical modelling of the T-junction**, in NEURON or a comparable cable
+   simulator. C-001 claims that ganglion stimulation works by amplifying
+   T-junction filtering and that the effect decays under an unvarying stimulus.
+   That is a multi-compartment model with Ca2+ and SK conductances, and it can
+   be run to the point of making a quantitative, falsifiable prediction about
+   which stimulus patterns restore filtering, **before** anyone spends the
+   180,000 to 250,000 euro the animal experiment costs. This is the highest
+   value compute in the programme by a wide margin, and it runs on a laptop
+   overnight or a small cluster in an hour.
+2. **Molecular dynamics on state-dependent sodium channel binding.** The
+   Nav1.7 failure is a conformational sampling problem, which is exactly what
+   ordinary MD is for and exactly what quantum computers do not help with. If
+   the programme ever wants a view on subtype selectivity, this is the tool, and
+   GPU hours are the resource.
+3. **Forward magnetic modelling for Branch B.** Before buying a single
+   magnetometer, model the expected field at a realistic standoff from a
+   dispersed C-fibre volley, and find out whether phase cancellation kills the
+   signal. That is a finite-element calculation, it costs almost nothing, and
+   it could close the whole branch cheaply. It should be done first.
+4. **Panel compute**, which is the harness itself and is the one recurring cost.
+   Roughly thirteen model calls per conjecture on an EU-hosted router.
+
+The ordering matters. Item 3 is a potential cheap kill on an entire branch and
+should be run before any hardware is bought, in the same way triage should be
+run before any panel is spent.
+
 **What would reverse it.** Any one of:
 
 - A published fault-tolerant resource estimate for a voltage-gated sodium
