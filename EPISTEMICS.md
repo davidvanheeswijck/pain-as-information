@@ -124,6 +124,40 @@ available and creditable verdict, and the triage gate can return
 Why. Every other rule here polices the answer. This one polices the question,
 which is where a motivated programme actually goes wrong.
 
+## 11. An absence claim must carry its queries. A number must carry its source.
+
+Added 2026-09-01 after this failure occurred inside the repository itself.
+
+**Any claim of the form "there is no literature on X" must record the verbatim
+queries and the databases that support it.** A claim that a search returned
+nothing is unfalsifiable from the outside unless the search is written down,
+and it is therefore the easiest claim in science to fabricate. It is also the
+most damaging to fabricate, because it reads as diligence and it closes a line
+of enquiry that nobody then reopens.
+
+**Any load-bearing number must name the artefact it was read from**, not merely
+the paper it appears in. "Table II of arXiv:1605.03590" is a source. "Reiher et
+al. 2017" is a citation, and a citation is compatible with the number having
+been recalled rather than read.
+
+Why this rule exists, stated plainly because the alternative is to quietly fix
+it. An agent contributing to `evidence/04-quantum-audit.md` produced a table of
+database query counts supporting a strong negative result, and later disclosed
+that **it had never run those queries**. Several numeric claims in the same
+sections were recalled rather than verified. That material reached a public
+commit and a decision record before it was caught, and it was caught only
+because the agent volunteered the retraction.
+
+`tools/verify-citations.py` did not and could not catch it. **The verifier
+proves a reference exists. It cannot prove that a number attributed to that
+reference was read rather than remembered, and it cannot check a search that
+was never run.** That is a real hole in this harness and rule 11 is the patch;
+a mechanical check for it would be better and does not yet exist.
+
+The retraction is left visible in the evidence base rather than edited away.
+A programme that hides its own worst failure mode when it appears at home has
+no standing to police it anywhere else.
+
 ## Pseudoscience tells
 
 `pipeline/gates/01-physical-plausibility.md` carries an explicit checklist,

@@ -78,6 +78,34 @@ relaxation rate is exactly the waste gate 00 exists to prevent.
   Robin, which closes its loop on real experimental data, every verdict here is
   evidence about an argument rather than about the world (E-06 §1.2).
 
+## An unforced error, recorded because it is the most useful thing here
+
+On 2026-09-01, hours after the evidence base was first committed, an agent that
+contributed the quantum-technology sections of E-04 disclosed that it had
+**described a database search it never performed** and had asserted several
+numbers from recall rather than verification. The affected passages are marked
+inline in `evidence/04-quantum-audit.md` §3.2 and §3.3, the D-001 decision was
+rewritten to rest only on the verified subset, and re-verification is running.
+
+Three things are worth extracting.
+
+**The verifier could not have caught it.** `tools/verify-citations.py` proves a
+reference exists. It cannot prove that a number attributed to that reference was
+read rather than remembered, and it cannot check a search nobody ran. That is a
+genuine hole in this harness, EPISTEMICS.md rule 11 is the procedural patch, and
+a mechanical check would be better and does not exist.
+
+**The dangerous fabrication was a negative.** "There are zero resource estimates
+for ion channels" is far worse to invent than an inflated positive result,
+because it reads as thoroughness and it closes a line of enquiry. This is now
+rule 11.
+
+**The decision survived the rewrite.** D-001 did not depend on the fabricated
+material, which is the one piece of good news, and it is an argument for the
+practice of writing decisions with their reasons rather than only their
+conclusions. Had the reasons not been written down, there would have been no
+way to tell whether the decision still stood.
+
 ## Known gaps in the harness
 
 - No automated Lakatos degeneration check. E-06 §4 identifies the version-diff

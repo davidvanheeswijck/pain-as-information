@@ -13,50 +13,59 @@ simulation capacity, for chemistry, for ligand design, or for machine learning
 on biosignals. Money that would go there goes to Branch A and to
 instrumentation instead.
 
+> **Note, 2026-09-01.** This decision was first written on material that was
+> partly retracted hours later, after the reporting agent disclosed that it had
+> asserted numbers from recall and had described a database search it never
+> ran. **The decision has been rewritten to rest only on the verified subset,
+> and it survives that rewrite comfortably.** The specific figures that were
+> withdrawn are marked in `evidence/04-quantum-audit.md`. Recording this rather
+> than quietly reissuing the file, because a decision record whose evidence
+> changed without trace is worth less than no record.
+
 **Why.** This was a real question and the evidence base was assembled partly to
-answer it. It came back negative on all three plausible uses.
+answer it. It came back negative on the two plausible uses.
 
-*For chemistry and ligand design.* Only two systems anywhere have rigorous
-fault-tolerant resource estimates, and both are metalloenzyme active sites:
-nitrogenase FeMoco and cytochrome P450. The cheapest published costs are
-**1,000 to 3,700 logical qubits, around 2 to 8 billion Toffoli gates, and about
-5 million physical qubits**. Against that, the best hardware in 2026 has **one**
-genuinely below-threshold logical qubit and has executed at most **nine logical
-T gates** in a fault-tolerant circuit. The gap is **four to seven orders of
-magnitude** depending on the axis, and it is confirmed independently from the
-hardware side: getting from a 1.4e-3 logical error rate to the 1e-10 these
-algorithms need implies surface code distance around 50, so about 5,000
-physical qubits per logical qubit, so about 10 million physical qubits.
+*For chemistry and ligand design.* The two rigorous fault-tolerant resource
+estimates in this space are both metalloenzyme active sites, and both were
+verified from the primary papers:
 
-Worse, and this is the part that does not improve with hardware: **there are
-zero credible fault-tolerant resource estimates for any ion channel, membrane
-protein, neurotransmitter receptor or binding free energy.** Not few. Zero. The
-absence is structural. Phase estimation prices one energy at one geometry in a
-fixed active space. The quantities that matter pharmacologically are
-conformational and thermodynamic, needing 10⁴ to 10⁶ such energies over a
+- Nitrogenase FeMoco (Reiher et al., *PNAS* 114:7555-7560, 2017): about
+  **10¹⁵ T gates, 111 logical qubits, and 1.8 × 10⁸ physical qubits** at a
+  10⁻³ error rate. The paper calls this "reasonable time on **small** quantum
+  computers". A small quantum computer here is 180 million physical qubits.
+- Cytochrome P450 (Goings et al., *PNAS* 119:e2203533119, 2022): about
+  **2,158 logical qubits, 4.9 million physical qubits, 135 hours**.
+
+Against that, the current hardware milestone is a surface code operating
+**below threshold** with, in headline terms, **one** logical qubit. One against
+one to four thousand is the whole argument, and it needs no further arithmetic.
+
+The part that does not improve with hardware is the mismatch between what the
+method prices and what pharmacology needs. Phase estimation gives **one energy
+at one geometry in a fixed active space**. The quantities that matter here are
+conformational and thermodynamic, requiring very many such energies over a
 sampling problem where quantum computers have **no known advantage**.
 
 That connects to a specific failure in this field's history. The Nav1.7 drugs
 failed on **state dependence**: the sulfonamides bind the depolarised
 conformation of voltage-sensing domain IV, while resting-state channels
 dominate in uninjured tissue. That is a conformational sampling problem, which
-is exactly the class a quantum computer does not help with.
+is exactly the class a quantum computer does not help with. This point is from
+E-03 and is independently sourced.
 
-And the field's flagship benchmark fell. In 2026, FeMoco was solved to chemical
-accuracy **classically**, with the originating commentary noting the benchmark
-model was "unrepresentatively easy to solve".
+*For machine learning on biosignals.* The load-bearing argument is theoretical
+rather than empirical, which is fortunate given what had to be withdrawn.
+**Dequantisation results** (Tang, STOC 2019, arXiv:1807.04271; Chia et al.,
+*JACM* 69(5), 2022) show that support vector machines and principal component
+analysis admit classical sampling algorithms of comparable asymptotic cost.
+Any regime in which a quantum kernel on dimensionally reduced biosignal data
+would be exponentially fast is a regime a classical algorithm handles equally
+fast. Separately, a 160-dataset benchmark across 12 quantum models found
+out-of-the-box classical models systematically ahead (Bowles, Ahmed, Schuld,
+arXiv:2403.07059, still an unrefereed preprint).
 
-*For machine learning on biosignals.* No demonstrated advantage exists on real
-hardware against a strong classical baseline. In the one properly controlled
-head-to-head, using a Riemannian pipeline as comparator, the quantum classifier
-scored **83% on training and 50.25% balanced accuracy on held-out data with an
-F1 of 2.84%**, which on a binary task means it assigned every epoch to one
-class. It ran roughly 14,000 times slower than the classical model that beat
-it. Separately, dequantisation results prove that any regime in which a quantum
-kernel on dimensionally reduced data would be exponentially fast is a regime a
-classical sampling algorithm handles equally fast.
-
-Full argument and citations: `evidence/04-quantum-audit.md` §3.2 and §3.3.
+Full argument, with the retracted passages marked inline:
+`evidence/04-quantum-audit.md` §3.2 and §3.3.
 
 **What this decision does not say.** It does not say quantum technology is
 irrelevant to the programme. Branch B remains open and is where Tier 3 money

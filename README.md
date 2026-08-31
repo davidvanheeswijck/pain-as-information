@@ -69,13 +69,16 @@ recovered in humans. Worth noting that the benefit is *geometric*, not quantum
 mechanical: a room-temperature sensor 13 times noisier than a SQUID wins
 because it sits 5 mm from the skin instead of 30 mm.
 
-**Quantum computation for ligand design does not survive.** The gap between
-what the algorithms need and what the hardware does is four to seven orders of
-magnitude, there are zero fault-tolerant resource estimates for any ion channel
-or membrane protein, the real bottleneck is conformational sampling rather than
-electronic structure, and in 2026 the field's flagship benchmark was solved
-classically. That is written up as a decision, with the evidence that would
-reverse it, in [ledger/DECISIONS.md](ledger/DECISIONS.md).
+**Quantum computation for ligand design does not survive.** The two rigorous
+resource estimates in this space, both metalloenzyme active sites, call for
+111 and about 2,158 logical qubits and 10⁸ and 5 × 10⁶ physical qubits
+respectively. The current hardware milestone is a surface code below threshold
+with, in headline terms, one logical qubit. And the deeper problem does not
+improve with hardware: phase estimation prices one energy at one geometry,
+while the quantities that matter pharmacologically are conformational, which is
+a sampling problem where quantum computers have no known advantage. Written up
+as a decision, with the evidence that would reverse it, in
+[ledger/DECISIONS.md](ledger/DECISIONS.md).
 
 The evidence base treats all these readings separately and says which one it is
 talking about in every verdict.
