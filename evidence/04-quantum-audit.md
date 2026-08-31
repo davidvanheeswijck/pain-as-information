@@ -288,7 +288,7 @@ The open question, and it is a real one, is whether **unmyelinated C-fibre traff
 
 Nine years of algorithmic work cut the gate count by four to five orders of magnitude (10¹³-10¹⁴ down to about 2.4 × 10⁹ Toffolis) but pushed the **logical qubit count the wrong way, 111 up to 2,100-3,700**, because qubitisation trades ancillas for gates. Nobody has pushed the physical-qubit requirement below about 10⁶ at realistic error rates.
 
-### Binding free energies: the "zero estimates" claim was false
+#### Binding free energies: the "zero estimates" claim was false
 
 An earlier version of this brief asserted that **no** fault-tolerant resource
 estimate existed for binding free energies. **That is refuted.** At least three
@@ -300,7 +300,7 @@ do:
 
 Also relevant: "How to Use Quantum Computers for Biomolecular Free Energies", *JCTC* 2026, doi:10.1021/acs.jctc.5c02088.
 
-### The narrower absence claim, with its queries recorded
+#### The narrower absence claim, with its queries recorded
 
 For **ion channels, membrane proteins and neurotransmitter receptors**
 specifically, a real search returned nothing. Per EPISTEMICS.md rule 11 the
@@ -331,7 +331,7 @@ paper whose title or abstract says both", not "no such estimate exists
 anywhere". Semantic Scholar and OpenAlex relevance searches also surfaced
 nothing on target.
 
-### The argument that depends on no literature count at all
+#### The argument that depends on no literature count at all
 
 Phase estimation prices **one energy at one geometry in a fixed active space**.
 The quantities that matter pharmacologically are **thermodynamic and
@@ -361,7 +361,7 @@ Their argument is quantitative and its middle step matters here. Phase estimatio
 
 Verified against the *Nature* text via PMC11864966: the processor is **105 physical qubits**, the below-threshold demonstration is a **101-qubit distance-7 surface code**, with **Λ = 2.14 ± 0.02** and **logical error per cycle 0.143% ± 0.003%**, beyond break-even by 2.4 ± 0.3 times. Independently reproduced by USTC's Zuchongzhi at distance 7 with Λ = 1.40 (*PRL* 135:260601).
 
-### The distinction that governs every vendor claim in this area
+#### The distinction that governs every vendor claim in this area
 
 **Error-correcting below threshold is not the same as error-detecting with post-selection**, and the headline numbers in press coverage are almost always the second.
 
@@ -374,7 +374,7 @@ Verified against the *Nature* text via PMC11864966: the processor is **105 physi
 
 Post-selected schemes cannot carry an algorithm needing billions of gates, because the retention rate falls exponentially with circuit size. **Any figure quoted for this programme must say which regime it is in**, and the frequently cited "48 logical qubits" is the post-selected one.
 
-### The gap
+#### The gap
 
 | Axis | Best demonstrated 2026 | Required (cheapest published) | Gap |
 |---|---|---|---|
