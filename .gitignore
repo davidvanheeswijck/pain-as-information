@@ -1,0 +1,21 @@
+# Secrets. Never commit a key. .env is where they live and it is never tracked.
+.env
+.env.*
+!.env.example
+
+# Names used by the privacy backstop. Local only, by design: a list of the
+# people whose names must not appear is itself the thing you would not want in
+# a public repository.
+tools/.privacy-names
+
+# Caches
+.citation-cache.json
+__pycache__/
+*.pyc
+.DS_Store
+
+# Case material never enters this repository. This line is a backstop for a
+# mistake, not a place to put things. See ETHICS.md.
+case/
+private/
+*.dcm

@@ -1,0 +1,61 @@
+name: gates
+
+# Three mechanical checks that do not need a model and do not cost a token.
+# They are the floor: a document that fails these should never reach a panel.
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+        # No dependency install step. Every tool here is standard library
+        # only, deliberately, so this workflow cannot break because of a
+        # transitive package.
+
+      # Runs first and always. A privacy failure is the one that matters most,
+      # and it should not be masked by an earlier job failing for another
+      # reason.
+      - name: privacy backstop
+        run: tools/lint-privacy.py
+
+      - name: conjecture structure
+        run: |
+          shopt -s nullglob
+          files=(conjectures/C-*.md)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "no conjectures yet"; exit 0
+          fi
+          tools/lint-conjecture.py "${files[@]}"
+        shell: bash
+
+      # Cache successful resolutions across runs. Successes never expire, so
+      # this turns a ~60s cold run into a ~1s warm one and keeps the registries
+      # from being hammered on every push.
+      - name: restore citation cache
+        uses: actions/cache@v4
+        with:
+          path: .citation-cache.json
+          key: citations-${{ github.sha }}
+          restore-keys: citations-
+
+      - name: citations resolve
+        env:
+          CROSSREF_MAILTO: ${{ vars.CROSSREF_MAILTO }}
+          NCBI_API_KEY: ${{ secrets.NCBI_API_KEY }}
+        # --strict-network is deliberately NOT set. A registry having a bad
+        # minute must not turn the build red: that would train everyone to
+        # ignore this job, which is exactly the failure it exists to prevent.
+        # Unresolvable identifiers still fail. Unreachable ones only warn.
+        run: tools/verify-citations.py evidence/ conjectures/

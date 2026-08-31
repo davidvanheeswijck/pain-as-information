@@ -1,0 +1,17 @@
+# Suppressions for tools/lint-privacy.py. One `path:pattern-name` per line, or
+# `path:*` to skip a file entirely. The tool reports how many findings were
+# suppressed, so this file can never silently hide everything.
+#
+# Keep this list short and justified. Every line is a place the backstop is
+# switched off, and the reason has to survive someone reading it in a year.
+
+# The linter's own source contains the keyword and institution lists as literal
+# strings, so a naive substring scan matches itself. Excluding the detector
+# from its own scan is correct; excluding anything else here would need a much
+# better reason.
+tools/lint-privacy.py:*
+
+# ETHICS.md enumerates the categories of identifier that must never appear, in
+# order to forbid them. Naming a category is not disclosing an instance.
+ETHICS.md:clinical-keyword
+ETHICS.md:institution-name
