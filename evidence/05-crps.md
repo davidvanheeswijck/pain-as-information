@@ -4,8 +4,9 @@
 > CRPS and on DRG stimulation. Identifiers were resolved live against NCBI
 > E-utilities, the ClinicalTrials.gov v2 API, the EU Clinical Trials Register or
 > the source institution's own pages. Items that could not be confirmed are
-> marked `[UNVERIFIED]`. The EU CTIS front end could not be queried, so EU
-> trials authorised after 2023 may be missing.
+> marked `[UNVERIFIED]`. **The header caveat that CTIS could not be queried is
+> withdrawn; see §6c, which reports the complete EU landscape from a corrected
+> POST-based API call.**
 >
 > Bears on: PB-2 (habituation is addressable), PB-3 (night-time allodynia has a
 > distinct signature), PB-5 (a peripheral generator maintains some chronic
@@ -374,6 +375,90 @@ trial. This is now a standing requirement for this evidence base.
 The working CTIS call is a **POST** to `euclinicaltrials.eu/ctis-public-api/search`
 with a JSON body; the documented GET form returns "Missing Authentication
 Token". CTIS contains exactly **four** CRPS trials.
+
+---
+
+## 6c. The complete EU trial landscape, from a corrected registry sweep
+
+The CTIS public API is reachable, contrary to this brief's header note. The
+working call is a **POST** to `euclinicaltrials.eu/ctis-public-api/search` with a
+JSON body; the documented GET form returns "Missing Authentication Token". The
+header caveat about post-2023 EU trials being invisible is therefore withdrawn,
+and this section replaces it.
+
+### CTIS holds exactly four CRPS trials, and two are administrative transitions
+
+| CTIS number | Trial | Sponsor | Country | Status | N | Results |
+|---|---|---|---|---|---|---|
+| 2022-503167-15-00 | Fremanezumab, proof of concept | Aarhus University Hospital | DK only | Ongoing, recruiting | 60 | No |
+| 2024-511877-31-00 (KetCRPS-2) | IV esketamine, non-inferiority | Erasmus MC Rotterdam | NL | **Ended** | 60 | **No** |
+| 2024-518310-28-00 (CRPS-VITC) | Vitamin C prevention, upper limb surgery | CHU Amiens-Picardie | FR | Authorised, pending | **1000** | No |
+| 2024-519832-17-00 (PINCom) | Perineural incobotulinumtoxin-A | Rigshospitalet | DK | **Ended** | 25 | **Yes**, submitted 2 Jul 2026 |
+
+Two of the four are transitions from EudraCT rather than new science. **Only two
+genuinely new EU CRPS drug trials have been authorised since 2023**, both Danish,
+both investigator-led, both phase II. PINCom also carries a **temporary halt
+dated 9 April 2026, reason "sponsor decision"**, before it ended and reported.
+
+**The neridronate and bisphosphonate industry programme has no CTIS presence at
+all.** It wound down before the transition. The same is true of the Axsome
+zoledronate and Takeda TAK-935 programmes: the entire industry pipeline in CRPS
+lives in legacy EudraCT and has ended.
+
+Verified absent from CTIS by verbatim query: `neridronate`, `neridronic acid`,
+`algodystrophy`, `Sudeck`, `reflex sympathetic dystrophy`, `causalgia`,
+`shoulder-hand syndrome`, `bisphosphonate pain`.
+
+### Legacy EudraCT holds 28 CRPS trials, and the newest started in 2021
+
+Of those 28, **13 show posted results and 15 do not**. The unreported set
+includes several that this brief cites elsewhere as ongoing: multiple LUMC Leiden
+ketamine and ARA-290 studies, the VUmc corticosteroid and oxygenation studies,
+the Walton Centre subcutaneous immunoglobulin trial (prematurely ended), and the
+Axsome AXS-02 zoledronate trial (completed, no results).
+
+**No EU CRPS drug trial has started since 10 May 2021.**
+
+### A warning about relying on WHO ICTRP
+
+ICTRP indexes legacy EudraCT and the German DRKS but **does not appear to ingest
+CTIS records**. Direct lookups of the two CTIS-native trials returned an empty
+page shell while legacy EudraCT lookups returned full records. **Anyone using
+ICTRP as their aggregator is blind to every post-2023 EU drug trial**, including
+three of the four above. This is a second instance of the same failure mode as
+the neridronate error: a single register treated as complete.
+
+### Where the live CRPS research actually is
+
+The current work is **non-drug**, so it appears in national registers rather
+than CTIS:
+
+- **Germany, DRKS**: 15 CRPS studies, 6 registered since 2023. Notably
+  DRKS00036470, **warm against cold mechanistic subtypes** with standardised
+  treatment as usual, Mainz with the international CRPS research consortium,
+  running across DE, NL, CH and US. Also DRKS00033005, **pulsed electromagnetic
+  fields in CRPS, double-blind RCT**, Kiel, n=50, recruiting; and
+  DRKS00036764, ResolveCRPS 2.0, Würzburg, n=131.
+- **Netherlands**: Erasmus MC Rotterdam is the clear hub, with repeated-ketamine,
+  methadone and botulinum sympathetic block studies all begun in 2026.
+- **Belgium**: see below.
+
+### The Belgian finding
+
+**NCT07147140**, "Physiological Parameters in CRPS Patients Treated With Dorsal
+Root Ganglion Stimulation", **AZ Delta, Roeselare**, n=24, started 8 September
+2025, **completed 24 February 2026**, CRPS type I.
+
+Its design is directly relevant to this programme and to the clinical questions
+in §8a. It uses **CE-marked wearable biosensors to collect continuous
+physiological data during active DRG stimulation and during therapy cessation
+periods**, explicitly to produce "new metrics beyond pain scores to assess
+therapeutic efficacy".
+
+That is, a Belgian centre has just run an instrumented study of exactly the
+manoeuvre the salvage literature calls a stimulation holiday, in exactly the
+population at issue, with objective autonomic readouts rather than pain scores.
+Results are not yet posted.
 
 ---
 

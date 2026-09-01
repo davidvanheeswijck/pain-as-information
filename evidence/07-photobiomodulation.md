@@ -456,6 +456,208 @@ from data custody, analysis pre-specified and independently held.
 
 ---
 
+## 6b. The regulatory position, which is more damning than the trial record
+
+Every identifier below was retrieved from the openFDA API, FDA document PDFs at
+`accessdata.fda.gov`, the eCFR versioner API, or EUR-Lex.
+
+### The category runs on a 1983 rule for a heating lamp
+
+**21 CFR 890.5500**, verbatim: "An infrared lamp is a device intended for
+medical purposes that emits energy at infrared frequencies (approximately 700
+nanometers to 50,000 nanometers) **to provide topical heating**."
+
+Two product codes with opposite definitions sit under that one regulation:
+
+| Code | Device name, verbatim | 510(k)? | Clearances |
+|---|---|---|---|
+| **NHN** | "Powered Light Based Laser Non-Thermal Instrument With Non-Heating Effect For Adjunctive Use In Pain Therapy" | Required | 54 |
+| **ILY** | "Lamp, Infrared, Therapeutic Heating" | **Exempt since 30 Dec 2019** | 229 |
+
+NHN's own FDA definition concedes the mismatch: it "does not provide
+therapeutic topical heating", while "the classification regulation for infrared
+lamps describes a device that emits energy in the infrared wavelength to provide
+topical heating". The one device cleared for a neuropathic indication operates
+at **405 nm and 640 nm**, both *below* the regulation's 700 nm floor, delivering
+the *opposite* of its stated effect, under its authority.
+
+**The 2019 exemption is visible in the data.** ILY clearances ran 5 to 11 per
+year from 2012 to 2017, then **zero in 2018, 2019 and 2021** and about one per
+year since. The high-intensity class IV therapy laser market now needs no FDA
+review at all, provided it stays inside the heating claim.
+
+### Every high-intensity laser is cleared as a heating lamp, not as photobiomodulation
+
+LiteCure/LightForce (K173067), K-Laser (K120604), Aspen (K142078) and Avant
+(K123474) are all in **ILY**, with the generic boilerplate: "provide topical
+heating for the purpose of elevating tissue temperature for a temporary relief
+of minor muscle and joint pain". **Nothing in the HILT segment is cleared for
+photobiomodulation. They are cleared to warm tissue.** Any meta-analysis pooling
+class 3B and class IV devices is pooling two legally and physically distinct
+interventions.
+
+### Exactly one neuropathic-pain clearance exists, and it is narrower than it sounds
+
+**Erchonia DPN Laser, K251903, decided 19 February 2026**, product code NHN.
+Verbatim indication: "indicated while using the red and violet diode
+simultaneously **for prescription home use as an adjunctive treatment in
+providing temporary relief of diabetic peripheral neuropathy foot pain**."
+
+It carries a real trial: randomised, double-blind, placebo-controlled,
+multi-centre, **n=64**, 42 self-administered treatments over 3 weeks, primary
+endpoint at least 30% VAS reduction at week 3. **Result 72.73% against 32.26%.**
+Two non-serious adverse events.
+
+**Relieving the pain of neuropathy is not treating neuropathy, and that is
+FDA's own explicit position**, from the Vevazz warning letter (MARCS-CMS
+592118, 26 December 2019), verbatim:
+
+> "While pain may be a symptom of neuropathy or other tissue damage, use of the
+> Contour to temporarily relieve a symptom does not treat the underlying disease
+> or condition causing the symptom. **The treatment of neuropathy is a different
+> intended use than the temporary relief of pain** ... To date, FDA is unaware of
+> any low level LED light therapy device approved or cleared for the treatment
+> of neuropathy."
+
+K251903 does not disturb that. **Nothing is cleared for chemotherapy-induced
+peripheral neuropathy, post-herpetic neuralgia, trigeminal neuralgia or CRPS.**
+Verified: `device_name:"photobiomodulation"` returns `NOT_FOUND`;
+`device_name:"DPN"` returns K251903 alone.
+
+The contrast case shows what a real neuropathic-pain authorisation requires:
+**Nevro Senza, PMA P130022/S039**, approved 2021, indicated for pain "associated
+with diabetic neuropathy" — Class III, the only pathway with a statutory
+efficacy standard.
+
+### What clearance is actually based on
+
+From the FTC's own complaint in *FTC v. Physician's Technology* (2:20-cv-11694,
+E.D. Mich.), paragraph 24, verbatim: the 510(k) pathway "**does not require
+clinical data demonstrating efficacy or safety, only a showing that a new device
+is 'substantially equivalent' to an existing device already legally marketed**".
+
+Worked examples from the actual record:
+
+- **K232813** (2024, carpal tunnel): "Substantial equivalence ... has been
+  established through the results of **nonclinical testing**." The predicate is a
+  2003 device and the summary asserts the indications are identical.
+- **K241057** (2025, neck, shoulder and carpal tunnel): "**No clinical study is
+  included in this submission.**"
+- **K180197**: "Erchonia FX-635 is **substantially equivalent to itself**".
+- **K190572** broadened the indication to all "nociceptive musculoskeletal pain"
+  by aggregating three pre-existing studies, total n=213, done for three
+  different body sites.
+- **19 of 54 NHN clearances filed a 510(k) statement rather than a summary**, so
+  their public file contains no evidence basis, no predicate discussion and
+  nothing else. This includes several of the most-marketed devices.
+
+**FDA knows.** Its draft guidance "Photobiomodulation (PBM) Devices — Premarket
+Notification [510(k)] Submissions" (Docket FDA-2022-D-3116) has been **draft
+since January 2023**, still marked "Not for implementation. Contains non-binding
+recommendations."
+
+### Consumer red-light panels are registered, not cleared
+
+Joovv (establishment 3014184914), Mito Red Light (3015313684) and PlatinumLED
+(3015619571) all list under **ILY with `k_number: None`**. None holds a 510(k).
+
+**21 CFR 807.39**, verbatim: "**Registration of a device establishment or
+assignment of a registration number does not in any way denote approval** of the
+establishment or its products. Any representation that creates an impression of
+official approval because of registration or possession of a registration number
+is misleading and **constitutes misbranding**."
+
+Against which, one brand states its lights "**Achieve** FDA Class II Medical
+Device status" and another answers "Is Joovv FDA registered?" with "Yes. Joovv
+products are registered as class II devices."
+
+The General Wellness guidance (final, 6 January 2026) is a weaker shield than
+assumed. Verbatim: "**A product's inclusion under the general wellness policy in
+this guidance does not establish that it has been shown to be safe and/or
+effective for its intended use.**" And its risk prong excludes products posing
+"risks from lasers or radiation exposure", or whose labelling includes
+"references to specific diseases, clinical conditions, or diagnostic
+thresholds".
+
+**The exemption may not even fit.** 21 CFR 890.9 voids it when the device "is
+intended for a use different from the intended use of a legally marketed device
+in that generic type" or "operates using a **different fundamental scientific
+technology**". A 660 nm panel sold on a non-thermal cytochrome c oxidase
+mechanism is below the 700 nm floor and asserts the opposite mechanism to
+topical heating.
+
+### Enforcement: the mechanism is the exemption collapsing
+
+Four warning letters follow one template — *you left the heating claim, so you
+lost the exemption*. **Diowave** (CMS 712715, 26 Sept 2025), verbatim: "the
+Diowave 100 WLS and Diowave 250 WLS devices **do not provide topical heating.
+Instead, they use a different fundamental scientific technology.**" Its
+marketing had claimed "laser therapy is the only treatment in medicine that
+actually heals living tissue". **Spectra Therapy** (CMS 698026, 22 July 2025)
+had claimed it "can markedly decrease the pain of neuropathy in the lower
+extremeities [sic]" and "can **cure** both acute and chronic inflammatory
+issues". Also **Curewave** (CMS 593692) and **Mectronic** (CMS 707997), the
+latter drawing the verbatim response that "**FDA is currently unaware of any
+evidence that could support the above intended uses**".
+
+The FTC case is *Willow Curve*: **$22,000,000 judgment**, suspended on payment
+of $200,000 each, permanently enjoining claims about "severe or chronic pain due
+to ... diabetic neuropathy, nerve damage, fibromyalgia, shingles" absent
+randomised, double-blind, placebo-controlled human testing.
+
+### The EU is not better, and in one respect is worse
+
+Under **MDR Annex VIII Rule 9**, therapeutic energy-emitting devices are
+**Class IIa**, or IIb for lasers. **Article 61(4)** mandates clinical
+investigations only "In the case of implantable devices and class III devices",
+so **a PBM device is never required to run a trial**. Equivalence-by-literature
+is permitted under Article 61(3)(a).
+
+And **nothing is published**. **Article 32(1)** requires a public Summary of
+Safety and Clinical Performance only "For implantable devices and for class III
+devices". PBM devices are IIa or IIb, so no SSCP exists, and EUDAMED's public
+records expose UDI, trade name, manufacturer and risk class but **no indication,
+intended purpose or clinical evidence**. **There is no EU counterpart to the FDA
+510(k) summary and Indications for Use form**, so the EU publishes strictly less
+than the United States about what these devices are for.
+
+The cosmetic-use common specifications (Implementing Regulation (EU) 2022/2346)
+carry a carve-out mirroring the US gap exactly: "**This Annex does not apply to
+equipment using infrared optical radiation to warm the body.**" The same
+topical-heating framing that buys the US 510(k) exemption buys an exit from the
+EU cosmetic regime.
+
+### What this section can be relied on for
+
+1. The category is regulated under a 1983 infrared **heating lamp** rule that
+   matches neither its wavelengths nor its claimed mechanism, and since December
+   2019 the heating variant needs no FDA review at all.
+2. Cleared indications are uniformly **adjunctive, temporary, minor**
+   symptomatic relief for named musculoskeletal sites, and several were granted
+   with no clinical study in the submission.
+3. **Exactly one device is cleared for a neuropathic-pain indication**, since
+   February 2026, on a 64-subject trial, and it is cleared to relieve pain, not
+   to treat neuropathy.
+4. **Neither regulator has ever asked whether these devices work in the way they
+   are sold.**
+
+**Two limits on the negatives above, stated so they are not over-read.** FDA's
+warning-letter database indexes only letters issued from 4 January 2021, so a
+pre-2021 letter to any of these manufacturers cannot be excluded. The FTC case
+index searches metadata rather than PDF text, proven by the fact that "diabetic
+neuropathy" returns nothing despite appearing verbatim in the Willow Curve
+complaint. These are "not found in a database with known blind spots", not
+"does not exist".
+
+**One citation defect worth knowing before quoting the FTC.** The Willow Curve
+complaint cites "21 C.F.R. § 890.5550" for the infrared-lamp exemption. **That
+section does not exist** in any year checked against the eCFR versioner. It is
+890.5500, and the 2018 text contained no exemption clause at all. At least one
+manufacturer's public FAQ reproduces the same wrong citation, apparently copied
+from the complaint.
+
+---
+
 ## 7. Search log for negative claims
 
 Per EPISTEMICS.md rule 11. Databases: NCBI PubMed E-utilities (1 September
