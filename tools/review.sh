@@ -134,6 +134,37 @@ for backoff in 20 60; do
   echo "note: HTTP $HTTP from $MODEL, retrying in ${backoff}s" >&2
   sleep "$backoff"; HTTP=$(call)
 done
+
+# A reasoning model can burn its entire completion budget on hidden thinking
+# and return HTTP 200 with an EMPTY content string. That is not a review. It
+# was previously written to disk as a headed but bodiless file and scored
+# "NO VERDICT LINE - treat as MAJOR", which invented an objection no reviewer
+# had made and counted it against the conjecture. Two of C-003's five negative
+# gates were this artefact.
+#
+# Detect it and retry once with a much larger budget before giving up.
+truncated() {
+  python3 - "$RESP" <<'PY2'
+import json, sys
+try:
+    r = json.load(open(sys.argv[1]))
+    c = r["choices"][0]
+    txt = (c.get("message", {}) or {}).get("content") or ""
+    sys.exit(0 if (not txt.strip() or c.get("finish_reason") == "length") else 1)
+except Exception:
+    sys.exit(0)
+PY2
+}
+if [[ "$HTTP" == "200" ]] && truncated; then
+  echo "note: $MODEL returned empty or truncated content; retrying at ${REVIEW_MAX_TOKENS_RETRY:-32000} output tokens" >&2
+  REVIEW_MAX_TOKENS="${REVIEW_MAX_TOKENS_RETRY:-32000}" build_body with
+  HTTP=$(call)
+fi
+if [[ "$HTTP" == "200" ]] && truncated; then
+  echo "GATE TRUNCATED: $MODEL produced no reviewable text for $(basename "$PROMPT") even at ${REVIEW_MAX_TOKENS_RETRY:-32000} tokens." >&2
+  echo "This is a harness failure, not a verdict. Do not score it." >&2
+  exit 3
+fi
 [[ "$HTTP" == "200" ]] || { echo "review HTTP $HTTP from $BASE for $MODEL" >&2
                             head -c 400 "$RESP" >&2; echo >&2; exit 1; }
 

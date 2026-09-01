@@ -4,9 +4,15 @@ The honest current position of the programme. Updated after every panel run and
 at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
-**Last updated:** 2026-09-01
-**Conjectures filed:** 7 · **panelled:** 2 · **refuted:** 3 · **open:** 4
+**Last updated:** 2026-09-01 (second revision)
+**Conjectures filed:** 8 · **panelled:** 6 · **refuted:** 6 · **wounded:** 1 · **draft, never panelled:** 1
 **Programme status:** not yet assessable (fewer than 10 conjectures)
+
+> **Read the harness-defect section below before reading any verdict on this
+> page.** The hostile-referee gate produced reviewable text in **one of six**
+> panel runs. Five conjectures were judged without the gate designed to be
+> hardest on them, and in two runs the truncation was scored *against* the
+> conjecture as an objection no reviewer had made.
 
 ## Where the hard core stands
 
@@ -34,42 +40,92 @@ later drifts back towards the stronger claim, the drift is visible.
 
 ## Live conjectures
 
-**Panelled and closed.** C-001 (prior 0.25 → posterior 0.15), C-002
-(0.12 → 0.05) and C-005 (0.45 → 0.25) are refuted and recorded in
-[REFUTED.md](REFUTED.md) with the arguments that killed them. None was deleted.
-C-005 was refuted **as posed, not as motivated**: triage judged it the wrong
-question and supplied a better one, which is now C-007.
+**Refuted and closed:** C-001 (0.25 → 0.15), C-002 (0.12 → 0.05), C-004
+(0.20 → 0.07), C-005 (0.45 → 0.25), C-006 (0.35 → 0.55) and C-007
+(0.40 → 0.32). All recorded in [REFUTED.md](REFUTED.md). None deleted.
 
-**Open, drafted, not yet panelled.**
+Note that **C-006 and C-007 carry posteriors that moved in unusual directions**,
+and both are honest. C-006's rose because the panel found the flavin bench
+experiment *more* likely to succeed than filed, while killing it on a
+different axis: gate 02 returned FATAL because the flavin-tryptophan radical
+pair requires photoexcitation and is validated only in avian cryptochrome, so
+no mechanism was offered by which it forms in mammalian nociceptive tissue.
+The physics was fine; the biological bridge was absent. C-007 fell only
+modestly because it was killed at triage as still the wrong question, with a
+better one supplied.
 
-| id | branch | prior | claim in one line |
-|---|---|---|---|
-| [C-003](../conjectures/C-003-allodynia-eligibility-window.md) | A | 0.30 | Ongoing C-fibre activity opens a brief window during which touch is read as pain |
-| [C-004](../conjectures/C-004-velocity-beamformed-magnetometry.md) | B | 0.20 | Velocity-domain matched filtering can recover a C-fibre magnetic signal that time-domain averaging destroys |
-| [C-007](../conjectures/C-007-timing-adds-nothing-beyond-rate.md) | A | 0.40 | For a specified ensemble, sub-5 ms timing adds nothing beyond rate and unit identity |
-| [C-006](../conjectures/C-006-flavin-13c-magnetic-isotope-effect.md) | C | 0.35 | A carbon-13 magnetic isotope effect is detectable on a purified flavin radical pair at the bench |
+**The single live conjecture.**
 
-**Fund C-007 first.** The programme has spent an entire evidence base
-reasoning about pain as information without anyone having established whether
-timing carries any information beyond rate. C-007 is the comparative form of
-that question, it is informative whichever way it comes out, and it determines
-whether the high-bandwidth transducer work in Branch B is solving a real
-requirement or an assumed one.
+| id | branch | prior | posterior | status |
+|---|---|---|---|---|
+| [C-003](../conjectures/C-003-allodynia-eligibility-window.md) | A | 0.30 | **0.62** | wounded |
 
-**The panel, blind to authorship, preferred C-006.** Asked which of four
-unattributed candidates was most likely to survive, four of five laboratories
-chose the flavin bench experiment rather than the conjecture actually under
-review. That is the unattributed-ballot design producing a signal it could not
-have produced if the panel had known which one was the author's.
+**C-003 is the only conjecture in this programme whose probability rose under
+adversarial review**, and it is now the most interesting live object here. It
+proposes that mechanical allodynia is a coincidence phenomenon in time: ongoing
+C-fibre discharge opens a window of a few hundred milliseconds during which
+otherwise-normal Aβ touch input is routed to nociceptive output.
 
-**C-004 is the one to watch.** It attacks the exact blocker E-02 and E-04 both
-identify: C-fibre volleys have never been detected magnetically because
-dispersion phase-cancels them under time-domain averaging. Beamforming in the
-velocity domain is routine in radar, sonar and seismic array processing, and
-the dispersion that destroys the conventional analysis is what makes the
-velocity domain informative. It also has a mandatory free positive control, the
-Aβ ridge, so a null is interpretable rather than ambiguous. If it fails with
-that control intact, Branch B closes cheaply.
+**Its wounding needs re-reading, because three of its five negative gates are
+artefacts rather than objections.**
+
+| Gate | Recorded | Actually |
+|---|---|---|
+| 01 physical plausibility | NO VERDICT LINE → MAJOR | **Harness truncation.** Empty content, `out=8192`. No reviewer said anything. |
+| 02 biological plausibility | MAJOR | **Real, and the strongest objection.** C-fibre-evoked dorsal-horn facilitation is either short (paired-pulse, tens of ms) or long (central sensitisation, minutes to hours). The proposed few-hundred-millisecond constant sits in a gap with no direct evidence. |
+| 03 evidence integrity | MAJOR | **Verified false positive.** The gate claimed Ghitani et al. (PMID 40269164) does not propose temporal coincidence. The abstract says "coincident with touch". Checked against NCBI directly. |
+| 04 falsifiability | MAJOR | **Real.** False-pass probability estimated ~0.6; the killer as written does not discriminate. |
+| 06 hostile referee | NO VERDICT LINE → MAJOR | **Harness truncation.** No file was written at all. |
+
+So C-003 stands on **two real objections, not five**, and both are about the
+*design of the test* rather than the truth of the claim: an unevidenced time
+constant, and a killer too weak to discriminate. Neither touches the
+contradiction that motivated it, which remains live in the literature.
+
+**What C-003 needs, and it is cheap.** Not a new conjecture. A rewritten
+Killer with (a) a pre-registered facilitation time constant justified from
+published paired-pulse and wind-up data, or an explicit sweep across the
+disputed range, and (b) a design that lowers false-pass probability below ~0.2,
+which the Rivals section already contains but the Killer does not import.
+Then re-panel it with a working hostile-referee gate.
+
+**Never panelled:** [C-008](../conjectures/C-008-interference-rejection-not-sensitivity.md)
+(branch B, prior 0.35), which claims that gradiometric interference rejection
+rather than sensor sensitivity is what blocks magnetic detection of C-fibre
+traffic. It is lint-clean and its killer is a simulation extension costing a
+day of compute and no money. It is the cheapest open item in the programme.
+
+## Harness defects, open
+
+**D-H1. The hostile-referee gate has produced reviewable text once in six
+runs.** Present and substantive for C-005 (9,736 bytes). A 411-byte header with
+an empty body for C-003. **Absent entirely** for C-001, C-002, C-006 and C-007.
+
+Root cause, reproduced: reasoning-tier models consume the entire completion
+budget on hidden thinking and return HTTP 200 with `content: ""` and
+`finish_reason: length`. The C-003 stub records `tokens in=7794 out=8192`, a
+full budget spent with nothing emitted. The hostile-referee prompt is not the
+longest (3,068 bytes, smaller than gates 01, 04 and 07), so this is reasoning
+demand rather than prompt size.
+
+**The second-order defect was worse than the first.** `review.sh` wrote the
+empty response to disk as a headed but bodiless file and emitted
+`VERDICT: NO VERDICT LINE — treat as MAJOR`. Failing closed is right for a
+*missing* verdict, but this was not a missing verdict from a reviewer that ran;
+it was a reviewer that never spoke. The harness manufactured an objection and
+scored it against the conjecture. C-003 absorbed two of these.
+
+**Fixed 2026-09-01** in `tools/review.sh`: empty or `finish_reason: length`
+responses are now detected, retried once at 32,000 output tokens, and if still
+empty the run **exits 3 with `GATE TRUNCATED`** rather than producing a
+scoreable verdict. Verified by replaying the actual truncated C-003 response
+against the detector, and confirming a well-formed response still scores.
+
+**Still outstanding:** C-001, C-002, C-006 and C-007 were never seen by a
+hostile referee. C-006 and C-007 died on other gates and a FATAL from gate 02
+is decisive regardless, so re-running is optional for those. **C-003 should be
+re-panelled** once its Killer is rewritten, because it is the survivor and it
+is the one whose score the defect most distorted.
 
 ## An unforced error, recorded because it is the most useful thing here
 

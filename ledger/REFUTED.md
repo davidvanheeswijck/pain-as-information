@@ -263,3 +263,89 @@ three by moving to ¹³C on flavin.
 wrong and the check it triggered was still worth running, because it surfaced
 two fatal problems nobody had raised. A cheap kill is valuable even when its
 stated reason is mistaken.
+
+### C-006 — A carbon-13 magnetic isotope effect is detectable on a purified flavin radical pair at the bench
+
+**Refuted** 2026-09-01 by panel · superseded C-002 · branch C
+**Prior** 0.35 → **Posterior** 0.55
+
+**The posterior rose while the conjecture died, and both are correct.** The
+panel judged the bench experiment *more* likely to detect a real effect than
+filed. It killed the conjecture on a different axis entirely.
+
+**What killed it.** Gate 02, biological plausibility, returned **FATAL**: the
+flavin-tryptophan radical pair requires **photoexcitation** and is validated
+only in avian cryptochrome magnetoreception. No mechanism was proposed or
+evidenced by which such a radical pair forms in mammalian nociceptive neurons.
+The conjecture was filed as the calibration step for a biological magnetic
+isotope claim, and it cannot calibrate anything if the pair it calibrates
+does not occur in the tissue of interest.
+
+The physics was sound. The quantitative audit stands: a single ¹³C at flavin
+C4a gives a hyperfine of about 1.43 mT against a pair B½ of 1.89 to 2.46 mT, a
+perturbation of the same order as the system's entire field scale, with a 0.13%
+mass change that cannot carry a classical kinetic isotope effect. Gates 04, 05
+and 07 all returned PASS. **The bridge to the nervous system was simply never
+built**, and C-002 had the identical defect in a different place.
+
+**This is the second consecutive Branch C conjecture killed for the same
+structural reason:** a well-designed physics measurement with no demonstrated
+instance of the physics in nociceptive tissue.
+
+**Do not re-propose unless:** a radical pair is demonstrated to form in
+mammalian sensory neurons **without** exogenous photoexcitation, at a
+concentration and lifetime compatible with a magnetic field effect. Absent
+that, Branch C has no biological anchor and further bench conjectures in it
+are premature regardless of how good the bench design is.
+
+**Caveat on this verdict:** the hostile-referee gate did not run (see D-H1 in
+[OPEN.md](OPEN.md)). A gate-02 FATAL is decisive on its own, so re-running is
+optional, but the record should show the panel was incomplete.
+
+---
+
+### C-007 — For a specified stimulus ensemble, sub-5-millisecond spike timing adds no information beyond rate and unit identity
+
+**Refuted** 2026-09-01 at triage · superseded C-005 · branch A
+**Prior** 0.40 → **Posterior** 0.32
+
+**Refuted as posed, for the second time in a row, and the reformulation is
+again worth more than the conjecture.** C-005 was killed at triage as the wrong
+question and reformulated into C-007. Triage then judged **C-007 still the
+wrong question** and supplied another:
+
+> "For a specified stimulus ensemble, does within- or **across-fibre**
+> spike-train structure improve prediction of **perceived pain quality or
+> intensity** beyond firing rate and recruited-unit identity?"
+
+Two changes, both material. The outcome moves from *information about the
+stimulus* to *prediction of the percept*, which is what the programme actually
+cares about and what HC-1 actually asserts. And it admits **across-fibre**
+structure, which the single-unit design excluded by construction.
+
+**Gate 02 made the point that matters most for the whole programme**, and it
+should be read as a constraint on Branch A rather than only on this conjecture:
+the conjecture's outcome **cannot bear on HC-1 or HC-2 for neuropathic pain**,
+because in that state the pain-relevant discrimination is constructed centrally
+from peripherally indistinguishable traffic. A healthy-volunteer single-unit
+design cannot distinguish "timing carries no information" from "timing carries
+information only in populations". So the experiment as designed could not have
+answered the question it was filed to answer, whichever way it came out.
+
+Gate 01 added a hard methodological requirement the design lacked: an
+injection-recovery demonstration of the **detection floor** at n=20 units by
+30 repeats, through the identical pipeline, before the 20% threshold means
+anything. Gate 04 noted the discriminating requirements sit in Rivals rather
+than in the Killer.
+
+**Do not re-propose unless:** the design records **simultaneously from two or
+more identified units**, predicts a **perceptual** report rather than stimulus
+identity, and carries a pre-registered detection floor established by
+injection-recovery. A single-unit stimulus-decoding study should not be filed
+in this programme again; that is now three conjectures killed on variants of
+the same error.
+
+**Caveat on this verdict:** the hostile-referee gate did not run (see D-H1 in
+[OPEN.md](OPEN.md)).
+
+---
