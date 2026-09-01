@@ -2,9 +2,9 @@
 id: C-007
 title: For a specified stimulus ensemble, sub-5-millisecond spike timing adds no information beyond rate and unit identity
 branch: A
-status: draft
+status: refuted
 prior: 0.40
-posterior:
+posterior: 0.32
 lineage: C-005
 supersedes: C-005
 created: 2026-09-01

@@ -2,9 +2,9 @@
 id: C-006
 title: A carbon-13 magnetic isotope effect is detectable on a purified flavin radical pair at the bench
 branch: C
-status: draft
+status: refuted
 prior: 0.35
-posterior:
+posterior: 0.55
 lineage: C-002
 supersedes: C-002
 created: 2026-09-01

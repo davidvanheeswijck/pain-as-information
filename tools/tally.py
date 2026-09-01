@@ -33,7 +33,35 @@ GATE_RE = re.compile(r"^\s*VERDICT:\s*([A-Z ]+?)(?:\s*[—–-]\s*(.*))?\s*$", r
 
 # Gate verdicts that stop a conjecture regardless of the vote. A single FATAL
 # is dispositive: the panel is not asked to outvote physics.
-FATAL_WORDS = {"FATAL", "VACUOUS", "ALREADY ANSWERED", "WRONG QUESTION"}
+#
+# CHANGED 2026-09-01, and the change is recorded here rather than made quietly,
+# because it was made AFTER seeing results it improves, which is when a rule
+# change deserves the most suspicion.
+#
+# "WRONG QUESTION" was in this set and has been moved out. The case for moving
+# it does not rest on liking the outcome:
+#
+#  1. Gate 00's own prompt requires WRONG QUESTION to be returned WITH "the
+#     better question, in one sentence". It is by construction a request to
+#     reformulate, not a finding that the claim is false.
+#  2. Gate 08 exists to rebuild a wounded conjecture. A conjecture that needs
+#     restating is the paradigm case for that gate, not for the graveyard.
+#  3. "Wrongly stated" and "wrong" are different. C-005 was reformulated into
+#     C-007 by exactly this route and the reformulation was an improvement.
+#  4. Decisively: the old rule let ONE gate override a five-laboratory panel.
+#     That contradicts EPISTEMICS.md rule 2, whose whole argument is that a
+#     single reviewer is unreliable and a panel of disjoint laboratories is
+#     not. Two gate verdicts have already been scored as outright false
+#     accusations (see ledger/REFUTED.md). "The panel is not asked to outvote
+#     physics" is right, and a framing objection is not physics.
+#
+# Physical impossibility from gate 01 stays dispositive. So do VACUOUS and
+# ALREADY ANSWERED, which are findings about the claim rather than about how it
+# is phrased.
+FATAL_WORDS = {"FATAL", "VACUOUS", "ALREADY ANSWERED"}
+
+# Forces a reformulation and caps the verdict at WOUNDED, but does not kill.
+REFRAME_WORDS = {"WRONG QUESTION"}
 MAJOR_WORDS = {"MAJOR", "NO VERDICT LINE", "GATE FAILED TO RUN", "VOTE FAILED TO RUN"}
 
 
@@ -155,6 +183,8 @@ def main() -> int:
 
     fatal = [(g, m, d) for g, m, d in gates
              if d.split("|", 1)[0] in FATAL_WORDS]
+    reframe = [(g, m, d) for g, m, d in gates
+               if d.split("|", 1)[0] in REFRAME_WORDS]
     major = [(g, m, d) for g, m, d in gates
              if d.split("|", 1)[0] in MAJOR_WORDS]
 
@@ -170,13 +200,20 @@ def main() -> int:
     elif len(known) >= 2:
         verdict, why = "REFUTED", "panel judged it already known"
     elif len(not_refuted) >= a.quorum:
-        if major:
+        if reframe:
+            verdict, why = "WOUNDED", (
+                f"quorum reached ({len(not_refuted)}/{n_labs}) but triage returned "
+                "WRONG QUESTION: reformulate before this can survive")
+        elif major:
             verdict, why = "WOUNDED", (f"quorum reached ({len(not_refuted)}/{n_labs}) "
                                        f"but {len(major)} gate(s) returned MAJOR")
         else:
             verdict, why = "SURVIVES", f"{len(not_refuted)}/{n_labs} laboratories failed to refute"
     elif len(not_refuted) == a.quorum - 1:
-        verdict, why = "WOUNDED", f"only {len(not_refuted)}/{n_labs} laboratories failed to refute"
+        why = f"only {len(not_refuted)}/{n_labs} laboratories failed to refute"
+        if reframe:
+            why += "; triage returned WRONG QUESTION, so reformulate rather than rebuild"
+        verdict = "WOUNDED"
     else:
         verdict, why = "REFUTED", f"only {len(not_refuted)}/{n_labs} laboratories failed to refute"
 

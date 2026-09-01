@@ -2,9 +2,9 @@
 id: C-003
 title: Ongoing C-fibre activity opens a brief eligibility window during which touch is read as pain
 branch: A
-status: draft
+status: wounded
 prior: 0.30
-posterior:
+posterior: 0.62
 lineage:
 supersedes:
 created: 2026-09-01

@@ -1,6 +1,6 @@
 # Tally: C-005-nociceptor-information-rate
 
-**VERDICT: REFUTED** — 1 gate(s) returned FATAL
+**VERDICT: REFUTED** — only 2/5 laboratories failed to refute
 
 Median P(substantially correct) across laboratories: **0.25** (spread 0.21)
 
@@ -14,7 +14,7 @@ Median P(substantially correct) across laboratories: **0.25** (spread 0.21)
 | `03-evidence-integrity` | `vertex/gemini-3.5-flash@eu` | **MAJOR** Werland et al. (2021) [PMID 33369733] is cited to claim C-nociceptors follow 100 Hz without conduction failure, which is a direct inversion of the study's actual findings. |
 | `04-falsifiability` | `tensorx/glm-5.2` | **MAJOR** the proposed test has false-pass probability ~0.6 and proves nothing, because the direct method of information estimation on a 60-second continuous stimulus with only 30 repeats is statistically biased toward underestimation, guaranteeing a favourable result even if the true rate is high. |
 | `05-prior-art` | `azure/openai-responses/gpt-5.6-sol@swedencentral` | **PASS** genuinely open or incremental with a stated delta |
-| `06-hostile-referee` | `nebius/kimi-k3` | **NO VERDICT LINE**  |
+| `06-hostile-referee` | `nebius/kimi-k3` | **MAJOR** the refutation rule is unreachable as specified: every estimator bias runs toward confirmation, no estimator or power analysis is named, and the preparation's non-stationarity points the same way (70%) |
 | `07-clinical-translation` | `tensorx/deepseek-v4-pro-0424` | **NOT APPLICABLE** mechanistic conjecture with no translational claim |
 
 ## Panel

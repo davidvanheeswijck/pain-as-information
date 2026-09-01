@@ -1,0 +1,8 @@
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — Does a radical-pair process exist in nociceptive tissue and causally alter pain-relevant signalling under fields compatible with a physically realizable intervention?
+01-physical-plausibility           tensorx/kimi-k3                                VERDICT: MINOR — supply the pre-registered simulated B½ shift and yield-change amplitude for a single ¹³C at C4a (anchoring the 0.5 mT threshold to a prediction), and one paragraph demonstrating that the Schleicher route labels C4a site-specifically rather than uniformly.
+02-biological-plausibility         tensorx/deepseek-v4-pro-0424                   VERDICT: FATAL — the flavin-tryptophan radical pair requires photoexcitation and is validated only in avian cryptochrome magnetoreception; no mechanism is proposed or evidenced by which such a radical pair forms in mammalian nociceptive neurons, and the conjecture's implicit biological claim therefore has no connection to the nervous system it purports to calibrate.
+03-evidence-integrity              vertex/gemini-3.5-flash@eu                     VERDICT: MINOR — 2 citations need correction
+04-falsifiability                  tensorx/glm-5.2                                VERDICT: PASS
+05-prior-art                       azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: PASS — genuinely open or incremental with a stated delta
+06-hostile-referee                 tensorx/kimi-k3                                VERDICT: GATE FAILED TO RUN
+07-clinical-translation            tensorx/deepseek-v4-pro-0424                   VERDICT: PASS
