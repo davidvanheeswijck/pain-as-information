@@ -459,8 +459,18 @@ def lint_file(path: Path, repo_root: Path, ledger_entries, result: Result):
             )
 
     # --- Branch C / quantum vocabulary guard ---
+    # Fires for every Branch C conjecture, and for A or B only when the quantum
+    # vocabulary appears in the MECHANISM. The point of this rule is to stop a
+    # conjecture whose mechanism secretly requires Branch C physics from being
+    # filed as Branch A, so it is the mechanism that has to be clean. Scanning
+    # the whole document instead caught conjectures that merely *mention*
+    # quantum technology in order to disclaim it, or that name the branch they
+    # are not in, and demanding an energy scale in eV from an array
+    # signal-processing proposal is the rule mis-firing rather than working.
+    mechanism = section_bodies.get("Mechanism") or ""
+    mech_clean = strip_html_comments(mechanism)
     quantum_hit = branch == "C" or bool(
-        word_boundary_search(QUANTUM_WORDS, strip_html_comments(text))
+        word_boundary_search(QUANTUM_WORDS, mech_clean)
     )
     if quantum_hit:
         mechanism = section_bodies.get("Mechanism") or ""
@@ -506,6 +516,12 @@ def lint_file(path: Path, repo_root: Path, ledger_entries, result: Result):
         title_text = title or ""
         claim_text = strip_html_comments(claim or "")
         for entry_id, entry_title, entry_body in ledger_entries:
+            # A refuted conjecture keeps its file, so once it is written into
+            # the graveyard it necessarily resembles its own entry. Warning
+            # about that is noise, and noise is how a useful warning gets
+            # ignored. Only collisions with OTHER refuted conjectures matter.
+            if conjecture_id and entry_id == conjecture_id:
+                continue
             title_sim = jaccard(title_text, entry_title) if title_text else 0.0
             claim_sim = jaccard(claim_text, entry_body) if claim_text else 0.0
             sim = max(title_sim, claim_sim)

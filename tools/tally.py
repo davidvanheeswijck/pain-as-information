@@ -74,21 +74,62 @@ def parse_votes(outdir: str) -> list[dict[str, Any]]:
     return votes
 
 
-def parse_gates(outdir: str) -> list[tuple[str, str, str]]:
-    path = os.path.join(outdir, "verdicts.txt")
-    if not os.path.exists(path):
-        return []
-    rows = []
-    for line in open(path, encoding="utf-8"):
-        if not line.strip():
+def _verdict_from_text(text: str) -> tuple[str, str]:
+    """Pull the last VERDICT line out of a verbatim gate file.
+
+    Tolerates leading markdown emphasis and blockquote markers, because models
+    routinely render the line as '**VERDICT: ...**'. A stricter match recorded
+    real verdicts as missing, and a missing verdict scores as MAJOR, so
+    formatting was changing review outcomes.
+    """
+    found = None
+    for line in text.splitlines():
+        s = re.sub(r"^[\s>*_#`-]+", "", line).strip()
+        if not s.upper().startswith("VERDICT:"):
             continue
-        parts = line.split()
-        gate, model = parts[0], parts[1]
-        m = GATE_RE.search(line)
-        word = (m.group(1).strip().upper() if m else "NO VERDICT LINE")
-        detail = (m.group(2) or "").strip() if m else line.strip()
+        s = re.sub(r"[\s*_`]+$", "", s)
+        body = s.split(":", 1)[1].strip()
+        m = re.match(r"^([A-Z][A-Z ]*[A-Z]|[A-Z])\s*(?:[—–-]\s*(.*))?$", body, re.S)
+        if m:
+            found = (m.group(1).strip().upper(), (m.group(2) or "").strip())
+        else:
+            found = (body.split()[0].upper() if body else "NO VERDICT LINE", body)
+    return found or ("NO VERDICT LINE", "")
+
+
+def parse_gates(outdir: str) -> list[tuple[str, str, str]]:
+    """Read the committed gate files, not the derived verdicts.txt.
+
+    verdicts.txt is a human convenience written by panel.sh. The gate-*.md
+    files are the verbatim model output and are the source of truth, so the
+    scoring reads those. The previous version parsed verdicts.txt with a
+    line-anchored regex that never matched its own format, so every gate was
+    recorded as 'NO VERDICT LINE' and the FATAL/MAJOR logic never fired.
+    """
+    rows: list[tuple[str, str, str]] = []
+    for name in sorted(os.listdir(outdir)):
+        if not (name.startswith("gate-") and name.endswith(".md")):
+            continue
+        gate = name[len("gate-"):-len(".md")]
+        text = open(os.path.join(outdir, name), encoding="utf-8").read()
+        m = re.search(r"Reviewer:\s*`([^`]+)`", text)
+        model = m.group(1) if m else "?"
+        word, detail = _verdict_from_text(text)
         rows.append((gate, model, f"{word}|{detail}"))
-    return rows
+
+    # A gate that errored writes no file at all, so it cannot be read above and
+    # would silently vanish from the record. panel.sh records those in
+    # verdicts.txt; recover them so a gate that failed to run still scores.
+    vpath = os.path.join(outdir, "verdicts.txt")
+    if os.path.exists(vpath):
+        seen = {g for g, _, _ in rows}
+        for line in open(vpath, encoding="utf-8"):
+            parts = line.split()
+            if len(parts) < 2 or parts[0] in seen:
+                continue
+            if "FAILED TO RUN" in line.upper():
+                rows.append((parts[0], parts[1], "GATE FAILED TO RUN|"))
+    return sorted(rows)
 
 
 def main() -> int:

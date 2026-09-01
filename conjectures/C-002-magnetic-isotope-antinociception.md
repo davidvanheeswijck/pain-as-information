@@ -2,9 +2,9 @@
 id: C-002
 title: Magnetic field modulation of antinociception is radical-pair mediated and shows a magnetic isotope effect
 branch: C
-status: draft
+status: refuted
 prior: 0.12
-posterior:
+posterior: 0.05
 lineage:
 supersedes:
 created: 2026-09-01

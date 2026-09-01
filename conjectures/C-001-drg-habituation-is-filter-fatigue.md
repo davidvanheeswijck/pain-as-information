@@ -2,9 +2,9 @@
 id: C-001
 title: Loss of benefit in chronic DRG stimulation is decay of T-junction filtering, not tolerance to charge
 branch: A
-status: draft
+status: refuted
 prior: 0.25
-posterior:
+posterior: 0.15
 lineage:
 supersedes:
 created: 2026-09-01

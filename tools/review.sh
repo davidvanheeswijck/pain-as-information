@@ -107,9 +107,21 @@ if maxtok:
 print(json.dumps(body))
 PY
 }
+# Emit exactly one three-digit code, whatever happens.
+#
+# This used to be `curl ... -w '%{http_code}' || echo 000`. On a network
+# failure curl writes "000" via -w AND the fallback appends another, giving
+# "000000", which matches none of the retry conditions below. The retry loop
+# was therefore dead for exactly the failures it existed to handle: timeouts
+# and connection errors. 429 and 5xx retried fine, because curl exits zero and
+# writes a single real code, which is why this survived unnoticed.
 call() {
-  curl -sS --max-time 900 -K "$CFG" -H "Content-Type: application/json" \
-    -o "$RESP" -w '%{http_code}' -d @"$TMP" "$BASE/chat/completions" || echo 000
+  local code
+  code=$(curl -sS --max-time "${REVIEW_TIMEOUT:-1800}" --connect-timeout 30 \
+    -K "$CFG" -H "Content-Type: application/json" \
+    -o "$RESP" -w '%{http_code}' -d @"$TMP" "$BASE/chat/completions" 2>/dev/null) || true
+  [[ "$code" =~ ^[0-9]{3}$ ]] || code="000"
+  printf '%s' "$code"
 }
 build_body with
 HTTP=$(call)
@@ -139,7 +151,17 @@ hdr = (f"# Gate verdict\n\n"
        f"> Verbatim model output below. Do not edit it. If it is wrong, that is\n"
        f"> a fact about the panel and belongs in the record.\n\n")
 open(sys.argv[2], "w").write(hdr + txt + "\n")
-v = [l.strip() for l in txt.splitlines() if l.strip().startswith("VERDICT:")]
+# Models routinely bold the verdict, so the line arrives as "**VERDICT: ...**"
+# rather than "VERDICT: ...". Anchoring on startswith() recorded a perfectly
+# good MINOR as a missing verdict, and a missing verdict scores as MAJOR, so
+# markdown formatting was silently changing the result of a review. Strip
+# leading and trailing emphasis before matching.
+import re as _re
+v = []
+for line in txt.splitlines():
+    s = _re.sub(r"^[\s>*_#`-]+", "", line).strip()
+    if s.upper().startswith("VERDICT:"):
+        v.append(_re.sub(r"[\s*_`]+$", "", s))
 print(v[-1] if v else "VERDICT: NO VERDICT LINE — treat as MAJOR")
 PY
 echo "written: $OUT" >&2
