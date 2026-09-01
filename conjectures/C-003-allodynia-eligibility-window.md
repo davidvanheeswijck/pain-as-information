@@ -87,20 +87,105 @@ Mouse, neuropathic or inflammatory model with established mechanical allodynia,
 using optogenetic control of a defined nociceptor population so that C-fibre
 spike count is set by the experimenter rather than inferred.
 
+### The time constant is now pre-registered, and it comes from wind-up
+
+The first version of this conjecture proposed a window of "a few hundred
+milliseconds" and was correctly criticised for placing it in a gap between
+paired-pulse facilitation (tens of milliseconds) and central sensitisation
+(minutes to hours), with no direct evidence for a facilitation constant in
+between. **That gap is not empty, and the evidence was already in the wind-up
+literature.**
+
+Wind-up is a dorsal-horn facilitation that requires repetitive C-fibre input
+above a threshold *rate*, and the published rate dependence brackets the
+constant directly:
+
+- **Present at 0.5 Hz, absent at 0.1 Hz.** Chapman, Suzuki & Dickenson,
+  *Anesthesiology* 1994;81:1429-35 (PMID 7992912): "At 0.5 Hz but not at 0.1
+  Hz, there was an enhanced C-fiber evoked response of dorsal horn neurons
+  elicited by repetitive C-fiber stimulation (wind-up), which is mediated by
+  the NMDA receptor."
+- Corroborated at the molecular level by frequency-dependent ERK
+  phosphorylation: "high frequency (0.5 Hz and 10 Hz) but not low frequent
+  (0.05 Hz) stimulus-evoked pERK" (Ji et al., *Mol Pain* 2007;3:18,
+  PMID 17631690).
+- And in trigeminal convergent neurons, wind-up appears in 73% of
+  long-latency responses at **0.66 Hz** (Dickenson-adjacent series,
+  *Eur J Neurosci* 1999;11:31-40, PMID 9987009).
+
+**0.5 Hz is a 2-second interval. 0.1 Hz is a 10-second interval.** A
+facilitation that survives 2 s and has decayed by 10 s has a time constant on
+the order of **seconds**, not hundreds of milliseconds and not minutes.
+
+**The conjecture is therefore amended rather than defended.** The claim is now
+that the eligibility window has a decay constant **τ in the range 1 to 10
+seconds**, centred near 3 s, and this is pre-registered as the prediction. The
+original "few hundred milliseconds" is withdrawn as unevidenced. If the window
+turns out to be tens of milliseconds it is paired-pulse facilitation and not a
+distinct phenomenon; if it is minutes it is classical central sensitisation and
+also not distinct. **The conjecture only says something new if τ lands in the
+seconds band**, which is precisely why that band is now the prediction.
+
+### Design
+
 Deliver a fixed-count C-fibre burst, then a calibrated von Frey touch at
-delays of 50, 200, 500, 1000 and 3000 milliseconds, randomised, with a
-no-burst control condition. Read out both dorsal horn projection neuron
-responses electrophysiologically and nocifensive behaviour, in separate
-cohorts. Target n=12 per group.
+delays of **50, 200, 500, 1000, 2000, 5000 and 10000 milliseconds**,
+randomised within animal, spanning the bracketed range with two points below it
+and one above.
 
-**Refutation threshold:** the conjecture is refuted if response probability is
-flat across delays from 50 to 3000 milliseconds, that is, if the fitted decay
-constant's 95% confidence interval includes infinity, while the no-burst
-control confirms the paradigm can detect a difference at all.
+**Four control conditions, not one.** Gate 04 judged the single no-burst
+control insufficient and put the false-pass probability at about 0.6. These
+close the identified routes:
 
-Approximate cost 200,000 to 300,000 euro and 18 months, in a laboratory that
-already has the optogenetic lines, which is the main constraint on where it can
-run rather than on whether it can.
+1. **No-burst control.** Establishes the baseline response probability.
+2. **Aβ-burst control — the critical addition.** A matched-count optogenetic
+   burst in a *low-threshold mechanoreceptor* population instead of
+   nociceptors, at the same delays. This delivers an equivalent afferent
+   barrage and equivalent sensory adaptation, without the nociceptive content.
+   **If the delay-dependence is identical in this arm, the effect is adaptation
+   or habituation and the conjecture is dead.** This is the control the first
+   version lacked and it is the single largest contributor to the false-pass
+   rate.
+3. **Reverse-order control.** Touch first, burst second, at matched intervals.
+   The conjecture predicts no effect; a symmetric effect indicates a
+   non-specific arousal or state change rather than a directional window.
+4. **Naive-animal control.** The same delay series in animals without
+   established allodynia. The conjecture predicts a much weaker or absent
+   window, since it claims the window is what allodynia *is*.
+
+**Two timepoints after model induction**, early and late, run from the start
+rather than as a follow-up. This is imported from the third rival, which
+predicts coincidence dominates early and tonic disinhibition late, and which
+the previous design could not have detected.
+
+**Direct afferent recording in the same preparation**, confirming that Aβ and
+C-fibre responses to the calibrated stimuli are themselves unchanged across
+delays. This is imported from the second rival. If the afferents are changing,
+the coincidence framing is misattributing a peripheral effect.
+
+Read out dorsal horn projection neuron responses electrophysiologically **and**
+nocifensive behaviour, in separate cohorts. **Target n=12 per group**, with the
+detection floor established before collection by injection-recovery on
+simulated response series through the identical fitting pipeline, reporting the
+smallest τ-difference resolvable at that n.
+
+**Refutation threshold, tightened.** The conjecture is refuted if **any** of
+the following holds, with the no-burst control confirming the paradigm can
+detect a difference at all:
+
+- response probability is flat across delays, that is the fitted τ has a 95%
+  confidence interval including infinity; **or**
+- the fitted τ falls outside the pre-registered 1 to 10 second band with a
+  confidence interval excluding it; **or**
+- **the Aβ-burst control reproduces the same delay-dependence** within the
+  resolvable difference established by injection-recovery; **or**
+- the reverse-order control produces a symmetric effect.
+
+Approximate cost 200,000 to 300,000 euro and 18 months, now somewhat higher
+than the first version because of the added control arms, in a laboratory that
+already has both the nociceptor and the low-threshold-mechanoreceptor
+optogenetic lines. That pair of lines is the real constraint on where this can
+run.
 
 ## Rivals
 
@@ -123,14 +208,27 @@ run rather than on whether it can.
 ## Severity
 
 Given the conjecture is false, the probability the proposed test still comes out
-favourable is about **0.2**.
+favourable is about **0.15**.
 
-The main route to a false pass is that any burst-then-touch paradigm produces
-some decay simply through sensory adaptation or motor habituation, independent
-of the proposed mechanism. The no-burst control and the randomised delay order
-address it, and the requirement that the effect appear in dorsal horn recording
-and not only in behaviour makes an attentional or motor explanation harder to
-sustain.
+**The previous estimate of 0.2 was judged optimistic by the panel, which put it
+near 0.6, and the panel was right about the design as it then stood.** The
+single no-burst control could not separate the proposed mechanism from ordinary
+sensory adaptation, because any burst-then-touch paradigm produces some decay
+for reasons that have nothing to do with nociceptive coincidence. That is the
+dominant false-pass route and it was essentially uncontrolled.
+
+The Aβ-burst control closes it directly: it produces the same afferent load and
+the same adaptation with no nociceptive content, so a decay that appears in
+both arms is definitionally not the proposed mechanism. The reverse-order
+control removes non-specific arousal. The pre-registered τ band removes the
+freedom to read any decay whatsoever as confirmation, which was the second
+largest route to a false pass and the one gate 04 named. The naive-animal arm
+tests the claim that the window is specific to the allodynic state.
+
+What remains is the possibility that optogenetic burst delivery itself produces
+a delay-dependent change in dorsal-horn excitability through a route unrelated
+to natural C-fibre traffic. That is not fully controlled and should be stated
+as the residual risk.
 
 ## What it would change
 

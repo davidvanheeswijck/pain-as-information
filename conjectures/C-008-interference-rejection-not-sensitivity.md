@@ -2,9 +2,9 @@
 id: C-008
 title: Gradiometric interference rejection, not sensor sensitivity, is what blocks magnetic detection of C-fibre traffic
 branch: B
-status: draft
+status: refuted
 prior: 0.35
-posterior:
+posterior: 0.18
 lineage: C-004
 supersedes:
 created: 2026-09-01
