@@ -89,6 +89,66 @@ was regenerated with the corrected parser. The vote of 2 of 5 is unaffected.
 
 ---
 
+### C-005 — A human C-nociceptor carries under 30 bits per second, with little information in fine timing beyond rate
+
+**Refuted** 2026-09-01 by five-laboratory panel · run `pipeline/reviews/C-005-nociceptor-information-rate/20260901T004323Z/` · superseded by [C-007](../conjectures/C-007-timing-adds-nothing-beyond-rate.md)
+**Prior** 0.45 → **Posterior** 0.25
+Triage returned FATAL (`WRONG QUESTION`), which is dispositive under the
+scoring rule regardless of the vote. The vote was 2 of 5 failing to refute.
+
+**Refuted as posed, not as motivated.** The gap it identified is real and the
+reformulation is now C-007.
+
+**The objection, and it is correct.** An information rate is only defined
+relative to a stimulus ensemble. "A C-nociceptor carries 30 bits per second" is
+not a property of the axon, it is a property of the axon together with the
+distribution of stimuli presented, so two honest laboratories could report
+different numbers without either being wrong. Worse, the absolute figure was
+never what the programme needed: HC-1 asserts structure **beyond mean rate**,
+which is a comparative claim. Triage's reformulation, verbatim:
+
+> For a specified stimulus ensemble, does sub-5-millisecond spike timing add
+> information about pain-relevant stimulus features or perception beyond firing
+> rate and unit identity?
+
+That is better posed and cheaper to answer, because comparing two decoders on
+identical data cancels the ensemble and most of the estimator bias.
+
+**Do not re-propose unless:** the claim is comparative rather than absolute, and
+the stimulus ensemble is specified.
+
+---
+
+#### A scored false positive from gate 03, recorded because panel reliability is data
+
+The evidence-integrity gate returned **MAJOR**, asserting that Werland et al.
+(PMID 33369733) "is cited to claim C-nociceptors follow 100 Hz without
+conduction failure, which is a direct inversion of the study's actual
+findings."
+
+**The accusation is false.** The abstract states, verbatim: *"polymodal
+C-nociceptors in the pig follow stimulation at up to 100 Hz without conduction
+failure"*, and the results give *"untreated polymodal nociceptors with moderate
+ADS (15.2% ± 10.2%) followed stimulation frequencies of 100 Hz without
+conduction failure (98.5% ± 6%)"*. E-01 §1 and C-005 both state this
+accurately. There is no inversion. Checked by fetching the abstract from
+PubMed rather than by argument.
+
+There is a weaker legitimate criticism available, that this is *electrical*
+stimulation in *pig* and does not license an inference about natural
+stimulation in humans. The gate did not make that argument; it asserted a
+factual inversion that does not exist.
+
+**Why this is in the ledger rather than quietly discounted.** A MAJOR verdict
+is a claim, not a finding, and this one would have corrupted a correct passage
+in the evidence base had it been obeyed. The harness has no mechanism for
+scoring its own reviewers, which is now recorded as a known gap in
+[OPEN.md](OPEN.md). Until it does, **every FATAL and MAJOR gets checked against
+the source before it is acted on**, and the check is cheap: this one took a
+single API call.
+
+---
+
 ### C-002 — Magnetic field modulation of antinociception is radical-pair mediated and shows a magnetic isotope effect
 
 **Refuted** 2026-09-01 by a cheap-kill literature check ordered at triage · superseded by [C-006](../conjectures/C-006-flavin-13c-magnetic-isotope-effect.md)

@@ -5,7 +5,7 @@ at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
 **Last updated:** 2026-09-01
-**Conjectures filed:** 6 · **panelled:** 1 · **refuted:** 2 · **open:** 4
+**Conjectures filed:** 7 · **panelled:** 2 · **refuted:** 3 · **open:** 4
 **Programme status:** not yet assessable (fewer than 10 conjectures)
 
 ## Where the hard core stands
@@ -34,10 +34,11 @@ later drifts back towards the stronger claim, the drift is visible.
 
 ## Live conjectures
 
-**Panelled and closed.** C-001 (prior 0.25 → posterior 0.15) and C-002
-(0.12 → 0.05) are both refuted and recorded in
-[REFUTED.md](REFUTED.md) with the arguments that killed them. Neither was
-deleted.
+**Panelled and closed.** C-001 (prior 0.25 → posterior 0.15), C-002
+(0.12 → 0.05) and C-005 (0.45 → 0.25) are refuted and recorded in
+[REFUTED.md](REFUTED.md) with the arguments that killed them. None was deleted.
+C-005 was refuted **as posed, not as motivated**: triage judged it the wrong
+question and supplied a better one, which is now C-007.
 
 **Open, drafted, not yet panelled.**
 
@@ -45,15 +46,21 @@ deleted.
 |---|---|---|---|
 | [C-003](../conjectures/C-003-allodynia-eligibility-window.md) | A | 0.30 | Ongoing C-fibre activity opens a brief window during which touch is read as pain |
 | [C-004](../conjectures/C-004-velocity-beamformed-magnetometry.md) | B | 0.20 | Velocity-domain matched filtering can recover a C-fibre magnetic signal that time-domain averaging destroys |
-| [C-005](../conjectures/C-005-nociceptor-information-rate.md) | A | 0.45 | A human C-nociceptor carries under 30 bits per second, with little in fine timing |
+| [C-007](../conjectures/C-007-timing-adds-nothing-beyond-rate.md) | A | 0.40 | For a specified ensemble, sub-5 ms timing adds nothing beyond rate and unit identity |
 | [C-006](../conjectures/C-006-flavin-13c-magnetic-isotope-effect.md) | C | 0.35 | A carbon-13 magnetic isotope effect is detectable on a purified flavin radical pair at the bench |
 
-**Fund C-005 first.** The programme has spent an entire evidence base
-reasoning about pain as information without anyone having measured the
-information rate of the channel. It is the cheapest conjecture on the board, it
-is informative whether the answer is high or low, and it determines whether the
-high-bandwidth transducer work in Branch B is solving a real requirement or an
-assumed one.
+**Fund C-007 first.** The programme has spent an entire evidence base
+reasoning about pain as information without anyone having established whether
+timing carries any information beyond rate. C-007 is the comparative form of
+that question, it is informative whichever way it comes out, and it determines
+whether the high-bandwidth transducer work in Branch B is solving a real
+requirement or an assumed one.
+
+**The panel, blind to authorship, preferred C-006.** Asked which of four
+unattributed candidates was most likely to survive, four of five laboratories
+chose the flavin bench experiment rather than the conjecture actually under
+review. That is the unattributed-ballot design producing a signal it could not
+have produced if the panel had known which one was the author's.
 
 **C-004 is the one to watch.** It attacks the exact blocker E-02 and E-04 both
 identify: C-fibre volleys have never been detected magnetically because
@@ -129,6 +136,15 @@ which this harness was derived from.
 
 ## Known gaps in the harness
 
+- **No way to score the reviewers.** Gate 03 returned a confident MAJOR on
+  C-005 asserting a citation inversion that the source abstract flatly
+  contradicts (recorded in [REFUTED.md](REFUTED.md)). A false accusation costs
+  a round and, if obeyed, corrupts correct material. Until there is a mechanism
+  for tracking reviewer reliability, **every FATAL and MAJOR is checked against
+  the source before it is acted on.** That check cost one API call.
+- **Reasoning models can burn their whole output budget on reasoning and return
+  an empty body.** Observed at exactly 8192 output tokens with no content. Set
+  `REVIEW_MAX_TOKENS` well above the default when using them.
 - No automated Lakatos degeneration check. E-06 §4 identifies the version-diff
   as the single most valuable mechanical check available, and it is not built.
 - No content hash and timestamp at intake, so pre-registration currently rests

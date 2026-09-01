@@ -1,0 +1,744 @@
+# Candidates
+
+Presented in an order carrying no information about authorship or origin.
+
+
+---
+
+## CANDIDATE 1
+
+---
+id: C-003
+title: Ongoing C-fibre activity opens a brief eligibility window during which touch is read as pain
+branch: A
+status: draft
+prior: 0.30
+posterior:
+lineage:
+supersedes:
+created: 2026-09-01
+bears_on: HC-1, HC-3, PB-3
+---
+
+## Claim
+
+Mechanical allodynia is a coincidence phenomenon in time. Ongoing,
+touch-independent C-nociceptor discharge opens a window of a few hundred
+milliseconds during which Aβ input reaching the dorsal horn is routed to the
+nociceptive output pathway. Aβ input arriving outside that window is felt as
+touch. The percept therefore depends on the **relative timing** of two inputs
+that are each individually normal, and not on either input being abnormal.
+
+## Why this, why now
+
+This resolves a sharp contradiction sitting inside the evidence base, which is
+the highest-yield place to look for a conjecture.
+
+**The contradiction.** E-01 §5 records that in established allodynia the
+traffic that hurts arrives on Aβ fibres **whose own behaviour is normal**, and
+that the pathology is central: microglial BDNF collapses the chloride gradient
+in lamina I, disinhibiting a circuit that lets Aβ input reach nociceptive
+output (Coull et al., PMID 12931188 and PMID 16355225; circuit dissection in
+Duan et al., PMID 25467445; PKCγ route in Lu et al., PMID 23979158).
+
+But E-01 §5 also records the 2025 finding that inflammation leaves nociceptor
+**mechanical** responses minimally affected while inducing long-lasting
+touch-independent spontaneous activity in specific classes, which the authors
+themselves read as suggesting allodynia arises from **coincidence** of normal
+touch input with ongoing nociceptor firing (Ghitani et al., PMID 40269164).
+
+Those are two different stories. In the first, the gate is held open
+tonically by a structural change in inhibition, and timing is irrelevant. In
+the second, the gate is opened transiently by ongoing nociceptor traffic, and
+timing is everything. **Both are supported, and they make opposite predictions
+about whether allodynia can be interrupted without changing anything
+structural.**
+
+**Why not already done.** The peripheral imaging work and the spinal circuit
+manipulations come from different groups using different preparations, and no
+published experiment has independently controlled the *timing* of C-fibre
+activity while holding C-fibre spike count and Aβ input constant. Doing so
+requires optogenetic control of one population and calibrated mechanical
+stimulation of the other in the same animal, which is a combination rather than
+an invention.
+
+## Mechanism
+
+Ongoing C-nociceptor discharge produces sustained release of glutamate and
+neuropeptides onto dorsal horn interneurons. Where the tonic-disinhibition
+account has this raise excitability permanently, the coincidence account has it
+raise excitability **transiently**, decaying over the timescale of the
+underlying synaptic and second-messenger processes, which for windup-like
+facilitation is of order hundreds of milliseconds to a few seconds.
+
+Aβ input arriving while the network is in that facilitated state crosses
+threshold onto the nociceptive projection pathway. Aβ input arriving after it
+has decayed does not.
+
+The prediction that separates this from tonic disinhibition is therefore a
+**decaying function of inter-stimulus interval**: pair a burst of C-fibre
+activity with a light touch at varying delays and the probability of a
+nociceptive response should fall as the delay grows, rather than being flat.
+
+Timescales and magnitudes are ordinary: spike arrival on the millisecond scale,
+facilitation decaying over 1e-1 to 1e0 seconds, membrane potential offsets of a
+few millivolts. No exotic physics is invoked.
+
+## Forbidden observation
+
+The probability that a calibrated light touch evokes a nociceptive dorsal horn
+response will not depend on its delay after a burst of C-fibre activity, once
+total C-fibre spike count and touch intensity are held constant.
+
+## Killer
+
+Mouse, neuropathic or inflammatory model with established mechanical allodynia,
+using optogenetic control of a defined nociceptor population so that C-fibre
+spike count is set by the experimenter rather than inferred.
+
+Deliver a fixed-count C-fibre burst, then a calibrated von Frey touch at
+delays of 50, 200, 500, 1000 and 3000 milliseconds, randomised, with a
+no-burst control condition. Read out both dorsal horn projection neuron
+responses electrophysiologically and nocifensive behaviour, in separate
+cohorts. Target n=12 per group.
+
+**Refutation threshold:** the conjecture is refuted if response probability is
+flat across delays from 50 to 3000 milliseconds, that is, if the fitted decay
+constant's 95% confidence interval includes infinity, while the no-burst
+control confirms the paradigm can detect a difference at all.
+
+Approximate cost 200,000 to 300,000 euro and 18 months, in a laboratory that
+already has the optogenetic lines, which is the main constraint on where it can
+run rather than on whether it can.
+
+## Rivals
+
+- **Tonic disinhibition, timing irrelevant.** The chloride gradient has
+  collapsed, the gate is open, and any Aβ input is read as pain regardless of
+  what preceded it. This is the mainstream account and it has strong support.
+  *Distinguished by:* flat response probability across delays.
+- **Peripheral sensitisation after all.** The Aβ fibres or the nociceptors are
+  not behaving normally in the neuropathic state even if they are in the
+  inflammatory one, so the coincidence framing imports a finding from the wrong
+  model. *Distinguished by:* direct recording of Aβ and C-fibre responses to
+  the calibrated stimuli, which this design produces anyway.
+- **Both, at different disease stages.** Coincidence dominates early while
+  disinhibition is incomplete, and tonic disinhibition dominates late. This is
+  the most likely rival to be true and the least convenient, because it means
+  the answer depends on when you look. *Distinguished by:* running the delay
+  series at two timepoints after model induction, which this design should
+  therefore do from the start rather than as a follow-up.
+
+## Severity
+
+Given the conjecture is false, the probability the proposed test still comes out
+favourable is about **0.2**.
+
+The main route to a false pass is that any burst-then-touch paradigm produces
+some decay simply through sensory adaptation or motor habituation, independent
+of the proposed mechanism. The no-burst control and the randomised delay order
+address it, and the requirement that the effect appear in dorsal horn recording
+and not only in behaviour makes an attentional or motor explanation harder to
+sustain.
+
+## What it would change
+
+If confirmed, allodynia becomes a **timing** problem rather than a purely
+structural one, and that is the first thing in this programme that would make
+temporal-pattern intervention clinically relevant rather than merely
+mechanistically interesting. An intervention that suppressed ongoing
+nociceptor discharge would close the window without needing to restore
+inhibition, and, more usefully, an intervention that merely **desynchronised**
+it might do the same.
+
+It also bears directly on PB-3, the programme's hypothesis that night-time
+mechanical allodynia has a distinct signature and therefore a distinct handle.
+A coincidence mechanism would give it one.
+
+If refuted, the tonic-disinhibition account stands alone, allodynia is
+structural, and the programme should stop proposing to treat it by anything
+acting on peripheral timing. That would remove the most clinically motivating
+target in Branch A, which is a good reason to test it early rather than late.
+
+## References
+
+- Ghitani N, et al. *Nature* 2025;642:1016-23. PMID 40269164. doi:10.1038/s41586-025-08875-6
+- Coull JAM, Boudreau D, Bachand K, et al., De Koninck Y. *Nature* 2003;424:938-42. PMID 12931188. doi:10.1038/nature01868
+- Coull JAM, Beggs S, Boudreau D, et al., De Koninck Y. *Nature* 2005;438:1017-21. PMID 16355225. doi:10.1038/nature04223
+- Duan B, et al. *Cell* 2014;159:1417-32. PMID 25467445. doi:10.1016/j.cell.2014.11.003
+- Lu Y, et al. *J Clin Invest* 2013;123:4050-62. PMID 23979158. doi:10.1172/JCI70026
+- Peirs C, et al. *Neuron* 2015;87:797-812. PMID 26291162. doi:10.1016/j.neuron.2015.07.029
+- Mendell LM, Wall PD. *Nature* 1965;206:97-9. PMID 14334366. doi:10.1038/206097a0
+- Woolf CJ. *Nature* 1983;306:686-8. PMID 6656869. doi:10.1038/306686a0
+
+
+---
+
+## CANDIDATE 2
+
+---
+id: C-006
+title: A carbon-13 magnetic isotope effect is detectable on a purified flavin radical pair at the bench
+branch: C
+status: draft
+prior: 0.35
+posterior:
+lineage: C-002
+supersedes: C-002
+created: 2026-09-01
+bears_on: HC-4
+---
+
+## Claim
+
+Site-specific ¹³C substitution at flavin C4a measurably changes the magnetic
+field effect on the recombination yield of the flavin-tryptophan radical pair,
+compared with natural-abundance flavin, in a purified in vitro preparation.
+This is a bench measurement on a protein, not a claim about pain. It is filed
+because it is the calibration step that any biological magnetic isotope claim
+must pass first, and it has never been done.
+
+## Why this, why now
+
+This conjecture is the rebuilt survivor of C-002, which proposed testing
+radical-pair mediation of magnetic-field antinociception using **²⁵Mg against
+²⁴Mg** in an animal assay. That design failed a cheap-kill check. The failure
+is instructive and is recorded in full in `ledger/REFUTED.md`, but the two
+reasons matter here because they determine what replaces it.
+
+**The objection that was raised turned out to be wrong.** Gate 00 argued that
+²⁵Mg is quadrupolar (spin 5/2) and that fast quadrupolar relaxation in a
+distorted binding site would average the hyperfine away. On the numbers it does
+not: the worst measured protein-bound ²⁵Mg relaxation in the literature is
+**T₂ ≈ 31 µs** in an enzyme ternary complex with a deliberately strained
+coordination sphere, and 472 µs in the binary complex (Ehrlich & Colman,
+PMID 7819280). Against a radical-pair window of about 1 µs that is 30 to 470
+times too slow to matter. The objection retires.
+
+**Two better reasons killed it instead.**
+
+*No spin density, so no hyperfine, so no effect is possible in principle.* A
+magnetic isotope effect requires unpaired electron spin density at the magnetic
+nucleus. Closed-shell Mg²⁺ has none. The ²⁵Mg design therefore silently
+presupposed a Mg⁺• radical, which is exactly the contested step: the
+Buchachenko magnesium isotope literature failed independent replication
+(Crotty et al., PMID 22198842), and Hore's adjudication notes there is "scant
+evidence that Mg has any biologically relevant redox chemistry" (PMID 22307585).
+A null result would then be uninformative, since it could not distinguish "no
+radical pair mechanism" from "magnesium is not at a radical centre". **That
+destroyed C-002's own claim to be decisive in both directions**, which was the
+justification for filing a Branch C conjecture at all.
+
+*The field range and the isotope were physically incompatible.* The ²⁵Mg⁺
+ground-state hyperfine constant is **−596.254376(54) MHz** (Itano & Wineland,
+doi:10.1103/PhysRevA.24.1364), that is about 21.3 mT, giving an effective
+hyperfine field of order 63 mT. C-002 proposed 10 µT to 1 mT. Two to four
+orders of magnitude apart, which is why every claimed magnesium effect in the
+literature sits at 3 to 80 mT and none at microtesla.
+
+**¹³C on flavin fixes all three problems at once**, and the reason it has not
+been done is that the prediction machinery and the labelling chemistry were
+published by different groups within the last three years and nobody has joined
+them.
+
+## Mechanism
+
+The flavin-tryptophan radical pair [FAD•− TrpH•+] is the one radical pair with
+a validated biological instance, in cryptochrome magnetoreception. Its
+singlet-triplet interconversion is driven by hyperfine coupling to magnetic
+nuclei in the two radicals, and its recombination is spin-selective, so an
+applied field that changes the singlet-triplet branching changes product yield.
+
+Adding a ¹³C at a position carrying substantial spin density adds a new
+hyperfine coupling and changes the interconversion. Removing it, by using
+natural-abundance flavin at 98.9% ¹²C, removes that coupling. ¹²C has **nuclear
+spin 0**, so this is a genuine spin-off to spin-on substitution rather than a
+change between two non-zero spins, which is what ¹⁴N to ¹⁵N would be.
+
+**Quantitative audit, supplied here as gate 01 requires.**
+
+*Energy.* Thermal energy at 310 K is 26.7 meV, that is 4.3e-21 J. The
+hyperfine and Zeeman interactions here are of order 40 MHz, that is about
+1.7e-7 eV, roughly 6e-6 of kT. **This cannot shift a Boltzmann population and
+the conjecture does not claim it does.** The effect is kinetic: spin selection
+rules make singlet-triplet interconversion compete with recombination, so the
+observable is a yield, not a population. Any version of this argued from
+populations should be refused.
+
+*Timescale.* The radical pair must retain spin coherence for of order 1e-6 s,
+that is about 1 µs, against a thermal decoherence timescale of 2.5e-14 s, that
+is 25 fs, for strongly bath-coupled degrees of freedom. The nine-order gap is
+survivable only because electron and nuclear spins are weakly coupled to the
+lattice, which is measured rather than assumed: microsecond spin coherence in
+flavin-tryptophan pairs is what makes cryptochrome work at all.
+
+*Magnitude, which is the reason to expect a large effect.* The measured ¹³C
+hyperfine tensor at flavin C4a in a flavoprotein semiquinone has principal
+values 40, −13.5 and −9 MHz (Martínez, Frago, Medina & García-Rubio,
+PMID 40771403). 40 MHz corresponds to about **1.43 mT**, against a
+hyperfine-only B½ for the pair of **1.89 mT in solution and 2.46 mT in
+cryptochrome** (Wong, Benjamin & Hore, PMID 36519379). A single ¹³C at C4a is
+therefore a perturbation of the same order as the entire field scale of the
+system, not a marginal one.
+
+*Mass confound.* One ¹³C on a 785 Da flavin is a 0.13% mass change, against 4%
+for ²⁴Mg to ²⁵Mg. The classical kinetic isotope effect that confounds the
+lithium literature is not available here.
+
+## Forbidden observation
+
+Site-specific ¹³C substitution at flavin C4a will not change the shape or
+amplitude of the magnetic field effect curve on radical pair yield, relative to
+natural-abundance flavin measured under identical conditions.
+
+## Killer
+
+Transient absorption spectroscopy on purified flavoprotein, field-swept.
+
+Prepare selectively ¹³C-labelled flavin biosynthetically, which is established
+(Schleicher et al., PMID 34521887), and natural-abundance flavin as the
+comparator. Measure the magnetic field effect on radical pair yield across
+0 to 20 mT in fine steps, at least 5 independent preparations per condition,
+with the operator blind to which sample is labelled.
+
+Pre-register the predicted direction and approximate magnitude from the
+published simulation machinery, which already identifies C4, C4a and C8α as the
+highest-leverage positions (Pažėra, Benjamin, Mouritsen & Hore, PMID 36669149).
+
+**Refutation threshold:** the conjecture is refuted if the B½ values of the
+labelled and unlabelled preparations differ by less than 0.2 mT with a 95%
+confidence interval excluding a 0.5 mT difference, given that the assay
+resolves a known positive control.
+
+Approximate cost **40,000 to 80,000 euro and 9 months**, in a laboratory with
+an existing transient absorption setup. That is a small fraction of the
+120,000 to 200,000 euro animal study C-002 proposed, and it is the reason this
+conjecture replaces it rather than following it.
+
+**Explicit warning carried forward:** do not build the isotope arm on
+superoxide. O₂•− has an orbitally degenerate ground state and spin-orbit
+coupling that relaxes its **electron** spin within a nanosecond, which
+suppresses weak-field effects regardless of nuclear spin.
+
+## Rivals
+
+- **The effect is real but too small to resolve.** The ¹³C hyperfine is real,
+  but its contribution is swamped by the many other magnetic nuclei already in
+  the flavin and tryptophan radicals, so adding one more changes B½ by less
+  than the measurement precision. This is the most likely way the conjecture
+  fails and it is not a refutation of radical-pair physics.
+  *Distinguished by:* the effect size scales as predicted when C4, C4a and C8α
+  are labelled together rather than singly, which the design should include as
+  a dose arm.
+- **The preparation does not sustain the radical pair.** The purified protein
+  outside its native context does not form or maintain [FAD•− TrpH•+] long
+  enough, so the assay measures nothing. *Distinguished by:* the known
+  magnetic field effect on the unlabelled preparation, which is the mandatory
+  positive control and which the field has already measured.
+- **Radical pair effects on this system are an artefact of the measurement.**
+  Transient absorption under repeated laser excitation produces photodegradation
+  that correlates with field exposure order. *Distinguished by:* randomised
+  field order and interleaved sample identity, both cheap.
+
+## Severity
+
+Given the conjecture is false, the probability the proposed test still comes out
+favourable is about **0.15**.
+
+The signature is specific: no classical mechanism predicts a dependence on
+nuclear spin at constant mass and constant chemistry, and the 0.13% mass
+difference is far too small to carry a kinetic isotope effect of the required
+size. The main routes to a false pass are operator bias and photodegradation
+ordering, both controlled by blinding and randomisation. The pre-registered
+direction removes the option of reading either sign as confirmation.
+
+## What it would change
+
+If confirmed, the programme has a **calibrated instrument**: a bench assay in
+which a magnetic isotope effect is known to be detectable, with a measured
+effect size. Only then does it make sense to ask whether the same signature
+appears in a biological antinociception assay, and any such experiment can be
+powered from the bench number rather than guessed.
+
+If refuted, and specifically if a ¹³C effect cannot be detected on the one
+radical pair with a validated biological instance, then looking for a magnetic
+isotope effect in a whole animal is not worth doing, and **Branch C should be
+closed**. That is the outcome this conjecture is designed to make cheap, and it
+is the more likely one.
+
+The general point survives either way, and is the reason this is worth 40,000
+euro rather than nothing: a bench null closes a branch for a fortieth of the
+cost of an animal null.
+
+## References
+
+- Ehrlich RS, Colman RF. *Biochim Biophys Acta* 1995;1246:135-41. PMID 7819280. doi:10.1016/0167-4838(94)00192-j
+- Crotty D, Silkstone G, Poddar S, Ranson R, Prina-Mello A, Wilson MT, Coey JMD. *PNAS* 2012;109:1437-42. PMID 22198842. doi:10.1073/pnas.1117840108
+- Hore PJ. *PNAS* 2012;109:1357-8. PMID 22307585. doi:10.1073/pnas.1120531109
+- Itano WM, Wineland DJ. *Phys Rev A* 1981;24:1364. doi:10.1103/PhysRevA.24.1364
+- Wong SY, Benjamin P, Hore PJ. *Phys Chem Chem Phys* 2023;25:975-82. PMID 36519379. doi:10.1039/d2cp03793a
+- Martínez JI, Frago S, Medina M, García-Rubio I. *Magn Reson* 2025;6:183. PMID 40771403. doi:10.5194/mr-6-183-2025
+- Pažėra GJ, Benjamin P, Mouritsen H, Hore PJ. *J Phys Chem B* 2023;127:838-45. PMID 36669149. doi:10.1021/acs.jpcb.2c05335
+- Schleicher E, et al. *Sci Rep* 2021;11:18106. PMID 34521887. doi:10.1038/s41598-021-97588-7
+- Xu J, Jarocha LE, Zollitsch T, et al. *Nature* 2021;594:535-40. doi:10.1038/s41586-021-03618-9
+- Zadeh-Haghighi H, Siguenza CR, Smith RP, Simon C, Craddock TJA. *Sci Adv* 2026;12:eady8317. PMID 41686898. doi:10.1126/sciadv.ady8317
+
+
+---
+
+## CANDIDATE 3
+
+---
+id: C-005
+title: A human C-nociceptor carries under 30 bits per second, with little information in fine timing beyond rate
+branch: A
+status: draft
+prior: 0.45
+posterior:
+lineage:
+supersedes:
+created: 2026-09-01
+bears_on: HC-1, HC-2
+---
+
+## Claim
+
+The information rate of a single human C-nociceptor axon under natural
+stimulation is below 30 bits per second. Almost all of it is carried by
+discharge rate and by which fibre class and subtype fired. Spike timing finer
+than about 5 milliseconds adds little further information, because
+activity-dependent conduction velocity slowing degrades timing precision
+exactly when rate is high enough for fine timing to matter.
+
+## Why this, why now
+
+This conjecture exists because of an absence recorded in the programme's own
+open ledger. **No published estimate exists for the information rate of a
+nociceptor axon in bits per second** (E-01 §1). The figures the programme has
+been reasoning with, tens of bits per second, are entropy-rate ceilings derived
+from assumed rate and timing precision, not measurements.
+
+That is a conspicuous hole for a programme whose founding premise is that pain
+is an information problem. The channel capacity of the channel has never been
+measured.
+
+The evidence base also makes the specific prediction testable rather than
+merely open. Human C-fibre subtypes are separable on the wire by
+**activity-dependent slowing** of conduction velocity (Serra, Campero, Ochoa &
+Bostock, PMID 10066906), and that same slowing is what corrupts timing at high
+rates. The only direct temporal-pattern result is a single unreplicated ex vivo
+study using chemical rather than natural stimuli, which classified three
+chemicals at 79.7% from three-spike interval structure (Cho et al.,
+doi:10.3389/fncom.2016.00118). One study, one preparation, never replicated in
+vivo or in human microneurography.
+
+**Why this is worth a conjecture rather than a literature review.** A number
+this basic being absent is usually not an oversight. Human microneurography
+yields two to six tracked fibres per session (Troglio et al., PMID 41004469),
+recordings are unstable, and information-rate estimation needs long, repeated,
+approximately stationary stimulus-response records. It is also unattractive to
+publish if the answer is "low bandwidth". That combination is exactly how a
+foundational measurement goes unmade for fifty years.
+
+## Mechanism
+
+Not a mechanism claim so much as a measurement claim, but the reasoning behind
+the predicted magnitude is physical.
+
+An unmyelinated C-fibre conducts at 0.4 to 1.4 metres per second. Its
+conduction velocity depends on recent activity, which is why activity-dependent
+slowing works as a subtype classifier at all. That dependence means the arrival
+time of a spike at the recording site is a function not only of when it was
+generated but of how many spikes preceded it, so **timing jitter grows with
+discharge rate**. The mutual information available in fine timing therefore
+falls in exactly the regime where a rate code saturates.
+
+Taking the standard entropy-rate ceiling for a spike train of mean rate r and
+timing resolution Δt, H ≈ r·log₂(e/(r·Δt)), a C-nociceptor at 10 Hz with 5 ms
+resolution gives a ceiling near 58 bits per second, and the transmitted rate
+will sit well below the ceiling because real spike trains are not maximum
+entropy. Under 30 bits per second is the prediction.
+
+## Forbidden observation
+
+A human C-nociceptor will not be found to transmit more than 30 bits per second
+about a natural stimulus, and shuffling spike times within a 5 millisecond
+window will not destroy a substantial fraction of the transmitted information.
+
+## Killer
+
+Human microneurography with a stimulus rich enough to carry information, in
+healthy volunteers.
+
+Record single identified C-nociceptors, classified by activity-dependent
+slowing, while delivering a long repeated mechanical or thermal stimulus
+sequence with known statistics (a frozen-noise design, the same repeated
+segment many times, which is what makes direct information estimation
+possible). Target n=20 units across at least 8 participants, with at least 30
+repeats of a 60 second frozen segment per unit.
+
+Estimate transmitted information by the direct method on the repeated segment,
+then repeat the estimate after jittering spike times within windows of 1, 5 and
+20 milliseconds.
+
+**Refutation threshold:** the conjecture is refuted if the point estimate
+exceeds 30 bits per second with a lower confidence bound above 30, or if
+jittering within 5 milliseconds destroys more than 30% of the transmitted
+information, which would mean fine timing carries substantial information after
+all.
+
+Approximate cost 150,000 to 250,000 euro and 24 months, dominated by
+microneurography session time rather than equipment. Reduced substantially if
+run as a secondary analysis on existing archived recordings, which should be
+attempted first.
+
+## Rivals
+
+- **Fine timing carries substantial information after all.** Burst structure
+  encodes stimulus quality, as the single ex vivo study suggests, and the
+  programme's HC-1 is right in its strong form. *Distinguished by:* jittering
+  within 5 milliseconds destroys a large fraction of transmitted information.
+- **The rate is far higher than 30 bits per second under natural stimulation.**
+  Polymodal C-nociceptors follow electrical stimulation to 100 Hz without
+  conduction failure (Werland et al., PMID 33369733), so a high-rate natural
+  regime may exist that the estimate above underweights. *Distinguished by:*
+  the measured rate distribution under natural stimuli, which this experiment
+  produces as a by-product whatever the information estimate shows.
+- **The question is ill-posed for a single axon.** Information about pain is
+  carried by the population and by which classes co-fire, so a single-axon
+  figure is true and irrelevant. E-01 §2 gives real support for this, since
+  all C-nociceptor classes are broadly and overlappingly tuned.
+  *Distinguished by:* it predicts single-unit information will be low **and**
+  that the low value will not constrain anything, which is testable only by
+  the multi-unit follow-up this experiment makes possible.
+
+## Severity
+
+Given the conjecture is false, the probability the proposed test still comes out
+favourable is about **0.2**.
+
+The main route to a false pass is under-sampling: too few repeats, or a stimulus
+too impoverished to elicit the fibre's full repertoire, would both bias the
+information estimate downward and make a low number look confirmatory. The
+frozen-noise design with a stated minimum repeat count is the control, and the
+jitter analysis is an internal check that does not depend on the absolute
+estimate being right.
+
+## What it would change
+
+If confirmed, the programme's HC-1 survives only in its weak form. Structure
+beyond mean rate would exist mainly as *which population fired*, not as
+temporal pattern within an axon, and every downstream conjecture about reading
+or writing temporal patterns on a single fibre would be attacking a channel
+with almost nothing in it. It would also mean high-bandwidth transducer work,
+including the helium-4 magnetometry route in Branch B, is solving an assumed
+requirement rather than a real one.
+
+If refuted, HC-1 is confirmed in its strong form and the programme's central
+premise gets its first direct empirical support, which it currently lacks.
+
+**Either outcome moves the programme more than any other conjecture on the
+board**, which is the argument for funding it first despite its unglamorous
+shape.
+
+## References
+
+- Serra J, Campero M, Ochoa J, Bostock H. *J Physiol* 1999;515:799-811. PMID 10066906. doi:10.1111/j.1469-7793.1999.799ab.x
+- Cho A, et al. *Front Comput Neurosci* 2016;10:118. doi:10.3389/fncom.2016.00118
+- Werland F, et al. *J Physiol* 2021;599:1595-610. PMID 33369733. doi:10.1113/JP280269
+- Troglio A, et al. *PLOS ONE* 2025;20:e0329537. PMID 41004469. doi:10.1371/journal.pone.0329537
+- Schmidt R, Schmelz M, Forster C, Ringkamp M, Torebjörk E, Handwerker H. *J Neurosci* 1995;15:333-41. PMID 7823139. doi:10.1523/JNEUROSCI.15-01-00333.1995
+- Ghitani N, et al. *Nature* 2025;642:1016-23. PMID 40269164. doi:10.1038/s41586-025-08875-6
+- Prescott SA, Ma Q, De Koninck Y. *Nat Neurosci* 2014;17:183-91. PMID 24473266. doi:10.1038/nn.3629
+
+
+---
+
+## CANDIDATE 4
+
+---
+id: C-004
+title: Velocity-domain matched filtering can recover an evoked C-fibre magnetic component from a superficial nerve
+branch: B
+status: draft
+prior: 0.20
+posterior:
+lineage:
+supersedes:
+created: 2026-09-01
+bears_on: HC-2, HC-4
+---
+
+## Claim
+
+Unmyelinated C-fibre volleys have never been detected magnetically because
+biomagnetism averages in laboratory time, and a slow dispersed volley
+phase-cancels under that operation. Averaging instead in the **velocity
+domain**, by applying a matched filter that shifts each sensor's trace by the
+propagation delay expected for an assumed conduction velocity and sweeping that
+assumed velocity, will recover a coherent C-fibre component from a superficial
+human nerve that time-domain averaging destroys.
+
+## Why this, why now
+
+Three facts from the evidence base collide, and the collision is the
+conjecture.
+
+**One.** A superficial human nerve gives a magnetic signal of about **1 pT at
+6.5 mm standoff**, which is large and has been recovered in humans with three
+optically pumped magnetometers (Bu et al., PMID 35370794). This is not the
+5-50 fT deep-cord problem, and conflating the two is the commonest error in the
+field (E-04 §3.1).
+
+**Two.** Despite that, **Aδ fibres have never been detected magnetically, and
+C-fibres are ten times slower again**, because conduction velocity dispersion
+spreads the compound volley over tens of milliseconds so it cancels on
+averaging (E-02 §4, Adachi & Kawabata, PMID 38690583).
+
+**Three.** Helium-4 optically pumped magnetometers reach DC to 2 kHz bandwidth,
+where common alkali magnetometers stop between 150 and 350 Hz, at a cost of
+roughly 13 times in sensitivity (E-04 §3.1). Bu et al. hit exactly this wall,
+with a 500 Hz filter and a 15 ms ringing artefact.
+
+So the signal is large, the sensor bandwidth now exists, and the only thing in
+the way is a signal-processing operation chosen decades ago for myelinated
+fibres.
+
+**Why not already done.** Biomagnetism systems average channels in laboratory
+time because that is correct for fast synchronous myelinated volleys, which is
+what the field grew up measuring. Velocity-domain matched filtering is entirely
+standard in radar, sonar and seismic array processing, where it is called
+beamforming or slant stacking, but those communities do not work on peripheral
+nerve and the biomagnetism community does not use their tools. This is a
+transplant between fields that do not talk, not a new idea in either.
+
+## Mechanism
+
+A propagating volley is a moving current dipole. At a linear sensor array along
+the nerve, a spike arriving at position x at time t appears at position x + Δx
+at time t + Δx/v, where v is conduction velocity. Time-domain averaging across
+trials preserves anything phase-locked to the stimulus at a **fixed latency**,
+which is true for a fast volley with narrow velocity spread and false for a
+slow one with wide spread.
+
+The matched filter is: for a hypothesised velocity v, shift each sensor's trace
+by −x/v, then sum. Components travelling at v add coherently; everything else
+adds incoherently. Sweeping v produces a velocity spectrum, and a C-fibre
+population should appear as a ridge between 0.4 and 1.4 metres per second,
+separated from the Aβ ridge above 30 metres per second by nearly two orders of
+magnitude in velocity, which is an enormous separation for a matched filter.
+
+The dispersion that destroys time-domain averaging is precisely what makes the
+velocity domain informative: a wide velocity spread is a broad ridge, not a
+cancelled signal.
+
+Nothing exotic is invoked. This is array signal processing on a magnetic field
+of about 1 pT, with sensor bandwidth to 2 kHz and propagation delays of order
+10 to 100 milliseconds over a 10 cm array.
+
+## Forbidden observation
+
+A velocity sweep over a superficial nerve after a C-fibre-selective stimulus
+will not show any coherent ridge in the 0.4 to 1.4 metres per second band above
+the noise floor of the same analysis applied to unstimulated recordings.
+
+## Killer
+
+Human forearm or lower-leg superficial nerve, helium-4 optically pumped
+magnetometer array of at least 8 sensors in a line along the nerve over at
+least 10 cm, in a magnetically shielded room.
+
+Stimulate with a protocol that preferentially recruits C-fibres, for example
+transcutaneous slow depolarising pulses or capsaicin-sensitised heat, with
+simultaneous **microneurography in the same nerve as ground truth** so that the
+presence and timing of C-fibre traffic is known independently rather than
+assumed. Target 2,000 stimulus repeats per condition, n=8 participants.
+
+Analyse by velocity-domain matched filtering, sweeping assumed velocity from
+0.2 to 100 metres per second, and compare against time-domain averaging on the
+identical data.
+
+**Refutation threshold:** the conjecture is refuted if no ridge appears in the
+0.4 to 1.4 metres per second band at signal-to-noise above 3 when
+microneurography confirms C-fibre traffic was present, or if velocity-domain
+analysis does not outperform time-domain averaging on the same recordings.
+
+Approximate cost 250,000 to 400,000 euro and 24 months, dominated by
+helium-4 magnetometer access and shielded-room time. **The analysis half can be
+run first for almost nothing** on existing archived magnetoneurography
+recordings, if any include a slow-fibre stimulus, and that should be attempted
+before any hardware is bought.
+
+## Rivals
+
+- **The signal is genuinely absent, not hidden.** C-fibre currents are too
+  small to produce a detectable external magnetic field at any standoff,
+  because current dipole moment scales with axon cross-section and C-fibres are
+  0.2 to 1.5 µm against 6 to 12 µm for Aβ. *Distinguished by:* the velocity
+  sweep shows no ridge even when microneurography confirms traffic, which is
+  why the simultaneous ground truth is not optional.
+- **Asynchrony, not dispersion, is the problem.** C-fibres do not fire
+  synchronously enough for any coherent summation, regardless of the domain
+  the averaging happens in, because each fibre's latency varies trial to trial
+  through activity-dependent slowing. *Distinguished by:* this predicts the
+  ridge is absent but that single-trial velocity-domain energy in the C band
+  still rises above baseline; the conjecture predicts a coherent ridge.
+- **Volume conduction smears the array geometry.** The assumed straight-line
+  propagation geometry does not hold through tissue, so the matched filter is
+  mis-specified and cancels the very signal it is meant to recover.
+  *Distinguished by:* the Aβ ridge. If the method cannot recover the known,
+  large, fast component at its known velocity on the same recording, the
+  geometry is wrong and the C-band null is uninterpretable. **This makes the Aβ
+  ridge a mandatory positive control**, and it is free.
+
+## Severity
+
+Given the conjecture is false, the probability the proposed test still comes out
+favourable is about **0.15**.
+
+The chief route to a false pass is that a velocity sweep with enough free
+parameters will find a ridge somewhere in noise. The controls against it are
+the pre-specified velocity band, the unstimulated-recording null distribution
+computed through the identical pipeline, and the requirement that
+microneurography independently confirm traffic was present on the trials
+analysed. The Aβ positive control additionally prevents a mis-specified filter
+from being read as a negative result.
+
+## What it would change
+
+If confirmed, non-contact reading of nociceptive traffic becomes possible in
+humans without penetrating the nerve, which is the single hardest bottleneck in
+E-02 and the thing every downstream closed-loop idea is blocked on. It would
+also be the first genuinely useful contribution of quantum technology to this
+programme, and it would be an instrument rather than a theory.
+
+If refuted with the Aβ control intact, Branch B narrows sharply: magnetometry
+can read myelinated traffic and not nociceptive traffic, and the programme
+should stop proposing to read pain magnetically. **That is a cheap way to close
+a whole branch**, and closing it is worth nearly as much as opening it.
+
+## References
+
+- Bu Y, Prince J, Mojtahed H, Kimball D, Shah V, Coleman T, Sarkar M, Rao R, Huang M, Schwindt P, Borna A, Lerman I. *Front Physiol* 2022;13:798376. PMID 35370794. doi:10.3389/fphys.2022.798376
+- Adachi Y, Kawabata S. *Front Med Technol* 2024;6:1351905. PMID 38690583. doi:10.3389/fmedt.2024.1351905
+- Sumiya S, Kawabata S, Hoshino Y, Adachi Y, Sekihara K, et al. *Sci Rep* 2017;7:2192. doi:10.1038/s41598-017-02406-8
+- Boto E, Holmes N, Leggett J, et al., Bowtell R, Brookes MJ. *Nature* 2018;555:657-61. PMID 29562238. doi:10.1038/nature26147
+- Bu Y, Burks J, Yang K, et al. *Commun Biol* 2024;7:893. PMID 39075164. doi:10.1038/s42003-024-06435-8
+- Serra J, Campero M, Ochoa J, Bostock H. *J Physiol* 1999;515:799-811. PMID 10066906. doi:10.1111/j.1469-7793.1999.799ab.x
+- Verardo C, Romeni S, Micera S. *iScience* 2025;28:112495. PMID 40458190. doi:10.1016/j.isci.2025.112495
+
+
+---
+
+## Gate verdicts returned against CANDIDATE 3
+
+```
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — For a specified stimulus ensemble, does sub-5-millisecond spike timing add information about pain-relevant stimulus features or perception beyond firing rate and unit identity?
+01-physical-plausibility           tensorx/kimi-k3                                VERDICT: MINOR — the response-drift (sensitisation/fatigue) time constant of human C-nociceptors under repeated noxious frozen-noise stimulation, set against the 1,800 s per-unit acquisition, with a pre-committed block-interleaving or detrending rule if the two are comparable.
+02-biological-plausibility         tensorx/deepseek-v4-pro-0424                   VERDICT: MINOR — The measurement is worth doing, but the conjecture must state explicitly that a low single-axon information rate in healthy volunteers under natural stimulation does not test HC-2 (peripheral readability of pain-relevant discrimination), does not generalise to neuropathic pain (where the relevant traffic is ectopic, Aβ-mediated, or centrally amplified), and does not constrain the population code that the CNS actually reads.
+03-evidence-integrity              vertex/gemini-3.5-flash@eu                     VERDICT: MAJOR — Werland et al. (2021) [PMID 33369733] is cited to claim C-nociceptors follow 100 Hz without conduction failure, which is a direct inversion of the study's actual findings.
+04-falsifiability                  tensorx/glm-5.2                                VERDICT: MAJOR — the proposed test has false-pass probability ~0.6 and proves nothing, because the direct method of information estimation on a 60-second continuous stimulus with only 30 repeats is statistically biased toward underestimation, guaranteeing a favourable result even if the true rate is high.
+05-prior-art                       azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: PASS — genuinely open or incremental with a stated delta
+06-hostile-referee                 tensorx/kimi-k3                                VERDICT: GATE FAILED TO RUN
+07-clinical-translation            tensorx/deepseek-v4-pro-0424                   VERDICT: NOT APPLICABLE — mechanistic conjecture with no translational claim
+```

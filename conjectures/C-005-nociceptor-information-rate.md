@@ -2,9 +2,9 @@
 id: C-005
 title: A human C-nociceptor carries under 30 bits per second, with little information in fine timing beyond rate
 branch: A
-status: draft
+status: refuted
 prior: 0.45
-posterior:
+posterior: 0.25
 lineage:
 supersedes:
 created: 2026-09-01

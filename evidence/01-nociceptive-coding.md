@@ -17,7 +17,7 @@ Human C-nociceptors are not one population. Microneurography identifies mechano-
 
 **Firing rates and refractoriness.** The textbook claim that C-nociceptors saturate at 10-30 Hz is wrong as a general statement. Werland et al. showed in pig that polymodal C-nociceptors follow electrical stimulation up to 100 Hz without conduction failure, whereas silent nociceptors cannot follow 5 Hz; NGF sensitisation raises the silent units' maximum following frequency (Werland et al. 2021, *J Physiol* 599:1595-610, PMID 33369733, doi:10.1113/JP280269). **[DERIVED]** A 100 Hz following frequency implies an effective refractory period below 10 ms in polymodal C-fibres. Absolute refractory periods for myelinated afferents (~0.5-1 ms, permitting several hundred Hz) are textbook values with no primary source located `[UNVERIFIED]`.
 
-**Channel capacity.** There is **no published bits-per-second estimate for a single nociceptor axon.** This is a genuine gap, not a search failure. What exists is generic spike-train information theory (Borst & Theunissen 1999, *Nat Neurosci* 2:947-57, PMID `[UNVERIFIED]`, article verified at nature.com/articles/nn1199_947), which finds ~1-3 bits per spike for well-characterised sensory neurons.
+**Channel capacity.** There is **no published bits-per-second estimate for a single nociceptor axon.** This is a genuine gap, not a search failure. What exists is generic spike-train information theory (Borst & Theunissen 1999, *Nat Neurosci* 2:947-57, PMID 10526332, doi:10.1038/14731), which finds ~1-3 bits per spike for well-characterised sensory neurons.
 
 **[DERIVED]** Using the standard entropy-rate ceiling for a spike train of mean rate *r* and timing resolution Δt, H ≈ r·log₂(e/(r·Δt)):
 
@@ -144,6 +144,8 @@ A programme betting on peripheral decoding should target **(a)** ongoing-activit
 
 ## Verification notes
 
-All PMIDs and DOIs above were resolved against PubMed E-utilities except where marked. Specifically unverified: Borst & Theunissen 1999 PMID and DOI (article itself confirmed at nature.com/articles/nn1199_947); Cho et al. 2016 PMID (DOI and full text confirmed at frontiersin.org); Emery et al. HCN2 diabetic-neuropathy *Sci Transl Med* PMID (DOI confirmed at science.org); myelinated-fibre absolute refractory period figures (textbook value, no primary source located).
+> **Update 2026-09-01.** The Borst & Theunissen identifier, previously `[UNVERIFIED]`, was resolved while checking a downstream conjecture: PMID 10526332, doi:10.1038/14731, both confirmed against Crossref and PubMed. One fewer unverified reference in this brief.
+
+All PMIDs and DOIs above were resolved against PubMed E-utilities except where marked. Specifically unverified: Cho et al. 2016 PMID (DOI and full text confirmed at frontiersin.org); Emery et al. HCN2 diabetic-neuropathy *Sci Transl Med* PMID (DOI confirmed at science.org); myelinated-fibre absolute refractory period figures (textbook value, no primary source located).
 
 Two PMIDs initially guessed during preparation (5828044, 24559671) resolved to unrelated papers and were corrected to 14334366 and 24811377. That is the reason `tools/verify-citations.py` exists and runs in CI: PMIDs must never be inferred.
