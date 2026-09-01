@@ -169,7 +169,7 @@ not an answer.
 
 ### Salvage, before explant. This is the most actionable finding in the brief.
 
-> **Stimulation holiday.** D'Souza and Her, *Reg Anesth Pain Med* 2022 (PMID 35985769). **40 patients with loss of efficacy. Relief rose from 8.7% to 39.4% one month after a holiday, a mean difference of 30.6 points.**
+> **Stimulation holiday.** D'Souza and Her, *Reg Anesth Pain Med* 2022 (PMID 35985769). **40 patients with loss of efficacy. Relief rose from 8.7% to 39.4% one month after a holiday, a mean difference of 30.6 points.** **Attribution correction:** the paper's title is "Stimulation holiday rescues analgesia after habituation and loss of efficacy from **10-kilohertz dorsal column spinal cord stimulation**". This is not a DRG study. Applying the 30.6-point figure to a DRG system is an **extrapolation, not a citation**, and must be stated as such whenever it is used. The mechanism (receptor or network re-sensitisation after a period without stimulation) is plausible at both targets, but the number belongs to dorsal column 10 kHz.
 
 > **Waveform conversion.** Systematic review of 22 studies and 1,591 patients: **77.9% of salvage trials reported successful** (Yener et al., *Neuromodulation* 2026, PMID 42249871).
 
@@ -182,13 +182,13 @@ DRG as salvage after failed SCS: Chapman et al. (PMID 35760751), 60 patients inc
 | Intervention | Best evidence | Verdict |
 |---|---|---|
 | **Ketamine** | Sigtermans, *Pain* 2009, PMID 19604642, n=60, about 2.8 points at week 1 | **Significance lost by week 12 (p=0.07); "treatment did not cause functional improvement"; 76% against 18% psychomimetic effects, so functional unblinding is near-certain.** Pooled WMD −8.3 out of 100 |
-| **Bisphosphonates and neridronate** | Varenna 2013 (PMID 23204550) n=82; Varenna 2021 (PMID 34178124) n=78, met its registered primary endpoint, Abiogen-funded | **Ferraro et al., *Ann Intern Med* 2026;179:256-69 (PMID 41397259), 11 trials, 754 patients, unfunded: short-term MD only −10.0 out of 100 (low certainty), null at every other window, harms RR 1.1.** Grünenthal's 459-patient phase 3 completed with **no posted results**; two further phase 3s terminated by "sponsor decision" |
+| **Bisphosphonates and neridronate** | Varenna 2013 (PMID 23204550) n=82; Varenna 2021 (PMID 34178124) n=78, met its registered primary endpoint, Abiogen-funded | **Ferraro et al., *Ann Intern Med* 2026;179:256-69 (PMID 41397259), 11 trials, 754 patients, unfunded: short-term MD only −10.0 out of 100 (low certainty), null at every other window, harms RR 1.1.** The Grünenthal programme is four trials, **all reported in at least one registry and none published as a paper**, and its largest randomised comparison is flatly null. See the corrections section below: an earlier version of this row cited two wrong trial identifiers and wrongly said results did not exist |
 | **IVIG** | Goebel 2010 (PMID 20124231), n=13 crossover, CSL-Behring co-funded | **Goebel 2017 (PMID 28973211), n=111, fully blinded: adjusted difference +0.27 (95% CI −0.25 to 0.80), favouring placebo. "Not effective."** The cleanest positive-to-negative sequence in the literature |
 | **Graded motor imagery, mirror therapy** | Moseley 2004 (n=13) and 2006 (n=51), **both sole-authored by Moseley** | Johnson, Hall, Moseley, Goebel, *Eur J Pain* 2012 (PMID 22337591), clinical-practice audit at two UK centres: "**the patients' average pain intensities did not improve with treatment**". Smart et al. Cochrane 2022 (PMID 35579382): 34 RCTs, **none at low risk of bias** |
 | **DMSO and NAC** | Perez, *Pain* 2003, PMID 12670672, n=146 | **No inactive control.** No difference between agents at 17 or 52 weeks. Two agents performing equally is compatible with both being inactive |
 | **Sympathetic blocks** | O'Connell et al. Cochrane 2016 (PMID 27467116), 12 studies, N=461 | "The limited data available **do not suggest that LASB is effective**." Sympathectomy: exactly **one** eligible study (n=20), never compared with sham |
 | **Amputation** | Groningen cohorts report 73% pain reduction (PMID 32735019) | **Gilanyi, Ferraro, Goebel, O'Connell, McAuley, *J Pain* 2025 (PMID 41047056): 249 patients; phantom pain 67%, residual limb pain 66%, CRPS recurrence 47%. "No clear evidence that amputation offers greater pain relief than no amputation."** |
-| **Topical phenytoin** | **For CRPS specifically this entire body of work is two n=1 open-label case reports** (PMID 22028723; PMID 23658493) | The "double-blind placebo-controlled response test" is a **30-minute contralateral-limb skin test the authors themselves label observational**. Both hold patents via Topical Innovations B.V., have taken licensing fees, and run the fee-charging clinic supplying the creams; **both CRPS case reports declare no conflict**. EPHENE (NCT04647877) completed June 2023 and **has never reported**. The best independent test of compounded creams is flatly negative: Brutcher et al., *Ann Intern Med* 2019 (PMID 30716769), n=399, neuropathic arm difference **−0.1 NRS** |
+| **Topical phenytoin** | **For CRPS specifically this entire body of work is two n=1 open-label case reports** (PMID 22028723; PMID 23658493) | The "double-blind placebo-controlled response test" is a **30-minute contralateral-limb skin test the authors themselves label observational**. Both hold patents via Topical Innovations B.V., have taken licensing fees, and run the fee-charging clinic supplying the creams; **both CRPS case reports declare no conflict**. EPHENE (NCT04647877) completed June 2023 and **has never reported** — but note the correction below: **EPHENE is a trial in chronic idiopathic axonal polyneuropathy, not CRPS**, so its non-publication is not CRPS evidence. The best independent test of compounded creams is flatly negative: Brutcher et al., *Ann Intern Med* 2019 (PMID 30716769), n=399, neuropathic arm difference **−0.1 NRS** |
 
 ---
 
@@ -216,6 +216,164 @@ Five explanations, in descending order of evidential support.
 - **Closed-loop.** NCT06421350 (closed-loop SCS for CRPS, Scripps, recruiting); NCT04909138 (intermittent DRG stimulation, Rush); **NCT07170722, a sham-controlled sub-threshold DRG trial at Umeå, is COMPLETED and unpublished** and worth chasing.
 - **Neridronate is the biggest industry story and the biggest evidence problem:** NCT07210515 "CRPS-RISE", phase 3, n=270, recruiting since April 2026, 24 US sites, launched into the teeth of the 2026 *Annals* meta-analysis showing about 10 points short-term and increased harms.
 - **Reviews to anchor on:** Goebel A, "Complex Regional Pain Syndrome", *NEJM* 2025;393:2338-48 (PMID 41370799); Ferraro et al., *Lancet Neurol* 2024;23:522-33 (PMID 38631768). **There is no Nature Reviews Disease Primers CRPS entry and no discrete "2025 international CRPS guideline"** `[UNVERIFIED, likely does not exist]`. Both national guidelines are expired: AWMF 030-116 lapsed 7 January 2023; the RCP 2nd edition (2018) passed its 2023 review date unrevised.
+
+---
+
+## 6b. Corrections from a registry audit, 1 September 2026
+
+A dedicated chase of the "completed but unpublished" trials flagged below found
+**four factual errors in this brief**. Two weakened its argument and two
+strengthened it. All are corrected here rather than silently edited, and the
+method failure that produced two of them is recorded at the end.
+
+### The important one: the sham-controlled DRG trial is published, and it is positive
+
+This brief listed NCT07170722 as "COMPLETED and unpublished". **It was
+published on 13 May 2026.**
+
+> **Tabatabaei P, Wänman J, Awad A, Eriksson M, Salomonsson J, Bredemo L, Sjöberg R, Hariz MI, Blomstedt P. "Subperception dorsal root ganglion stimulation versus sham stimulation in established responders: a randomized, double-blind crossover clinical trial." *Reg Anesth Pain Med*, 2026. PMID 42128597, doi:10.1136/rapm-2026-107906.**
+
+Umeå. Enriched enrolment (at least 50% relief for at least 3 months), n=20,
+quadruple-masked, two-period crossover, two 5-day periods with a 24-hour
+washout, active at 90% of perception threshold, sham off.
+
+**Median NRS 3.0 (IQR 2.0-4.0) active against 6.0 (IQR 4.0-7.0) sham.
+Hodges-Lehmann median difference −2.5 (95% CI −3.0 to −2.0), p<0.001.** All
+patient global impression domains and satisfaction favoured active. No serious
+or device-related adverse events. `[Note a registry-versus-paper discrepancy:
+the ClinicalTrials.gov record says 80% of perception threshold, the paper says
+90%.]`
+
+**And there are two independent centres, not one.** The frequency-dependency
+trials in §3 are **Piedade, Gillner, McPhillips, Vesper and Slotty in
+Düsseldorf**, not Umeå as this brief implied. So sham-controlled DRG evidence
+now comes from two unrelated groups.
+
+**Consequence.** The statement that sham-controlled DRG evidence is scarce is
+now substantially weaker than when written. It remains true that the *pivotal
+implantation* trial had no sham arm. It is no longer true that the technique
+lacks blinded sham-controlled support in implanted patients.
+
+### The neridronate row cited the wrong trials entirely
+
+NCT05248386 and NCT05449132 are **resiniferatoxin knee osteoarthritis** trials,
+not neridronate CRPS trials. Grünenthal sponsors both and both are null on
+WOMAC, which is presumably how they were mistaken for the CRPS programme.
+
+The actual programme is four trials, and **all are reported in at least one
+registry**, contradicting this brief's "no posted results":
+
+| NCT | EudraCT | Randomised | Status | Results |
+|---|---|---|---|---|
+| NCT02402530 | 2014-001915-37 | **230** (459 consented) | Completed 2016 | **None on ClinicalTrials.gov; full EudraCT results since 12 Nov 2017** |
+| NCT02972359 | 2016-001164-11 | 580 | Completed | Posted, open-label safety |
+| NCT03530345 | 2016-003833-91 | 182 | Terminated, sponsor decision | Posted, both registries |
+| NCT03560986 | 2017-004244-37 | 267 | Terminated, sponsor decision | Posted, both registries |
+
+The largest randomised comparison is **null**: change in pain intensity to week
+12, neridronic acid 125 mg −1.38 (−1.83 to −0.94), 250 mg −1.07 (−1.51 to
+−0.63), placebo −1.01 (−1.46 to −0.55), **p = 0.1812**. Responders 20/77, 16/77,
+16/76.
+
+**Do not report the one nominally positive terminated trial as a positive.**
+NCT03530345 gives a difference of −1.07 (−1.89 to −0.26), p = 0.0111, but the
+analysis set is **28 against 29 patients, 57 of 182 enrolled**, described as all
+subjects with data available at the time of last subject out following
+premature termination. A nominally significant result in a third of the
+enrolled sample after the sponsor stopped the trial is not evidence of efficacy.
+Its sibling NCT03560986 gives +0.43, favouring placebo.
+
+**The accurate indictment is different from the one this brief made, and still
+strong: four trials, none published as a paper, largest comparison flatly
+null.** It does not require a false claim that results do not exist.
+
+### EPHENE is not a CRPS trial
+
+NCT04647877's registered condition is **chronic idiopathic axonal
+polyneuropathy**. CRPS appears nowhere in the record. Its non-publication is
+therefore **not CRPS evidence** and this brief mis-filed it.
+
+The non-publication itself is real and now better documented: unreported in
+**four registries** simultaneously, including **EudraCT 2020-001340-25**, which
+returns "There are no public results for the specified EudraCT number". The EU
+Clinical Trials Directive requires summary results within 12 months of trial
+end, so there is a plausible reporting-obligation breach, which is a stronger
+claim than "no results published".
+
+A likely mechanical explanation, stated because it is testable and partly
+exculpatory: the sponsor-investigator is listed as a current PhD candidate with
+no dissertation on his ORCID record, so the results are plausibly embargoed
+inside an unfinished thesis. That explains the delay without excusing it.
+
+**One correction to the conflict-of-interest framing.** The commercially
+interested company has published nothing since April 2021 and makes no claim
+about this trial. The interested party is not publicising unpublished
+favourable data; it is silent. That is a weaker and more accurate statement
+than this brief's original.
+
+### The fremanezumab trial is ongoing, not unpublished
+
+Registration found: **CTIS 2022-503167-15-00**, Aarhus University Hospital,
+status **Authorised**, EU start 11 December 2023, **estimated end 31 July
+2027**, n=60, fremanezumab 225 mg against saline. Results object is empty and
+nothing is due.
+
+**One real finding:** CTIS lists **Denmark as the only Member State Concerned,
+with a single site at Aarhus**. The protocol paper describes Aarhus *and*
+Mainz, but there is no German site, no German Member State entry and no
+separate German registration. Either the Mainz arm was never added by
+substantial modification or it runs outside CTIS visibility.
+
+### The anakinra trial: results exist, and the framing was overstated
+
+ISRCTN12908996 results were retrieved directly from the registry. Anakinra in
+refractory CRPS, University of Liverpool, funded by a family foundation, sites
+at St Thomas' and The Walton Centre. **26 registered, 26 treated, 26 analysed.**
+88.5% female, mean age 38.4.
+
+**It is a single-arm safety and tolerability study, and the posted results are
+safety only.** Every table has one column. Serious adverse events **0 of 26**.
+Non-serious adverse events **176 in 25 of 26 patients**, including infections in
+17 of 26. Four discontinued, one recorded verbatim as "No effect from drug and
+increase in pain".
+
+**The registered CRPS Severity Score primary outcome has not been reported.**
+That is the reportable omission, and it is narrower than this brief's claim
+that it was "the single most under-reported item in the field". Corrected.
+
+### Two unreported trials this brief did not know about
+
+- **KetCRPS-2**, CTIS 2024-511877-31-00 and EudraCT 2021-000640-21, intravenous
+  esketamine non-inferiority, Erasmus MC, n=60. **Ended, with no results in
+  either register.** Only the 2023 protocol paper exists (PMID 36991381).
+- **PINCom**, CTIS 2024-519832-17-00, perineural incobotulinumtoxin-A,
+  Rigshospitalet, n=25. **Ended, with a summary of results submitted 2 July
+  2026** that could not be extracted: every document endpoint returns 403 or the
+  application shell. Retrievable only through the browser interface.
+
+### The largest reporting gap in CRPS is one this brief never mentioned
+
+Filtering completed or terminated interventional CRPS trials with completion
+from 2022: **34 trials, of which only 3 have posted results.** The largest
+single unreported one is **NCT02390505**, vitamin C for CRPS prevention,
+**n=995**, completed 8 December 2025, no results, no publications indexed. A
+second vitamin C prophylaxis trial, **CRPS-VITC (CTIS 2024-518310-28-00,
+n=1000)**, is authorised and running.
+
+**So roughly 2,000 randomised patients sit in CRPS prevention trials with
+nothing reported.** That is a larger gap than anything in §6.
+
+### The method failure that caused two of these errors
+
+Both the neridronate error and the missed 2017 EudraCT results have the same
+root cause: **checking only ClinicalTrials.gov.** For any EU-sponsored trial,
+`hasResults: false` on ClinicalTrials.gov means nothing until EudraCT and CTIS
+have been checked, and the two registers routinely disagree about the same
+trial. This is now a standing requirement for this evidence base.
+
+The working CTIS call is a **POST** to `euclinicaltrials.eu/ctis-public-api/search`
+with a JSON body; the documented GET form returns "Missing Authentication
+Token". CTIS contains exactly **four** CRPS trials.
 
 ---
 
