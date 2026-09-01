@@ -145,6 +145,12 @@ which this harness was derived from.
 - **Reasoning models can burn their whole output budget on reasoning and return
   an empty body.** Observed at exactly 8192 output tokens with no content. Set
   `REVIEW_MAX_TOKENS` well above the default when using them.
+- **A verdict computed from one random seed is not a verdict.** The C-004
+  sensor-realism simulation printed "OVERTURNED" from a detectability ratio of
+  1.03, which an 18-seed ensemble reversed to a mean of 0.73. It was the only
+  seed of eighteen above threshold. The simulation's verdict logic should
+  refuse to declare a result when the statistic sits near its threshold, and
+  should require an ensemble. Recorded rather than silently patched.
 - No automated Lakatos degeneration check. E-06 §4 identifies the version-diff
   as the single most valuable mechanical check available, and it is not built.
 - No content hash and timestamp at intake, so pre-registration currently rests

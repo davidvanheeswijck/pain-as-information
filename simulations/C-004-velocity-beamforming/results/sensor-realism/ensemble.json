@@ -1,0 +1,161 @@
+{
+  "n_seeds": 18,
+  "per_seed": [
+    {
+      "seed": 0,
+      "clean": 1.0746503454430247,
+      "with_interference": 1.028526816806811,
+      "with_interference_and_notch": 1.0355765864524689
+    },
+    {
+      "seed": 1,
+      "clean": 1.0041890247042033,
+      "with_interference": 0.9032748901862332,
+      "with_interference_and_notch": 0.9689348939116339
+    },
+    {
+      "seed": 2,
+      "clean": 1.0876570867064086,
+      "with_interference": 0.8576012189510083,
+      "with_interference_and_notch": 0.9256348054047244
+    },
+    {
+      "seed": 3,
+      "clean": 1.5579061707021251,
+      "with_interference": 0.3593123352912186,
+      "with_interference_and_notch": 0.38623238143866845
+    },
+    {
+      "seed": 4,
+      "clean": 1.1714357818354788,
+      "with_interference": 0.740432273449593,
+      "with_interference_and_notch": 0.7740340700061494
+    },
+    {
+      "seed": 5,
+      "clean": 1.2638367415354113,
+      "with_interference": 0.45995914477182065,
+      "with_interference_and_notch": 0.5222579666225753
+    },
+    {
+      "seed": 6,
+      "clean": 1.2471403826287568,
+      "with_interference": 0.5087256935018465,
+      "with_interference_and_notch": 0.6159147231823321
+    },
+    {
+      "seed": 7,
+      "clean": 1.470876327553902,
+      "with_interference": 0.6924150086888426,
+      "with_interference_and_notch": 0.7093717228176711
+    },
+    {
+      "seed": 8,
+      "clean": 1.2198888510856596,
+      "with_interference": 0.6640527965391675,
+      "with_interference_and_notch": 0.7281151002563763
+    },
+    {
+      "seed": 9,
+      "clean": 1.326078858117082,
+      "with_interference": 0.8285917474945809,
+      "with_interference_and_notch": 0.892823602989371
+    },
+    {
+      "seed": 10,
+      "clean": 1.2630239657037343,
+      "with_interference": 0.8343672227487365,
+      "with_interference_and_notch": 0.9098084892038953
+    },
+    {
+      "seed": 11,
+      "clean": 1.0467937831596543,
+      "with_interference": 0.5727264352085274,
+      "with_interference_and_notch": 0.6270910862512079
+    },
+    {
+      "seed": 12,
+      "clean": 1.3717077682304522,
+      "with_interference": 0.700872339898341,
+      "with_interference_and_notch": 0.6295589591712203
+    },
+    {
+      "seed": 13,
+      "clean": 1.1653840273248437,
+      "with_interference": 0.9465055430864862,
+      "with_interference_and_notch": 1.0392700502271457
+    },
+    {
+      "seed": 14,
+      "clean": 1.2709322826685936,
+      "with_interference": 0.8800840400587138,
+      "with_interference_and_notch": 0.8853294449538366
+    },
+    {
+      "seed": 15,
+      "clean": 1.3025979222205193,
+      "with_interference": 0.8400948359275393,
+      "with_interference_and_notch": 0.9633194566296881
+    },
+    {
+      "seed": 16,
+      "clean": 1.1807207642328923,
+      "with_interference": 0.627152272119468,
+      "with_interference_and_notch": 0.6621417770839563
+    },
+    {
+      "seed": 17,
+      "clean": 1.4025983076720088,
+      "with_interference": 0.7177762568314744,
+      "with_interference_and_notch": 0.8241119661881017
+    }
+  ],
+  "summary": {
+    "clean": {
+      "mean": 1.2459676884180417,
+      "sd": 0.14725286050501957,
+      "ci95": [
+        1.177940337559394,
+        1.3139950392766895
+      ],
+      "seeds_above_1": 18,
+      "n": 18,
+      "min": 1.0041890247042033,
+      "max": 1.5579061707021251
+    },
+    "with_interference": {
+      "mean": 0.731248381753356,
+      "sd": 0.17806224177998822,
+      "ci95": [
+        0.6489878229112294,
+        0.8135089405954827
+      ],
+      "seeds_above_1": 1,
+      "n": 18,
+      "min": 0.3593123352912186,
+      "max": 1.028526816806811
+    },
+    "with_interference_and_notch": {
+      "mean": 0.7833070601550568,
+      "sd": 0.18494880608447756,
+      "ci95": [
+        0.6978650709179928,
+        0.8687490493921208
+      ],
+      "seeds_above_1": 2,
+      "n": 18,
+      "min": 0.38623238143866845,
+      "max": 1.0392700502271457
+    }
+  },
+  "spectral_content_c_band_hz": {
+    "f50": 2.84,
+    "f90": 29.72,
+    "f99": 106.04
+  },
+  "spectral_content_ab_band_hz": {
+    "f50": 373.59,
+    "f90": 556.91,
+    "f99": 720.51
+  }
+}

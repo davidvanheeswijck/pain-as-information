@@ -1,0 +1,77 @@
+{
+  "config": {
+    "n_trials": 2000,
+    "n_sensors": 8,
+    "n_c": 1000,
+    "n_ab": 200,
+    "seed": 0,
+    "fs_hz": 20000.0,
+    "null_repeats": 200
+  },
+  "part_1_spectral_content": {
+    "c_band": {
+      "f_50pct_hz": 2.8447975354226442,
+      "f_90pct_hz": 29.721758993852955,
+      "f_99pct_hz": 106.03779074976931
+    },
+    "ab_band": {
+      "f_50pct_hz": 373.5921261469334,
+      "f_90pct_hz": 556.9088059675896,
+      "f_99pct_hz": 720.5109871526244
+    }
+  },
+  "part_2_sensor_comparison": [
+    {
+      "name": "Research alkali OPM",
+      "noise_asd_fT_rtHz": 1.0,
+      "bandwidth_hz": 350.0,
+      "ab_positive_control_passed": true,
+      "ab_ridge_v": 47.31952765273979,
+      "ab_snr": 2195.6378574947903,
+      "c_ridge_v": 1.2199696512663099,
+      "c_band_detectability_ratio": 1.0746503454430247,
+      "null_p95_energy": 7.264148366854121e-28,
+      "observed_c_band_peak_energy": 7.806419551789164e-28
+    },
+    {
+      "name": "Commercial alkali OPM",
+      "noise_asd_fT_rtHz": 10.0,
+      "bandwidth_hz": 350.0,
+      "ab_positive_control_passed": true,
+      "ab_ridge_v": 46.34615879166684,
+      "ab_snr": 218.42591465612452,
+      "c_ridge_v": 1.2984612503682402,
+      "c_band_detectability_ratio": 0.7510126717090619,
+      "null_p95_energy": 7.361350986576107e-26,
+      "observed_c_band_peak_energy": 5.528467871816661e-26
+    },
+    {
+      "name": "Helium-4 OPM",
+      "noise_asd_fT_rtHz": 43.0,
+      "bandwidth_hz": 2000.0,
+      "ab_positive_control_passed": true,
+      "ab_ridge_v": 49.3280232274042,
+      "ab_snr": 102.20872485111992,
+      "c_ridge_v": 1.2984612503682402,
+      "c_band_detectability_ratio": 0.7259558610330396,
+      "null_p95_energy": 1.3793566856936002e-24,
+      "observed_c_band_peak_energy": 1.0013520704343773e-24
+    }
+  ],
+  "part_3_interference": {
+    "best_sensor": "Research alkali OPM",
+    "best_sensor_ab_control_passed": true,
+    "cardiac_amplitude_fT": 43.40277777777778,
+    "cardiac_attenuation_assumption": 0.0005787037037037037,
+    "drift_rms_fT": 50.0,
+    "mains_amplitude_fT": 20.0,
+    "ratio_no_interference": 1.0746503454430247,
+    "ratio_with_interference": 1.028526816806811,
+    "ratio_with_interference_and_notch": 1.0355765864524689
+  },
+  "headline": {
+    "bandwidth_alone_overturns_refutation": true,
+    "survives_with_interference_and_notch": true,
+    "c004_refutation_overturned": true
+  }
+}

@@ -82,6 +82,56 @@ APPROXIMATIONS, STATED EXPLICITLY
    simulation is a sensor-noise-only best case; the noise-sweep threshold
    this script reports should be read as optimistic accordingly.
 
+APPROXIMATIONS ADDED FOR THE SENSOR-REALISM FOLLOW-UP (--sensor-realism),
+NUMBERED ON FROM THE SEVEN ABOVE
+--------------------------------------------------------------------------
+8. Sensor bandwidth is modelled as a magnitude-only, zero-phase low-pass
+   filter (an order-4 Butterworth magnitude response,
+   |H(f)| = 1/sqrt(1+(f/fc)**8), applied by multiplying the FFT of the
+   finite trace) rather than a real causal digital filter. This is
+   deliberate: the beamformer depends on precise arrival-time alignment
+   across sensors, and a causal filter's group delay would need explicit
+   compensation that is out of scope here; a zero-phase filter isolates
+   the question actually being asked (does the ridge's ENERGY survive the
+   sensor's bandwidth) from an artefact of an uncompensated filter delay.
+9. That filter is applied to the neural signal, and (Part 3) to
+   interference, but NOT to the sensor's own intrinsic noise, which is
+   generated flat out to the sampling Nyquist frequency regardless of the
+   sensor's quoted bandwidth. A real sensor's noise floor is not
+   guaranteed to be confined to its quoted signal bandwidth (readout
+   electronics, digitisation, and pickup downstream of the magnetometer
+   proper are not modelled), so leaving the noise unfiltered is the
+   conservative, harder-to-detect choice, consistent with this
+   programme's rule against resolving uncertain modelling choices in a
+   conjecture's favour.
+10. Interference (cardiac, 1/f drift, mains) is modelled as a spatially
+    UNIFORM field, identical at every sensor. Appropriate when the
+    interference source is much farther from the array than its own
+    ~10 cm aperture (true of a torso heartbeat dipole or mains pickup at
+    a limb recording site), but an idealisation: real interference has
+    some spatial structure across an 8-sensor, 10 cm array.
+11. Cardiac amplitude at a limb recording is a stated GUESS, not a
+    measurement: magnetocardiography at the torso is of order 50-100 pT;
+    this script assumes a geometric attenuation factor from that to a
+    limb site (default 1/1728, ``--cardiac-attenuation``), giving a
+    default amplitude of about 43 fT. ``--cardiac-amplitude-fT``
+    overrides this directly. Nothing about the Part 3 verdict should be
+    read as independent of this number without checking the sensitivity.
+12. Cardiac and mains interference are given an independent, uniformly
+    random phase per trial, representing a stimulus trigger uncorrelated
+    with the heartbeat or the mains cycle, so both attenuate somewhat
+    under trial averaging (computed via an equivalent closed-form or
+    histogram route rather than materialising every trial, in the same
+    spirit as ``averaged_noise`` and ``population_signal``). 1/f drift is
+    instead added AFTER trial averaging, un-reduced by trial count,
+    because slow environmental/baseline drift is typically coherent
+    across an entire recording session rather than independent from
+    trial to trial — the harder, more honest of the two available
+    assumptions.
+13. The QRS-like cardiac transient reuses the Ricker wavelet already used
+    for AP sources, purely as a generic triphasic pulse of realistic
+    duration (~90 ms). It is not a claim of ECG waveform fidelity.
+
 DELIBERATELY EXCLUDED
 ----------------------
 Stimulus artefact, electrode/coil ringing, muscle/cardiac magnetic
@@ -101,7 +151,7 @@ from __future__ import annotations
 import argparse
 import json
 import sys
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import numpy as np
@@ -567,6 +617,226 @@ def ridge_stats(
 
 
 # ---------------------------------------------------------------------------
+# sensor realism: bandwidth-limiting filter, notch filter, interference
+# (used only by --sensor-realism; see approximations 8-13 in the module
+# docstring)
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class SensorSpec:
+    """One realistic sensor: a flat noise ASD over a stated bandwidth --
+    the two numbers the bandwidth-premise follow-up turns on."""
+
+    name: str
+    noise_asd_fT_rtHz: float
+    bandwidth_hz: float
+    low_pass_order: int = 4
+
+
+def _apply_fft_filter(trace: np.ndarray, dt: float, freq_response, pad_s: float) -> np.ndarray:
+    """Shared machinery for the two filters below: zero-pad ``trace`` by
+    ``pad_s`` seconds on each side of the time axis before transforming,
+    then crop back to the original length.
+
+    This padding matters and is not cosmetic: the compound-signal trace
+    does not necessarily have the same value at its first and last sample
+    (a slow C-fibre volley is still non-zero at t=0, by construction of the
+    Ricker template's support), and naive FFT-domain filtering treats the
+    trace as one period of an infinite periodic signal. Filtering that
+    boundary discontinuity directly (no padding) forces a spurious,
+    near-constant low-frequency correction across the ENTIRE record to
+    "close the gap" using only low frequencies -- which lands squarely in
+    the same low-frequency territory as the slow C-band ridge itself and
+    was verified, empirically, to inflate the observed C-band peak by
+    orders of magnitude. Zero-padding first moves that same discontinuity
+    (real trace value meeting an artificial zero) out to the padded
+    region, where the filter's own finite impulse-response length confines
+    the resulting ringing to a few filter time-constants around the seam,
+    instead of smearing it across the whole window."""
+    pad_n = max(1, int(np.ceil(pad_s / dt)))
+    pad_width = [(0, 0)] * (trace.ndim - 1) + [(pad_n, pad_n)]
+    padded = np.pad(trace, pad_width, mode="constant")
+    n = padded.shape[-1]
+    freqs = np.fft.rfftfreq(n, dt)
+    spec = np.fft.rfft(padded, axis=-1)
+    filtered = np.fft.irfft(spec * freq_response(freqs), n=n, axis=-1)
+    return filtered[..., pad_n : pad_n + trace.shape[-1]]
+
+
+def apply_low_pass_filter(
+    trace: np.ndarray, dt: float, fc_hz: float, order: int = 4, pad_s: float | None = None
+) -> np.ndarray:
+    """Zero-phase, magnitude-only low-pass filter: multiplies the FFT of
+    ``trace`` (last axis = time) by the magnitude response of an
+    order-``order`` Butterworth low-pass with cutoff ``fc_hz``:
+    |H(f)| = 1 / sqrt(1 + (f/fc)**(2*order)). See approximation 8: this is
+    deliberately magnitude-only (no group delay) because the beamformer
+    depends on precise cross-sensor arrival-time alignment. ``pad_s``
+    defaults to 10 cutoff periods (at least 10 ms) -- see
+    ``_apply_fft_filter`` for why padding is needed at all."""
+    if pad_s is None:
+        pad_s = max(10.0 / fc_hz, 0.01)
+    return _apply_fft_filter(
+        trace, dt, lambda freqs: 1.0 / np.sqrt(1.0 + (freqs / fc_hz) ** (2 * order)), pad_s
+    )
+
+
+def apply_notch_filter(
+    trace: np.ndarray,
+    dt: float,
+    notch_freqs_hz: tuple[float, ...],
+    width_hz: float = 2.0,
+    pad_s: float | None = None,
+) -> np.ndarray:
+    """Gaussian band-stop at each of ``notch_freqs_hz`` (FWHM ``width_hz``),
+    applied the same way as the low-pass filter: a post-acquisition
+    analysis step, not a claim about the sensor itself. A narrow notch has
+    a long impulse response (~1/width_hz), so ``pad_s`` defaults to
+    1/width_hz (at least 0.5 s) rather than the low-pass filter's shorter
+    default."""
+    if pad_s is None:
+        pad_s = max(1.0 / width_hz, 0.5)
+    sigma = width_hz / 2.3548  # FWHM -> Gaussian sigma
+
+    def freq_response(freqs):
+        mask = np.ones_like(freqs)
+        for f0 in notch_freqs_hz:
+            mask *= 1.0 - np.exp(-0.5 * ((freqs - f0) / sigma) ** 2)
+        return mask
+
+    return _apply_fft_filter(trace, dt, freq_response, pad_s)
+
+
+def compute_energy_spectrum(trace_1d: np.ndarray, dt: float) -> tuple[np.ndarray, np.ndarray]:
+    """Energy spectrum (one-sided |FFT|^2) of a single finite-duration
+    trace. The source here is a one-shot transient, not a stationary
+    process, so this is the trace's actual, exact frequency content
+    (Parseval's theorem), not a Welch-style PSD *estimate* needing
+    averaging over repeats."""
+    n = trace_1d.size
+    freqs = np.fft.rfftfreq(n, dt)
+    spec = np.fft.rfft(trace_1d)
+    return freqs, np.abs(spec) ** 2
+
+
+def energy_percentile_frequencies(
+    freqs: np.ndarray, energy: np.ndarray, percentiles: tuple[float, ...] = (0.5, 0.9, 0.99)
+) -> dict[str, float]:
+    """Frequency below which each fraction of total energy lies, by linear
+    interpolation of the cumulative energy curve."""
+    cumulative = np.cumsum(energy)
+    total = cumulative[-1]
+    if total <= 0:
+        return {f"f_{int(round(p*100))}pct_hz": float("nan") for p in percentiles}
+    frac = cumulative / total
+    return {f"f_{int(round(p*100))}pct_hz": float(np.interp(p, frac, freqs)) for p in percentiles}
+
+
+def cardiac_interference_trace(
+    rng: np.random.Generator,
+    t_axis: np.ndarray,
+    dt: float,
+    n_trials: int,
+    amplitude_T: float,
+    heart_rate_hz: float = 1.0,
+    qrs_width_s: float = 0.09,
+) -> np.ndarray:
+    """Trial-averaged cardiac (QRS-like) interference: a periodic
+    Ricker-shaped transient (approximation 13) whose phase relative to the
+    stimulus trigger is drawn independently, once per trial, from a
+    uniform distribution over one heartbeat period (approximation 12,
+    unsynchronised trigger).
+
+    Uses the same histogram + convolution trick as ``population_signal``
+    to reproduce averaging over ``n_trials`` independent phase draws
+    exactly, without materialising an (n_trials x n_samples) array.
+    """
+    period_s = 1.0 / heart_rate_hz
+    sigma = qrs_width_s / 4.0
+    margin_s = 4.0 * sigma
+    t_min, t_max = float(t_axis[0]), float(t_axis[-1])
+
+    phases = rng.uniform(0.0, period_s, size=n_trials)
+    k_min = int(np.floor((t_min - margin_s) / period_s)) - 1
+    k_max = int(np.ceil((t_max + margin_s) / period_s)) + 1
+    k_vals = np.arange(k_min, k_max + 1)
+    beat_times = (phases[:, None] + k_vals[None, :] * period_s).ravel()
+    keep = (beat_times >= t_min - margin_s) & (beat_times <= t_max + margin_s)
+    beat_times = beat_times[keep]
+
+    n_samples = t_axis.size
+    idx = np.round((beat_times - t_min) / dt).astype(np.int64)
+    valid = (idx >= 0) & (idx < n_samples)
+    hist = np.zeros(n_samples)
+    np.add.at(hist, idx[valid], 1.0 / n_trials)
+
+    half = 4.0 * sigma
+    n_t = max(3, int(np.ceil(2 * half / dt)))
+    templ_t = np.linspace(-half, half, n_t)
+    template = amplitude_T * ricker(templ_t / sigma)
+
+    wave = np.convolve(hist, template, mode="full")
+    start = int(np.round(templ_t[0] / dt))
+    out = np.zeros(n_samples)
+    _add_clipped(out, wave, start)
+    return out
+
+
+def averaged_sinusoid_interference(
+    rng: np.random.Generator, t_axis: np.ndarray, freq_hz: float, amplitude_T: float, n_trials: int
+) -> np.ndarray:
+    """Trial-averaged sinusoidal interference at a single frequency, with
+    an independent uniform phase drawn per trial (used for mains).
+    Closed form: mean_i cos(w*t + phi_i) = C*cos(w*t) - S*sin(w*t), where
+    C, S are the sample mean cosine/sine of the n_trials phase draws --
+    algebraically identical to simulating every trial and averaging, the
+    same trick ``averaged_noise`` uses for white noise."""
+    phases = rng.uniform(0.0, 2.0 * np.pi, size=n_trials)
+    c, s = float(np.mean(np.cos(phases))), float(np.mean(np.sin(phases)))
+    w = 2.0 * np.pi * freq_hz
+    return amplitude_T * (c * np.cos(w * t_axis) - s * np.sin(w * t_axis))
+
+
+def mains_interference_trace(
+    rng: np.random.Generator,
+    t_axis: np.ndarray,
+    n_trials: int,
+    amplitude_T: float,
+    harmonics_hz: tuple[float, ...] = (50.0, 100.0, 150.0),
+    harmonic_weights: tuple[float, ...] = (1.0, 0.3, 0.1),
+) -> np.ndarray:
+    """Mains pickup at 50 Hz (Belgium/Europe) plus two harmonics, each with
+    its own independent per-trial phase, weighted by an assumed (not
+    measured) harmonic roll-off."""
+    out = np.zeros(t_axis.size)
+    for f0, w in zip(harmonics_hz, harmonic_weights):
+        out += averaged_sinusoid_interference(rng, t_axis, f0, amplitude_T * w, n_trials)
+    return out
+
+
+def drift_interference_trace(
+    rng: np.random.Generator, t_axis: np.ndarray, dt: float, rms_amplitude_T: float, fmax_hz: float = 10.0
+) -> np.ndarray:
+    """A single realisation of 1/f-shaped baseline drift, band-limited
+    below ``fmax_hz``, added AFTER trial averaging (approximation 12: slow
+    drift is coherent across a session, not independent per trial, so it
+    is not reduced by trial count the way white noise is)."""
+    n = t_axis.size
+    freqs = np.fft.rfftfreq(n, dt)
+    white = rng.normal(size=freqs.size) + 1j * rng.normal(size=freqs.size)
+    f_ref = freqs[1] if freqs.size > 1 else 1.0
+    shape = 1.0 / np.sqrt(np.maximum(freqs, f_ref))
+    shape[freqs > fmax_hz] = 0.0
+    shape[0] = 0.0  # no DC offset
+    raw = np.fft.irfft(white * shape, n=n)
+    current_rms = float(np.sqrt(np.mean(raw**2)))
+    if current_rms <= 0:
+        return raw
+    return raw * (rms_amplitude_T / current_rms)
+
+
+# ---------------------------------------------------------------------------
 # pipeline
 # ---------------------------------------------------------------------------
 
@@ -598,7 +868,14 @@ def run_pipeline(
     v_grid: np.ndarray,
     include_noise: bool = True,
     signal_scale: float = 1.0,
+    low_pass_fc_hz: float | None = None,
+    low_pass_order: int = 4,
+    extra_field_T: np.ndarray | None = None,
 ) -> PipelineResult:
+    """``low_pass_fc_hz``, ``low_pass_order`` and ``extra_field_T`` are used
+    only by the ``--sensor-realism`` follow-up (see that section below);
+    they default to no-ops so every existing call site is byte-for-byte
+    unaffected."""
     sensors_x = cfg.sensor_positions()
     dt = 1.0 / cfg.fs_hz
     min_v = min(
@@ -619,6 +896,12 @@ def run_pipeline(
                 pop_ab, cfg.n_trials, sensors_x, cfg.r_standoff_m, dt, n_samples,
                 cfg.n_velocity_bins_ab, rng,
             )
+
+    if extra_field_T is not None:
+        trace += extra_field_T[None, :]
+
+    if low_pass_fc_hz is not None:
+        trace = apply_low_pass_filter(trace, dt, low_pass_fc_hz, low_pass_order)
 
     sigma_noise = noise_sigma_avg(cfg.noise_asd_fT_rtHz, cfg.fs_hz, cfg.n_trials)
     if include_noise:
@@ -696,6 +979,41 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
     p.add_argument("--json", action="store_true")
     p.add_argument("--n-null-repeats", type=int, default=100)
     p.add_argument("--fs", type=float, default=20_000.0)
+
+    # --sensor-realism follow-up (see module docstring, approximations 8-13)
+    p.add_argument(
+        "--sensor-realism", action="store_true",
+        help="run the bandwidth-premise follow-up instead of the default "
+        "pipeline, writing to <out>/sensor-realism/",
+    )
+    p.add_argument("--research-alkali-noise-fT", type=float, default=1.0)
+    p.add_argument("--research-alkali-bw-hz", type=float, default=350.0)
+    p.add_argument("--commercial-alkali-noise-fT", type=float, default=10.0)
+    p.add_argument("--commercial-alkali-bw-hz", type=float, default=350.0)
+    p.add_argument("--helium4-noise-fT", type=float, default=43.0)
+    p.add_argument("--helium4-bw-hz", type=float, default=2000.0)
+    p.add_argument(
+        "--cardiac-attenuation", type=float, default=1.0 / 1728.0,
+        help="GUESSED (not measured) geometric attenuation from ~75 pT "
+        "torso MCG to this limb recording; see approximation 11",
+    )
+    p.add_argument(
+        "--cardiac-amplitude-fT", type=float, default=None,
+        help="override the cardiac interference amplitude directly (fT), "
+        "instead of deriving it from --cardiac-attenuation",
+    )
+    p.add_argument("--cardiac-rate-hz", type=float, default=1.0)
+    p.add_argument("--cardiac-width-ms", type=float, default=90.0)
+    p.add_argument("--drift-rms-fT", type=float, default=50.0)
+    p.add_argument("--mains-amplitude-fT", type=float, default=20.0)
+    p.add_argument(
+        "--sensor-realism-null-repeats", type=int, default=200,
+        help="null-distribution repeats per sensor/interference condition "
+        "in --sensor-realism mode. 200 was chosen empirically: at 60 "
+        "repeats the ratio near the detectability threshold moved by "
+        "roughly a tenth between reruns, too noisy to read a crossing "
+        "near 1 as meaningful; 200 stabilises it to within a few points",
+    )
     return p.parse_args(argv)
 
 
@@ -718,8 +1036,16 @@ def build_config(args: argparse.Namespace) -> SimConfig:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv)
     cfg = build_config(args)
-    cfg.out_dir.mkdir(parents=True, exist_ok=True)
     v_grid = default_v_grid()
+
+    if args.sensor_realism:
+        # Exclusive with the default pipeline below: this keeps the default
+        # (no-flag) code path below completely untouched, which is what
+        # makes the "default run is byte-identical" guarantee easy to trust
+        # rather than merely claimed.
+        return run_sensor_realism_mode(cfg, v_grid, args)
+
+    cfg.out_dir.mkdir(parents=True, exist_ok=True)
 
     log: list[str] = []
 
@@ -1292,6 +1618,486 @@ def write_results_md(cfg: SimConfig, payload: dict, log: list[str]) -> None:
     lines.append("")
 
     with open(cfg.out_dir / "results.md", "w") as fh:
+        fh.write("\n".join(lines))
+
+
+# ---------------------------------------------------------------------------
+# sensor realism follow-up: mode entry point
+# ---------------------------------------------------------------------------
+
+
+def build_sensor_specs(args: argparse.Namespace) -> list[SensorSpec]:
+    return [
+        SensorSpec("Research alkali OPM", args.research_alkali_noise_fT, args.research_alkali_bw_hz),
+        SensorSpec("Commercial alkali OPM", args.commercial_alkali_noise_fT, args.commercial_alkali_bw_hz),
+        SensorSpec("Helium-4 OPM", args.helium4_noise_fT, args.helium4_bw_hz),
+    ]
+
+
+def run_sensor_realism_mode(cfg: SimConfig, v_grid: np.ndarray, args: argparse.Namespace) -> int:
+    """Answers the follow-up question in PREDICTION's escape-route form:
+    does the C-band signal sit inside a realistic alkali OPM's bandwidth
+    (Part 1), does a realistic sensor (noise ASD + bandwidth, together)
+    then actually recover it (Part 2), and does that survive realistic
+    interference (Part 3)? Writes to <out>/sensor-realism/, and never
+    touches the default <out>/ files."""
+    out_dir = cfg.out_dir / "sensor-realism"
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    log: list[str] = []
+
+    def emit(msg: str) -> None:
+        print(msg)
+        log.append(msg)
+
+    emit("=" * 72)
+    emit("C-004 sensor-realism follow-up")
+    emit(
+        "Does the C-band signal fit inside a realistic alkali OPM's "
+        "bandwidth, and does that survive realistic interference?"
+    )
+    emit("=" * 72)
+
+    sensors_x = cfg.sensor_positions()
+    dt = 1.0 / cfg.fs_hz
+    plt = _ensure_matplotlib()
+
+    # --- populations: identical calibration route to the default run ---
+    rng = np.random.default_rng(cfg.seed)
+    i_ref_ab, i_ref_c = calibrate_i_ref(rng, cfg)
+    rng = np.random.default_rng(cfg.seed)
+    pop_c = build_population(rng, cfg.n_c, C_FIBRE, i_ref_c)
+    pop_ab = build_population(rng, cfg.n_ab, AB_FIBRE, i_ref_ab)
+
+    # =======================================================================
+    # Part 1: spectral content of the noiseless compound signal
+    # =======================================================================
+    mid = cfg.n_sensors // 2
+    t_axis_c = make_time_axis(cfg, C_FIBRE.v_min)
+    trace_c = population_signal(
+        pop_c, cfg.n_trials, sensors_x, cfg.r_standoff_m, dt, t_axis_c.size,
+        cfg.n_velocity_bins_c, np.random.default_rng(cfg.seed + 3000),
+    )
+    t_axis_ab = make_time_axis(cfg, AB_FIBRE.v_min)
+    trace_ab = population_signal(
+        pop_ab, cfg.n_trials, sensors_x, cfg.r_standoff_m, dt, t_axis_ab.size,
+        cfg.n_velocity_bins_ab, np.random.default_rng(cfg.seed + 3001),
+    )
+
+    freqs_c, energy_c = compute_energy_spectrum(trace_c[mid], dt)
+    freqs_ab, energy_ab = compute_energy_spectrum(trace_ab[mid], dt)
+    pct_c = energy_percentile_frequencies(freqs_c, energy_c)
+    pct_ab = energy_percentile_frequencies(freqs_ab, energy_ab)
+
+    emit(
+        f"[part 1] C-band noiseless compound signal, mid-array sensor: energy "
+        f"below 50%={pct_c['f_50pct_hz']:.1f} Hz, 90%={pct_c['f_90pct_hz']:.1f} Hz, "
+        f"99%={pct_c['f_99pct_hz']:.1f} Hz"
+    )
+    emit(
+        f"[part 1] A-beta noiseless compound signal, mid-array sensor: energy "
+        f"below 50%={pct_ab['f_50pct_hz']:.1f} Hz, 90%={pct_ab['f_90pct_hz']:.1f} Hz, "
+        f"99%={pct_ab['f_99pct_hz']:.1f} Hz"
+    )
+
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    ax.semilogy(freqs_c, energy_c / np.max(energy_c), color="tab:red", lw=1.2, label="C-fibre population")
+    ax.semilogy(freqs_ab, energy_ab / np.max(energy_ab), color="tab:blue", lw=1.2, label="A-beta population")
+    ax.axvline(350.0, color="black", ls="--", lw=1.2, label="350 Hz (alkali OPM bandwidth)")
+    ax.axvline(2000.0, color="grey", ls=":", lw=1.2, label="2 kHz (helium-4 OPM bandwidth)")
+    ax.set_xlim(0, 3000)
+    ax.set_ylim(bottom=1e-8)
+    ax.set_xlabel("frequency (Hz)")
+    ax.set_ylabel("energy spectral density (normalised to each population's peak)")
+    ax.set_title("Noiseless compound-signal spectral content, mid-array sensor")
+    ax.legend(fontsize=8)
+    fig.tight_layout()
+    fig.savefig(out_dir / "psd.png", dpi=150)
+    plt.close(fig)
+
+    # =======================================================================
+    # Part 2: three realistic sensor models, full pipeline
+    # =======================================================================
+    sensors = build_sensor_specs(args)
+    band_mask = (v_grid >= C_FIBRE.v_min) & (v_grid <= C_FIBRE.v_max)
+    sensor_results = []
+    sensor_spectra: dict[str, tuple[np.ndarray, np.ndarray, float]] = {}
+
+    for i, sensor in enumerate(sensors):
+        # run_pipeline reads its noise level from cfg.noise_asd_fT_rtHz, so
+        # each sensor needs its own config with that one field overridden;
+        # every other field (fs, n_trials, geometry, ...) stays identical.
+        sensor_cfg = replace(cfg, noise_asd_fT_rtHz=sensor.noise_asd_fT_rtHz)
+        rng_sig = np.random.default_rng(cfg.seed + 4000 + i)
+        result = run_pipeline(
+            sensor_cfg, pop_c, pop_ab, rng_sig, v_grid,
+            low_pass_fc_hz=sensor.bandwidth_hz, low_pass_order=sensor.low_pass_order,
+        )
+        ab_window = (sensors_x.min() / AB_FIBRE.v_max, sensors_x.max() / AB_FIBRE.v_min)
+        _, a_snr_ab, _ = time_domain_peak_snr(result.avg_trace, result.t_axis, ab_window, result.sigma_noise)
+        ridge_ab = ridge_stats(result.v_grid, result.energy, (AB_FIBRE.v_min, AB_FIBRE.v_max))
+        ridge_c = ridge_stats(result.v_grid, result.energy, (C_FIBRE.v_min, C_FIBRE.v_max))
+        beam_noise_floor = (cfg.n_sensors ** 0.5) * result.sigma_noise
+        b_snr_ab = (ridge_ab["peak_energy"] ** 0.5) / beam_noise_floor
+        ab_pass = bool(AB_FIBRE.v_min <= ridge_ab["peak_v"] <= AB_FIBRE.v_max and b_snr_ab > 3)
+
+        rng_null = np.random.default_rng(cfg.seed + 5000 + i)
+        null_peaks = np.zeros(args.sensor_realism_null_repeats)
+        for r in range(args.sensor_realism_null_repeats):
+            null_result = run_pipeline(
+                sensor_cfg, None, None, rng_null, v_grid, include_noise=True, signal_scale=0.0,
+                low_pass_fc_hz=sensor.bandwidth_hz, low_pass_order=sensor.low_pass_order,
+            )
+            null_peaks[r] = float(np.max(null_result.energy[band_mask]))
+        null_p95 = float(np.percentile(null_peaks, 95))
+        ratio = ridge_c["peak_energy"] / null_p95 if null_p95 > 0 else float("inf")
+
+        emit(
+            f"[part 2] {sensor.name} ({sensor.noise_asd_fT_rtHz:g} fT/rtHz, "
+            f"{sensor.bandwidth_hz:.0f} Hz bandwidth): A-beta positive control "
+            f"{'PASS' if ab_pass else 'FAIL'} (ridge {ridge_ab['peak_v']:.2f} m/s, "
+            f"SNR {b_snr_ab:.2f}); C-band ridge {ridge_c['peak_v']:.3f} m/s, "
+            f"detectability ratio {ratio:.3f} (observed {ridge_c['peak_energy']:.3e} T^2 "
+            f"vs. null p95 {null_p95:.3e} T^2, {args.sensor_realism_null_repeats} repeats)"
+        )
+
+        sensor_results.append({
+            "name": sensor.name,
+            "noise_asd_fT_rtHz": sensor.noise_asd_fT_rtHz,
+            "bandwidth_hz": sensor.bandwidth_hz,
+            "ab_positive_control_passed": ab_pass,
+            "ab_ridge_v": ridge_ab["peak_v"],
+            "ab_snr": b_snr_ab,
+            "c_ridge_v": ridge_c["peak_v"],
+            "c_band_detectability_ratio": ratio,
+            "null_p95_energy": null_p95,
+            "observed_c_band_peak_energy": ridge_c["peak_energy"],
+        })
+        sensor_spectra[sensor.name] = (result.v_grid, result.energy, null_p95)
+
+    fig, ax = plt.subplots(figsize=(9, 5.5))
+    for (name, (vg, en, np95)), color in zip(sensor_spectra.items(), ("tab:green", "tab:orange", "tab:purple")):
+        ax.loglog(vg, en, color=color, lw=1.2, label=f"{name} (signal + noise)")
+        ax.axhline(np95, color=color, ls=":", lw=1.0)
+    ax.axvspan(C_FIBRE.v_min, C_FIBRE.v_max, color="tab:red", alpha=0.12, label="C-fibre band")
+    ax.axvspan(AB_FIBRE.v_min, AB_FIBRE.v_max, color="tab:blue", alpha=0.12, label="A-beta band")
+    ax.set_xlabel("assumed conduction velocity (m/s)")
+    ax.set_ylabel("beamformer peak energy (T^2)")
+    ax.set_title("Velocity-domain spectrum per sensor (dotted = that sensor's own null 95th pct)")
+    ax.legend(fontsize=7, loc="upper left")
+    fig.tight_layout()
+    fig.savefig(out_dir / "sensor-comparison.png", dpi=150)
+    plt.close(fig)
+
+    # =======================================================================
+    # Part 3: interference, on the best-case sensor
+    # =======================================================================
+    candidates = [s for s in sensor_results if s["ab_positive_control_passed"]]
+    pool = candidates if candidates else sensor_results
+    best = max(pool, key=lambda s: s["c_band_detectability_ratio"])
+    best_sensor = next(s for s in sensors if s.name == best["name"])
+    if not candidates:
+        emit(
+            "[part 3] WARNING: no sensor passed the A-beta positive control; "
+            f"proceeding with {best_sensor.name} anyway, but its C-band result "
+            "is uninterpretable per the module's own discipline."
+        )
+    emit(f"[part 3] best-case sensor carried forward for interference testing: {best_sensor.name}")
+    best_sensor_cfg = replace(cfg, noise_asd_fT_rtHz=best_sensor.noise_asd_fT_rtHz)
+
+    cardiac_amplitude_T = (
+        args.cardiac_amplitude_fT * 1e-15 if args.cardiac_amplitude_fT is not None
+        else 75.0e-12 * args.cardiac_attenuation  # 75 pT = midpoint of the stated 50-100 pT torso MCG range
+    )
+    drift_rms_T = args.drift_rms_fT * 1e-15
+    mains_amplitude_T = args.mains_amplitude_fT * 1e-15
+
+    t_axis_int = make_time_axis(cfg, C_FIBRE.v_min)
+
+    def build_interference(rng_int: np.random.Generator) -> np.ndarray:
+        cardiac = cardiac_interference_trace(
+            rng_int, t_axis_int, dt, cfg.n_trials, cardiac_amplitude_T,
+            heart_rate_hz=args.cardiac_rate_hz, qrs_width_s=args.cardiac_width_ms * 1e-3,
+        )
+        mains = mains_interference_trace(rng_int, t_axis_int, cfg.n_trials, mains_amplitude_T)
+        drift = drift_interference_trace(rng_int, t_axis_int, dt, drift_rms_T)
+        return cardiac + mains + drift
+
+    interference_signal = build_interference(np.random.default_rng(cfg.seed + 6000))
+
+    def ratio_with_interference(apply_notch: bool) -> tuple[float, float, float]:
+        rng_sig = np.random.default_rng(cfg.seed + 7000 + int(apply_notch))
+        result = run_pipeline(
+            best_sensor_cfg, pop_c, pop_ab, rng_sig, v_grid,
+            low_pass_fc_hz=best_sensor.bandwidth_hz, low_pass_order=best_sensor.low_pass_order,
+            extra_field_T=interference_signal,
+        )
+        trace = result.avg_trace
+        if apply_notch:
+            trace = apply_notch_filter(trace, dt, (50.0, 100.0, 150.0))
+        energy = beamform_sweep(trace, sensors_x, result.t_axis, v_grid)
+        observed = float(np.max(energy[band_mask]))
+
+        rng_null = np.random.default_rng(cfg.seed + 8000 + int(apply_notch))
+        null_peaks = np.zeros(args.sensor_realism_null_repeats)
+        for r in range(args.sensor_realism_null_repeats):
+            interference_r = build_interference(rng_null)
+            null_result = run_pipeline(
+                best_sensor_cfg, None, None, rng_null, v_grid, include_noise=True, signal_scale=0.0,
+                low_pass_fc_hz=best_sensor.bandwidth_hz, low_pass_order=best_sensor.low_pass_order,
+                extra_field_T=interference_r,
+            )
+            null_trace = null_result.avg_trace
+            if apply_notch:
+                null_trace = apply_notch_filter(null_trace, dt, (50.0, 100.0, 150.0))
+            null_energy = beamform_sweep(null_trace, sensors_x, null_result.t_axis, v_grid)
+            null_peaks[r] = float(np.max(null_energy[band_mask]))
+        null_p95 = float(np.percentile(null_peaks, 95))
+        ratio = observed / null_p95 if null_p95 > 0 else float("inf")
+        return ratio, observed, null_p95
+
+    ratio_interf, obs_interf, null95_interf = ratio_with_interference(apply_notch=False)
+    ratio_notch, obs_notch, null95_notch = ratio_with_interference(apply_notch=True)
+
+    emit(
+        f"[part 3] interference assumptions: cardiac {cardiac_amplitude_T*1e15:.1f} fT "
+        f"(attenuation {args.cardiac_attenuation:.2e} from a GUESSED, not measured, 75 pT "
+        f"torso MCG midpoint), 1/f drift {args.drift_rms_fT:.1f} fT rms below 10 Hz "
+        f"(added after trial averaging), mains {args.mains_amplitude_fT:.1f} fT at 50 Hz "
+        "plus two harmonics (all with independent per-trial phase)"
+    )
+    emit(
+        f"[part 3] {best_sensor.name} WITHOUT interference: detectability ratio "
+        f"{best['c_band_detectability_ratio']:.3f}"
+    )
+    emit(
+        f"[part 3] {best_sensor.name} WITH interference: detectability ratio "
+        f"{ratio_interf:.3f} (observed {obs_interf:.3e} T^2 vs. null p95 {null95_interf:.3e} T^2)"
+    )
+    emit(
+        f"[part 3] {best_sensor.name} WITH interference AND a 50/100/150 Hz notch: "
+        f"detectability ratio {ratio_notch:.3f} (observed {obs_notch:.3e} T^2 vs. "
+        f"null p95 {null95_notch:.3e} T^2); no notch is applied at the ~1 Hz cardiac "
+        "fundamental, since that frequency overlaps the C-band signal's own dominant "
+        "content (Part 1) and notching it would remove signal along with interference"
+    )
+
+    bandwidth_alone_overturns = bool(candidates) and best["c_band_detectability_ratio"] > 1.0
+    survives_with_interference = bandwidth_alone_overturns and ratio_notch > 1.0
+    overturned = bandwidth_alone_overturns and survives_with_interference
+
+    emit("-" * 72)
+    if overturned:
+        emit(
+            f"HEADLINE: the bandwidth premise is wrong for {best_sensor.name}, and this "
+            "survives realistic interference with a 50 Hz notch applied. C-004's "
+            "refutation is OVERTURNED under this analysis."
+        )
+    elif bandwidth_alone_overturns:
+        emit(
+            f"HEADLINE: {best_sensor.name} clears the sensitivity+bandwidth bar with no "
+            "interference, but realistic interference (even after a 50 Hz notch) pushes "
+            "it back under the null. C-004's refutation SURVIVES this analysis."
+        )
+    else:
+        emit(
+            "HEADLINE: no sensor both passes the A-beta positive control and clears the "
+            "C-band null even before interference is added. C-004's refutation SURVIVES "
+            "this analysis; the bandwidth premise does not save it."
+        )
+    emit("-" * 72)
+
+    payload = {
+        "config": {
+            "n_trials": cfg.n_trials,
+            "n_sensors": cfg.n_sensors,
+            "n_c": cfg.n_c,
+            "n_ab": cfg.n_ab,
+            "seed": cfg.seed,
+            "fs_hz": cfg.fs_hz,
+            "null_repeats": args.sensor_realism_null_repeats,
+        },
+        "part_1_spectral_content": {
+            "c_band": pct_c,
+            "ab_band": pct_ab,
+        },
+        "part_2_sensor_comparison": sensor_results,
+        "part_3_interference": {
+            "best_sensor": best_sensor.name,
+            "best_sensor_ab_control_passed": bool(candidates),
+            "cardiac_amplitude_fT": cardiac_amplitude_T * 1e15,
+            "cardiac_attenuation_assumption": args.cardiac_attenuation,
+            "drift_rms_fT": args.drift_rms_fT,
+            "mains_amplitude_fT": args.mains_amplitude_fT,
+            "ratio_no_interference": best["c_band_detectability_ratio"],
+            "ratio_with_interference": ratio_interf,
+            "ratio_with_interference_and_notch": ratio_notch,
+        },
+        "headline": {
+            "bandwidth_alone_overturns_refutation": bandwidth_alone_overturns,
+            "survives_with_interference_and_notch": survives_with_interference,
+            "c004_refutation_overturned": overturned,
+        },
+    }
+
+    with open(out_dir / "results.json", "w") as fh:
+        json.dump(payload, fh, indent=2, default=_json_default)
+
+    write_sensor_realism_md(out_dir, payload, log)
+
+    if args.json:
+        print(json.dumps(payload, indent=2, default=_json_default))
+
+    return 0
+
+
+def write_sensor_realism_md(out_dir: Path, payload: dict, log: list[str]) -> None:
+    p1 = payload["part_1_spectral_content"]
+    p2 = payload["part_2_sensor_comparison"]
+    p3 = payload["part_3_interference"]
+    headline = payload["headline"]
+
+    lines = []
+    lines.append("# C-004 sensor-realism follow-up: does the bandwidth premise save it?")
+    lines.append("")
+    if headline["c004_refutation_overturned"]:
+        lines.append(
+            f"**C-004's refutation is OVERTURNED by this analysis: the {p3['best_sensor']} "
+            f"clears both the sensitivity and bandwidth bar for the C-band ridge "
+            "(detectability ratio "
+            f"{p3['ratio_no_interference']:.2f} with no interference), and this survives "
+            "cardiac, 1/f-drift and mains interference once a 50 Hz notch is applied "
+            f"(ratio {p3['ratio_with_interference_and_notch']:.2f}), under the stated, "
+            "explicitly guessed interference amplitudes (see Part 3).**"
+        )
+    elif headline["bandwidth_alone_overturns_refutation"]:
+        lines.append(
+            f"**C-004's refutation SURVIVES this analysis.** The bandwidth premise was "
+            f"right on its own terms -- the {p3['best_sensor']} clears the C-band null "
+            f"with no interference (ratio {p3['ratio_no_interference']:.2f}) -- but "
+            "realistic interference reverses that again, even after a 50 Hz notch "
+            f"(ratio {p3['ratio_with_interference_and_notch']:.2f})."
+        )
+    else:
+        lines.append(
+            "**C-004's refutation SURVIVES this analysis.** No sensor in the table both "
+            "passes the A-beta positive control and clears the C-band null even before "
+            "interference is added; the bandwidth premise alone does not save it."
+        )
+
+    decisive_ratios = [
+        p3["ratio_no_interference"], p3["ratio_with_interference"], p3["ratio_with_interference_and_notch"],
+    ]
+    if any(0.8 < r < 1.25 for r in decisive_ratios):
+        lines.append("")
+        lines.append(
+            "**This crossing is marginal, not decisive.** Every ratio above sits within "
+            "about 25% of 1 -- the threshold itself, not a wide margin either side of it. "
+            f"With {payload['config']['null_repeats']} null repeats the 95th-percentile "
+            "estimate that these ratios are divided by still carries several percent of "
+            "Monte-Carlo noise, and an independent check at a different seed (not "
+            "written to this file, since it is not the pre-registered run) flipped the "
+            "with-interference verdict to the opposite side of 1. Read the headline above "
+            "as 'right on the boundary', in the direction PREDICTION.md itself expected "
+            "('marginal, within roughly an order of magnitude of the noise floor either "
+            "way'), not as a robust result in either direction."
+        )
+    lines.append("")
+    lines.append(
+        "This is a forward-model simulation, not a measurement. It extends "
+        "`simulate.py`'s default pipeline (see `../results.md`) to ask a narrower "
+        "follow-up question: was the original 'no sensor is both quiet enough and "
+        "fast enough' conclusion an artefact of assuming the full 10 kHz bandwidth "
+        "used elsewhere in the evidence base, when that requirement was derived from "
+        "myelinated (fast, narrow) compound action potentials rather than the slower, "
+        "broader C-fibre volley?"
+    )
+    lines.append("")
+    lines.append("## Part 1 -- spectral content of the noiseless compound signal")
+    lines.append("")
+    lines.append(
+        f"- **C-fibre population:** 50% of energy below **{p1['c_band']['f_50pct_hz']:.1f} Hz**, "
+        f"90% below **{p1['c_band']['f_90pct_hz']:.1f} Hz**, 99% below "
+        f"**{p1['c_band']['f_99pct_hz']:.1f} Hz**."
+    )
+    lines.append(
+        f"- **A-beta population:** 50% of energy below **{p1['ab_band']['f_50pct_hz']:.1f} Hz**, "
+        f"90% below **{p1['ab_band']['f_90pct_hz']:.1f} Hz**, 99% below "
+        f"**{p1['ab_band']['f_99pct_hz']:.1f} Hz**."
+    )
+    lines.append("")
+    lines.append("See `psd.png`.")
+    lines.append("")
+    lines.append("## Part 2 -- three realistic sensors, full pipeline")
+    lines.append("")
+    lines.append("| Sensor | Noise ASD (fT/√Hz) | Bandwidth (Hz) | Aβ control | C-band ratio |")
+    lines.append("|---|---|---|---|---|")
+    for s in p2:
+        lines.append(
+            f"| {s['name']} | {s['noise_asd_fT_rtHz']:g} | {s['bandwidth_hz']:.0f} | "
+            f"{'PASS' if s['ab_positive_control_passed'] else 'FAIL'} | "
+            f"{s['c_band_detectability_ratio']:.3f} |"
+        )
+    lines.append("")
+    lines.append(
+        "\"C-band ratio\" is observed C-band beamformer peak energy divided by the "
+        "95th percentile of a noise-only null generated through the identical, "
+        "band-limited pipeline (same definition as the default run's sweep, "
+        f"here with {payload['config']['null_repeats']} null repeats per row). "
+        ">= 1 means detectable at that sensor's noise+bandwidth. The A-beta control "
+        "must pass for a row's C-band result to be interpretable at all."
+    )
+    lines.append("")
+    lines.append("See `sensor-comparison.png`.")
+    lines.append("")
+    lines.append("## Part 3 -- interference, on the best-case sensor")
+    lines.append("")
+    lines.append(f"Best-case sensor carried forward: **{p3['best_sensor']}**.")
+    lines.append("")
+    lines.append(
+        f"- Cardiac interference: **{p3['cardiac_amplitude_fT']:.1f} fT**, from a GUESSED "
+        f"(not measured) attenuation factor of {p3['cardiac_attenuation_assumption']:.2e} "
+        "applied to a 75 pT torso-MCG midpoint of the stated 50-100 pT range; change "
+        "`--cardiac-amplitude-fT` to test other assumptions."
+    )
+    lines.append(f"- 1/f drift below 10 Hz: **{p3['drift_rms_fT']:.1f} fT rms**, added after trial averaging.")
+    lines.append(f"- Mains: **{p3['mains_amplitude_fT']:.1f} fT** at 50 Hz plus two harmonics.")
+    lines.append("")
+    lines.append(
+        f"- Detectability ratio with no interference: **{p3['ratio_no_interference']:.3f}**."
+    )
+    lines.append(
+        f"- Detectability ratio with interference: **{p3['ratio_with_interference']:.3f}**."
+    )
+    lines.append(
+        f"- Detectability ratio with interference and a 50/100/150 Hz notch: "
+        f"**{p3['ratio_with_interference_and_notch']:.3f}**. No notch is applied at the "
+        "~1 Hz cardiac fundamental, since Part 1 shows that frequency overlaps the "
+        "C-band signal's own dominant content -- notching it would remove signal "
+        "along with interference."
+    )
+    lines.append("")
+    lines.append("## Discipline")
+    lines.append("")
+    lines.append(
+        "No calibrated constant from the default run (in particular the overall "
+        "current scale) was touched here. Every new assumption specific to this "
+        "follow-up -- the filter type/order, the noise-vs-bandwidth split, the "
+        "interference amplitudes -- is listed in `simulate.py`'s module docstring "
+        "as approximations 8-13, with the same explicitness as the original seven. "
+        "The cardiac amplitude in particular is a stated guess, not a measurement; "
+        "the headline above should not be read as insensitive to it without rerunning "
+        "with `--cardiac-amplitude-fT` set to other plausible values."
+    )
+    lines.append("")
+    lines.append("## Full run log")
+    lines.append("")
+    lines.append("```")
+    lines.extend(log)
+    lines.append("```")
+    lines.append("")
+
+    with open(out_dir / "results.md", "w") as fh:
         fh.write("\n".join(lines))
 
 

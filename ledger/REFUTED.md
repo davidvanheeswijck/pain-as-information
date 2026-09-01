@@ -127,13 +127,22 @@ artefact of modelling only white sensor noise.
 
 **Do not re-propose unless** one of these changes:
 
-1. **The bandwidth premise is wrong**, which is the live escape route. The
-   kilohertz requirement in E-04 was derived from *myelinated* volleys. C-fibre
-   action potentials are slower and broader, so the C-band signal may sit
-   entirely inside an alkali OPM's 350 Hz passband. If so, a 1 fT/√Hz sensor
-   both clears the sensitivity bar and has adequate bandwidth, and this
-   refutation is premature. **This is being simulated next and this entry
-   should be revisited when it reports.**
+1. ~~**The bandwidth premise is wrong**, which is the live escape route.~~
+   **RESOLVED 2026-09-01, same day. The escape route was correct and it did not
+   save the conjecture.** C-band signal energy is 90% below 29.7 Hz and 99%
+   below 106 Hz, against Aβ at 90% below 557 Hz, so the kilohertz requirement
+   is real for myelinated volleys and was wrongly carried over to C-fibres. A
+   350 Hz alkali magnetometer has ample bandwidth. **The stated reason for this
+   refutation was therefore false: the quiet sensors are fast enough.**
+   But an 18-seed ensemble shows the conjecture still fails, for a different
+   reason: detectable against sensor noise alone (mean ratio 1.246, CI
+   [1.178, 1.314], 18/18 seeds), **not detectable against realistic
+   interference** (mean 0.731, CI [0.649, 0.814], 1/18 seeds; with mains notch
+   0.783, 2/18). See `simulations/C-004-velocity-beamforming/results/sensor-realism/ENSEMBLE.md`.
+   **The barrier is interference rejection, not sensitivity and not bandwidth**,
+   which is what E-04 §3.1 warned and this simulation independently reproduced.
+   Note also that the single-seed run printed "OVERTURNED" on the strength of
+   what turned out to be a 1-in-18 outlier.
 2. A sensor appears that is simultaneously below about 1.6 fT/√Hz and fast
    enough for the true C-band spectral content.
 3. Someone models the volume-conductor return currents and finds the external
