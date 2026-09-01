@@ -2,9 +2,9 @@
 id: C-004
 title: Velocity-domain matched filtering can recover an evoked C-fibre magnetic component from a superficial nerve
 branch: B
-status: draft
+status: refuted
 prior: 0.20
-posterior:
+posterior: 0.07
 lineage:
 supersedes:
 created: 2026-09-01

@@ -1,0 +1,104 @@
+{
+  "config": {
+    "n_trials": 2000,
+    "n_sensors": 8,
+    "noise_asd_fT_rtHz": 17.7,
+    "n_c": 1000,
+    "n_ab": 200,
+    "seed": 0,
+    "fs_hz": 20000.0
+  },
+  "kernel_normalisation_ratio": 0.9999998750000234,
+  "check_1_single_fibre": {
+    "v_true": 0.8,
+    "v_estimated": 0.8050371392059236,
+    "relative_error": 0.006296424007404405,
+    "passed": true
+  },
+  "check_2_amplitude_calibration": {
+    "ab_peak_field_T": 4.523749354541386e-12,
+    "target_field_T": 1e-12,
+    "total_current_A": 1.95e-07,
+    "passed": true
+  },
+  "check_3_ab_positive_control": {
+    "time_domain_snr": 114.76046498067326,
+    "velocity_domain_snr": 250.36737326348057,
+    "ridge_peak_v": 48.3133393501644,
+    "passed": true
+  },
+  "check_4_null_distribution": {
+    "n_repeats": 100,
+    "null_mean_energy": 1.8709708466727953e-25,
+    "null_std_energy": 2.2532541246002585e-26,
+    "null_p95_energy": 2.289826880018963e-25,
+    "observed_c_band_peak_energy": 2.255298390312093e-25,
+    "z_score": 1.7056555647378655,
+    "ridge_exceeds_null": false
+  },
+  "check_5_determinism": {
+    "passed": true
+  },
+  "time_domain": {
+    "ab_peak_T": 4.54203595462497e-12,
+    "ab_snr": 114.76046498067326,
+    "c_peak_T": -1.9299757098217023e-13,
+    "c_snr": 4.8763354599827515
+  },
+  "velocity_domain": {
+    "ab_ridge": {
+      "peak_v": 48.3133393501644,
+      "peak_energy": 7.85528578698085e-22,
+      "fwhm_low": 40.912292163649006,
+      "fwhm_high": 59.474885097865524
+    },
+    "c_ridge": {
+      "peak_v": 0.4226584877763885,
+      "peak_energy": 2.255298390312093e-25,
+      "fwhm_low": 0.4226584877763885,
+      "fwhm_high": 1.3257317250174907
+    },
+    "ab_snr": 250.36737326348057,
+    "c_snr": 4.242274270022391
+  },
+  "headline": {
+    "c_band_ridge_exceeds_null": false,
+    "c004_prediction_survives": false
+  },
+  "noise_sweep": {
+    "noise_asd_fT": [
+      0.5,
+      0.8506271399262945,
+      1.4471330623583756,
+      2.4619413158533696,
+      4.18838820034146,
+      7.125513351514991,
+      12.12231008541164,
+      20.623131914506757,
+      35.08519143351914,
+      59.68883208572184,
+      101.54588104523683,
+      172.75536472961107,
+      293.90080361374555,
+      499.99999999999994
+    ],
+    "c_band_detectability_ratio": [
+      2.570484965169068,
+      1.3990303706395493,
+      1.0414326126148916,
+      0.7887474743987819,
+      1.1140251725863781,
+      0.7490097249577031,
+      1.0795516218161727,
+      0.6673703904334113,
+      0.8008158469110811,
+      0.7767467970174605,
+      0.7776392396716133,
+      0.862947472085263,
+      1.0310709780707332,
+      0.9068247786238192
+    ],
+    "detectability_definition": "observed C-band beamformer peak energy / 95th-percentile of 40 noise-only null repeats at the same noise level; ratio >= 1 means detectable at that noise level",
+    "threshold_fT": 1.5788742499953972
+  }
+}

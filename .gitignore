@@ -19,3 +19,7 @@ __pycache__/
 case/
 private/
 *.dcm
+
+# Simulation virtualenv. simulations/ is deliberately outside the stdlib-only
+# rule that governs tools/, so it has dependencies; they are not committed.
+simulations/.venv/

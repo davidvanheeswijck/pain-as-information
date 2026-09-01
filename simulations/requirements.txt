@@ -1,0 +1,14 @@
+# Dependencies for simulations/ ONLY.
+#
+# The repository's tools/ are deliberately standard-library-only so that CI
+# (`.github/workflows/`) runs on a bare runner with no install step. That
+# constraint does not apply here: simulations/ is a separate, explicitly
+# heavier-dependency area for numerical work that has no business running on
+# every commit. It is not on the CI path and is not imported by tools/.
+#
+# Install with:
+#   python3 -m venv simulations/.venv
+#   simulations/.venv/bin/pip install -r simulations/requirements.txt
+
+numpy>=1.26
+matplotlib>=3.8

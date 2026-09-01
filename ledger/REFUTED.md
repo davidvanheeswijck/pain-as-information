@@ -89,6 +89,67 @@ was regenerated with the corrected parser. The vote of 2 of 5 is unaffected.
 
 ---
 
+### C-004 — Velocity-domain matched filtering can recover an evoked C-fibre magnetic component from a superficial nerve
+
+**Refuted** 2026-09-01 by forward simulation · `simulations/C-004-velocity-beamforming/`
+**Prior** 0.20 → **Posterior** 0.07
+
+**The programme's first generated result rather than reviewed one, and it is
+negative.** The conjecture proposed a EUR 250,000 to 400,000 human experiment.
+The simulation that killed it cost about a day of compute, which is the entire
+argument for insisting on a cheap kill before hardware.
+
+**The result.** The velocity-domain ridge in the C band sits at **z = 1.71**
+against a noise-only null distribution computed through the identical pipeline:
+observed peak energy 2.255e-25 T², null 95th percentile 2.290e-25 T². It sits
+on the null, not above it.
+
+**The positive control passed, so this is a real negative and not a broken
+pipeline.** The Aβ ridge was recovered at 48.3 m/s with velocity-domain SNR
+250, single-fibre velocity recovery was accurate to 0.63%, and amplitude
+calibration produced 4.5 pT at 6.5 mm against Bu et al.'s measured ~1 pT, which
+is the expected direction and magnitude of error for a model that ignores
+volume-conductor return currents.
+
+**The number that matters for anyone reading this later.** The noise sweep puts
+the detectability threshold at about **1.58 fT/√Hz**. Helium-4 magnetometers,
+the only class with the bandwidth the conjecture assumed it needed, sit near
+43 fT/√Hz, roughly 27 times too noisy. The best research alkali OPMs reach
+about 1 fT/√Hz and would clear the sensitivity bar but are specified to
+150-350 Hz.
+
+**The prediction was pre-registered.** `PREDICTION.md` in the simulation
+directory was written before any output existed. It called the noise threshold
+at "1 to 5 fT/√Hz" against a measured 1.58, and called the Aβ control and the
+hardware conclusion correctly. It was **wrong** that time-domain averaging
+would show nothing: the model gives SNR 4.9 for the C band, which is an
+artefact of modelling only white sensor noise.
+
+**Do not re-propose unless** one of these changes:
+
+1. **The bandwidth premise is wrong**, which is the live escape route. The
+   kilohertz requirement in E-04 was derived from *myelinated* volleys. C-fibre
+   action potentials are slower and broader, so the C-band signal may sit
+   entirely inside an alkali OPM's 350 Hz passband. If so, a 1 fT/√Hz sensor
+   both clears the sensitivity bar and has adequate bandwidth, and this
+   refutation is premature. **This is being simulated next and this entry
+   should be revisited when it reports.**
+2. A sensor appears that is simultaneously below about 1.6 fT/√Hz and fast
+   enough for the true C-band spectral content.
+3. Someone models the volume-conductor return currents and finds the external
+   field is larger than this model's idealisation suggests, which would be
+   surprising, since ignoring return currents should over-estimate rather than
+   under-estimate the external field.
+
+**One honest limitation, disclosed in the simulation's own approximation 7.**
+Only white sensor noise is modelled. Real magnetoneurography is limited by
+cardiac, muscular and environmental interference, which the evidence base
+states explicitly. That makes this negative **conservative**: if beamforming
+fails against pure sensor noise it fails harder against real interference. It
+also means the apparent time-domain detection at SNR 4.9 is not real.
+
+---
+
 ### C-005 — A human C-nociceptor carries under 30 bits per second, with little information in fine timing beyond rate
 
 **Refuted** 2026-09-01 by five-laboratory panel · run `pipeline/reviews/C-005-nociceptor-information-rate/20260901T004323Z/` · superseded by [C-007](../conjectures/C-007-timing-adds-nothing-beyond-rate.md)

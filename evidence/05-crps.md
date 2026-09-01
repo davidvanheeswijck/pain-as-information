@@ -121,6 +121,41 @@ Independent long-term cohort: Geurts et al. (*Neuromodulation* 2013, PMID 233630
 
 **ACCURATE** (Deer et al., *Pain* 2017;158:669-81, PMID 28030470): success **81.2% against 55.7% at 3 months, 74.2% against 53.0% at 12 months**. The caveats, stated plainly: **funded by Spinal Modulation, a wholly owned company of St. Jude Medical, with four device-company employees as co-authors**; "subjects, investigators, and study site staff were not blinded"; the primary endpoint is conditioned on successful trial and implant; and **DRG had markedly higher procedure- and device-related adverse event rates (46.1% against 26.3%, and 36.8% against 26.3%)**. Cochrane excluded it entirely as an active-comparator trial. **No 2-, 3- or 5-year ACCURATE follow-up exists, which is itself a finding.**
 
+#### Correction, 2026-09-01: sham-controlled DRG evidence does exist
+
+An earlier version of this brief stated that "no sham arm exists for DRG
+stimulation anywhere". **That is too strong and is withdrawn.** It is true of
+the *pivotal implantation* trial, and ACCURATE remains unblinded and
+industry-authored. It is not true of the frequency literature, where two
+randomised double-blind crossover trials in already-implanted patients include
+a sham stimulation phase.
+
+| Trial | Design | Result |
+|---|---|---|
+| Chapman-style frequency trial, *Acta Neurochir* 2022, PMID 35217898, n=19 (7 with CRPS) | 20, 40, 60, 80 Hz and sham, randomised order, 4-day phases, 2-day washouts | **20 Hz best on every variable** (VAS, McGill, EQ-5D, Beck). VAS 3.7 at 20 Hz rising to **5.8 at 80 Hz**, significant across all measures, and the smallest increase in analgesic use |
+| Low-frequency follow-up, *Acta Neurochir* 2023, PMID 36705762, n=17 | 4, 20, 60 Hz and sham, subthreshold amplitude, 5-day phases | 4 Hz VAS 3.8, 20 Hz 4.2, 60 Hz 4.6, **sham 5.3**. 4 Hz significant only against sham (p=0.001). Low frequency **not** significantly better than 20 Hz; the authors flag possible underpowering |
+
+Two things follow, and they pull in opposite directions.
+
+**Frequency specificity at the DRG has human blinded support, and this is the
+sharpest contrast in the whole programme.** At the spinal cord, PROCO found 1,
+4, 7 and 10 kHz equivalent once position and charge were controlled. At the
+DRG, 20 Hz beats 80 Hz by more than two VAS points in a blinded crossover, and
+every active frequency beats sham. Whatever is happening at the ganglion is not
+the same as what is happening at the cord, and the T-junction filtering
+mechanism (Chao et al., PMID 32658148) is a candidate explanation for why.
+
+**But it is already implemented, so it is not an opportunity.** The 2023 trial
+records that **"baseline stimulation frequency was 20 Hz in all patients"**.
+Twenty hertz is the standard clinical DRG setting, not an untapped finding. Any
+conjecture proposing 20 Hz DRG stimulation as a novel intervention is proposing
+current practice.
+
+The one genuinely open thread is the **4 Hz** trend: numerically better than
+20 Hz on every measure, not statistically separable from it, in a trial the
+authors themselves suspect was underpowered. That is a question worth asking,
+not an answer.
+
 **The habituation claim, and why C-001 should not lean on it.** Levy et al. (*J Pain* 2020;21:399-408, PMID 31494275) found SCS relief declining (66.9% at 1 month to 57.9% at 12) while DRG did not. But two Abbott employees are co-authors, the sponsor makes the DRG device, and it stops at 12 months.
 
 **The independent long-term data look nothing like ACCURATE, and they point the other way.**
