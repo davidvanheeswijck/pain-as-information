@@ -827,9 +827,9 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
   <p class="thesis">Chronic neuropathic pain as a signalling problem, tested by trying to kill the idea, not to confirm it.</p>
   <p class="meta">
     Generated <span id="generated-ts">{ts_str}</span> from repository state
-    at commit <code>{esc(sha)}</code>
-    ({esc(str(git_info["commit_count"] or "?"))} commits,
-    last touched {esc(git_info["last_commit_date"] or "unknown")}).
+    at commit <code id="git-sha">{esc(sha)}</code>
+    (<span id="git-count">{esc(str(git_info["commit_count"] or "?"))}</span> commits,
+    last touched <span id="git-date">{esc(git_info["last_commit_date"] or "unknown")}</span>).
     This page is built, not written: every number above is read from a file
     in this repository by <code>tools/build-dashboard.py</code>. Editing it
     by hand accomplishes nothing; the next run overwrites it.
@@ -1258,10 +1258,31 @@ a text {{ cursor: pointer; }}
 GENERATED_TS_RE = re.compile(r'(id="generated-ts">)[^<]*(<)')
 
 
+VOLATILE_RE = [
+    GENERATED_TS_RE,
+    re.compile(r'(id="git-sha">)[^<]*(<)'),
+    re.compile(r'(id="git-count">)[^<]*(<)'),
+    re.compile(r'(id="git-date">)[^<]*(<)'),
+]
+
+
 def normalise_for_diff(text: str) -> str:
-    """Strip the one field that legitimately differs between two runs of an
-    unchanged repository: the wall-clock generation stamp."""
-    return GENERATED_TS_RE.sub(r"\1GENERATED\2", text)
+    """Strip the fields that legitimately differ between two runs of an
+    unchanged repository.
+
+    The wall-clock stamp is the obvious one. The git provenance fields are the
+    subtle one, and they made --check unsatisfiable: the page records the
+    commit it was built from, so generating it dirties the tree, committing it
+    moves HEAD, and the committed page is instantly stale against a fresh run.
+    CI caught exactly that on the first commit after the dashboard shipped.
+
+    They stay visible on the page, because provenance is worth showing. They
+    just do not participate in the staleness comparison, which is about whether
+    the *content* still reflects the data.
+    """
+    for pattern in VOLATILE_RE:
+        text = pattern.sub(r"\1VOLATILE\2", text)
+    return text
 
 
 # --------------------------------------------------------------------------
