@@ -349,3 +349,55 @@ the same error.
 [OPEN.md](OPEN.md)).
 
 ---
+
+---
+
+### C-008 — Gradiometric interference rejection, not sensor sensitivity, is what blocks magnetic detection of C-fibre traffic
+
+**Refuted** 2026-09-01 by simulation, 18 seeds · lineage C-004 · branch B
+**Prior** 0.35 → **Posterior** 0.18
+
+**Refuted, and it is the most productive refutation in the programme so far,
+because it replaced a false dichotomy with a costed specification.**
+
+First- and second-order gradiometry leave the C-band detectability ratio at
+**0.638 [0.516, 0.759]** and **0.663 [0.524, 0.801]**, both excluding 1.0,
+while the Aβ positive control passes **18/18** at ratios of 15,731 and 3,321.
+Reference regression lost the positive control and is inconclusive.
+
+**The conjecture's premise was right in the regime it measured and wrong as a
+general claim.** Sweeping sensor noise from 1.0 to 0.05 fT/√Hz moved
+detectability not at all, which is exactly what C-008 predicted. But that flat
+sweep is an artefact of the interference-limited regime: gradiometry suppresses
+interference by 287,000× in energy and still lands **17× short** of the
+C-fibre signal, so the sensor floor was never what the measurement was
+touching.
+
+**Fix the interference and sensitivity immediately becomes binding.** At gain
+matching of 1:33,000, with the local muscle term removed, improving the sensor
+from 1.0 to **0.2 fT/√Hz** takes detectability from 0.948 to **4.718, 8/8
+seeds**. "Sensitivity buys nothing" is true before you fix the interference and
+false after. The conjecture measured the first and legislated for the second.
+
+**Rival 2 was wrong, and building it was how we found out.** C-008 named local
+muscular interference as the most likely failure route and noted the simulation
+did not model muscle at all. It was added, at an amplitude consistent with the
+one relevant measurement (PMID 40542043). Zeroing it leaves the C-band at
+0.578, slightly *worse*. Muscle is not the blocker.
+
+**Do not re-propose unless** the design carries all three requirements
+together, because any one of them alone fails: channel matching ≲1:10⁴, local
+myogenic interference controlled, and a sensor at ≈0.2 fT/√Hz. A conjecture
+proposing any single one of these has already been tested and refuted here.
+
+**Branch B is not closed.** C-008 predicted its own refutation would close it.
+Instead the refutation costed it. The remaining question is a trade-off surface
+between sensitivity and array balancing, not a yes or no.
+
+**Method note worth keeping.** Three anti-rigging measures decided this result,
+and without any one of them the simulation would have confirmed the conjecture:
+interference was given real spatial structure rather than C-004's uniform
+field; per-sensor gain mismatch was added, and its omission in the first draft
+produced an Aβ ratio of 7,991, the signature of a null collapsed to machine
+precision; and the muscle source was modelled even though it turned out not to
+matter.

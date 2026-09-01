@@ -5,7 +5,7 @@ at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
 **Last updated:** 2026-09-01 (second revision)
-**Conjectures filed:** 8 · **panelled:** 6 · **refuted:** 6 · **wounded:** 1 · **draft, never panelled:** 1
+**Conjectures filed:** 8 · **panelled:** 6 · **refuted:** 7 · **wounded:** 1 · **draft:** 0
 **Programme status:** not yet assessable (fewer than 10 conjectures)
 
 > **Read the harness-defect section below before reading any verdict on this
@@ -89,11 +89,16 @@ disputed range, and (b) a design that lowers false-pass probability below ~0.2,
 which the Rivals section already contains but the Killer does not import.
 Then re-panel it with a working hostile-referee gate.
 
-**Never panelled:** [C-008](../conjectures/C-008-interference-rejection-not-sensitivity.md)
-(branch B, prior 0.35), which claims that gradiometric interference rejection
-rather than sensor sensitivity is what blocks magnetic detection of C-fibre
-traffic. It is lint-clean and its killer is a simulation extension costing a
-day of compute and no money. It is the cheapest open item in the programme.
+**C-008 is now refuted by simulation** and recorded in
+[REFUTED.md](REFUTED.md). It is the programme's first conjecture to die
+*constructively*: it predicted that its own refutation would close Branch B,
+and instead the refutation costed Branch B. Gradiometry alone leaves the
+C-band at 0.638; gradiometry plus controlled muscle plus a 0.2 fT/√Hz sensor
+gives 4.718 in 8 of 8 seeds. The open question in Branch B is now a trade-off
+surface between sensitivity and array balancing, not a yes or no.
+
+**So the programme currently has exactly one live conjecture, C-003**, and one
+costed engineering path, in Branch B.
 
 ## Harness defects, open
 

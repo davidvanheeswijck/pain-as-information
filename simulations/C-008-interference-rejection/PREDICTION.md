@@ -57,32 +57,47 @@ And yet it is not enough. Measured directly:
 why the ratio sits near 0.64 rather than near either 0 or 2, and it is why
 better sensors do not help: the residual is interference, not noise.
 
-## What actually limits it, and the specification that follows
+## What actually limits it: a false dichotomy, resolved
 
-The binding constraint is **sensor gain and orientation matching**, which sets
-how well any gradiometer can reject a common-mode field. Sweeping it:
+C-008 framed the question as sensitivity **or** rejection, and asserted
+rejection. The simulation says **both, in that order**, and the order is why
+the single-variable sweeps looked so misleading.
+
+**Step 1, gain matching.** Rejection quality is set by sensor gain and
+orientation matching, not by geometry:
 
 | Gain matching | C-band mean | 95% CI |
 |---|---|---|
 | 1 : 333 (0.3%) | 0.573 | [0.480, 0.666] |
 | 1 : 1,000 | 0.696 | [0.646, 0.746] |
 | 1 : 3,333 | 0.866 | [0.815, 0.917] |
-| 1 : 10,000 | **0.916** | [0.854, 0.978] |
+| 1 : 10,000 | 0.916 | [0.854, 0.978] |
+| 1 : 33,000 | 0.925 | [0.864, 0.986] |
 
-Monotonic, and **still below 1.0 at 1 part in 10⁴** (0.916, CI [0.854, 0.978],
-Aβ control passing 8/8 at 27,175). The crossing therefore lies somewhere above
-1:10⁴, and this simulation brackets it rather than pinning it: the honest
-statement is **better than 1 part in 10⁴, and not yet measured how much
-better**.
+**It plateaus below 1.0.** Going from 1:10⁴ to 1:3.3×10⁴ buys 0.009. So gain
+matching alone never gets there, and an early draft of this file claiming "the
+crossing lies above 1:10⁴" was wrong.
 
-**So the engineering statement C-008 was looking for is not "build a
-gradiometer". It is "match the channels to about 1 part in 10⁴".** A hardware
-first-order gradiometer typically achieves 1:100 to 1:1000. Software and
-adaptive reference-array balancing in OPM-MEG reach roughly 1:10⁴. The
-requirement is therefore **at or just beyond the edge of demonstrated
-practice**, which is a more useful place to have landed than either "solved" or
-"impossible". It is also the one number in this programme that a hardware group
-could act on tomorrow.
+**Step 2, the local muscle term.** At 1:33,000 with muscle removed: **0.948**
+[0.873, 1.022]. Still short. Muscle is not common-mode and no gradiometer
+rejects it, but it is not the dominant residual either.
+
+**Step 3, and this is the one that works.** With rejection at 1:33,000, muscle
+controlled, and the sensor improved from 1.0 to **0.2 fT/√Hz**:
+
+> **C-band detectability = 4.718, CI [4.057, 5.378], 8 of 8 seeds above
+> threshold.** Aβ control 260,639.
+
+**Sensitivity was never irrelevant. It was masked.** The twentyfold sensitivity
+sweep looked flat because at that point interference sat 17× above the signal,
+so the noise floor was not what the measurement was touching. Remove the
+interference and sensitivity immediately becomes the binding constraint, and a
+factor of five in the sensor takes detectability from 0.95 to 4.7.
+
+This is why the conjecture's own framing had to fail. "Sensitivity buys
+nothing" is true in the interference-limited regime, which is the regime you
+are in *before* you fix the interference, and false in the regime you are in
+after. C-008 measured the first and legislated for the second.
 
 ## Three ways this was kept honest
 
@@ -110,16 +125,32 @@ noise (PMID 40542043).
 zero leaves the C-band at 0.578, slightly *worse* than with it. Rival 2 was
 wrong, and it was worth building in order to find that out.
 
-## What this closes and what it leaves open
+## What this closes, and what it opens
 
-C-008 said: "If refuted with the Aβ control intact, **Branch B closes**, and it
-closes on a quantitative statement rather than a hunch."
+C-008 predicted that "if refuted with the Aβ control intact, **Branch B
+closes**". The Aβ control is intact and the conjecture is refuted. **But the
+refutation does not close Branch B; it specifies it.** That is the opposite of
+what the conjecture expected its own death to mean, and it is the most useful
+thing here.
 
-The Aβ control is intact. **Branch B closes on this statement:** with a 1 fT/√Hz
-array over a superficial nerve at 6.5 mm, first- and second-order gradiometry
-leave the C-fibre signal a factor of 17 in energy below the interference
-residual, sensor sensitivity is irrelevant to that gap, and closing it requires
-channel matching better than 1 part in 10⁴ rather than a quieter magnetometer.
+**The specification, all three required together:**
 
-That is a procurement specification, not a hunch, and it is the outcome C-008
-was filed to produce. It cost a few minutes of laptop compute and no money.
+| Requirement | Value | Status in the field |
+|---|---|---|
+| Channel gain/orientation matching | **≲ 1 : 10⁴** | Reached by adaptive reference-array balancing in OPM-MEG; well beyond a bare hardware gradiometer at 1:100-1:1000 |
+| Local myogenic interference | **controlled** | Quiescent limb, or a local reference channel; not solvable by gradiometry |
+| Sensor noise floor | **≈ 0.2 fT/√Hz** | At the edge: commercial OPMs run ~1 fT/√Hz, laboratory SERF magnetometers reach ~0.16 fT/√Hz |
+
+Meet all three and the simulated C-band ridge is recovered at **4.7× the
+matched null in 8 of 8 seeds**. Meet only the rejection requirement, which is
+what C-008 proposed, and it is **0.64** and undetectable.
+
+**So the honest verdict is: C-008 asked for one thing and needed three, and the
+one it asked for is necessary but the least sufficient of the three.** Branch B
+is not closed. It is now costed, and the cost is a five-fold better sensor plus
+array balancing at the edge of demonstrated practice plus a quiet limb.
+
+**What would settle it next**, and it is again cheap: sweep the sensitivity and
+gain-matching axes jointly to find the cheapest point on the trade-off surface,
+rather than the two corners sampled here. That is a few more minutes of compute
+and it would turn this specification into a procurement decision.
