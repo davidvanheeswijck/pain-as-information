@@ -91,10 +91,38 @@ for g in $GATES; do
   if v=$("$HERE/review.sh" "$SUBJECT" "$OUTDIR/gate-$g.md" "$gate" "$model"); then
     printf '%-34s %-46s %s\n' "$g" "$model" "$v" | tee -a "$OUTDIR/verdicts.txt"
   else
-    # A gate that errors is recorded as a gap, never silently skipped: a
-    # missing verdict must not read as a passing one.
-    printf '%-34s %-46s %s\n' "$g" "$model" "VERDICT: GATE FAILED TO RUN" \
-      | tee -a "$OUTDIR/verdicts.txt"
+    # A gate that errors used to be recorded as a gap and left there. That was
+    # honest but expensive: the hostile-referee gate produced reviewable text
+    # in one of its first seven attempts, so five conjectures were judged
+    # without the reviewer designed to be hardest on them, purely because one
+    # model could not finish a long reasoning prompt inside the router's
+    # gateway timeout.
+    #
+    # Two distinct causes were observed and neither is the conjecture's fault:
+    # HTTP 200 with an empty content field (budget spent on hidden reasoning),
+    # and HTTP 504 from the gateway. review.sh handles the first and retries
+    # 5xx three times; when it still fails, losing the gate entirely is the
+    # worst available outcome.
+    #
+    # So: hand the gate to the next laboratory in the panel and try once more.
+    # This costs one extra call and preserves the design intent, which is that
+    # each gate is reviewed once by SOME independent lab, not that it is
+    # reviewed by one particular one.
+    fallback=""
+    for cand in "${PANEL[@]}"; do
+      [[ "$cand" != "$model" ]] && { fallback="$cand"; break; }
+    done
+    if [[ -n "$fallback" ]] && \
+       v=$("$HERE/review.sh" "$SUBJECT" "$OUTDIR/gate-$g.md" "$gate" "$fallback"); then
+      echo "note: gate $g failed on $model, recovered on $fallback" >&2
+      printf '%-34s %-46s %s\n' "$g" "$fallback (fallback from $model)" "$v" \
+        | tee -a "$OUTDIR/verdicts.txt"
+    else
+      # Still a gap, and still recorded as one: a missing verdict must never
+      # read as a passing one.
+      printf '%-34s %-46s %s\n' "$g" "$model" "VERDICT: GATE FAILED TO RUN" \
+        | tee -a "$OUTDIR/verdicts.txt"
+    fi
   fi
 done
 

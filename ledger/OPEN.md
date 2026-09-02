@@ -80,35 +80,72 @@ disease state of interest. File the necessity question first next time.
 
 ## Harness defects
 
-**D-H1. The hostile-referee gate. PARTIALLY FIXED, still failing.**
+**D-H1. The hostile-referee gate. TWO causes, both now handled. FIXED, pending
+live confirmation.**
 
-Status after the second C-003 panel: gates 01 and 06 **still did not run**,
-both on `nebius/kimi-k3`.
+This entry has been rewritten twice because the first two diagnoses were both
+wrong or incomplete. The sequence is left visible on purpose, since the
+misdiagnoses are more instructive than the fix.
 
-*What the first fix did achieve.* The harness no longer fabricates an
-objection. Previously an empty response was written to disk as a headed but
-bodiless file and scored `NO VERDICT LINE — treat as MAJOR`, inventing a
-reviewer criticism that never existed; C-003 absorbed two of those. Now the run
-exits 3 and the record reads `GATE FAILED TO RUN`, which is honest. **The
-damage is contained even though the defect is not cured.**
+*The symptom.* The hostile-referee gate produced reviewable text in **one of
+its first seven attempts**. Five conjectures were judged without the reviewer
+designed to be hardest on them.
 
-*What the first fix got wrong.* Raising the output budget to 32,000 tokens did
-not help, so the diagnosis of "budget exhaustion" was incomplete.
+*Diagnosis 1, wrong.* "Reasoning models exhaust the completion budget." The
+C-003 panel-1 stub records `tokens in=7794 out=8192` with an empty body, which
+looked conclusive. Fix applied: retry at 32,000 output tokens. **It did not
+work** and gates 01 and 06 failed again on the next panel.
 
-*The actual cause, established by direct probe.* `nebius/kimi-k3` returns its
-analysis in a separate **`reasoning_content`** field and leaves `content`
-empty. On a short prompt it answers normally (`content: "VERDICT: PASS"`,
-390 completion tokens). It **voted successfully in the same panel run that its
-two gates failed**, because the ballot is short and the gate prompts are not.
-The harness was reading `content` only, and discarding a real review.
+*Diagnosis 2, incomplete.* "The model returns its analysis in
+`reasoning_content` and leaves `content` empty." A short-prompt probe confirmed
+`nebius/kimi-k3` does expose a separate `reasoning_content` field, and the model
+voted successfully in the same run its gates failed. **But I reported this as
+established by probe when the probe had only shown the field exists on a
+working call.** That was an overstated causal claim and it is retracted.
 
-*Second fix, applied 2026-09-02.* `review.sh` now falls back to
-`reasoning_content` when `content` is empty, and **stamps the output file** to
-record that the text is a reasoning trace rather than a composed review, so the
-provenance is never silently lost. Verified against three response shapes:
-normal content extracts and is not stamped; reasoning-only recovers the verdict
-and is stamped; genuinely empty still fails loudly. **Not yet confirmed against
-a live gate call** — that needs the next panel.
+*What the probe actually returned, on the real gate-06 prompt:*
+
+> `urllib.error.HTTPError: HTTP Error 504: Gateway Timeout`
+
+*The two causes, both real and distinct.*
+
+| | Panel 1, 2026-09-01 | Panel 2, 2026-09-02 |
+|---|---|---|
+| Response | HTTP **200**, empty content, `out=8192` | HTTP **504** gateway timeout |
+| Cause | Answer budget spent before any content emitted | Model cannot finish a long reasoning prompt inside the router's gateway limit |
+
+**The harness was not misbehaving in the second case.** `review.sh` already
+retries 5xx three times with backoff; it did, kept getting 504, and reported
+`GATE FAILED TO RUN` honestly. The defect was that an honest failure still lost
+the gate.
+
+*Fixes, all verified.*
+
+1. **Empty-content detection** (`review.sh`): empty or `finish_reason: length`
+   responses are detected rather than written to disk as a headless file scored
+   `NO VERDICT LINE — treat as MAJOR`. This was the worst of the three bugs,
+   because it **manufactured objections no reviewer had made**, and C-003
+   absorbed two of them.
+2. **`reasoning_content` fallback** (`review.sh`): when `content` is empty the
+   verdict is recovered from the reasoning field, and the output file is
+   **stamped** to record that the text is a reasoning trace rather than a
+   composed review. Verified against normal, reasoning-only and genuinely-empty
+   responses.
+3. **Gate model fallback** (`panel.sh`): when a gate exhausts its retries, it is
+   handed to the next laboratory in the panel and tried once more. This costs
+   one extra call and preserves the design intent, which is that each gate is
+   reviewed once by *some* independent lab rather than by one particular one.
+   Verified in both directions under bash: primary-fails-fallback-succeeds
+   records the fallback attribution, and all-fail still records
+   `GATE FAILED TO RUN` with no silent pass.
+
+**Not yet confirmed against a live panel.** The next run is the test.
+
+*Method note worth keeping.* The first test of the fallback was written and run
+under **zsh**, where arrays are 1-indexed, so `${PANEL[0]}` was empty, the stub
+never saw the broken model, and the test passed while proving nothing. The same
+zsh-versus-bash trap has now cost time twice in this programme. Test bash
+scripts with `bash`.
 
 **D-H2. The panel vote verdict line is not being extracted.** `votes.txt` from
 the C-003 rerun records `VERDICT: NONE` for all five laboratories, while
