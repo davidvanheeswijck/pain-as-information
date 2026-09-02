@@ -149,8 +149,9 @@ import json, sys
 try:
     r = json.load(open(sys.argv[1]))
     c = r["choices"][0]
-    txt = (c.get("message", {}) or {}).get("content") or ""
-    sys.exit(0 if (not txt.strip() or c.get("finish_reason") == "length") else 1)
+    m = c.get("message", {}) or {}
+    txt = (m.get("content") or "") + (m.get("reasoning_content") or "") + (m.get("reasoning") or "")
+    sys.exit(0 if not txt.strip() else 1)
 except Exception:
     sys.exit(0)
 PY2
@@ -171,8 +172,26 @@ fi
 python3 - "$RESP" "$OUT" "$MODEL" "$PROMPT" "$PROV" "$IN" <<'PY'
 import datetime, json, os, sys
 r = json.load(open(sys.argv[1]))
-txt = r["choices"][0]["message"]["content"]
+_msg = r["choices"][0].get("message") or {}
+txt = _msg.get("content") or ""
 u = r.get("usage", {})
+
+# Reasoning-tier models on some providers return their analysis in a separate
+# "reasoning_content" field and leave "content" empty when the answer budget is
+# exhausted. Discarding that was throwing away a real review: nebius/kimi-k3
+# failed gates 01 and 06 on two consecutive C-003 panels while voting normally
+# in the same runs, because the vote prompt is short enough to leave room for a
+# reply and the gate prompts are not.
+#
+# Recover the verdict from the reasoning field rather than losing the gate, and
+# STAMP the file so the record shows where the text came from. This is not the
+# model's polished answer and must not be passed off as one.
+_recovered = False
+if not txt.strip():
+    _r = _msg.get("reasoning_content") or _msg.get("reasoning") or ""
+    if _r.strip():
+        txt = _r
+        _recovered = True
 hdr = (f"# Gate verdict\n\n"
        f"> Reviewer: `{sys.argv[3]}` · {sys.argv[5]}\n"
        f"> Gate: `{os.path.basename(sys.argv[4])}` · "
@@ -180,7 +199,11 @@ hdr = (f"# Gate verdict\n\n"
        f"> {datetime.datetime.now(datetime.timezone.utc).isoformat(timespec='seconds')} · "
        f"tokens in={u.get('prompt_tokens','?')} out={u.get('completion_tokens','?')}\n"
        f"> Verbatim model output below. Do not edit it. If it is wrong, that is\n"
-       f"> a fact about the panel and belongs in the record.\n\n")
+       f"> a fact about the panel and belongs in the record.\n"
+       + ("> **RECOVERED FROM `reasoning_content`.** The model returned an empty\n"
+          "> answer field, so this is its reasoning trace rather than a composed\n"
+          "> review. Weigh it accordingly.\n" if _recovered else "")
+       + "\n")
 open(sys.argv[2], "w").write(hdr + txt + "\n")
 # Models routinely bold the verdict, so the line arrives as "**VERDICT: ...**"
 # rather than "VERDICT: ...". Anchoring on startswith() recorded a perfectly

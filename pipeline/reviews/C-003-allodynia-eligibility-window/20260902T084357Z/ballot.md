@@ -1,10 +1,19 @@
+# Candidates
+
+Presented in an order carrying no information about authorship or origin.
+
+
+---
+
+## CANDIDATE 1
+
 ---
 id: C-003
 title: Ongoing C-fibre activity opens a brief eligibility window during which touch is read as pain
 branch: A
-status: refuted
+status: wounded
 prior: 0.30
-posterior: 0.15
+posterior: 0.62
 lineage:
 supersedes:
 created: 2026-09-01
@@ -259,3 +268,19 @@ target in Branch A, which is a good reason to test it early rather than late.
 - Peirs C, et al. *Neuron* 2015;87:797-812. PMID 26291162. doi:10.1016/j.neuron.2015.07.029
 - Mendell LM, Wall PD. *Nature* 1965;206:97-9. PMID 14334366. doi:10.1038/206097a0
 - Woolf CJ. *Nature* 1983;306:686-8. PMID 6656869. doi:10.1038/306686a0
+
+
+---
+
+## Gate verdicts returned against CANDIDATE 1
+
+```
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — Is spontaneous C-nociceptor activity necessary and trial-by-trial temporally coupled to touch-evoked pain in established allodynia beyond the effects of tonic central disinhibition?
+01-physical-plausibility           nebius/kimi-k3                                 VERDICT: GATE FAILED TO RUN
+02-biological-plausibility         tensorx/deepseek-v4-pro-0424                   VERDICT: MINOR — The experiment is well-designed and worth running, but the clinical translation claim should be removed or explicitly flagged as contingent on peripheral readout of C-fibre discharge (refuted by C-004/C-008), on C-fibre discharge being the sole maintainer of the facilitated state (not tested by the design), and on the anaesthetised rodent τ band generalising to awake humans (not established).
+03-evidence-integrity              vertex/gemini-3.5-flash@eu                     VERDICT: MAJOR — Ghitani et al. (PMID 40269164) is overstated to claim it suggests a temporal coincidence window when it only reports spontaneous activity.
+04-falsifiability                  tensorx/glm-5.2                                VERDICT: MINOR — The killer needs blinding for the behavioural outcome and a pre-registered primary outcome to prevent post-hoc selection between electrophysiology and behaviour.
+05-prior-art                       azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: PASS — genuinely open or incremental with a stated delta
+06-hostile-referee                 nebius/kimi-k3                                 VERDICT: GATE FAILED TO RUN
+07-clinical-translation            tensorx/deepseek-v4-pro-0424                   VERDICT: MAJOR — no enrichable human population without a bedside measure of the coincidence phenotype; the human mechanism demonstration is a prerequisite that may not be feasible, and the intervention's effect size in humans is unknown. The mouse experiment is worth doing, but it is a mechanism experiment, not a translational one.
+```

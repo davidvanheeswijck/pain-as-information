@@ -409,3 +409,82 @@ field; per-sensor gain mismatch was added, and its omission in the first draft
 produced an Aβ ratio of 7,991, the signature of a null collapsed to machine
 precision; and the muscle source was modelled even though it turned out not to
 matter.
+
+---
+
+### C-003 — Ongoing C-fibre activity opens a brief eligibility window during which touch is read as pain
+
+**Refuted** 2026-09-02 by panel, second review · branch A
+**Prior** 0.30 → **Posterior after first panel** 0.62 → **Posterior** 0.15
+
+**The only conjecture in this programme whose probability ever rose under
+review, and it did not survive the rematch.** Five of five laboratories voted
+REFUTED, median P(substantially correct) 0.15.
+
+**The killing argument is not the panel's. It is two papers the panel's own
+triage gate told us to go and find**, at a cost of two PubMed queries against
+the 200,000 to 300,000 euro study the conjecture proposed.
+
+*The mechanism was measured in 1993.* Thompson, Woolf & Sivilotti,
+*J Neurophysiol* 1993;69:2116-28, PMID 8350135. Conditioning one dorsal root
+while testing another: "conditioning at A beta-fiber strength had no effect,
+whereas A delta- and C-fiber strength conditioning were equally effective", and
+"Heterosynaptic facilitation of only A beta- or A delta-fiber-evoked Test EPSPs
+was observed, no enhancement of C-fiber strength Test EPSPs could be
+demonstrated." **That is the conjecture's mechanism and its selectivity. It is
+also the Aβ-burst control that the rewritten Killer offered as its single
+largest innovation, and it was run and passed thirty-three years ago.**
+
+*The timing was measured too, and the conjecture had it wrong twice.* Single
+Aδ/C-strength slow EPSPs "lasted for 4-6 s" and the cumulative depolarisation
+"slowly decayed back to the control Vm over tens of seconds", with facilitation
+decaying in parallel. C-003 v1 proposed "a few hundred milliseconds", wrong by
+one to two orders of magnitude. The v2 rewrite proposed 1 to 10 seconds, which
+is the low end of the measured range and was derived by a bad inference anyway
+(see below).
+
+*And the necessity question was answered before triage could ask it.* Ghitani
+et al., *Nature* 2025;642:1016-23, PMID 40269164, states verbatim: "suggesting
+that tactile allodynia results from the continuing firing of nociceptors
+**coincident with touch**. Indeed, we have demonstrated that **nociceptor
+activity is both necessary and sufficient** for inflammatory tactile
+allodynia." Triage's reformulated question was whether spontaneous C-nociceptor
+activity is necessary. For the inflammatory model, that is published.
+
+**So the space C-003 occupied is closed from both sides**: the facilitation
+mechanism and its time course from 1993, necessity and sufficiency from 2025.
+What was left was a specific decay constant, and the conjecture got it wrong.
+
+### Three findings about the harness, recorded because they are the reusable part
+
+**1. An internal contradiction survived a rewrite and only a gate caught it.**
+The v2 Killer explicitly withdrew "a few hundred milliseconds" as unevidenced
+and pre-registered 1 to 10 seconds. **The title and the Claim were never
+updated** and still asserted a few hundred milliseconds. Triage found it. This
+is the derived-text failure mode: the reasoning was fixed and the thing derived
+from it was not.
+
+**2. The inference from wind-up was unsound, and the gate said so precisely.**
+The v2 rewrite derived a decay constant from wind-up's induction-frequency
+threshold, arguing that facilitation present at 0.5 Hz and absent at 0.1 Hz
+brackets it to seconds. Triage: "induction-frequency thresholds do not
+determine relaxation time." That is correct. A threshold for cumulative
+summation is not a relaxation constant, and the honest source for the timing
+was a direct measurement, which existed.
+
+**3. Gate 03 produced the same false positive twice, with two different
+models.** In the first panel it claimed Ghitani et al. "does not propose
+coincidence"; in the second, that it "only reports spontaneous activity". The
+abstract says "coincident with touch" verbatim and asserts necessity and
+sufficiency. **Both objections are wrong, and the conjecture's citation of that
+paper was accurate on both occasions.** Two independent laboratories generating
+the same wrong reading of the same source is a property of the gate prompt or
+of the source's phrasing, not of one model, and it should be treated as a
+standing caution when gate 03 fires on a *Nature* abstract.
+
+**Do not re-propose unless** the claim is about something Thompson 1993 and
+Ghitani 2025 jointly leave open. Candidly, that is narrow: the trial-by-trial
+*timing* coupling under natural unstimulated conditions in an **established
+neuropathic** model, as opposed to acute inflammatory, in adult rather than
+neonatal tissue. A conjecture proposing to demonstrate coincidence, or
+necessity, or the fibre selectivity, is re-running published work.
