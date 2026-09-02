@@ -1,10 +1,19 @@
+# Candidates
+
+Presented in an order carrying no information about authorship or origin.
+
+
+---
+
+## CANDIDATE 1
+
 ---
 id: C-009
 title: An ultrasound-guided peripheral nerve block abolishes pain in long-duration CRPS, as it does in peripheral nerve injury
 branch: A
-status: refuted
+status: draft
 prior: 0.45
-posterior: 0.15
+posterior:
 lineage:
 supersedes:
 created: 2026-09-02
@@ -212,3 +221,19 @@ already performed daily.
 - Kato J, Gokan D, Hirose N, Iida R, Suzuki T, Ogawa S. *Pain Med* 2013;14:293-6. PMID 23198747. doi:10.1111/pme.12004
 - Harden RN, Bruehl S, Perez RSGM, et al. *Pain* 2010;150:268-74. PMID 20493633. doi:10.1016/j.pain.2010.04.030
 - Mailis-Gagnon A, Lakha SF, Allen MD, Deshpande A, Harden RN. *Pain Med* 2014;15:1965-74. PMID 25339179. doi:10.1111/pme.12584
+
+
+---
+
+## Gate verdicts returned against CANDIDATE 1
+
+```
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — In long-duration CRPS, does selective suppression of pathological afferent activity relieve pain more than matched nonselective sensory blockade, thereby distinguishing a peripheral generator from central reinterpretation of ordinary input?
+01-physical-plausibility           azure/openai-responses/gpt-5.6-sol@swedencentral (fallback from nebius/kimi-k3) VERDICT: MAJOR — a 1–3 cm local block is being used to exclude generators distributed over roughly 10–30 cm of peripheral/DRG anatomy, an approximately one-order-of-magnitude spatial shortfall, and it cannot intercept DRG-origin traffic
+02-biological-plausibility         tensorx/deepseek-v4-pro-0424                   VERDICT: MINOR — Specify the block site relative to the DRG, and remove the claim that a positive result bears on HC-2; the experiment tests input-dependence, not peripheral readability.
+03-evidence-integrity              vertex/gemini-3.5-flash@eu                     VERDICT: MINOR — 2 citations need correction
+04-falsifiability                  tensorx/glm-5.2                                VERDICT: MAJOR — the proposed test has false-pass probability ~0.45 and proves nothing
+05-prior-art                       azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: PASS — genuinely open or incremental with a stated delta
+06-hostile-referee                 azure/openai-responses/gpt-5.6-sol@swedencentral (fallback from nebius/kimi-k3) VERDICT: FATAL — complete sensory block makes the allodynia endpoint non-diagnostic and cannot identify a pathological peripheral generator, 97%
+07-clinical-translation            tensorx/deepseek-v4-pro-0424                   VERDICT: MINOR — The design is sound for its mechanistic claim, but the conjecture should state the flare risk explicitly with a pre-specified monitoring plan, and should acknowledge that the stratified analysis (lesion-identifiable vs. not) is underpowered at n=20, so the diagnostic-reallocation rival will not be fully resolved by this study alone.
+```

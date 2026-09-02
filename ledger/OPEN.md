@@ -5,7 +5,7 @@ at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
 **Last updated:** 2026-09-01 (second revision)
-**Conjectures filed:** 8 · **panelled:** 7 · **refuted:** 8 · **wounded:** 0 · **draft:** 0
+**Conjectures filed:** 9 · **panelled:** 8 · **refuted:** 9 · **wounded:** 0 · **draft:** 0
 **Programme status:** not yet assessable (fewer than 10 conjectures)
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
@@ -40,19 +40,30 @@ later drifts back towards the stronger claim, the drift is visible.
 
 ## Live conjectures
 
-**None.** All eight are refuted and recorded in [REFUTED.md](REFUTED.md).
+**None.** Nine filed, nine refuted, each closed with a reason and a
+re-proposal condition.
 
-C-003 was the last to fall, and it is worth reading as the programme's best
-single case study. It was the only conjecture whose probability ever *rose*
-under review, from 0.30 to 0.62, after the first panel's negatives turned out
-to include two harness truncations and one false positive. Rewritten and
-re-panelled, it was refuted 5 of 5 with median P = 0.15.
+C-009 is the most recent and the most instructive. It was built on a real human
+result, filed after the cheap literature check that C-003 taught the programme
+to run first, and killed anyway because **the design could not do what the
+claim required**. A complete sensory block removes ordinary touch along with
+any pathological traffic, so it cannot separate a peripheral generator from
+central reinterpretation of normal input.
 
-**It was not killed by the panel's arguments.** It was killed by two papers the
-triage gate told us to go and find: the mechanism and its time course were
-measured in 1993 (PMID 8350135), and necessity and sufficiency were published
-in 2025 (PMID 40269164). Two PubMed queries retired a 200,000 to 300,000 euro
-proposal. That is the cheap-kill gate paying for the entire apparatus.
+**The pattern in how these are being posed is now unambiguous.** Four
+consecutive conjectures were returned by triage as the wrong question:
+
+| | asked | should have asked |
+|---|---|---|
+| C-005 | how many bits does a nociceptor carry | does timing beat rate on the same data |
+| C-007 | does single-fibre timing add information | does across-fibre structure predict the percept |
+| C-003 | does a coincidence window exist | is ongoing activity necessary for allodynia |
+| C-009 | is pain input-dependent | does *selective* suppression beat *nonselective* blockade |
+
+The progression is real: existence, then necessity, and now **specificity**.
+Each time the programme asked whether something is true when it needed to know
+whether the measurement could tell the difference. **The next conjecture should
+be checked against that column before it is filed**, not after.
 
 ## What the programme should file next
 
@@ -80,72 +91,50 @@ disease state of interest. File the necessity question first next time.
 
 ## Harness defects
 
-**D-H1. The hostile-referee gate. TWO causes, both now handled. FIXED, pending
-live confirmation.**
+**D-H1. The hostile-referee gate. FIXED AND CONFIRMED LIVE, 2026-09-02.**
 
-This entry has been rewritten twice because the first two diagnoses were both
-wrong or incomplete. The sequence is left visible on purpose, since the
-misdiagnoses are more instructive than the fix.
+**The C-009 panel produced the first complete gate record in this programme's
+history: all eight gates returned a verdict.** Before it, the hostile-referee
+gate had produced reviewable text in one of seven attempts, so five conjectures
+were judged without the reviewer designed to be hardest on them.
 
-*The symptom.* The hostile-referee gate produced reviewable text in **one of
-its first seven attempts**. Five conjectures were judged without the reviewer
-designed to be hardest on them.
+*Confirmation, from the run log.* Gates 01 and 06 both drew `nebius/kimi-k3`,
+both took `HTTP 504` from the gateway, both retried at 20s and 60s, both still
+failed, and both were then **recovered on the fallback laboratory** with the
+substitution recorded in the verdict line:
 
-*Diagnosis 1, wrong.* "Reasoning models exhaust the completion budget." The
-C-003 panel-1 stub records `tokens in=7794 out=8192` with an empty body, which
-looked conclusive. Fix applied: retry at 32,000 output tokens. **It did not
-work** and gates 01 and 06 failed again on the next panel.
+> `note: gate 06-hostile-referee failed on nebius/kimi-k3, recovered on azure/openai-responses/gpt-5.6-sol@swedencentral`
 
-*Diagnosis 2, incomplete.* "The model returns its analysis in
-`reasoning_content` and leaves `content` empty." A short-prompt probe confirmed
-`nebius/kimi-k3` does expose a separate `reasoning_content` field, and the model
-voted successfully in the same run its gates failed. **But I reported this as
-established by probe when the probe had only shown the field exists on a
-working call.** That was an overstated causal claim and it is retracted.
+*And the gate immediately earned its cost.* Its first successful verdict in
+eight attempts was a **FATAL at 97% confidence** that killed C-009 on a defect
+no other gate had stated so decisively: a complete sensory block cannot
+distinguish a pathological peripheral generator from central reinterpretation
+of ordinary input, because it removes both. Five conjectures were reviewed
+without this gate. It is worth asking what it would have said about them.
 
-*What the probe actually returned, on the real gate-06 prompt:*
+*The three fixes, in the order they mattered.*
 
-> `urllib.error.HTTPError: HTTP Error 504: Gateway Timeout`
+1. **Empty-content detection** (`review.sh`). The worst of the three, because
+   the old behaviour wrote a headless file and scored it
+   `NO VERDICT LINE — treat as MAJOR`, **manufacturing objections no reviewer
+   had made**. C-003 absorbed two.
+2. **`reasoning_content` fallback** (`review.sh`), stamped in the output file so
+   a reasoning trace is never passed off as a composed review. Not exercised in
+   this run, since the failures were 504s rather than empty bodies.
+3. **Gate model fallback** (`panel.sh`). The fix that closed it. One extra call,
+   and it preserves the design intent: each gate reviewed once by *some*
+   independent laboratory rather than by one particular one.
 
-*The two causes, both real and distinct.*
+*Known cost, accepted.* A 504 takes roughly 15 minutes to surface, so three
+retries plus a fallback is around 50 minutes for one failing gate, and this run
+spent about that twice. Shortening the first attempt's timeout would find
+failures faster and is the obvious next improvement, but it was deliberately
+not changed mid-run.
 
-| | Panel 1, 2026-09-01 | Panel 2, 2026-09-02 |
-|---|---|---|
-| Response | HTTP **200**, empty content, `out=8192` | HTTP **504** gateway timeout |
-| Cause | Answer budget spent before any content emitted | Model cannot finish a long reasoning prompt inside the router's gateway limit |
-
-**The harness was not misbehaving in the second case.** `review.sh` already
-retries 5xx three times with backoff; it did, kept getting 504, and reported
-`GATE FAILED TO RUN` honestly. The defect was that an honest failure still lost
-the gate.
-
-*Fixes, all verified.*
-
-1. **Empty-content detection** (`review.sh`): empty or `finish_reason: length`
-   responses are detected rather than written to disk as a headless file scored
-   `NO VERDICT LINE — treat as MAJOR`. This was the worst of the three bugs,
-   because it **manufactured objections no reviewer had made**, and C-003
-   absorbed two of them.
-2. **`reasoning_content` fallback** (`review.sh`): when `content` is empty the
-   verdict is recovered from the reasoning field, and the output file is
-   **stamped** to record that the text is a reasoning trace rather than a
-   composed review. Verified against normal, reasoning-only and genuinely-empty
-   responses.
-3. **Gate model fallback** (`panel.sh`): when a gate exhausts its retries, it is
-   handed to the next laboratory in the panel and tried once more. This costs
-   one extra call and preserves the design intent, which is that each gate is
-   reviewed once by *some* independent lab rather than by one particular one.
-   Verified in both directions under bash: primary-fails-fallback-succeeds
-   records the fallback attribution, and all-fail still records
-   `GATE FAILED TO RUN` with no silent pass.
-
-**Not yet confirmed against a live panel.** The next run is the test.
-
-*Method note worth keeping.* The first test of the fallback was written and run
-under **zsh**, where arrays are 1-indexed, so `${PANEL[0]}` was empty, the stub
-never saw the broken model, and the test passed while proving nothing. The same
-zsh-versus-bash trap has now cost time twice in this programme. Test bash
-scripts with `bash`.
+*Residual.* `nebius/kimi-k3` reliably 504s on long reasoning prompts through
+this router while answering short ones normally, and it also dropped out of the
+C-009 panel vote, leaving four laboratories instead of five. It is a candidate
+for removal from the panel pool rather than continued rescue.
 
 **D-H2. The panel vote verdict line is not being extracted.** `votes.txt` from
 the C-003 rerun records `VERDICT: NONE` for all five laboratories, while

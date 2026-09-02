@@ -488,3 +488,82 @@ Ghitani 2025 jointly leave open. Candidly, that is narrow: the trial-by-trial
 neuropathic** model, as opposed to acute inflammatory, in adult rather than
 neonatal tissue. A conjecture proposing to demonstrate coincidence, or
 necessity, or the fibre selectivity, is re-running published work.
+
+---
+
+### C-009 — An ultrasound-guided peripheral nerve block abolishes pain in long-duration CRPS, as it does in peripheral nerve injury
+
+**Refuted** 2026-09-02 by panel · branch A
+**Prior** 0.45 → **Posterior** 0.15
+
+**Killed by a FATAL from the hostile-referee gate, which was the first verdict
+that gate has ever successfully returned** (see D-H1 in [OPEN.md](OPEN.md)). It
+earned its keep on its first working run.
+
+**The core defect: the design cannot do what the claim requires.** A complete
+sensory block removes *all* afferent traffic, ordinary touch included.
+Abolition of pain is therefore equally consistent with a pathological
+peripheral generator and with central reinterpretation of entirely normal
+input. Triage said this first and the hostile referee sharpened it to a FATAL
+at 97% confidence: "complete sensory block makes the allodynia endpoint
+non-diagnostic and cannot identify a pathological peripheral generator."
+
+**Four further hits, each correcting a specific overreach:**
+
+- **The "gain versus generator" dichotomy is not exhaustive.** Verbatim: "A
+  recurrent central network can be both pathologically altered and
+  input-dependent; 'gain' versus 'generator' is not an experimentally
+  exhaustive distinction." The conjecture was built on a false binary.
+- **The spatial mismatch, from gate 01.** "a 1-3 cm local block is being used to
+  exclude generators distributed over roughly 10-30 cm of peripheral/DRG
+  anatomy, an approximately one-order-of-magnitude spatial shortfall, and **it
+  cannot intercept DRG-origin traffic**." This is decisive for the population
+  the programme cares about, since the dorsal root ganglion is precisely where
+  its own evidence points. A negative result would have been uninterpretable.
+- **Wrong hard-core attribution.** Gate 02: "remove the claim that a positive
+  result bears on HC-2; the experiment tests **input-dependence, not peripheral
+  readability**." Correct. HC-2 is about decoding a signal, not about whether
+  a signal is required. The `bears_on` field was wrong.
+- **Overreach in the consequences section.** The conjecture claimed a positive
+  result would mean "every peripheral intervention this programme has
+  considered is aimed at a real target". Verbatim reply: "Blocking an entire
+  mixed nerve does not validate every peripheral intervention, any more than
+  general anaesthesia validates every cortical drug target." Confidence that
+  this alone sinks credibility: 94%.
+
+Gate 04 independently put the false-pass probability at **0.45** against the
+stated 0.2, which the severity section had already under-argued.
+
+**What survives, and it is worth more than the conjecture was.** The hostile
+referee's required counterweight names the defensible version explicitly:
+
+> "**spontaneous**, not stimulus-evoked, pain in rigorously adjudicated
+> long-duration CRPS remains acutely dependent on peripheral nerve transmission
+> in a substantial and reproducible **subgroup**. That is clinically and
+> biologically plausible, and the Haroutounian result makes it worth testing."
+
+With the conditions it also names: preregistered multicentre crossover, a
+credible expectancy control, anatomical coverage established **independently of
+pain response**, spontaneous pain as the sole mechanistically interpretable
+acute endpoint, explicit responder-mixture modelling, and prospective evidence
+that the acute response predicts durable benefit from a predefined peripheral
+treatment.
+
+And the limit on what even that would buy: "It still would not establish
+pathological nociceptor discharge, validate HC-2, or prove that central
+sensitisation is merely 'gain'."
+
+**Do not re-propose unless** the claim is a **stratification biomarker** claim
+rather than a mechanism claim: that acute input-dependence of spontaneous pain
+identifies a subgroup who benefit durably from a predefined peripheral
+treatment. That is a prediction about treatment response, it is falsifiable
+against outcomes rather than against interpretation, and it does not require
+the gain-versus-generator dichotomy to be true.
+
+**Clinical note.** The patient-facing summary derived from this conjecture was
+corrected on the same day to remove the peripheral-versus-central framing, to
+state that a negative result is weakly interpretable if the generator is at the
+dorsal root ganglion, and to record that the allodynia endpoint is
+uninformative under complete block because numb skin cannot be brushed. The
+derived document had inherited the conjecture's overreach, which is the failure
+mode this programme has now seen three times.
