@@ -22,8 +22,19 @@ SKIP_NAMES = {".citation-cache.json"}
 
 # --- Belgian national register number (rijksregisternummer) -----------------
 
+# The optional "." separator means this pattern happily matches a slice out of
+# the middle of a floating-point number: 172317.13142657682 in a simulation
+# results file was reported as a national register number. The guards below
+# reject a match that is part of a longer numeric literal (a digit immediately
+# before, or a digit or ".digit" immediately after) while still allowing a
+# genuine number followed by sentence-final punctuation. Allowlisting the
+# offending files was the alternative and was rejected: the list would grow
+# with every simulation run, and a privacy linter that people routinely add
+# exceptions to stops being read.
 NRN_RE = re.compile(
+    r"(?<!\d)(?<!\d\.)"
     r"\b\d{2}[.\-\s]?\d{2}[.\-\s]?\d{2}[.\-\s]?\d{3}[.\-\s]?\d{2}\b"
+    r"(?!\d)(?!\.\d)"
 )
 
 

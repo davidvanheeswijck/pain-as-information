@@ -125,6 +125,61 @@ noise (PMID 40542043).
 zero leaves the C-band at 0.578, slightly *worse* than with it. Rival 2 was
 wrong, and it was worth building in order to find that out.
 
+## The trade-off surface, and a cheaper specification than the one above
+
+The two-corner sampling above answered "do you need both?" but not "what is the
+cheapest combination that works?". Sweeping both axes jointly, 6 seeds by 15
+nulls per cell, muscle held at its literature-consistent 200 fT rather than
+zeroed:
+
+**C-band detectability, first-order gradiometer**
+
+| sensor ASD fT/√Hz | 1 : 333 | 1 : 1,000 | 1 : 3,333 | 1 : 10,000 |
+|---|---|---|---|---|
+| **1.00** | 0.66 | 0.80 | 0.93 | 0.97 |
+| **0.50** | 0.61 | 0.71 | 1.13 | **1.42** |
+| **0.20** | 0.59 | 0.64 | **1.79** | **3.08** |
+| **0.10** | 0.57 | 0.61 | **2.23** | **4.34** |
+
+Bold marks cells whose **95% confidence interval lies entirely above 1.0**, not
+merely the mean.
+
+### Three things this settles
+
+**1. Channel matching is a hard gate, and below it nothing else matters.** At
+1:333 and 1:1,000, no sensor tested reaches detectability. Improving the sensor
+tenfold, from 1.0 to 0.1 fT/√Hz, moves the result from 0.660 [0.507, 0.813] to
+0.572 [0.391, 0.753]. Those intervals overlap, so the apparent *decline* is not
+significant and should not be reported as one. The correct statement is that
+**below about 1:3,000 matching, sensor sensitivity is simply irrelevant**.
+
+**2. A 1 fT/√Hz sensor never suffices, at any matching tested.** The best cell
+in that row is 0.967 [0.896, 1.038] at 1:10,000, which straddles the threshold.
+Commercial OPMs sit at roughly this figure. **No amount of array engineering
+rescues a 1 fT/√Hz sensor**, which is the cleanest negative on the surface.
+
+**3. The specification stated earlier in this file was too expensive.** It
+named 1:10⁴ matching *and* 0.2 fT/√Hz, which is the 3.08 cell. The frontier is
+cheaper, and there are two distinct corners on it:
+
+| Option | Matching | Sensor | Detectability |
+|---|---|---|---|
+| A | 1 : 3,333 | 0.20 fT/√Hz | 1.79 [1.34, 2.24], 6/6 seeds |
+| B | 1 : 10,000 | 0.50 fT/√Hz | 1.42 [1.15, 1.70], 5/6 seeds |
+
+**These are genuinely exchangeable.** A group with good balancing can use a
+more ordinary sensor; a group with an exceptional sensor can tolerate looser
+balancing. That exchange rate is the practical output of this simulation and it
+is what a hardware group would actually want to know.
+
+**Caveat, stated because it matters for anyone acting on this.** The frontier
+cells use 6 seeds against the 18 used for the headline refutation, so they are
+less precisely estimated, and cell B in particular has one seed below threshold.
+Treat the frontier as located to within about a factor of two on each axis, not
+as a procurement guarantee.
+
+---
+
 ## What this closes, and what it opens
 
 C-008 predicted that "if refuted with the Aβ control intact, **Branch B
@@ -137,12 +192,13 @@ thing here.
 
 | Requirement | Value | Status in the field |
 |---|---|---|
-| Channel gain/orientation matching | **≲ 1 : 10⁴** | Reached by adaptive reference-array balancing in OPM-MEG; well beyond a bare hardware gradiometer at 1:100-1:1000 |
+| Channel gain/orientation matching | **≳ 1 : 3,333** | Reached by adaptive reference-array balancing in OPM-MEG; well beyond a bare hardware gradiometer at 1:100-1:1000 |
 | Local myogenic interference | **controlled** | Quiescent limb, or a local reference channel; not solvable by gradiometry |
-| Sensor noise floor | **≈ 0.2 fT/√Hz** | At the edge: commercial OPMs run ~1 fT/√Hz, laboratory SERF magnetometers reach ~0.16 fT/√Hz |
+| Sensor noise floor | **≤ 0.5 fT/√Hz**, and 1.0 never suffices | At the edge: commercial OPMs run ~1 fT/√Hz, laboratory SERF magnetometers reach ~0.16 fT/√Hz |
 
-Meet all three and the simulated C-band ridge is recovered at **4.7× the
-matched null in 8 of 8 seeds**. Meet only the rejection requirement, which is
+Meet all three and the simulated C-band ridge is recovered above the matched
+null in every seed, at **1.4× to 4.3×** depending on where you sit on the
+trade-off surface below. Meet only the rejection requirement, which is
 what C-008 proposed, and it is **0.64** and undetectable.
 
 **So the honest verdict is: C-008 asked for one thing and needed three, and the

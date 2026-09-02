@@ -386,9 +386,17 @@ one relevant measurement (PMID 40542043). Zeroing it leaves the C-band at
 0.578, slightly *worse*. Muscle is not the blocker.
 
 **Do not re-propose unless** the design carries all three requirements
-together, because any one of them alone fails: channel matching ≲1:10⁴, local
-myogenic interference controlled, and a sensor at ≈0.2 fT/√Hz. A conjecture
-proposing any single one of these has already been tested and refuted here.
+together, because any one of them alone fails: channel matching **better than
+about 1:3,000**, local myogenic interference controlled, and a sensor at
+**0.5 fT/√Hz or better**. A conjecture proposing any single one of these has
+already been tested and refuted here.
+
+**The joint sweep gives the exchange rate**, which is the practically useful
+output: 1:3,333 matching with a 0.2 fT/√Hz sensor gives 1.79 [1.34, 2.24], and
+1:10,000 matching with a 0.5 fT/√Hz sensor gives 1.42 [1.15, 1.70]. The two are
+exchangeable. **A 1 fT/√Hz sensor never suffices at any matching tested**, best
+cell 0.967 [0.896, 1.038], which is the cleanest negative available and rules
+out ordinary commercial OPMs regardless of array engineering.
 
 **Branch B is not closed.** C-008 predicted its own refutation would close it.
 Instead the refutation costed it. The remaining question is a trade-off surface
