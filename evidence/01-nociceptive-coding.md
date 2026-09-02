@@ -151,6 +151,59 @@ bursts delivered. Note the caveat that this preparation is **neonatal rat
 in vitro**, so its transfer to established adult neuropathic allodynia is an
 assumption rather than a finding.
 
+### The strongest counterweight to the central-discrimination account, and it is human
+
+Added 2026-09-02. This section exists because the programme spent an evidence
+base concluding that HC-2 was its weakest commitment, and then found a human
+experiment pointing the other way.
+
+> **Haroutounian S, Nikolajsen L, Bendtsen TF, Finnerup NB, Kristensen AD,
+> Hasselstrøm JB, Jensen TS. "Primary afferent input critical for maintaining
+> spontaneous pain in peripheral neuropathy." *Pain* 2014;155:1272-9.
+> PMID 24704366, doi:10.1016/j.pain.2014.03.022.**
+
+14 patients, 7 with unilateral foot pain from peripheral nerve injury and 7
+with distal polyneuropathy. Ultrasound-guided peripheral nerve block and
+intravenous lidocaine, randomised order, with full quantitative sensory
+testing.
+
+- "The peripheral nerve block resulted in a **complete abolition of ipsilateral
+  pain within 10 min (median) in all patients**, with lidocaine plasma
+  concentrations being too low to account for a systemic effect of the drug."
+- Intravenous lidocaine reduced spontaneous pain by only **45.5% (±31.7%)**,
+  which is the control that makes the block result interpretable.
+- "the improvement in evoked hypersensitivity was **not related** to the effect
+  of the drug on spontaneous pain intensity" — so spontaneous pain and evoked
+  hypersensitivity are dissociable and should not be treated as one outcome.
+- Conclusion: "regardless of the individual somatosensory phenotype and **signs
+  of central sensitization, primary afferent input is critical for maintaining
+  neuropathic pain** in peripheral nerve injury and distal polyneuropathy."
+
+**How this changes the reading of §5 and §6.** It does not contradict the
+mechanism described there. Allodynia's discrimination really is made centrally,
+and the Aβ traffic that hurts really is indistinguishable from touch. What it
+contradicts is the *practical inference* the programme had been drawing from
+that: that because the discrimination is central, peripheral intervention is
+aimed at the wrong level. In these patients the central changes were present
+and demonstrable, and removing the peripheral input removed the pain anyway.
+**Central sensitisation behaved as a gain applied to an input, not as a
+generator.**
+
+**What it does not establish.** The study contains no CRPS patients. The
+generalisation to CRPS is currently carried by a narrative review, Baron, Hans
+& Dickenson, *Ann Neurol* 2013;74:630-6, PMID 24018757, which states that "In
+postherpetic neuralgia and complex regional pain syndrome, for example, these
+symptoms are maintained and modulated by peripheral nociceptive input", plus a
+single case report in which a block abolished both spontaneous pain and
+allodynia in one CRPS patient (Kato et al., *Pain Med* 2013;14:293-6,
+PMID 23198747). Assertion by authoritative people and n=1 are not a trial. That
+gap is now filed as C-009.
+
+**A methodological note for this programme.** A peripheral nerve block cannot
+be blinded, which is why the intravenous arm at matched plasma concentration is
+the load-bearing control rather than a placebo. Any future design here inherits
+that constraint.
+
 ## 6. The critical question: is there a peripherally decodable pain code?
 
 **Honest reading: partially, and much less than the programme would want.**

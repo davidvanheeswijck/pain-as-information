@@ -1,0 +1,1 @@
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — In long-duration CRPS, does selective suppression of pathological afferent activity relieve pain more than matched nonselective sensory blockade, thereby distinguishing a peripheral generator from central reinterpretation of ordinary input?
