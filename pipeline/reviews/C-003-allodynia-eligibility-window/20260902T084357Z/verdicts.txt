@@ -1,0 +1,1 @@
+00-triage                          azure/openai-responses/gpt-5.6-sol@swedencentral VERDICT: WRONG QUESTION — Is spontaneous C-nociceptor activity necessary and trial-by-trial temporally coupled to touch-evoked pain in established allodynia beyond the effects of tonic central disinhibition?
