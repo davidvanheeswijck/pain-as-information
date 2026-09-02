@@ -47,7 +47,7 @@ Treat these as order-of-magnitude bounds, not measurements. The honest summary i
 
 ### Temporal and burst pattern coding
 
-**SPECULATIVE, thinly evidenced, and the most directly relevant to this programme.** The best direct test located is Cho et al., who recorded ex vivo from mouse saphenous and sural C-fibres under KCl, GABA and capsaicin. Spike count and instantaneous frequency did **not** separate GABA from KCl responses (both ~1.5 Hz versus capsaicin's 17.5 Hz), but a "spikelet" analysis over three consecutive spikes, parameterised by temporal span and inter-spike-interval symmetry, classified the three chemicals at **79.7% accuracy** (chance 33%). Under chronic constriction injury the GABA-evoked pattern shifted toward the capsaicin-like pattern, coinciding with pain behaviour (Cho et al. 2016, *Front Comput Neurosci* 10:118, doi:10.3389/fncom.2016.00118, PMID `[UNVERIFIED]`).
+**SPECULATIVE, thinly evidenced, and the most directly relevant to this programme.** The best direct test located is Cho et al., who recorded ex vivo from mouse saphenous and sural C-fibres under KCl, GABA and capsaicin. Spike count and instantaneous frequency did **not** separate GABA from KCl responses (both ~1.5 Hz versus capsaicin's 17.5 Hz), but a "spikelet" analysis over three consecutive spikes, parameterised by temporal span and inter-spike-interval symmetry, classified the three chemicals at **79.7% accuracy** (chance 33%). Under chronic constriction injury the GABA-evoked pattern shifted toward the capsaicin-like pattern, coinciding with pain behaviour (Cho et al. 2016, *Front Comput Neurosci* 10:118, doi:10.3389/fncom.2016.00118, PMID 27917120).
 
 **[DERIVED]** 79.7% three-way accuracy corresponds to roughly 0.8-0.9 bits of the available 1.58 bits about stimulus identity. That is a real, non-zero, pattern-carried signal, but it is one paper, in one preparation, with chemical rather than natural stimuli, and it has not been replicated in vivo or in human microneurography.
 
@@ -75,7 +75,7 @@ Todd's anatomy is the reference frame: projection neurons concentrate in lamina 
 
 So: **abnormal traffic looks like ongoing, irregular, low-rate discharge in units that should be silent, plus altered activity-dependent conduction-velocity signatures.** That is a rate-and-provenance abnormality, not an exotic waveform.
 
-**Molecular substrate.** Nav1.8 (SCN10A) carries the slow TTX-resistant current in nociceptors and its deletion raises C-fibre electrical activation thresholds (Akopian et al. 1999, *Nat Neurosci* 2:541-8, PMID 10448219, doi:10.1038/9195). Nav1.7 (SCN9A) sets the human phenotype at both extremes: biallelic nonsense mutations abolish pain entirely (Cox et al. 2006, *Nature* 444:894-8, PMID 17167479, doi:10.1038/nature05413), while gain-of-function mutations cause paroxysmal extreme pain disorder (Fertleman et al. 2006, *Neuron* 52:767-74, PMID 17145499, doi:10.1016/j.neuron.2006.10.006). Nav1.9 (SCN11A) is the counterintuitive case: a *de novo* **gain**-of-function mutation causes loss of pain perception, because sustained depolarisation impairs AP generation (Leipold et al. 2013, *Nat Genet* 45:1399-404, PMID 24036948, doi:10.1038/ng.2767). HCN2 is required for the cAMP-driven component of nociceptor firing; nociceptor-specific HCN2 deletion leaves normal thresholds but abolishes inflammatory heat hyperalgesia (Emery et al. 2011, *Science* 333:1462-6, PMID 21903816, doi:10.1126/science.1206243), extended to diabetic neuropathy models in *Sci Transl Med* (doi:10.1126/scitranslmed.aam6072, PMID `[UNVERIFIED]`).
+**Molecular substrate.** Nav1.8 (SCN10A) carries the slow TTX-resistant current in nociceptors and its deletion raises C-fibre electrical activation thresholds (Akopian et al. 1999, *Nat Neurosci* 2:541-8, PMID 10448219, doi:10.1038/9195). Nav1.7 (SCN9A) sets the human phenotype at both extremes: biallelic nonsense mutations abolish pain entirely (Cox et al. 2006, *Nature* 444:894-8, PMID 17167479, doi:10.1038/nature05413), while gain-of-function mutations cause paroxysmal extreme pain disorder (Fertleman et al. 2006, *Neuron* 52:767-74, PMID 17145499, doi:10.1016/j.neuron.2006.10.006). Nav1.9 (SCN11A) is the counterintuitive case: a *de novo* **gain**-of-function mutation causes loss of pain perception, because sustained depolarisation impairs AP generation (Leipold et al. 2013, *Nat Genet* 45:1399-404, PMID 24036948, doi:10.1038/ng.2767). HCN2 is required for the cAMP-driven component of nociceptor firing; nociceptor-specific HCN2 deletion leaves normal thresholds but abolishes inflammatory heat hyperalgesia (Emery et al. 2011, *Science* 333:1462-6, PMID 21903816, doi:10.1126/science.1206243), extended to diabetic neuropathy models in *Sci Transl Med* (doi:10.1126/scitranslmed.aam6072, PMID 28954930).
 
 **Ephaptic and non-ephaptic crosstalk. CONTESTED in magnitude.** Stable ephaptic interaction between injured axon pairs after neuroma, suture or crush was described by Seltzer & Devor (1979, *Neurology* 29:1061, PMID 224343, doi:10.1212/WNL.29.7.1061). Non-ephaptic, chemically mediated cross-excitation in the DRG is better documented: A-neuron firing depolarises ~90% of neighbouring passive C-neurons and raises their firing probability (Amir & Devor 2000, *Neuroscience* 95:189-95, PMID 10619475, doi:10.1016/s0306-4522(99)00388-7). In vivo imaging of >1,600 neurons per DRG showed injury-induced **coupled activation** of adjacent neurons via upregulated satellite-glial gap junctions; blocking gap junctions reduced both coupling and mechanical hyperalgesia (Kim et al. 2016, *Neuron* 91:1085-96, PMID 27568517, doi:10.1016/j.neuron.2016.07.044).
 
@@ -96,6 +96,60 @@ This matters enormously for any decoding programme: **after injury, the DRG stop
 **Important nuance from 2025:** Ghitani et al. found that inflammation left nociceptor *mechanical* responses minimally affected while inducing long-lasting spontaneous activity in specific classes, suggesting that tactile allodynia arises from **coincidence** of normal touch input with touch-independent ongoing nociceptor firing, rather than from sensitised peripheral mechanoreception (PMID 40269164). This is a coincidence-detection model, and it is testable.
 
 ---
+
+### The temporal-coincidence route already has a name, a measurement and a date
+
+Added 2026-09-02, after a triage gate objected that C-003's "eligibility
+window" was renaming an established literature. It was right, and the primary
+source is worth recording precisely because it *both* supports the mechanism
+and destroys the conjecture's novelty claim.
+
+> **Thompson SW, Woolf CJ, Sivilotti LG. "Small-caliber afferent inputs produce
+> a heterosynaptic facilitation of the synaptic responses evoked by primary
+> afferent A-fibers in the neonatal rat spinal cord in vitro." *J Neurophysiol*
+> 1993;69(6):2116-28. PMID 8350135, doi:10.1152/jn.1993.69.6.2116.**
+
+Conditioning one dorsal root while testing another, in vitro:
+
+- **The selectivity is exactly what a coincidence account predicts.**
+  "conditioning at A beta-fiber strength had no effect, whereas A delta- and
+  C-fiber strength conditioning were equally effective." And the facilitation
+  ran one way only: "Heterosynaptic facilitation of only A beta- or A
+  delta-fiber-evoked Test EPSPs was observed, no enhancement of C-fiber
+  strength Test EPSPs could be demonstrated."
+- **The timescale is seconds to tens of seconds, not milliseconds.** Single
+  Aδ/C-strength EPSPs "lasted for 4-6 s"; repeated conditioning summated into a
+  cumulative depolarisation that "slowly decayed back to the control Vm over
+  tens of seconds"; and the facilitation "decayed after the completion of the
+  conditioning stimulus with a time course that was parallel to but not
+  superimposable on" that depolarisation.
+- Facilitation appeared in **7 of 20** neurons, and tracked the size of the
+  cumulative depolarisation (9.1 ± 3.1 mV in facilitating trials against
+  3.3 ± 0.5 mV in non-facilitating ones, p<0.05).
+
+`[The exact facilitation decay constant is UNVERIFIED: the abstract truncates
+at 400 words and the paper is not open access. The three quoted durations above
+are verbatim from the abstract.]`
+
+**Three consequences for this programme.**
+
+1. **C-fibre activity gating Aβ input is a real, measured, thirty-year-old
+   phenomenon.** Any conjecture proposing it as new is renaming it.
+2. **Its timescale is seconds to tens of seconds.** A proposal of "a few
+   hundred milliseconds" is wrong by one to two orders of magnitude, and even
+   1-10 s sits at the low end of the measured range.
+3. **The control a conjecture would design has already been run.** Aβ-strength
+   conditioning produced no facilitation, which is precisely the
+   adaptation-versus-mechanism control, and it passed in 1993.
+
+**What is still genuinely open** is not whether this facilitation exists but
+whether it is *necessary* for established allodynia and *trial-by-trial coupled
+to it under natural, unstimulated conditions*, as opposed to being a real
+phenomenon that is not what maintains the disease. That is a necessity
+question, and it needs spontaneous activity silenced rather than artificial
+bursts delivered. Note the caveat that this preparation is **neonatal rat
+in vitro**, so its transfer to established adult neuropathic allodynia is an
+assumption rather than a finding.
 
 ## 6. The critical question: is there a peripherally decodable pain code?
 
