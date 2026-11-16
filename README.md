@@ -161,10 +161,11 @@ actually said is stamped into every verdict. See [tools/README.md](tools/README.
 
 Early, and already pointing somewhere other than where it started.
 
-**Eight conjectures filed. Seven refuted, one wounded, none confirmed.** Six
-died in adversarial panel review, one died by simulation. That is the intended
-behaviour, not a failure mode: the programme is built to kill its own ideas
-cheaply, and the author's favourites went first.
+**Nine conjectures filed. Nine refuted, none live, none confirmed.** Five died
+in adversarial panel review, two were closed at triage (one by a cheap
+literature check, one as the wrong question), and two died by simulation. That
+is the intended behaviour, not a failure mode: the programme is built to kill
+its own ideas cheaply, and the author's favourites went first.
 
 ### What the evidence pass established
 
@@ -195,14 +196,17 @@ reason: a well-designed physics measurement with no demonstrated instance of
 the physics in nociceptive tissue. What survives is quantum *instrumentation*,
 and that has now been costed rather than argued (below).
 
-### The one live conjecture
+### No live conjecture
 
-**C-003** is the only conjecture whose probability rose under review, from 0.30
-to 0.62. It proposes that mechanical allodynia is a coincidence phenomenon in
-time: ongoing C-fibre discharge opens a window during which otherwise normal
-touch input is routed to nociceptive output. Its killer has been rewritten
-after review, with the window's time constant now pre-registered from the
-wind-up literature rather than asserted.
+**C-003** was the only conjecture whose probability ever rose under review, from
+0.30 to 0.62. It proposed that mechanical allodynia is a coincidence phenomenon
+in time. It did not survive the rematch: the second panel refuted it, and the
+posterior fell to 0.15. **C-009** is the most recent. It was built on a real
+human result and killed by the hostile-referee gate on a design defect: a
+complete sensory block removes ordinary touch along with any pathological
+traffic, so it cannot separate a peripheral generator from central
+reinterpretation of normal input. Reasons and re-proposal conditions for all
+nine are in `ledger/REFUTED.md`.
 
 ### The result that cost a few minutes of laptop compute
 

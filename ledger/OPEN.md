@@ -4,12 +4,12 @@ The honest current position of the programme. Updated after every panel run and
 at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
-**Last updated:** 2026-09-01 (second revision)
-**Conjectures filed:** 9 · **panelled:** 8 · **refuted:** 9 · **wounded:** 0 · **draft:** 0
+**Last updated:** 2026-11-16 (independent review recorded)
+**Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
 **Programme status:** not yet assessable (fewer than 10 conjectures)
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
-> is the design working: eight filed, eight closed, each with a recorded reason
+> is the design working: nine filed, nine closed, each with a recorded reason
 > and a re-proposal condition. The programme's output to date is a set of
 > things that are *not* true plus one costed engineering specification, which
 > is more than it started with.
@@ -216,6 +216,44 @@ corrupting results rather than failing loudly.
 The same first two bugs exist in the sibling `own-the-machine-tools/review.sh`,
 which this harness was derived from.
 
+## Independent review, 2026-11-16
+
+An independent reviewer read the programme. Their main findings are recorded
+here as **recorded, not resolved**: none has been acted on beyond the
+housekeeping named below, and none is a decision.
+
+- **(a) The HC-3 foothold at the ganglion is argued from one side.** The
+  positive evidence is a rat result and a supporting model from one research
+  lineage. Two models from an independent group report direct activation of
+  Aβ fibres and no direct activation of C-fibres at clinical amplitude (one
+  does not model T-junction silencing at all), and, in one population of model
+  neurons, C-neuron activation only at several mA against typically ≤1 mA
+  clinically. A rat study from the original lineage finds the T-junction filter
+  already weakened after injury. Added to `evidence/03-writing-the-signal.md`
+  §3 ("Two Michigan models disagree with the lineage above").
+  The HC-3 row above still reads as "alive" and has not been revised.
+- **(b) HC-2's killer is arguably met for allodynia, and the programme was
+  narrowed rather than the hard core changed.** E-01 §6 says no peripheral
+  decoder can succeed in principle for allodynia, because the traffic that hurts
+  is indistinguishable from normal touch. The "reframing" section above narrows
+  the programme instead of recording a hard-core change. **Whether that is the
+  right bookkeeping is a decision for the owner. It is flagged here, not
+  taken.**
+- **(c) The work has gone to Branch B, which bears on none of the motivating
+  phenotype's questions.** Those are: which generator (neuroma, ganglion or
+  central) drives the pain; why the benefit of ganglion stimulation fades in
+  some people; and whether touch-evoked allodynia and background pain separate.
+  A costed magnetometry specification answers none of them.
+- **(d) The Branch B specification is uncalibrated.** The C-004 forward model
+  gives a peak field of 4.524 pT for a synchronous Aβ volley at 6.5 mm
+  (`simulations/C-004-velocity-beamforming/results/results.md`, check 2),
+  against about 1 pT measured in humans. The check is scored PASS only because
+  its tolerance is an order-of-magnitude band of 0.10 to 10 pT. A factor of
+  about 4.5 in amplitude is a factor of about 20 in energy, which is the
+  quantity the C-008 trade-off surface is built on.
+
+All four are population-level observations about the programme's design.
+
 ## Known gaps in the harness
 
 - **No way to score the reviewers.** Gate 03 returned a confident MAJOR on
@@ -233,6 +271,14 @@ which this harness was derived from.
   seed of eighteen above threshold. The simulation's verdict logic should
   refuse to declare a result when the statistic sits near its threshold, and
   should require an ensemble. Recorded rather than silently patched.
+  **Guarded 2026-11-16:** `simulations/verdict.py` is now the only place either
+  simulation turns a statistic into a verdict word, and it returns INCONCLUSIVE
+  from fewer than 10 seeds or a CI that spans the threshold
+  (`simulations/test_verdict.py`). A single-seed C-004 run now prints
+  INCONCLUSIVE; the recorded 18-seed verdicts are re-derived from the committed
+  JSON by the tests. Previously committed single-seed result files, which
+  predate the guard, still carry their old verdict text and are not
+  regenerated.
 - No automated Lakatos degeneration check. E-06 §4 identifies the version-diff
   as the single most valuable mechanical check available, and it is not built.
 - No content hash and timestamp at intake, so pre-registration currently rests

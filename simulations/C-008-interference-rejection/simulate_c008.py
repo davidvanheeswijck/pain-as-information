@@ -55,8 +55,10 @@ import numpy as np
 
 _C004 = Path(__file__).resolve().parents[1] / "C-004-velocity-beamforming"
 sys.path.insert(0, str(_C004))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
 import simulate as s4  # noqa: E402
+import verdict as vd  # noqa: E402
 
 
 # ---------------------------------------------------------------------------
@@ -358,8 +360,13 @@ def main(argv=None):
                    help="per-sensor gain/orientation mismatch, 1-sigma. "
                         "0.003 = 0.3%%, i.e. ~1:300 common-mode rejection, "
                         "a realistic figure for a matched OPM array.")
-    p.add_argument("--out", type=Path, default=Path("results"))
+    p.add_argument("--out", type=Path, default=None,
+                   help="output directory. Default: results/run-<seeds>seeds, "
+                        "never results/ itself, so a smoke run cannot land at "
+                        "the canonical path (the verdict run is results/main/).")
     a = p.parse_args(argv)
+    if a.out is None:
+        a.out = Path("results") / f"run-{a.seeds}seeds"
 
     cfg = s4.SimConfig(n_trials=a.trials, noise_asd_fT_rtHz=a.noise_asd)
     v_grid = s4.default_v_grid()
@@ -419,17 +426,17 @@ def main(argv=None):
     print("excluding 1.0, WHILE the A-beta positive control still passes.")
     for scheme in ("grad1", "grad2", "refreg"):
         c, ab = results[f"{scheme}:C"], results[f"{scheme}:Ab"]
-        ab_ok = ab["ci95"][0] > 1.0
-        c_fail = c["ci95"][1] < 1.0
-        c_pass = c["ci95"][0] > 1.0
-        if not ab_ok:
-            verd = "INCONCLUSIVE - positive control lost; configuration wrong"
-        elif c_pass:
-            verd = "CONJECTURE SURVIVES"
-        elif c_fail:
-            verd = "CONJECTURE REFUTED"
+        # Verdict words come from verdict.decide only: none is printed from
+        # fewer than vd.DEFAULT_MIN_N seeds or from a CI that spans 1.0.
+        ab_side, ab_why = vd.decide(ab["values"], 1.0, above="PASS", below="FAIL")
+        c_side, why = vd.decide(c["values"], 1.0, above="CONJECTURE SURVIVES",
+                                below="CONJECTURE REFUTED")
+        if ab_side != "PASS":
+            verd = f"INCONCLUSIVE - positive control not established ({ab_why})"
+        elif c_side == vd.INCONCLUSIVE:
+            verd = f"INCONCLUSIVE - {why}"
         else:
-            verd = "INCONCLUSIVE - CI spans 1.0"
+            verd = c_side
         print(f"  {scheme:6s}: C mean={c['mean']:.3f} CI=[{c['ci95'][0]:.3f},"
               f"{c['ci95'][1]:.3f}] | Ab mean={ab['mean']:.3f} -> {verd}")
 
