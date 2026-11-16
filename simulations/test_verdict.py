@@ -6,7 +6,9 @@ The committed-results tests re-derive the recorded verdicts from the committed
 JSON; they do not re-run any simulation.
 """
 
+import ast
 import json
+import re
 import sys
 import unittest
 from pathlib import Path
@@ -95,6 +97,59 @@ class RecordedC004(unittest.TestCase):
         self.assertGreater(seed0, 1.0)
         self.assertEqual(vd.decide([seed0], 1.0, above="OVERTURNED", below="SURVIVES")[0],
                          "INCONCLUSIVE")
+
+
+class NoUnguardedVerdictWords(unittest.TestCase):
+    """Every upper-case verdict word in a simulation's string literals must sit
+    inside a function that goes through verdict.decide (or tests its
+    INCONCLUSIVE result). A bare print("OVERTURNED") in an unguarded function,
+    or at module level, fails. Limit: a bare word added inside an already
+    guarded function is not caught by this structural check."""
+
+    WORDS = re.compile(r"OVERTURNED|REFUTED|SURVIVE")
+    FILES = [
+        HERE / "C-004-velocity-beamforming" / "simulate.py",
+        HERE / "C-008-interference-rejection" / "simulate_c008.py",
+    ]
+
+    @staticmethod
+    def _guarded(fn):
+        return any(isinstance(n, ast.Attribute) and isinstance(n.value, ast.Name)
+                   and n.value.id == "vd" and n.attr in ("decide", "INCONCLUSIVE")
+                   for n in ast.walk(fn))
+
+    def offenders(self, source, name="<src>"):
+        tree = ast.parse(source, name)
+        docstrings = set()
+        for node in ast.walk(tree):
+            if isinstance(node, (ast.Module, ast.FunctionDef, ast.ClassDef)):
+                body = node.body
+                if (body and isinstance(body[0], ast.Expr)
+                        and isinstance(body[0].value, ast.Constant)):
+                    docstrings.add(id(body[0].value))
+        out = []
+
+        def visit(node, guarded):
+            if isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef)):
+                guarded = guarded or self._guarded(node)
+            if (isinstance(node, ast.Constant) and isinstance(node.value, str)
+                    and id(node) not in docstrings
+                    and self.WORDS.search(node.value) and not guarded):
+                out.append((node.lineno, node.value[:60]))
+            for child in ast.iter_child_nodes(node):
+                visit(child, guarded)
+
+        visit(tree, False)
+        return out
+
+    def test_simulations_have_no_unguarded_verdict_words(self):
+        for f in self.FILES:
+            self.assertEqual(self.offenders(f.read_text(), str(f)), [], str(f))
+
+    def test_the_check_catches_a_bare_verdict_print(self):
+        src = self.FILES[0].read_text() + '\n\ndef _stray():\n    print("OVERTURNED")\n'
+        self.assertTrue(self.offenders(src))
+        self.assertTrue(self.offenders('print("CONJECTURE REFUTED")\n'))
 
 
 if __name__ == "__main__":

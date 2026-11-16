@@ -1214,6 +1214,8 @@ def main(argv: list[str] | None = None) -> int:
             f"INCONCLUSIVE: {run_why}."
         )
     else:
+        # Unreachable while a run is one seed (decide() needs >= DEFAULT_MIN_N);
+        # kept so an ensemble driver passing many ratios has a verdict path.
         emit(
             f"HEADLINE: C-band ridge {'DETECTED above the null distribution' if c_exceeds_null else 'NOT distinguishable from the null distribution'}. "
             f"C-004's prediction {'SURVIVES' if c_band_ridge_survives else 'DOES NOT SURVIVE'} this simulation."
@@ -1299,7 +1301,9 @@ def main(argv: list[str] | None = None) -> int:
         },
         "headline": {
             "c_band_ridge_exceeds_null": c_exceeds_null,
-            "c004_prediction_survives": c_band_ridge_survives,
+            # None while INCONCLUSIVE: a bool here would read as a verdict.
+            "c004_prediction_survives": (
+                None if run_verdict == vd.INCONCLUSIVE else c_band_ridge_survives),
             "verdict": run_verdict,
             "verdict_reason": run_why,
         },
@@ -1477,7 +1481,7 @@ def write_results_md(cfg: SimConfig, payload: dict, log: list[str]) -> None:
     c3 = payload["check_3_ab_positive_control"]
     c2 = payload["check_2_amplitude_calibration"]
     c1 = payload["check_1_single_fibre"]
-    vd = payload["velocity_domain"]
+    vel = payload["velocity_domain"]
     td = payload["time_domain"]
 
     lines = []
@@ -1558,12 +1562,12 @@ def write_results_md(cfg: SimConfig, payload: dict, log: list[str]) -> None:
     )
     lines.append(
         f"- Velocity-domain matched filtering, C band: ridge at "
-        f"{vd['c_ridge']['peak_v']:.3f} m/s, amplitude "
-        f"{vd['c_ridge']['peak_energy']**0.5*1e15:.3f} fT, raw SNR {vd['c_snr']:.3f} "
+        f"{vel['c_ridge']['peak_v']:.3f} m/s, amplitude "
+        f"{vel['c_ridge']['peak_energy']**0.5*1e15:.3f} fT, raw SNR {vel['c_snr']:.3f} "
         f"(vs. theoretical per-sensor noise sigma; NOT corrected for the "
         "velocity-sweep multiple-comparisons search -- see check 4 for the "
         "corrected, null-distribution-based test), "
-        f"FWHM [{vd['c_ridge']['fwhm_low']:.3f}, {vd['c_ridge']['fwhm_high']:.3f}] m/s."
+        f"FWHM [{vel['c_ridge']['fwhm_low']:.3f}, {vel['c_ridge']['fwhm_high']:.3f}] m/s."
     )
     lines.append(
         f"- A-beta band (positive control): time-domain SNR {c3['time_domain_snr']:.2f}, "
@@ -1978,7 +1982,8 @@ def run_sensor_realism_mode(cfg: SimConfig, v_grid: np.ndarray, args: argparse.N
         "headline": {
             "bandwidth_alone_overturns_refutation": bandwidth_alone_overturns,
             "survives_with_interference_and_notch": survives_with_interference,
-            "c004_refutation_overturned": overturned,
+            # None while INCONCLUSIVE: a bool here would read as a verdict.
+            "c004_refutation_overturned": None if inconclusive else overturned,
             "verdict": "INCONCLUSIVE" if inconclusive else (
                 "OVERTURNED" if overturned else "SURVIVES"),
             "verdict_reason": realism_why,

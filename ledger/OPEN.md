@@ -224,11 +224,13 @@ housekeeping named below, and none is a decision.
 
 - **(a) The HC-3 foothold at the ganglion is argued from one side.** The
   positive evidence is a rat result and a supporting model from one research
-  lineage. Independent models read clinical-amplitude DRG stimulation as
-  driving Aβ fibres rather than silencing C fibres, put C-neuron activation at
-  several mA against typically ≤1 mA clinically, and a rat study finds the
-  T-junction filter already weakened after injury. Added to
-  `evidence/03-writing-the-signal.md` §3 ("The independent models disagree").
+  lineage. Two models from an independent group report direct activation of
+  Aβ fibres and no direct activation of C-fibres at clinical amplitude (one
+  does not model T-junction silencing at all), and, in one population of model
+  neurons, C-neuron activation only at several mA against typically ≤1 mA
+  clinically. A rat study from the original lineage finds the T-junction filter
+  already weakened after injury. Added to `evidence/03-writing-the-signal.md`
+  §3 ("Two Michigan models disagree with the lineage above").
   The HC-3 row above still reads as "alive" and has not been revised.
 - **(b) HC-2's killer is arguably met for allodynia, and the programme was
   narrowed rather than the hard core changed.** E-01 §6 says no peripheral
