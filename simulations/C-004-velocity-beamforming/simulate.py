@@ -156,6 +156,9 @@ from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+import verdict as vd  # noqa: E402
+
 MU0 = 4.0 * np.pi * 1e-7  # vacuum permeability, T*m/A
 
 
@@ -1199,10 +1202,22 @@ def main(argv: list[str] | None = None) -> int:
         "-- if NO, the model/pipeline itself is not trustworthy and the C-band "
         "result below cannot be interpreted either way."
     )
-    emit(
-        f"HEADLINE: C-band ridge {'DETECTED above the null distribution' if c_exceeds_null else 'NOT distinguishable from the null distribution'}. "
-        f"C-004's prediction {'SURVIVES' if c_band_ridge_survives else 'DOES NOT SURVIVE'} this simulation."
-    )
+    # One invocation is one seed: verdict.decide refuses a verdict word from it.
+    # An ensemble verdict needs >= vd.DEFAULT_MIN_N seeds (see simulate_c008.py).
+    ridge_ratio = ridge_c["peak_energy"] / null_p95 if null_p95 > 0 else float("inf")
+    run_verdict, run_why = vd.decide(
+        [ridge_ratio], 1.0, above="SURVIVES", below="DOES NOT SURVIVE")
+    if run_verdict == vd.INCONCLUSIVE:
+        emit(
+            f"HEADLINE: C-band ridge {'above' if c_exceeds_null else 'not above'} the "
+            f"null 95th percentile in this single run (ratio {ridge_ratio:.3f}). "
+            f"INCONCLUSIVE: {run_why}."
+        )
+    else:
+        emit(
+            f"HEADLINE: C-band ridge {'DETECTED above the null distribution' if c_exceeds_null else 'NOT distinguishable from the null distribution'}. "
+            f"C-004's prediction {'SURVIVES' if c_band_ridge_survives else 'DOES NOT SURVIVE'} this simulation."
+        )
     emit("-" * 72)
 
     # --- optional noise sweep ---
@@ -1285,6 +1300,8 @@ def main(argv: list[str] | None = None) -> int:
         "headline": {
             "c_band_ridge_exceeds_null": c_exceeds_null,
             "c004_prediction_survives": c_band_ridge_survives,
+            "verdict": run_verdict,
+            "verdict_reason": run_why,
         },
         "noise_sweep": sweep_results,
     }
@@ -1572,7 +1589,14 @@ def write_results_md(cfg: SimConfig, payload: dict, log: list[str]) -> None:
     lines.append("")
     lines.append("## Verdict")
     lines.append("")
-    if headline["c004_prediction_survives"]:
+    if headline.get("verdict") == vd.INCONCLUSIVE:
+        lines.append(
+            "**INCONCLUSIVE.** This file reports a single seed, and a verdict "
+            "computed from one random seed is not a verdict "
+            f"({headline['verdict_reason']}). Run an ensemble of at least "
+            f"{vd.DEFAULT_MIN_N} seeds before stating one."
+        )
+    elif headline["c004_prediction_survives"]:
         lines.append(
             "**C-004's prediction survives this simulation.** Under the "
             "documented model and parameters, velocity-domain matched filtering "
@@ -1886,8 +1910,26 @@ def run_sensor_realism_mode(cfg: SimConfig, v_grid: np.ndarray, args: argparse.N
     survives_with_interference = bandwidth_alone_overturns and ratio_notch > 1.0
     overturned = bandwidth_alone_overturns and survives_with_interference
 
+    # One invocation is one seed. verdict.decide refuses to name a side from it
+    # (the single seed-0 ratio of 1.03 once printed OVERTURNED and an 18-seed
+    # ensemble reversed it to 0.73), so every verdict word below is gated on it.
+    realism_verdict, realism_why = vd.decide(
+        [ratio_notch], 1.0, above="OVERTURNED", below="SURVIVES")
+    inconclusive = realism_verdict == vd.INCONCLUSIVE
+    if inconclusive:
+        overturned = False
+
     emit("-" * 72)
-    if overturned:
+    if inconclusive:
+        emit(
+            f"HEADLINE: INCONCLUSIVE. {realism_why}. This single-seed run "
+            f"observed ratios of {best['c_band_detectability_ratio']:.3f} (no "
+            f"interference), {ratio_interf:.3f} (with interference) and "
+            f"{ratio_notch:.3f} (with interference and notch) against a "
+            "threshold of 1.0; it does not overturn or confirm C-004's "
+            f"refutation. Run an ensemble of at least {vd.DEFAULT_MIN_N} seeds."
+        )
+    elif overturned:
         emit(
             f"HEADLINE: the bandwidth premise is wrong for {best_sensor.name}, and this "
             "survives realistic interference with a 50 Hz notch applied. C-004's "
@@ -1937,6 +1979,9 @@ def run_sensor_realism_mode(cfg: SimConfig, v_grid: np.ndarray, args: argparse.N
             "bandwidth_alone_overturns_refutation": bandwidth_alone_overturns,
             "survives_with_interference_and_notch": survives_with_interference,
             "c004_refutation_overturned": overturned,
+            "verdict": "INCONCLUSIVE" if inconclusive else (
+                "OVERTURNED" if overturned else "SURVIVES"),
+            "verdict_reason": realism_why,
         },
     }
 
@@ -1960,7 +2005,14 @@ def write_sensor_realism_md(out_dir: Path, payload: dict, log: list[str]) -> Non
     lines = []
     lines.append("# C-004 sensor-realism follow-up: does the bandwidth premise save it?")
     lines.append("")
-    if headline["c004_refutation_overturned"]:
+    if headline.get("verdict") == vd.INCONCLUSIVE:
+        lines.append(
+            "**INCONCLUSIVE.** This file reports a single seed, and a verdict "
+            f"computed from one random seed is not a verdict ({headline['verdict_reason']}). "
+            f"Run an ensemble of at least {vd.DEFAULT_MIN_N} seeds before stating "
+            "one; see ENSEMBLE.md for the 18-seed result."
+        )
+    elif headline["c004_refutation_overturned"]:
         lines.append(
             f"**C-004's refutation is OVERTURNED by this analysis: the {p3['best_sensor']} "
             f"clears both the sensitivity and bandwidth bar for the C-band ridge "
