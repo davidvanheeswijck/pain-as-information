@@ -23,3 +23,15 @@ private/
 # Simulation virtualenv. simulations/ is deliberately outside the stdlib-only
 # rule that governs tools/, so it has dependencies; they are not committed.
 simulations/.venv/
+
+# Compiled NEURON artefacts (nrnivmodl output) for simulations/S-001-*/mod/
+simulations/**/arm64/
+simulations/**/x86_64/
+simulations/**/aarch64/
+simulations/**/*.o
+simulations/**/*.dylib
+simulations/**/*.so
+simulations/**/mod/*.c
+simulations/**/mod/*.cpp
+# Smoke-test output; never a result
+simulations/**/results/pilot/

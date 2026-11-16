@@ -1,0 +1,8 @@
+# S-1 dependencies (simulations/ only; not on the CI path). Python 3.13:
+# NEURON 9.0.2 has no wheel for python3.15; python3.13 or 3.14 works.
+#   python3.13 -m venv simulations/.venv
+#   simulations/.venv/bin/pip install -r simulations/S-001-tjunction-rate-vs-pattern/requirements.txt
+#   (cd simulations/S-001-tjunction-rate-vs-pattern/mod && PATH=../../.venv/bin:$PATH nrnivmodl)
+numpy>=1.26
+matplotlib>=3.8
+neuron==9.0.2

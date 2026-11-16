@@ -225,3 +225,92 @@ clinical extracellular amplitudes ever reach C-neuron somata; charge was not
 matched across frequencies in the human trials; a morphologically simplified
 neuron with a single set of ion channels; no dorsal-horn model. **These
 results are not stimulation settings.**
+
+---
+
+## Amendments made in the results commit (commit #2)
+
+Everything above is as committed in commit #1 and is not edited. What follows
+was decided while building the model, **before any P1, P2 or ensemble result
+existed**, but after the pre-registration; each item says what changed and why,
+so a reader can judge whether it moves the goalposts. The thresholds, the
+patterns, the verdict rules and the positive-control criteria are unchanged.
+
+**A. Tuning freedoms.** The pre-registered list of tunables was too short. To
+pass the Sundt 30 Hz and 6 Hz controls, free parameters were: Na density
+(0.0385 S/cm2 against Sundt's 0.04), KCNQ density (0.0015 against Fig. 5d's
+0.0004), stem length (75 um, Fig. 5d), SK conductance (0.02 against Fig. 8c's
+0.001), Ca decay (1500 ms against Fig. 8c's 500 ms) and segmentation (50 um
+axons, 10 um junction and stem). All were chosen against the three Sundt
+following frequencies only. The Sundt 2015 values did not reproduce the paper's
+own following frequencies with the ModelDB mechanisms in this rebuild (KCNQ
+alone only reached 38 to 50 Hz at the paper's densities); that is itself a
+finding about reproducibility, not about the T-junction.
+
+**B. Following frequency is scanned, not bisected.** In these models following
+is not monotone in frequency (a 150 Hz value was seen for a neuron that failed
+at 118 Hz). The following frequency is the first failing grid frequency on a
+12% geometric grid, refined once to about 6%.
+
+**C. Stimulation site and amplitude.** (i) The stimulus is a 1 ms current pulse
+at the mid-stem, not the soma: with SK present the soma stopped generating
+spikes after a few pulses (8 to 10 of 100 at 20 Hz), so the "stimulation" was
+mostly doing nothing. (ii) "Threshold" is a **steady-state drive threshold**:
+the smallest multiple (up to 12x) of the from-rest threshold at which at least
+90% of the pulses in the second half of a 4 s regular 20 Hz train evoke a stem
+spike. 1.0x and 1.5x are multiples of that. Variants that cannot be driven are
+dropped and counted (they are a declared selection effect). (iii) The number of
+pulses that evoked a spike (`n_evoked`) is reported for every run, as the
+pre-registration promised.
+
+**D. Test (probe) spikes.** The pre-registered primary was a 10 Hz test train.
+In the SK-bearing configuration that is **above the 6 Hz following frequency, so
+the probe train blocks itself with no stimulation at all** (F is about 1 with
+no stimulus in the models where following frequency is below 10 Hz). The
+**primary probe is therefore a 2 Hz train** (mean rate, each spike jittered
++/-30% of its slot so that all phases of the stimulus train are sampled; the
+same probe times in every condition of a model). The pre-registered 10 Hz
+primary and the 5 Hz train are run and reported on the 30-model subsample only
+(1.5x; regular 20 Hz, regular 80 Hz, burst, and 5 seeds each of Poisson and
+jitter). Both sets of numbers are shown in `results.md`.
+
+**E. F definition.** The central recording site is 60 um into the central axon
+(closer to the junction than "mid central axon", so that latencies are short).
+The ambiguity exclusion replaces the +/-2 ms collision rule: a probe spike is
+excluded if a stimulus-evoked spike crosses the mid-stem site in a window that
+could produce a central crossing inside the success window (the stimulus spike
+would otherwise be mistaken for the probe at the central site). Probes that do
+not reach the pre-junction site (annihilated by a stimulus spike en route) are
+also excluded. Spikes the probe itself sends into the stem within about one
+conduction step are not counted as ambiguity. `F_all` (no exclusion) is a lower
+bound on F and is stored per run.
+
+**F. Aβ comparator.** Rest at -65 mV, because the unshifted Traub-Miles sodium
+kinetics are unstable at -60 mV (a spike fired at 1 pA); everything else as
+built in `tjmodel.py`. Its conduction velocity is about 3.7 m/s against about
+0.3 m/s for the C model: it is a comparator for "myelinated passes", not a
+calibrated Aβ fibre.
+
+**G. Diagnostics added, not thresholds.** A post hoc "drive-matched" 80 Hz
+run (1.5x of its own steady-state drive threshold) is reported on the subsample
+because the pre-registration itself named loss of stimulus drive as the likeliest
+route to a spurious P2 refutation.
+
+### Prior art found after pre-registration
+
+**Ladez SR, Liu J, Chen L, Feng B. "Computational Modeling of Dorsal Root
+Ganglion Stimulation: Understanding Pain Suppression Mechanisms." 2024 46th
+Annual International Conference of the IEEE EMBC, 2024, 4 pages, doi
+10.1109/EMBC53108.2024.10782923 (IEEE Xplore document 10782923;
+University of Connecticut).** Title, authors, venue and year verified through
+Crossref. **I could not read the abstract or the paper** (IEEE Xplore returns a
+page that needs a browser; Crossref holds no abstract), so I know its content
+only from the coordinator's one-line description (a NEURON model of Aδ and
+C-fibre transmission under DRG stimulation) and have not checked it. What S-1
+adds relative to that description is two specific questions: whether stimulation
+**pattern at matched mean rate** changes T-junction filtering (the acute version
+of the refuted C-001 idea), and whether a T-junction account can **retrodict the
+blinded human frequency ordering** of Piedade 2022 and 2023, with the thresholds
+fixed in advance and a positive control that can disqualify the result. It does
+not supersede or reproduce that work. Kent et al. 2018 (PMID 29377442), already
+cited above, remains the closest earlier DRG-stimulation computational model.
