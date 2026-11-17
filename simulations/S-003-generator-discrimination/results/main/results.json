@@ -2,7 +2,7 @@
  "simulation": "S-003-generator-discrimination",
  "label": "main",
  "date": "2026-11-17",
- "code_commit": "829c85c",
+ "code_commit": "8ad87c5",
  "code_dirty": false,
  "numpy": "2.5.5",
  "seeds": {
@@ -77,7 +77,7 @@
    "lo": 0.6,
    "hi": 0.95,
    "status": "anchored",
-   "basis": "PMID 24704366: abolished in all 14, none with CRPS",
+   "basis": "PMID 24704366: abolished in all 14; the abstract does not mention CRPS",
    "tests": "T1, T2, T3"
   },
   "u": {
@@ -1347,6 +1347,16 @@
      0.8006733390142895
     ]
    },
+   "at most 3, share of prior entropy removed": {
+    "median": 0.42395361288323424,
+    "p2.5": 0.3136591979455977,
+    "p97.5": 0.5385924540411156,
+    "mean": 0.4238506729204149,
+    "mean_t95": [
+     0.42228335112848286,
+     0.4254179947123469
+    ]
+   },
    "adaptive depth 3 minus best triple": {
     "median": 0.017841358968919474,
     "p2.5": -1.1102230246251565e-16,
@@ -2003,7 +2013,7 @@
    {
     "parameter": "prior H1",
     "tests": "all",
-    "status": "anchored",
+    "status": "elicited",
     "rho_best_triple": -0.2234376837148552,
     "rho_best_le3": -0.22456215353513462
    },
@@ -3313,6 +3323,16 @@
      0.6983992632518343
     ]
    },
+   "at most 3, share of prior entropy removed": {
+    "median": 0.4459731061761817,
+    "p2.5": 0.2936097225654302,
+    "p97.5": 0.5938076495221015,
+    "mean": 0.4441645210612771,
+    "mean_t95": [
+     0.4412677593429876,
+     0.4470612827795664
+    ]
+   },
    "adaptive depth 3 minus best triple": {
     "median": 0.008909119151864653,
     "p2.5": -1.1102230246251565e-16,
@@ -4025,7 +4045,7 @@
    {
     "parameter": "prior H1",
     "tests": "all",
-    "status": "anchored",
+    "status": "elicited",
     "rho_best_triple": -0.07034417783401112,
     "rho_best_le3": -0.056176231823514486
    },
