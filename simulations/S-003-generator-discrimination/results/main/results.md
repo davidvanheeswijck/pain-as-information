@@ -4,7 +4,7 @@ Not medical advice; these are questions a treating team might consider, at popul
 
 This is a decision-analysis model. It gives no protocol, dose or device setting, and it says nothing about any individual. **No likelihood in it is fully sourced**: every range is elicited, some anchored on a number or a direction read from an abstract (table at the end). The intervals below measure Monte Carlo error and the spread across those elicited ranges. They do not measure whether the ranges are right.
 
-Pre-registration: `PREDICTION.md` (commit #1). Run: 20 seeds of 200 draws, 4000 draws, seeds 20261117 to 20261136; code at commit `dc9713c`. Verdict rule: `simulations/verdict.py` `decide` on the per-seed proportions, with a pooled Wilson 95% interval beside it; INCONCLUSIVE unless both name the same side.
+Pre-registration: `PREDICTION.md` (commit #1). Run: 20 seeds of 200 draws, 4000 draws, seeds 20261117 to 20261136; code at commit `829c85c`. Verdict rule: `simulations/verdict.py` `decide` on the per-seed proportions, with a pooled Wilson 95% interval beside it; INCONCLUSIVE unless both name the same side.
 
 ## Verdicts
 
@@ -38,6 +38,8 @@ Information gain in bits. "Central 95%" is the 2.5th to 97.5th percentile across
 | T3 dilute anaesthetic at the ganglion | 0.256 | [0.106, 0.470] | 0.265 [0.262, 0.268] | 0.171 | 2.83 | 0.000 |
 | T4 ganglion stimulation on/off | 0.156 | [0.055, 0.316] | 0.164 [0.162, 0.165] | 0.005 | 4.16 | 0.000 |
 | T5 ultrasound or MR neurography | 0.134 | [0.050, 0.281] | 0.142 [0.140, 0.143] | 0.006 | 4.39 | 0.000 |
+
+The comparative block is above the single block in 1.000 of draws. That ordering comes from the elicited ranges for r and s (how much a control removes false responses against how many true responders it loses), not from data: no source read here gives either number for peripheral nerve blocks.
 
 ## Pairs (set A)
 
@@ -79,7 +81,7 @@ The pair most often on top is **T2+T3** (P(top) 0.779); the triple most often on
 | best fixed triple | 0.776 | [0.553, 0.997] |
 | adaptive depth 3 | 0.797 | [0.568, 1.023] |
 | at most 3, fixed or adaptive | 0.797 | [0.568, 1.023] |
-| adaptive depth 3 minus best triple | 0.018 | [-0.000, 0.058] |
+| adaptive depth 3 minus best triple | 0.018 | [0.000, 0.058] |
 
 First test of the best depth-3 adaptive policy, share of draws: T2 0.977, T4 0.017, T3 0.006, T5 0.001, T1 0.000.
 

@@ -1,52 +1,52 @@
-17:46:46 start label=main seeds=20 draws_per_seed=200 numpy=2.5.5 python=3.13.5 code_commit=dc9713c dirty=False out=simulations/S-003-generator-discrimination/results/main
-17:46:46 midpoint check: {"T1": 0.3172, "T2": 0.3972, "T3": 0.26, "T4": 0.1198, "T5": 0.1313}
-17:46:46 main ensemble
-17:46:47 seed 20261117: 200 draws done
-17:46:47 seed 20261118: 200 draws done
-17:46:48 seed 20261119: 200 draws done
-17:46:48 seed 20261120: 200 draws done
-17:46:49 seed 20261121: 200 draws done
-17:46:50 seed 20261122: 200 draws done
-17:46:50 seed 20261123: 200 draws done
-17:46:51 seed 20261124: 200 draws done
-17:46:51 seed 20261125: 200 draws done
-17:46:52 seed 20261126: 200 draws done
-17:46:52 seed 20261127: 200 draws done
-17:46:53 seed 20261128: 200 draws done
-17:46:53 seed 20261129: 200 draws done
-17:46:54 seed 20261130: 200 draws done
-17:46:55 seed 20261131: 200 draws done
-17:46:55 seed 20261132: 200 draws done
-17:46:56 seed 20261133: 200 draws done
-17:46:56 seed 20261134: 200 draws done
-17:46:57 seed 20261135: 200 draws done
-17:46:57 seed 20261136: 200 draws done
-17:46:58 flat-prior ensemble (secondary)
-17:46:58 seed 20262117: 200 draws done
-17:46:59 seed 20262118: 200 draws done
-17:46:59 seed 20262119: 200 draws done
-17:47:00 seed 20262120: 200 draws done
-17:47:00 seed 20262121: 200 draws done
-17:47:01 seed 20262122: 200 draws done
-17:47:02 seed 20262123: 200 draws done
-17:47:02 seed 20262124: 200 draws done
-17:47:03 seed 20262125: 200 draws done
-17:47:03 seed 20262126: 200 draws done
-17:47:04 seed 20262127: 200 draws done
-17:47:04 seed 20262128: 200 draws done
-17:47:05 seed 20262129: 200 draws done
-17:47:06 seed 20262130: 200 draws done
-17:47:06 seed 20262131: 200 draws done
-17:47:07 seed 20262132: 200 draws done
-17:47:07 seed 20262133: 200 draws done
-17:47:08 seed 20262134: 200 draws done
-17:47:08 seed 20262135: 200 draws done
-17:47:09 seed 20262136: 200 draws done
-17:47:09 control: PASS oracle=2.000000000 noise=0.000000000 max_err=5.29e-16
-17:47:09 P1: SUPPORTED proportion=1.0000 wilson=[0.9990, 1.0000] t=[1.0000, 1.0000] threshold=0.8
-17:47:09 P2: SUPPORTED proportion=0.7887 wilson=[0.7758, 0.8011] t=[0.7748, 0.8027] threshold=0.5
-17:47:09 P2b: SUPPORTED proportion=0.9902 wilson=[0.9867, 0.9929] t=[0.9885, 0.9920] threshold=0.7
-17:47:09 P3: SUPPORTED proportion=0.9637 wilson=[0.9575, 0.9691] t=[0.9585, 0.9690] threshold=0.8
-17:47:09 Kill: TRIGGERED proportion=0.0398 wilson=[0.0341, 0.0463] t=[0.0330, 0.0465] threshold=0.5
-17:47:09 figures: information-gain-by-set.png, pairwise-separation.png
-17:47:09 wrote simulations/S-003-generator-discrimination/results/main/results.json and simulations/S-003-generator-discrimination/results/main/results.md
+17:48:35 start label=main seeds=20 draws_per_seed=200 numpy=2.5.5 python=3.13.5 code_commit=829c85c dirty=False out=simulations/S-003-generator-discrimination/results/main
+17:48:35 midpoint check: {"T1": 0.3172, "T2": 0.3972, "T3": 0.26, "T4": 0.1198, "T5": 0.1313}
+17:48:35 main ensemble
+17:48:36 seed 20261117: 200 draws done
+17:48:36 seed 20261118: 200 draws done
+17:48:37 seed 20261119: 200 draws done
+17:48:37 seed 20261120: 200 draws done
+17:48:38 seed 20261121: 200 draws done
+17:48:38 seed 20261122: 200 draws done
+17:48:39 seed 20261123: 200 draws done
+17:48:40 seed 20261124: 200 draws done
+17:48:40 seed 20261125: 200 draws done
+17:48:41 seed 20261126: 200 draws done
+17:48:41 seed 20261127: 200 draws done
+17:48:42 seed 20261128: 200 draws done
+17:48:42 seed 20261129: 200 draws done
+17:48:43 seed 20261130: 200 draws done
+17:48:44 seed 20261131: 200 draws done
+17:48:44 seed 20261132: 200 draws done
+17:48:45 seed 20261133: 200 draws done
+17:48:45 seed 20261134: 200 draws done
+17:48:46 seed 20261135: 200 draws done
+17:48:46 seed 20261136: 200 draws done
+17:48:47 flat-prior ensemble (secondary)
+17:48:47 seed 20262117: 200 draws done
+17:48:48 seed 20262118: 200 draws done
+17:48:48 seed 20262119: 200 draws done
+17:48:49 seed 20262120: 200 draws done
+17:48:49 seed 20262121: 200 draws done
+17:48:50 seed 20262122: 200 draws done
+17:48:51 seed 20262123: 200 draws done
+17:48:51 seed 20262124: 200 draws done
+17:48:52 seed 20262125: 200 draws done
+17:48:52 seed 20262126: 200 draws done
+17:48:53 seed 20262127: 200 draws done
+17:48:53 seed 20262128: 200 draws done
+17:48:54 seed 20262129: 200 draws done
+17:48:55 seed 20262130: 200 draws done
+17:48:55 seed 20262131: 200 draws done
+17:48:56 seed 20262132: 200 draws done
+17:48:56 seed 20262133: 200 draws done
+17:48:57 seed 20262134: 200 draws done
+17:48:57 seed 20262135: 200 draws done
+17:48:58 seed 20262136: 200 draws done
+17:48:58 control: PASS oracle=2.000000000 noise=0.000000000 max_err=5.29e-16
+17:48:58 P1: SUPPORTED proportion=1.0000 wilson=[0.9990, 1.0000] t=[1.0000, 1.0000] threshold=0.8
+17:48:58 P2: SUPPORTED proportion=0.7887 wilson=[0.7758, 0.8011] t=[0.7748, 0.8027] threshold=0.5
+17:48:58 P2b: SUPPORTED proportion=0.9902 wilson=[0.9867, 0.9929] t=[0.9885, 0.9920] threshold=0.7
+17:48:58 P3: SUPPORTED proportion=0.9637 wilson=[0.9575, 0.9691] t=[0.9585, 0.9690] threshold=0.8
+17:48:58 Kill: TRIGGERED proportion=0.0398 wilson=[0.0341, 0.0463] t=[0.0330, 0.0465] threshold=0.5
+17:48:58 figures: information-gain-by-set.png, pairwise-separation.png
+17:48:58 wrote simulations/S-003-generator-discrimination/results/main/results.json and simulations/S-003-generator-discrimination/results/main/results.md

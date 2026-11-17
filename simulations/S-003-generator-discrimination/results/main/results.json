@@ -2,7 +2,7 @@
  "simulation": "S-003-generator-discrimination",
  "label": "main",
  "date": "2026-11-17",
- "code_commit": "dc9713c",
+ "code_commit": "829c85c",
  "code_dirty": false,
  "numpy": "2.5.5",
  "seeds": {
@@ -1419,6 +1419,7 @@
    }
   },
   "p_best_le3_at_least_1_bit_set_B": 0.00075,
+  "p_T2_above_T1": 0.99975,
   "pairwise": {
    "H1-H2": {
     "all_four": {
@@ -3384,6 +3385,7 @@
    }
   },
   "p_best_le3_at_least_1_bit_set_B": 0.0,
+  "p_T2_above_T1": 1.0,
   "pairwise": {
    "H1-H2": {
     "all_four": {
