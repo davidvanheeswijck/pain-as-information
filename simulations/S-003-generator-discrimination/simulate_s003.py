@@ -516,7 +516,7 @@ def f3(x) -> str:
 
 
 def interval(d) -> str:
-    return f"[{d['p2.5']:.3f}, {d['p97.5']:.3f}]"
+    return f"[{f3(d['p2.5'])}, {f3(d['p97.5'])}]"
 
 
 def claim_row(name, text, c) -> str:
