@@ -50,6 +50,7 @@ def funnel(rs):
         n_B1=sum(1 for r in cal if r["flags"]["B1"]),
         n_B2=sum(1 for r in cal if r["flags"]["B2"]),
         n_B3=sum(1 for r in cal if r["flags"]["B3"]),
+        n_B1_and_B3=sum(1 for r in cal if r["flags"]["B1"] and r["flags"]["B3"]),
         n_block_all=sum(1 for r in cal if r["flags"]["B1"] and r["flags"]["B2"] and r["flags"]["B3"]),
         n_sundt_all_of_calibrated=sum(1 for r in cal if r.get("sk_in_band")),
         n_onset_none=sum(1 for o in onsets if o is None),
@@ -361,7 +362,7 @@ def tuning_md(R, A):
             ("+SK following frequency in 2-40 Hz (calibration run done)", "n_sk_2_40"), ("of which in the 4.5-7.5 Hz band", "n_sk_band"),
             ("undrivable (no calibration run)", "n_undrivable"), ("calibration runs completed", "n_calibrated"),
             ("B1 holds (of calibrated)", "n_B1"), ("B2 holds", "n_B2"), ("B3 holds (onset 2-20 s)", "n_B3"),
-            ("B1, B2 and B3 all hold (any Sundt band status)", "n_block_all"), ("**meet every calibration target**", "n_meets"))
+            ("B1, B2 and B3 all hold, counting only the calibration-run candidates and ignoring whether their Sundt bands hold", "n_block_all"), ("**meet every calibration target**", "n_meets"))
     for lab, key in rows:
         A(f"| {lab} | {F[key]} | {T['funnel_r1'][key]} | {T['funnel_r2'][key]} |")
     A("")
@@ -370,12 +371,12 @@ def tuning_md(R, A):
           f"block onset is under 2 s in {F['n_onset_under_2s']}, between 2 and 20 s in {F['n_B3']}, over 20 s in {F['n_onset_over_20s']} and absent in {F['n_onset_none']}"
           + (f"; median onset where defined {f2(F['onset_median_defined_s'])} s." if F["onset_median_defined_s"] is not None else "."))
         A("")
-        A("Best five calibrated candidates by J (calibration targets only; d are the normalised log deviations of the three following frequencies, 1 = band edge):")
+        A("Best five calibrated candidates by J (calibration targets only; d = ln(ff/target)/ln(1.25) for the three following frequencies; the bands are ±25% linear, so the band edges are at d = +1.00 and d = -1.29, and the 'in Sundt bands' column states directly whether each following frequency is inside its band):")
         A("")
-        A("| id | J | ff Na+Kdr / +KCNQ / +SK (Hz) | d | F early / late | onset (s) | SK in stem | meets |")
-        A("|---|---|---|---|---|---|---|---|")
+        A("| id | J | ff Na+Kdr / +KCNQ / +SK (Hz) | d | in Sundt bands (Na+Kdr / +KCNQ / +SK) | F early / late | onset (s) | SK in stem | meets |")
+        A("|---|---|---|---|---|---|---|---|---|")
         for b in T["best"]:
-            A(f"| {b['id']} | {b['J']:.3f} | {b['ff']['na_k']:.1f} / {b['ff']['kcnq']:.1f} / {b['ff']['sk']:.1f} | {b['d']['na_k']:.2f} / {b['d']['kcnq']:.2f} / {b['d']['sk']:.2f} | {f2(b['F_early'])} / {f2(b['F_late'])} | {f2(b['flags']['onset_s'])} | {b['params']['sk_stem']} | {'yes' if b['meets'] else 'no'} |")
+            A(f"| {b['id']} | {b['J']:.3f} | {b['ff']['na_k']:.1f} / {b['ff']['kcnq']:.1f} / {b['ff']['sk']:.1f} | {b['d']['na_k']:.2f} / {b['d']['kcnq']:.2f} / {b['d']['sk']:.2f} | {' / '.join('yes' if TU.in_band(n, b['ff'][n]) else 'NO' for n in ('na_k', 'kcnq', 'sk'))} | {f2(b['F_early'])} / {f2(b['F_late'])} | {f2(b['flags']['onset_s'])} | {b['params']['sk_stem']} | {'yes' if b['meets'] else 'no'} |")
         A("")
     A(f"**{F['n_meets']} of {F['n']} candidates met every calibration target; {len(T['sets'])} set(s) selected** (selected sets must also reproduce the three bands at dt/2 and break the third band when SK is removed).")
     A("")
@@ -409,6 +410,9 @@ def write_md_no_tuning(R, out, pilot):
     A(f"| P2 no human ordering | {R['verdicts']['P2']} |")
     A("")
     F = R["tuning"]["funnel_all"]
+    if F["n_calibrated"]:
+        A(f"**What this rules out, and what it points to.** Of the {F['n_calibrated']} calibrated candidates, {F['n_onset_under_2s']} block in under 2 s and B1 (F in the first 5 s at most 0.50) holds in {F['n_B1']}; B2 holds in {F['n_B2']} and B3 (onset 2 to 20 s) in {F['n_B3']}. Of the {F['n_B3']} with onset between 2 and 20 s, {F['n_B1_and_B3']} also meet B1 (the rest have F above 0.50 in the first 5 s). Within this declared space and channel set, then, a block that builds progressively by the B1 to B3 definition is not found: the Ca-dependent K block arrives within seconds. That points to a slower process, for example the ion-gradient run-down mechanism of Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770), as a candidate for a next pre-registered run. This is a pointer, not a conclusion; nothing here tests that mechanism.")
+        A("")
     A(f"This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: {F['n']} sampled candidates, of which {F['n_calibrated']} reached the calibration run (the funnel is in the table below). It does not say that no model could do both, and it is not a result about patients.")
     A("")
     tuning_md(R, A)

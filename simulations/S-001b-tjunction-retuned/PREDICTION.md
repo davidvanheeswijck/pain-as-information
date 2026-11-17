@@ -442,3 +442,15 @@ record (none of it is a result, and none of it changes anything above):
 
 Nothing pre-registered (targets, search space, selection criterion, gates,
 thresholds, ensemble rule, hand prediction) is changed by the pilot.
+
+### Amendment 2 (2026-11-17, after the main run): reporting corrections, no pre-registered rule changed
+
+The main run found 0 of 336 candidates meeting the targets. Two reporting fixes
+were made in `aggregate_s001b.py` and the results regenerated from the same
+per-candidate files (no model was re-run): (i) the selection score text said d_i
+is "1 at a band edge"; the bands are +/-25% linear, so on the low side the edge is
+at d = -1.29 (ln 0.75 / ln 1.25), not -1. J and every pass/fail test use the
+bands directly and are unaffected; the report now states both edges and adds an
+"in Sundt bands" column. (ii) A data-generated pointer was added under the verdict
+(the ion-gradient mechanism, PMID 40039770, as a candidate for a next
+pre-registered run); it is a pointer, not a conclusion.
