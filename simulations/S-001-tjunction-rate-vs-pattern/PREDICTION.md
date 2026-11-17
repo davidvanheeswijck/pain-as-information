@@ -370,3 +370,21 @@ corrected site). The calibration of the three Sundt configurations does not
 depend on the stem site and is re-measured, not re-tuned; no tuning parameter is
 changed. Because the drive threshold and acceptance depend on the corrected
 site, **all stages are rerun**, including acceptance.
+
+### Note on `simulations/verdict.py` (appended 2026-11-17; commit #1's text is unchanged)
+
+Commit #1 says `simulations/verdict.py` does not exist on this branch's base. That
+was true then. It has since landed on main (PR #2). It is **not used** here: it
+computes a Student-t interval of one mean against one threshold with a minimum n,
+and has no proportion (Wilson) rule or composite P1/P2 logic, which the rules
+above require. The local rule in `aggregate_s001.py` implements the rules in this
+file, and `results.md` says the same. `aggregate_s001.py` could cross-check the
+mean-difference cells with `verdict.decide` if that is wanted later.
+
+### Note on reporting scored probes (appended 2026-11-17, review)
+
+F is computed on scored probes only (amendment E). At high rates few probes are
+scored (about 14% of probes per model at 80 Hz, 1.5x, against about 74% at 20 Hz),
+so F(80 Hz) describes probes that cross between stimulus volleys. `results.md`
+and `results.json` now report probes tested, arrived and scored per rate and
+amplitude, and F_all next to F. No threshold or verdict rule was changed.

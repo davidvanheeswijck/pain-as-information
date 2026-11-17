@@ -159,8 +159,16 @@ def main(out, pilot=False):
             ev = [m["runs"][f"reg{fr}@{amp}"]["n_evoked"] / max(1, m["runs"][f"reg{fr}@{amp}"]["n_pulses"])
                   for m in models.values() if f"reg{fr}@{amp}" in m["runs"]]
             b = boot_mean(vals)
+            runs = [m["runs"][f"reg{fr}@{amp}"] for m in models.values() if f"reg{fr}@{amp}" in m["runs"]]
+            nt = float(np.mean([r["n_test"] for r in runs]))
+            na = float(np.mean([r["n_arrived"] for r in runs]))
+            ns = float(np.mean([r["n_scored"] for r in runs]))
+            fa = boot_mean([fval(r, "F_all") for r in runs])
             tab[f"reg{fr}@{amp}"] = dict(F_mean=b["mean"], F_ci=[b["lo"], b["hi"]], n=b["n"],
-                                         evoked_fraction_median=float(np.median(ev)) if ev else None)
+                                         evoked_fraction_median=float(np.median(ev)) if ev else None,
+                                         n_test_mean=nt, n_arrived_mean=na, n_scored_mean=ns,
+                                         scored_over_test=ns / nt if nt else None,
+                                         F_all_mean=fa["mean"], F_all_ci=[fa["lo"], fa["hi"]])
     base = [fval(m["runs"].get("none")) for m in models.values()]
     R["F_by_regular_rate"] = tab
     R["F_probe_only_baseline"] = boot_mean(base)
@@ -312,6 +320,9 @@ def shows(R):
         s += "F changes with rate in a regime where the stimulus has largely stopped evoking spikes, so a rate effect on F cannot be read as filtering. "
     else:
         s += "The stimulus keeps evoking spikes at 80 Hz, so the F change is not explained by lost drive. "
+    s += (f"F(80 Hz) is computed on probes that cross between stimulus volleys: {f2(f80['n_scored_mean'])} of {f2(f80['n_test_mean'])} probes per model are scored at 80 Hz "
+          f"({f2(f80['scored_over_test'])}) against {f2(f20['n_scored_mean'])} of {f2(f20['n_test_mean'])} at 20 Hz ({f2(f20['scored_over_test'])}), and F_all is {f2(f80['F_all_mean'])} at 80 Hz against {f2(f20['F_all_mean'])} at 20 Hz. "
+          "So a low F(80) means \"drive intact, and gap probes rarely fail\", not \"a high rate passes the junction\". ")
     if d["n_with_d80_found"] == 0:
         s += f"The post hoc drive-matched 80 Hz run could not be made: no amplitude up to 12x found a drive in {d['n_subsample']}/{d['n_subsample']} models."
     L += [s, ""]
@@ -322,7 +333,29 @@ def shows(R):
         L += ["## Conditional readings, NOT verdicts (control failed)", "",
               f"Applying the pre-registered rules to these numbers anyway: P1 would read {R['P1']['verdict_if_control_passes'].lower()}; P2 would read {R['P2']['verdict_if_control_passes'].lower()}. "
               "These are shown only so the reasons are visible. They carry no evidential weight because the model failed its own control.", ""]
+        cvr = R["convergence"]
+        if not cvr["pass_"]:
+            L += [f"**The dt-halving check also FAILED** ({cvr['classification_flips']} pattern-versus-rate classification flip(s) and {cvr['n_abs_dF_gt_0_05']} of {cvr['n_comparisons']} comparisons with |dF| > 0.05, max |dF| {f2(cvr['max_abs_dF'])}), "
+                  "so even the conditional readings above are not numerically converged in the time step. This further weakens them; it is not a rounding detail.", ""]
     return L
+
+
+def run_notes(out):
+    """Interruptions and resumes, read from run.log and file times."""
+    p = os.path.join(out, "run.log")
+    if not os.path.exists(p):
+        return []
+    starts = [ln.split()[0] for ln in open(p) if "start main" in ln or "start pilot" in ln]
+    if len(starts) < 2:
+        return []
+    import time as _t
+    last_model = max((os.path.getmtime(f) for f in glob.glob(os.path.join(out, "model", "m*.json"))), default=0)
+    last_cand = max((os.path.getmtime(f) for f in glob.glob(os.path.join(out, "cand", "c*.json"))), default=0)
+    fmt = lambda t: _t.strftime("%H:%M", _t.localtime(t))
+    return ["## Run notes", "",
+            f"The run was started at {starts[0]} and **resumed at {starts[-1]}** ({len(starts)} start lines in `run.log`) after the process was killed (machine restart). "
+            f"The resume reused cached per-model files and did not recompute them: the last candidate file was written at {fmt(last_cand)} and the last det model file at {fmt(last_model)}, both before the resume; "
+            "the control stage (not cached) was recomputed, and the later stages (stochastic, tests, Aβ, convergence, visual) were run in the resumed process, computing only files not already present. Results are deterministic given the per-model seeds.", ""]
 
 
 def cond_line(name, R):
@@ -343,6 +376,8 @@ def write_md(R, out, pilot):
     A(f"Verdict logic: {R['verdict_module']} (`simulations/verdict.py` exists on main and gives a t-interval of a mean against one threshold; it has no proportion/Wilson rule and no composite P1/P2 logic, so it is not used here and the local rule stays; `aggregate_s001.py` could cross-check the mean-difference cells with it). Pre-registration: `PREDICTION.md` (commit #1); amendments are listed in `PREDICTION.md` under 'Amendments made in the results commit'.")
     A("")
     v = R["verdicts"]
+    for line in run_notes(out):
+        A(line)
     A("## Verdicts")
     A("")
     A("| Item | Verdict |")
@@ -379,11 +414,13 @@ def write_md(R, out, pilot):
     A("")
     A("## F by regular rate (probe-only baseline: " + f"mean {f2(R['F_probe_only_baseline']['mean'])}, max over models {f2(R['F_probe_only_baseline']['max'])})")
     A("")
-    A("| Rate | Amp | F mean | 95% CI | n | median fraction of pulses evoking a spike |")
-    A("|---|---|---|---|---|---|")
+    A("F is computed on *scored* probes only: probes that reach the pre-junction site and are not ambiguous with a stimulus spike (see `PREDICTION.md`, amendment E). `F_all` counts every arrived probe and treats any central crossing in the window as success, so it is a lower bound on F that includes stimulus spikes. Where the scored fraction is small, F is a statement about the gaps between stimulus volleys.")
+    A("")
+    A("| Rate | Amp | F mean | 95% CI | F_all mean | n models | mean probes (test / arrived / scored) | scored / test | median fraction of pulses evoking a spike |")
+    A("|---|---|---|---|---|---|---|---|---|")
     for key, t in R["F_by_regular_rate"].items():
         rate, amp = key[3:].split("@")
-        A(f"| {rate} Hz | {amp}x | {f2(t['F_mean'])} | [{f2(t['F_ci'][0])}, {f2(t['F_ci'][1])}] | {t['n']} | {f2(t['evoked_fraction_median'])} |")
+        A(f"| {rate} Hz | {amp}x | {f2(t['F_mean'])} | [{f2(t['F_ci'][0])}, {f2(t['F_ci'][1])}] | {f2(t['F_all_mean'])} | {t['n']} | {t['n_test_mean']:.1f} / {t['n_arrived_mean']:.1f} / {t['n_scored_mean']:.1f} | {f2(t['scored_over_test'])} | {f2(t['evoked_fraction_median'])} |")
     A("")
     A("## P1: pattern versus rate (difference from regular 20 Hz, matched pulse count)")
     A("")

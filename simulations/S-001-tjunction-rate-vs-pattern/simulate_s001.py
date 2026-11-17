@@ -451,7 +451,7 @@ def main():
                     for fn in sorted(files):
                         full = os.path.join(root, fn)
                         z.write(full, os.path.relpath(full, out))
-        log(f"wrote {zp}", fh)
+        log(f"wrote {os.path.relpath(zp, out)}", fh)
 
 
 if __name__ == "__main__":
