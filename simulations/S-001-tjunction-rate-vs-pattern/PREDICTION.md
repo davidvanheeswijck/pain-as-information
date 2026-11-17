@@ -230,11 +230,32 @@ results are not stimulation settings.**
 
 ## Amendments made in the results commit (commit #2)
 
-Everything above is as committed in commit #1 and is not edited. What follows
-was decided while building the model, **before any P1, P2 or ensemble result
-existed**, but after the pre-registration; each item says what changed and why,
-so a reader can judge whether it moves the goalposts. The thresholds, the
-patterns, the verdict rules and the positive-control criteria are unchanged.
+Everything above this section is as committed in commit #1 and is not edited;
+this section was appended afterwards. **Correction (2026-11-17, review):**
+an earlier version of this paragraph said these items were decided before any
+result existed and that the quantity measured was unchanged. That was too
+strong. Items A to G were **pilot-informed redefinitions of the measured
+quantity** (the stimulus site, the meaning of "threshold", the probe rate, the
+definition of F). The pre-registered *thresholds* (P1, P2), the three patterns,
+the verdict rules and the control criteria were not changed, but because what F
+and the amplitude mean was changed after looking at pilot output, the claim
+"the pre-registered test was run" is weaker than it sounds.
+
+Pilot and calibration runs that preceded the main run, and what they showed
+(none of these is in the committed results):
+- Following-frequency scans on about 40 parameter sets: KCNQ alone reached only
+  38-50 Hz at the paper's densities; following was non-monotone.
+- Single-model smoke runs (5 to 10 s): soma stimulation evoked 8-10 spikes in
+  100 pulses once SK was present; F was about 1 even at 4 Hz.
+- 10 Hz probe: F about 1 with no stimulus in SK models (probe self-blocks).
+- Pilot 1 (13 variants, 5 s): F(4 Hz) about 1.0, F(80 Hz) about 0.4 with 1.5-3.7%
+  of pulses evoking a spike; **Chao criterion (b) already FAILED in the pilot**
+  (F early equals F late). So the control failure was visible before the main run.
+- Pilot 2 (8 variants, 5 s): same pattern; the pipeline end to end.
+The main run started at 00:09:08 on 2026-11-17, **16 seconds before commit #2 was
+made (00:09:24)**, so commit-before-run cannot be proved for run 1 from git
+history alone. For the rerun described in Amendment H the code is committed
+first and the run is started afterwards.
 
 **A. Tuning freedoms.** The pre-registered list of tunables was too short. To
 pass the Sundt 30 Hz and 6 Hz controls, free parameters were: Na density
@@ -303,7 +324,7 @@ Ganglion Stimulation: Understanding Pain Suppression Mechanisms." 2024 46th
 Annual International Conference of the IEEE EMBC, 2024, 4 pages, doi
 10.1109/EMBC53108.2024.10782923 (IEEE Xplore document 10782923;
 University of Connecticut).** Title, authors, venue and year verified through
-Crossref. **Update (results commit):** PMID 40039770; the abstract was then read
+Crossref. **Update (results commit; this paragraph was rewritten in commit #3, not merely appended):** PMID 40039770; the abstract was then read
 via PubMed. It is a NEURON model of Aδ- and C-fibre transmission under DRG
 stimulation with Markov-type sodium channel models (including NaV1.6), and
 reports that stimulation raises intra-axonal Na+ and lowers K+, disrupting
@@ -317,3 +338,35 @@ Piedade 2022 and 2023, with thresholds fixed in advance and a positive control
 that can disqualify the result. It does
 not supersede or reproduce that work. Kent et al. 2018 (PMID 29377442), already
 cited above, remains the closest earlier DRG-stimulation computational model.
+
+### Amendment H (2026-11-17, found in review after run 1): the recording site was on the wrong side of the stimulus
+
+**What was wrong.** In the C-neuron the stem is connected so that `stem(0)` is at
+the T-junction and `stem(1)` at the soma (`stem.connect(tjperi(1), 0)`,
+`soma.connect(stem(1), 0)`), but the recording site named `stem_pre` was
+`stem(0.9)`, which is the **soma end**, on the far side of the stimulus at
+`stem(0.5)`. In the Aβ comparator the connections are reversed, so `stem(0.9)`
+was at the junction end there: the two models disagreed. Consequences, all in run
+1: "evoked" (spikes counted at `stem_pre`), the steady-state drive threshold, the
+201 "undrivable" exclusions, the ambiguity exclusion in `score()` and the
+lost-drive claim all tracked **invasion of the soma**, not drive toward the
+junction or the central axon. A reviewer measured, on the visual-traces model with
+1.9 nA at the mid-stem, 5/160 pulses counted at `stem(0.9)` at 80 Hz while 152/160
+reached the central axon. **F as run 1 computed it was not the quantity defined
+above, and run 1's F, its control criterion (b) and its conditional P1/P2 readings
+are void.** Run 1 is kept under `results/run1-void-site-defect/` for the record.
+
+**What run 2 changes: recording sites only.** Sites are defined by role from the
+topology: the junction-side stem segment (stem(0.1) in the C-neuron, stem(0.9) in
+the Aβ comparator), the T-junction, the peripheral pre-junction site and the
+central site. "Evoked" is a spike at the junction-side stem site; the ambiguity
+rule uses the same site. A unit test asserts the sites' positions from the
+connections in both models (`test_sites.py`).
+
+**What run 2 keeps unchanged:** every threshold, pattern, verdict rule, control
+criterion and the ensemble rule of this file as amended in A to G (including the
+2 Hz primary probe and the drive-threshold definition, now applied at the
+corrected site). The calibration of the three Sundt configurations does not
+depend on the stem site and is re-measured, not re-tuned; no tuning parameter is
+changed. Because the drive threshold and acceptance depend on the corrected
+site, **all stages are rerun**, including acceptance.
