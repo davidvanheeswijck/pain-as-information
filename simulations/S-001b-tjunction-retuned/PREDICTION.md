@@ -405,3 +405,40 @@ Any pilot is run only under the gitignored `results/pilot/`, through the full
 aggregator, and is disclosed here with its numbers. Nothing pre-registered above
 changes after a pilot. Any change to the code that affects a measured quantity
 after a run starts is declared here.
+
+### Amendment 1 (2026-11-17, after commit #2 and one pilot, before the main run): pilot disclosure
+
+Commit #2 (`47472f7`) holds the code. A pilot was then run through the full
+pipeline, under the gitignored `results/pilot/` only, to find bugs and time the
+stages: 16 round-1 candidates (T = 12 s for the calibration run), round 2 with 2
+candidates, then a 12-variant ensemble around **S-1's SK configuration used as a
+stand-in set** (because no pilot candidate met the targets; the stand-in is
+pilot-only and is not a selected set), 8 s runs, 4 subsample models, 4 Aβ
+comparators; 10 workers; 18 minutes in all. What the pilot showed, for the
+record (none of it is a result, and none of it changes anything above):
+
+- **Funnel in the pilot:** of 16 round-1 candidates, 8 passed the Na+Kdr band,
+  1 of those passed the +KCNQ/M band, and that 1 reached the calibration run (SK
+  configuration 19.3 Hz, outside the 4.5 to 7.5 Hz band; onset 1.4 s). Round 2
+  (2 candidates around it) produced none. So 0 of 18 met the targets, and
+  the funnel's yield past the second stage was low. A 240-candidate round 1
+  could easily have only a handful of calibration runs; the "no tuning" sentence,
+  if it is the outcome, will be accompanied by those counts (it is a search
+  result, not an exhaustive scan).
+- **Timing:** about 3 minutes per candidate that goes through the +KCNQ/M scan
+  (the following-frequency scans dominate), under 2 minutes for early exits; round 1
+  of 16 took 4.5 minutes on 10 workers. Projected main run: round 1 about 1 hour,
+  round 2 about 0.5 hour on 12 workers; the ensemble and later stages, if reached,
+  are of the order of S-1's 160 minutes.
+- **A code defect found and fixed in `aggregate_s001b.py`:** the tuning scatter
+  plot called `band()` with the configuration name instead of its target in Hz, so
+  that PNG was not written; the P1 and F-versus-rate PNGs were. Display only; no
+  number changes. Also added to the "no tuning" report a data-generated sentence
+  that says the result is a search result with its candidate counts.
+- Pilot numbers that bear on the held-out features are **not** used for anything:
+  with the stand-in set V1 reads FAIL (the stand-in blocks at 2 Hz as well) and V2
+  is inconclusive (11 of 12), which is what that S-1 configuration would be
+  expected to do and says nothing about a tuned set.
+
+Nothing pre-registered (targets, search space, selection criterion, gates,
+thresholds, ensemble rule, hand prediction) is changed by the pilot.

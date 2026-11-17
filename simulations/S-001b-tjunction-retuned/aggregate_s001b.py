@@ -408,7 +408,8 @@ def write_md_no_tuning(R, out, pilot):
     A(f"| P1 pattern is approximately rate | {R['verdicts']['P1']} |")
     A(f"| P2 no human ordering | {R['verdicts']['P2']} |")
     A("")
-    A("This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It does not say that no model could do both, and it is not a result about patients.")
+    F = R["tuning"]["funnel_all"]
+    A(f"This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: {F['n']} sampled candidates, of which {F['n_calibrated']} reached the calibration run (the funnel is in the table below). It does not say that no model could do both, and it is not a result about patients.")
     A("")
     tuning_md(R, A)
     A("## Visual traces")
@@ -642,7 +643,7 @@ def plot_tuning(R, out):
 
     pts = R["tuning"]["points"]
     fig, ax = plt.subplots(figsize=(6, 4.5))
-    lo, hi = TU.band("sk")
+    lo, hi = TU.band(TU.TARGET_HZ["sk"])
     ax.axvspan(lo, hi, color="0.9", label="Sundt 6 Hz band")
     ax.axhspan(TU.B3_ONSET_S[0], TU.B3_ONSET_S[1], color="0.93", label="onset 2-20 s")
     for p in pts:
