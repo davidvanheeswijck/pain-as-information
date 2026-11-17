@@ -58,4 +58,6 @@ ganglion) is argued from one side of a contested literature. Several derived fil
 - #1 this intent record
 - #2 housekeeping: status counts, seed-ensemble verdict guard, DRG counter-evidence
 - #3 S-1 simulation: NO VERDICT, positive control failed (see ledger/OPEN.md "Simulations")
-- Outstanding: the S-1 visual (item 3 above) is not built yet
+- #5 S-1 ledger entry
+- #6 S-3 generator-discrimination decision model: kill triggered (see ledger/OPEN.md "Simulations")
+- The S-1 visual (item 3 above) is published as a private claude.ai artifact, a playback of the committed `visual-traces.json` labelled with the failed control; it is not in this repository
