@@ -111,6 +111,10 @@ def control_section(out):
                      "yes" if r["accepted"] else "NO"])
     L.append(table_md(["dt (ms)", "W: wind-up (stimuli 1-5 to 16-20)", "A: A-fibre inhibition", "Drive match", "F: SCS frequency effect", "Accepted"], rows))
     ok = all(r["accepted"] for r in recs) and len(recs) == 2
+    L.append("")
+    L.append("The control runs in the order W, A, drive match, F and stops at the first failing feature, so a feature after it reads \"not run\". "
+             "Features are defined in `PREDICTION.md`: W needs the mean of stimuli 16 to 20 to be at least 1.5 times that of stimuli 1 to 5 and at least 1 spike more; "
+             "A needs the mean with A-fibre events to be at most 0.80 of the mean without them (and the latter at least 1 spike per cycle).")
     for r in recs:
         if r.get("F") and r["F"].get("rates"):
             L.append("")

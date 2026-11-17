@@ -1,0 +1,11 @@
+{
+ "caveat": "These results are not stimulation settings.",
+ "gates": {
+  "G1": false,
+  "G2": false,
+  "G4": true,
+  "G3": false
+ },
+ "all_gates": false,
+ "verdicts": "NO VERDICT"
+}

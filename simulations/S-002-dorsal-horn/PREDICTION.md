@@ -562,3 +562,83 @@ a separate accounting of touch-evoked and C-driven output under both
 manipulations, or the contrast of three causes of fading benefit. This is a
 statement about what the **abstracts** say; a full-text reading could change it.
 Models in ModelDB found only by name (Sagalajev 2024, Delrocq) were not read.
+
+---
+
+## Amendments (appended after commit #1; the text above is not edited)
+
+### Amendment 1 (2026-11-18, after the main run): pilots, the main run's outcome, and what they say about the design
+
+**Pilots and checks run before the main run, all disclosed.** Commit #2 (`43228b8`)
+holds the code. Before the main run the following simulations were executed, none
+of them under `results/main/`:
+
+1. The wiring test `test_sites.py` runs one 12 ms simulation with one event, to check that
+   `NetCon.event(t)` delivers at t (first non-zero conductance within 0.2 ms after t).
+2. A timing script and two short diagnostic scripts (not committed; throw-away, scratch
+   directory) ran the unmodified network on the pre-registered generators: a 7.5 s run took
+   about 12.5 s of wall time at `dt` 0.025 ms; the network is silent with no input; with C
+   input only, 4 s runs gave WDR spike counts of 0 (0.5 Hz per fibre), 2 (1 Hz) and 204 (2.5
+   Hz), and touch only (20 Hz per fibre) gave 21 WDR spikes in 4 s. This is how the
+   steepness of the response became known; it was **not** known when this file was written.
+3. A forced-control pilot of the whole pipeline under `results/pilot/` (4 candidates, a C
+   rate forced to 0.5 Hz per fibre, a reduced grid, `S2_PILOT=1`). Its first attempt hung
+   (cause inferred, not proven: a second network built in a live worker process, which crashed
+   the worker and left the pool waiting; the change in `6374d81` gives one network per process
+   and the hang did not recur); the second ran to completion in about 8 minutes
+   including the aggregator. **Nothing from it is a result**; it showed the pipeline runs
+   end to end and that its report refuses to call itself a result when the control is forced.
+4. `diag_candidate0.py` (commits `d03458e`, `992343f` and `d8ce9e3`; the last two came after the main run started and change only that script), a diagnostic of
+   candidate 0 only, seed 1, one 6 s window per cell; its numbers are in
+   `results/main/pilot-diag-candidate0.json`. One run of the diagnostic with
+   `multiprocessing.Pool` hung with idle workers (cause not established; a dead worker is the
+   likely reason, and the pool does not report one); it was replaced by
+   `ProcessPoolExecutor` for the diagnostic. **The main driver still uses
+   `multiprocessing.Pool`**, with one network per process, and could hang in the same way if
+   a worker is killed; this did not occur in the main run.
+
+**What the diagnostics show** (candidate 0, one seed, WDR Hz; from the JSON above):
+
+- C-only rate against C rate (Hz per fibre): 0.25 gives 0.0, 0.5 gives 0.0, 1.0 gives 2.0,
+  1.5 gives 17.5, 2.0 gives 55.5, 2.5 gives 78.3, 5.0 gives 112.2, 10.0 gives 122.5. The
+  pre-registered drive-matching set {2.5, 5, 10, 20} therefore **cannot** reach the band
+  [2, 15] Hz for this model (the lowest set value already gives 78 Hz), so feature F's
+  clause (i) fails by construction; that is a design error in this file, not a property
+  of the model.
+- Touch-only rate at 10 Hz per Aβ fibre by shift (0, 10, 20, 30, 40 mV): 3.2, 28.7, 103.5,
+  143.2, 167.2; at 20 Hz per fibre: 4.5, 67.2, 139.7, 177.0, 201.3. For candidate 0 the
+  onset of "touch drives the projection neuron by >= 1 Hz" lies between 0 and 10 mV, i.e.
+  **below** the pre-registered P0 interval [10, 25] mV. P0 as written looks wrong for
+  candidate 0; whether it is wrong for an ensemble is not known.
+- SCS as pre-registered (all 15 Aβ fibres firing synchronously) with a C background gives a
+  WDR rate that rises with SCS frequency at every frequency tried (C background 1.0 Hz per
+  fibre, no-SCS rate 2.0 Hz: 14.2, 20.0, 31.7, 30.0, 52.5, 93.0, 138.8, 209.8, 234.7 Hz at 5,
+  10, 20, 30, 40, 60, 100, 150, 200 Hz; the 1.5 Hz background is similar). There is **no**
+  30 to 100 Hz inhibitory window in this driver. The published effect is therefore **not**
+  reproduced by my SCS driver and shipped weights; the likeliest reasons are the driver
+  (the authors' recruitment pattern is not in the abstract; mine recruits all 15 fibres
+  every pulse) and the shipped weights; I cannot tell which from the abstract.
+
+**The main run, as pre-registered, unchanged.** Started 2026-11-17 23:58:48 CET from commit
+`6374d81`, `python simulate_s002.py --workers 12`. Candidate 0 failed feature A at both
+`dt` (G1 failed): wind-up passed (mean 20.6 to 37.2 WDR spikes per stimulus at 0.025 ms,
+20.8 to 38.2 at 0.0125 ms) and A-fibre inhibition **failed** (with A-fibre events 19.4 against
+11.3 spikes per cycle without at 0.025 ms; 15.8 against 11.2 at 0.0125 ms: the A fibres
+add spikes rather than remove them, and the two `dt` values differ for the with-A figure).
+Per the rules above the result is **NO VERDICT** for P0 to P3 and nothing beyond the
+control record, the labelled visual traces of candidate 0 (control not passed) and the
+report was produced. The control stops at the first failing feature, so the drive match and
+F were not evaluated in the main run; the diagnostics above are their only (pilot)
+evidence.
+
+**Reporting change after the run, display only:** one explanatory paragraph under the
+control table in `aggregate_s002.py`; results.md was regenerated from the same files; no
+measured number changed.
+
+**What this does not establish.** It does not show the published model is wrong or that the
+Zhang 2014 results are not reproducible: my A and F operationalisations are my own and the
+full text (figures, methods) was not read. A successor study would need, at least, (a) a drive
+match grid that reaches the model's steep range (about 0.5 to 2 Hz per fibre), (b) the paper's
+own SCS and A-fibre protocols from the full text instead of my synchronous-all-fibres driver
+and whole-cycle spike counts, and (c) a fresh pre-registration, since the numbers above were
+seen. It would not be a continuation of this registration.
