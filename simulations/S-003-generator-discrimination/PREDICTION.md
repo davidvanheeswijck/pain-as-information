@@ -429,3 +429,13 @@ of every set), not on all draws.
 **F. Mutation check.** `mutation_check.py` breaks the log base and the
 normalisation of `mutual_information` in a temporary copy and requires
 `test_infogain.py` to fail by assertion.
+
+## Amendment made after the main run
+
+**G. Reporting only.** After reading the main-run output I added one generated
+sentence to `results.md` (the share of draws in which T2 is above T1, and that
+this ordering comes from elicited ranges) and stopped a rounding artefact
+printing as "-0.000". The model, ranges, seeds and verdict rules are
+untouched. The main run was repeated from the new code; its numbers are
+identical to the first main run, which is kept in git history (the results
+commit before this one).

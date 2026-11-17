@@ -401,6 +401,7 @@ def analyse(cols, theta, priors, seed_idx, n_seeds, with_verdicts=True) -> dict:
         name: {t: float((cols[name + "_first"] == t).mean()) for t in TESTS}
         for name in ("adaptA2", "adaptA3", "adaptB2", "adaptB3")}
     res["p_best_le3_at_least_1_bit_set_B"] = float((best_le3_b >= BIT).mean())
+    res["p_T2_above_T1"] = float((cols["ig:T2"] > cols["ig:T1"]).mean())
 
     res["pairwise"] = {}
     for i, j in PAIRS:
@@ -511,7 +512,7 @@ QUESTIONS = {
 
 
 def f3(x) -> str:
-    return f"{x:.3f}"
+    return f"{0.0 if abs(x) < 5e-4 else x:.3f}"
 
 
 def interval(d) -> str:
@@ -610,6 +611,11 @@ def write_markdown(path: Path, R: dict) -> None:
         w(f"| {s} {TEST_LABEL[s]} | {f3(d['median'])} | {interval(d)} | {f3(d['mean'])} "
           f"[{d['mean_t95'][0]:.3f}, {d['mean_t95'][1]:.3f}] | {d['p_top']:.3f} | "
           f"{d['mean_rank']:.2f} | {d['p_at_least_1_bit']:.3f} |")
+    w("")
+    w(f"The comparative block is above the single block in {main['p_T2_above_T1']:.3f} of draws. "
+      f"That ordering comes from the elicited ranges for r and s (how much a control removes false "
+      f"responses against how many true responders it loses), not from data: no source read here "
+      f"gives either number for peripheral nerve blocks.")
     w("")
     for size, title in ((2, "Pairs"), (3, "Triples")):
         group = sorted([s for s in A if A[s]["size"] == size], key=lambda s: -A[s]["p_top"])

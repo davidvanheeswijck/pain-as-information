@@ -12,6 +12,10 @@ Source: Claude Code session, 16/11/2026 (an independent review of the programme 
 
 > "yes go ahead" (16/11/2026), approving: housekeeping fixes, pre-register and build the DRG T-junction rate-versus-pattern simulation, then an interactive visual driven by the same model.
 
+> "S-3, the diagnostic decision model -> yes go ahead and S-1 visual" (17/11/2026)
+
+> "you can try with fable 5.2" (17/11/2026)
+
 ## Problem
 All nine conjectures are refuted and none is live. Both simulations so far went to
 Branch B (magnetic detection of evoked C-fibre volleys), which bears on none of the
@@ -45,6 +49,7 @@ ganglion) is argued from one side of a contested literature. Several derived fil
 |---|---|---|---|
 | 16/11/2026 | owner | Go on housekeeping, S-1 and its visual | session |
 | 16/11/2026 | owner | Systematic scan of AI in pain research, kept in a private folder outside this repository until the owner decides | session |
+| 17/11/2026 | owner | Build S-3 (generator-discrimination decision model) and the S-1 visual | session |
 
 ## Open questions
 - After S-1: build the dorsal-horn gate model (S-2) or the generator-discrimination decision model (S-3) next: owner David
