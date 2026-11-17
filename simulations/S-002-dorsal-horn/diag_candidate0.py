@@ -11,7 +11,7 @@ import argparse
 import json
 import os
 import sys
-from multiprocessing import Pool
+from concurrent.futures import ProcessPoolExecutor
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
@@ -40,14 +40,29 @@ def one(task):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=10)
+    ap.add_argument("--parts", default="C,T,F", help="which of C, T, F to run; results are cached per task")
     args = ap.parse_args()
-    tasks = [("C", r, 0) for r in RC_GRID] + [("T", r, s) for r in RT_GRID for s in SHIFT_GRID] + \
-        [("F", r, f) for r in F_RC for f in P.CONTROL_FREQS]
-    with Pool(args.workers, maxtasksperchild=1) as pool:
-        res = dict(pool.map(one, tasks))
-    out = dict(C_only_rate_hz={str(r): res[("C", r, 0)] for r in RC_GRID},
-               touch_only_rate_hz={f"{r}|{s}": res[("T", r, s)] for r in RT_GRID for s in SHIFT_GRID},
-               scs_with_C_background_rate_hz={f"{r}|{f}": res[("F", r, f)] for r in F_RC for f in P.CONTROL_FREQS},
+    parts = args.parts.split(",")
+    tasks = ([("C", r, 0) for r in RC_GRID] if "C" in parts else []) + \
+        ([("T", r, s) for r in RT_GRID for s in SHIFT_GRID] if "T" in parts else []) + \
+        ([("F", r, f) for r in F_RC for f in P.CONTROL_FREQS] if "F" in parts else [])
+    cache = os.path.join(HERE, "results", "pilot", "diag_candidate0_cache.json")
+    done = {}
+    if os.path.exists(cache):
+        with open(cache) as fh:
+            done = {tuple([v[0][0], v[0][1], v[0][2]]): v[1] for v in json.load(fh)}
+    todo = [t for t in tasks if t not in done]
+    # ProcessPoolExecutor raises BrokenProcessPool if a worker dies; multiprocessing.Pool would hang
+    with ProcessPoolExecutor(args.workers, max_tasks_per_child=1) as ex:
+        for t, r in ex.map(one, todo):
+            done[t] = r
+            os.makedirs(os.path.dirname(cache), exist_ok=True)
+            with open(cache, "w") as fh:
+                json.dump([[list(k), v] for k, v in done.items()], fh)
+    res = done
+    out = dict(C_only_rate_hz={str(r): res[("C", r, 0)] for r in RC_GRID if ("C", r, 0) in res},
+               touch_only_rate_hz={f"{r}|{s}": res[("T", r, s)] for r in RT_GRID for s in SHIFT_GRID if ("T", r, s) in res},
+               scs_with_C_background_rate_hz={f"{r}|{f}": res[("F", r, f)] for r in F_RC for f in P.CONTROL_FREQS if ("F", r, f) in res},
                note="candidate 0, seed 1, one 6 s scored window; a pilot, not a result")
     path = os.path.join(HERE, "results", "pilot", "diag_candidate0.json")
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -55,11 +70,14 @@ def main():
         json.dump(out, fh, indent=1)
     print("C only (Hz per fibre -> WDR Hz):", out["C_only_rate_hz"])
     for r in F_RC:
+        if ("F", r, P.CONTROL_FREQS[0]) not in res:
+            continue
         base = res[("C", r, 0)]
         print(f"SCS frequency effect, C background {r} Hz per fibre (no-SCS rate {base:.2f}): " +
               str({f: round(res[("F", r, f)], 2) for f in P.CONTROL_FREQS}))
     for r in RT_GRID:
-        print(f"touch only at {r} Hz per fibre, WDR Hz by shift:", {s: round(res[('T', r, s)], 2) for s in SHIFT_GRID})
+        if ("T", r, SHIFT_GRID[0]) in res:
+            print(f"touch only at {r} Hz per fibre, WDR Hz by shift:", {s: round(res[('T', r, s)], 2) for s in SHIFT_GRID})
 
 
 if __name__ == "__main__":
