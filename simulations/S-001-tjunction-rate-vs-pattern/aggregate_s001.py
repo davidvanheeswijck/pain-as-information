@@ -139,7 +139,7 @@ def main(out, pilot=False):
     summ = json.load(open(os.path.join(out, "accept_summary.json"))) if os.path.exists(os.path.join(out, "accept_summary.json")) else {}
     conv = _load(os.path.join(out, "converge"), "m*.json")
     R = dict(pilot=pilot, n_models=len(models), n_stoch_models=len(stoch), n_ab=len(abm),
-             verdict_module=("simulations/verdict.py" if os.path.exists(SHARED_VERDICT) else "local rule (PREDICTION.md)"))
+             verdict_module="local rule (PREDICTION.md)")
     min_n = 30 if not pilot else 3
 
     # acceptance
@@ -193,9 +193,10 @@ def main(out, pilot=False):
     R["test_trains_subsample"] = T10
     d10 = [fval(t["runs"].get("reg80@probe10")) - fval(t["runs"].get("reg20@probe10")) for t in tests.values()]
     R["test_trains_subsample"]["reg80_minus_reg20_probe10"] = boot_mean(d10)
-    dd = [fval(t["runs"].get("reg80@drive80")) - fval(models[k]["runs"].get("reg80@1.5")) for k, t in tests.items() if k in models]
+    n_d80 = sum(1 for t in tests.values() if t.get("d80"))
     R["drive_matched_diagnostic"] = dict(
         note="post hoc: reg80 at 1.5x its own steady-state drive threshold, 2 Hz probes",
+        n_subsample=len(tests), n_with_d80_found=n_d80,
         F_reg80_driven=boot_mean([fval(t["runs"].get("reg80@drive80")) for t in tests.values()]),
         F_reg20=boot_mean([fval(models[k]["runs"].get("reg20@1.5")) for k in tests if k in models]),
         d80_over_d20=boot_mean([t["d80"] / models[k]["drive_thr"] for k, t in tests.items() if k in models and t.get("d80")]))
@@ -267,7 +268,7 @@ def write_md(R, out, pilot):
     A("")
     A("**These results are not stimulation settings.** They describe an acute, simplified biophysical model and say nothing about any patient.")
     A("")
-    A(f"Verdict logic: {R['verdict_module']}. Pre-registration: `PREDICTION.md` (commit #1); amendments are listed in `PREDICTION.md` under 'Amendments made in the results commit'.")
+    A(f"Verdict logic: {R['verdict_module']} (`simulations/verdict.py` exists on main and gives a t-interval of a mean against one threshold; it has no proportion/Wilson rule and no composite P1/P2 logic, so it is not used here and the local rule stays; `aggregate_s001.py` could cross-check the mean-difference cells with it). Pre-registration: `PREDICTION.md` (commit #1); amendments are listed in `PREDICTION.md` under 'Amendments made in the results commit'.")
     A("")
     v = R["verdicts"]
     A("## Verdicts")
@@ -334,13 +335,29 @@ def write_md(R, out, pilot):
     d = R["drive_matched_diagnostic"]
     A("## Diagnostics (not pre-registered thresholds)")
     A("")
-    A(f"- Drive-matched, post hoc: regular 80 Hz at 1.5x its own steady-state drive threshold gives F = {f2(d['F_reg80_driven']['mean'])} [{f2(d['F_reg80_driven']['lo'])}, {f2(d['F_reg80_driven']['hi'])}] against regular 20 Hz F = {f2(d['F_reg20']['mean'])} on the same subsample; the 80 Hz drive amplitude is {f2(d['d80_over_d20']['mean'])}x the 20 Hz one.")
+    if d["n_with_d80_found"] == 0:
+        A(f"- Drive-matched 80 Hz, post hoc: **unavailable.** The search tries multiples of the from-rest threshold up to 12x and accepts the first at which at least 90% of the late pulses of a 4 s regular 80 Hz train evoke a stem spike. It found none in {d['n_subsample']}/{d['n_subsample']} subsample models, so no 'drive-matched' run exists (the earlier 'n/a' was this, not a missing stage). Within a 12x amplitude range the stem cannot be driven at 80 Hz in these models; that is itself the lost-drive result, and is why P2 cannot be read as filtering.")
+    else:
+        A(f"- Drive-matched, post hoc: 80 Hz at 1.5x its own drive threshold (found in {d['n_with_d80_found']}/{d['n_subsample']} models) gives F = {f2(d['F_reg80_driven']['mean'])} [{f2(d['F_reg80_driven']['lo'])}, {f2(d['F_reg80_driven']['hi'])}] against regular 20 Hz F = {f2(d['F_reg20']['mean'])} on the same subsample.")
     t = R["test_trains_subsample"]
     A(f"- Pre-registered 10 Hz test train, subsample: F(none)={f2(t['none@probe10']['mean'])}, F(20 Hz)={f2(t['reg20@probe10']['mean'])}, F(80 Hz)={f2(t['reg80@probe10']['mean'])}, F(burst)={f2(t['burst@probe10']['mean'])}, F(Poisson)={f2(t['poisson@probe10']['mean'])}, F(jitter)={f2(t['jitter@probe10']['mean'])}; F(80)-F(20) = {f2(t['reg80_minus_reg20_probe10']['mean'])} [{f2(t['reg80_minus_reg20_probe10']['lo'])}, {f2(t['reg80_minus_reg20_probe10']['hi'])}].")
     A(f"- 5 Hz test train: F(none)={f2(t['none@probe5']['mean'])}, F(20 Hz)={f2(t['reg20@probe5']['mean'])}, F(80 Hz)={f2(t['reg80@probe5']['mean'])}.")
     cv = R["convergence"]
     A(f"- dt-halving (0.025 vs 0.0125 ms), {cv['n_models']} models: median |dF| = {f2(cv['median_abs_dF'])}, max {f2(cv['max_abs_dF'])}; {'pass' if cv['pass_'] else 'FAIL, INCONCLUSIVE'}.")
     A("")
+    if not pilot:
+        A("## What this run shows")
+        A("")
+        A("Nothing here rescues the verdicts: the positive control failed on Chao criterion (b), so P1 and P2 are **NO VERDICT** as pre-registered. The conditional readings above are shown only so that the reasons are visible.")
+        A("")
+        A("**(a) The model does not reproduce a progressive block.** Block is almost complete from the start at every rate of 4 Hz and above (F = 0.995 at 4 Hz, 0.96 at 20 Hz), with a median time-to-block of about 0.6 s, against Chao's block developing over about 20 s. The probe-only baseline is F = 0.000, so the block is caused by the stimulation, not by the 2 Hz probe, which makes the probe choice an unlikely culprit. At 4 Hz every pulse evokes a spike, so the threshold definition is not the culprit either. The most likely cause is the tuning amendment (A in `PREDICTION.md`): Ca decay of 1500 ms and the SK conductance were tuned so that a 21-pulse train fails above 6 Hz (Sundt), and a Ca-dependent K current that strong and that fast accumulates in under a second at 4 Hz plus probes. This is a hypothesis; it was not tested by re-tuning, which would need a new pre-registration.")
+        A("")
+        A("**(b) Under that model, matched-rate patterns are indistinguishable from rate.** Poisson, burst and jitter are all within 3 points of regular 20 Hz (the largest mean difference is burst, +0.030, CI [0.026, 0.035]), and at least 96% of models are within 10 points in every cell. Because F is already near 1 at 20 Hz there is little room for a pattern to raise it, so this is also a ceiling effect: it is weak evidence that pattern does not matter and cannot show that pattern would not matter in a model that blocks progressively.")
+        A("")
+        A("**(c) High rates lower F only by failing to drive the stem.** At 40 Hz and above 0.4-2% of pulses evoke a spike (median), against 95% at 20 Hz, and no amplitude up to 12x found a drive at 80 Hz. F falls from 0.96 to 0.43 because the stimulus stops generating spikes, not because the T-junction passes more. The 10 Hz and 5 Hz test trains on the subsample show the same ordering (F(80)-F(20) = -0.54).")
+        A("")
+        A("**What the next model would have to do differently** to make the control passable: reproduce Sundt's 6 Hz following frequency *and* a block that builds over tens of seconds, which a single Ca-dependent K time constant evidently cannot do here, and keep the stem drivable at 80 Hz (for example by a stimulus that does not depend on the same channels the filter depends on). A rival mechanism exists: Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770, NEURON, Markov Nav models incl. Nav1.6) report that DRG stimulation raises intra-axonal Na and lowers K, disrupting the transaxonal gradients, giving activity-dependent conduction slowing and eventual block in both Aδ and C fibres. That would give a slow progressive block of the kind Chao saw and is worth a **separate pre-registered run**; it is not built here.")
+        A("")
     A("## Aβ comparator F")
     A("")
     A("| Condition | mean F | 95% CI |")

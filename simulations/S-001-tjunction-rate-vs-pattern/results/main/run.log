@@ -1,0 +1,379 @@
+00:09:08 start main N=200 T=30000.0 stages=['control', 'accept', 'det', 'stoch', 'tests', 'ab', 'converge', 'visual', 'aggregate'] workers=12
+00:11:56 control: {"na_k": 89.1, "kcnq": 32.1, "sk": 6.6, "na_k_dt0.0125": 89.1, "kcnq_dt0.0125": 36.0, "sk_dt0.0125": 6.6, "sk_removed_mutation": 32.1}
+00:16:17 accept: 5/200 accepted after 10 candidates
+00:19:12 accept: 11/200 accepted after 20 candidates
+00:20:20 accept: 13/200 accepted after 30 candidates
+00:23:50 accept: 15/200 accepted after 40 candidates
+00:27:14 accept: 19/200 accepted after 50 candidates
+00:28:39 accept: 23/200 accepted after 60 candidates
+00:32:12 accept: 30/200 accepted after 70 candidates
+00:33:40 accept: 31/200 accepted after 80 candidates
+00:35:26 accept: 33/200 accepted after 90 candidates
+00:37:40 accept: 34/200 accepted after 100 candidates
+00:41:05 accept: 37/200 accepted after 110 candidates
+00:43:36 accept: 39/200 accepted after 120 candidates
+00:45:47 accept: 40/200 accepted after 130 candidates
+00:48:00 accept: 42/200 accepted after 140 candidates
+00:50:02 accept: 46/200 accepted after 150 candidates
+00:50:56 accept: 48/200 accepted after 160 candidates
+00:52:36 accept: 53/200 accepted after 170 candidates
+00:54:45 accept: 56/200 accepted after 180 candidates
+00:55:32 accept: 61/200 accepted after 190 candidates
+00:58:55 accept: 64/200 accepted after 200 candidates
+01:00:14 accept: 68/200 accepted after 210 candidates
+01:02:25 accept: 70/200 accepted after 220 candidates
+01:03:58 accept: 71/200 accepted after 230 candidates
+01:05:11 accept: 75/200 accepted after 240 candidates
+01:06:26 accept: 78/200 accepted after 250 candidates
+01:08:12 accept: 81/200 accepted after 260 candidates
+01:09:24 accept: 83/200 accepted after 270 candidates
+01:11:08 accept: 85/200 accepted after 280 candidates
+01:12:17 accept: 86/200 accepted after 290 candidates
+01:14:46 accept: 88/200 accepted after 300 candidates
+01:15:11 accept: 92/200 accepted after 310 candidates
+01:18:12 accept: 96/200 accepted after 320 candidates
+01:18:19 accept: 97/200 accepted after 330 candidates
+01:21:05 accept: 102/200 accepted after 340 candidates
+01:23:27 accept: 106/200 accepted after 350 candidates
+01:24:31 accept: 111/200 accepted after 360 candidates
+01:27:09 accept: 115/200 accepted after 370 candidates
+01:27:54 accept: 117/200 accepted after 380 candidates
+01:30:29 accept: 120/200 accepted after 390 candidates
+01:32:10 accept: 125/200 accepted after 400 candidates
+01:34:04 accept: 129/200 accepted after 410 candidates
+01:36:06 accept: 133/200 accepted after 420 candidates
+01:37:48 accept: 137/200 accepted after 430 candidates
+01:40:11 accept: 141/200 accepted after 440 candidates
+01:41:48 accept: 143/200 accepted after 450 candidates
+01:43:49 accept: 146/200 accepted after 460 candidates
+01:45:42 accept: 148/200 accepted after 470 candidates
+01:45:54 accept: 151/200 accepted after 480 candidates
+01:47:41 accept: 153/200 accepted after 490 candidates
+01:49:21 accept: 156/200 accepted after 500 candidates
+01:51:15 accept: 157/200 accepted after 510 candidates
+01:52:45 accept: 160/200 accepted after 520 candidates
+01:55:21 accept: 161/200 accepted after 530 candidates
+01:58:01 accept: 168/200 accepted after 540 candidates
+01:58:28 accept: 170/200 accepted after 550 candidates
+02:00:25 accept: 174/200 accepted after 560 candidates
+02:03:09 accept: 176/200 accepted after 570 candidates
+02:04:34 accept: 179/200 accepted after 580 candidates
+02:06:10 accept: 182/200 accepted after 590 candidates
+02:08:39 accept: 184/200 accepted after 600 candidates
+02:10:22 accept: 190/200 accepted after 610 candidates
+02:13:02 accept: 193/200 accepted after 620 candidates
+02:14:29 accept: 197/200 accepted after 630 candidates
+02:17:12 accept: 198/200 accepted after 640 candidates
+02:17:12 accept: 200/200 accepted after 644 candidates
+02:31:40 det: 1/200 (model 0) undrivable=False
+02:32:05 det: 2/200 (model 1) undrivable=False
+02:32:11 det: 3/200 (model 2) undrivable=False
+02:32:14 det: 4/200 (model 3) undrivable=False
+02:32:22 det: 5/200 (model 4) undrivable=False
+02:32:40 det: 6/200 (model 5) undrivable=False
+02:32:56 det: 7/200 (model 6) undrivable=False
+02:33:09 det: 8/200 (model 7) undrivable=False
+02:33:19 det: 9/200 (model 8) undrivable=False
+02:33:26 det: 10/200 (model 10) undrivable=False
+02:33:30 det: 11/200 (model 9) undrivable=False
+02:34:07 det: 12/200 (model 11) undrivable=False
+02:41:21 det: 13/200 (model 12) undrivable=False
+02:41:40 det: 14/200 (model 13) undrivable=False
+02:41:44 det: 15/200 (model 15) undrivable=False
+02:41:45 det: 16/200 (model 14) undrivable=False
+02:41:54 det: 17/200 (model 16) undrivable=False
+02:42:09 det: 18/200 (model 17) undrivable=False
+02:42:24 det: 19/200 (model 18) undrivable=False
+02:42:35 det: 20/200 (model 19) undrivable=False
+02:42:42 det: 21/200 (model 20) undrivable=False
+02:42:48 det: 22/200 (model 21) undrivable=False
+02:43:02 det: 23/200 (model 22) undrivable=False
+02:43:36 det: 24/200 (model 23) undrivable=False
+02:51:55 det: 25/200 (model 24) undrivable=False
+02:52:17 det: 26/200 (model 26) undrivable=False
+02:52:19 det: 27/200 (model 25) undrivable=False
+02:52:26 det: 28/200 (model 27) undrivable=False
+02:52:34 det: 29/200 (model 28) undrivable=False
+02:52:47 det: 30/200 (model 29) undrivable=False
+02:53:05 det: 31/200 (model 30) undrivable=False
+02:53:13 det: 32/200 (model 31) undrivable=False
+02:53:17 det: 33/200 (model 32) undrivable=False
+02:53:25 det: 34/200 (model 33) undrivable=False
+02:53:46 det: 35/200 (model 34) undrivable=False
+02:54:21 det: 36/200 (model 35) undrivable=False
+03:02:39 det: 37/200 (model 36) undrivable=False
+03:02:55 det: 38/200 (model 37) undrivable=False
+03:03:00 det: 39/200 (model 38) undrivable=False
+03:03:12 det: 40/200 (model 39) undrivable=False
+03:03:14 det: 41/200 (model 40) undrivable=False
+03:03:28 det: 42/200 (model 41) undrivable=False
+03:03:54 det: 43/200 (model 42) undrivable=False
+03:03:55 det: 44/200 (model 43) undrivable=False
+03:03:59 det: 45/200 (model 44) undrivable=False
+03:04:05 det: 46/200 (model 45) undrivable=False
+03:04:32 det: 47/200 (model 46) undrivable=False
+03:05:06 det: 48/200 (model 47) undrivable=False
+03:12:39 det: 49/200 (model 48) undrivable=False
+03:12:52 det: 50/200 (model 49) undrivable=False
+03:13:02 det: 51/200 (model 50) undrivable=False
+03:13:13 det: 52/200 (model 51) undrivable=False
+03:13:15 det: 53/200 (model 52) undrivable=False
+03:13:26 det: 54/200 (model 53) undrivable=False
+03:13:51 det: 55/200 (model 55) undrivable=False
+03:13:54 det: 56/200 (model 56) undrivable=False
+03:13:55 det: 57/200 (model 54) undrivable=False
+03:14:04 det: 58/200 (model 57) undrivable=False
+03:14:36 det: 59/200 (model 58) undrivable=False
+03:15:12 det: 60/200 (model 59) undrivable=False
+03:23:02 det: 61/200 (model 60) undrivable=False
+03:23:10 det: 62/200 (model 61) undrivable=False
+03:23:24 det: 63/200 (model 62) undrivable=False
+03:23:36 det: 64/200 (model 64) undrivable=False
+03:23:37 det: 65/200 (model 63) undrivable=False
+03:23:46 det: 66/200 (model 65) undrivable=False
+03:24:10 det: 67/200 (model 66) undrivable=False
+03:24:10 det: 68/200 (model 67) undrivable=False
+03:24:20 det: 69/200 (model 68) undrivable=False
+03:24:22 det: 70/200 (model 69) undrivable=False
+03:25:00 det: 71/200 (model 70) undrivable=False
+03:25:42 det: 72/200 (model 71) undrivable=False
+03:33:34 det: 73/200 (model 72) undrivable=False
+03:33:38 det: 74/200 (model 73) undrivable=False
+03:33:58 det: 75/200 (model 74) undrivable=False
+03:34:09 det: 76/200 (model 75) undrivable=False
+03:34:12 det: 77/200 (model 76) undrivable=False
+03:34:18 det: 78/200 (model 77) undrivable=False
+03:34:36 det: 79/200 (model 79) undrivable=False
+03:34:37 det: 80/200 (model 78) undrivable=False
+03:34:50 det: 81/200 (model 81) undrivable=False
+03:34:54 det: 82/200 (model 80) undrivable=False
+03:35:35 det: 83/200 (model 82) undrivable=False
+03:36:25 det: 84/200 (model 83) undrivable=False
+03:44:48 det: 85/200 (model 84) undrivable=False
+03:44:49 det: 86/200 (model 85) undrivable=False
+03:45:15 det: 87/200 (model 86) undrivable=False
+03:45:26 det: 88/200 (model 87) undrivable=False
+03:45:33 det: 89/200 (model 88) undrivable=False
+03:45:38 det: 90/200 (model 89) undrivable=False
+03:45:54 det: 91/200 (model 91) undrivable=False
+03:45:55 det: 92/200 (model 90) undrivable=False
+03:46:10 det: 93/200 (model 92) undrivable=False
+03:46:23 det: 94/200 (model 93) undrivable=False
+03:47:02 det: 95/200 (model 94) undrivable=False
+03:47:51 det: 96/200 (model 95) undrivable=False
+03:55:22 det: 97/200 (model 97) undrivable=False
+03:55:27 det: 98/200 (model 96) undrivable=False
+03:55:54 det: 99/200 (model 98) undrivable=False
+03:56:01 det: 100/200 (model 99) undrivable=False
+03:56:09 det: 101/200 (model 100) undrivable=False
+03:56:10 det: 102/200 (model 101) undrivable=False
+03:56:21 det: 103/200 (model 102) undrivable=False
+03:56:23 det: 104/200 (model 103) undrivable=False
+03:56:37 det: 105/200 (model 104) undrivable=False
+03:56:53 det: 106/200 (model 105) undrivable=False
+03:57:29 det: 107/200 (model 106) undrivable=False
+03:58:21 det: 108/200 (model 107) undrivable=False
+04:05:30 det: 109/200 (model 108) undrivable=False
+04:05:35 det: 110/200 (model 109) undrivable=False
+04:06:01 det: 111/200 (model 110) undrivable=False
+04:06:10 det: 112/200 (model 111) undrivable=False
+04:06:19 det: 113/200 (model 113) undrivable=False
+04:06:21 det: 114/200 (model 112) undrivable=False
+04:06:26 det: 115/200 (model 114) undrivable=False
+04:06:27 det: 116/200 (model 115) undrivable=False
+04:06:45 det: 117/200 (model 116) undrivable=False
+04:07:07 det: 118/200 (model 117) undrivable=False
+04:07:38 det: 119/200 (model 118) undrivable=False
+04:08:27 det: 120/200 (model 119) undrivable=False
+04:15:25 det: 121/200 (model 120) undrivable=False
+04:15:37 det: 122/200 (model 121) undrivable=False
+04:16:02 det: 123/200 (model 122) undrivable=False
+04:16:13 det: 124/200 (model 123) undrivable=False
+04:16:22 det: 125/200 (model 124) undrivable=False
+04:16:25 det: 126/200 (model 126) undrivable=False
+04:16:26 det: 127/200 (model 127) undrivable=False
+04:16:28 det: 128/200 (model 125) undrivable=False
+04:16:48 det: 129/200 (model 128) undrivable=False
+04:17:12 det: 130/200 (model 129) undrivable=False
+04:17:41 det: 131/200 (model 130) undrivable=False
+04:18:35 det: 132/200 (model 131) undrivable=False
+04:25:16 det: 133/200 (model 132) undrivable=False
+04:25:33 det: 134/200 (model 133) undrivable=False
+04:25:56 det: 135/200 (model 134) undrivable=False
+04:26:06 det: 136/200 (model 135) undrivable=False
+04:26:13 det: 137/200 (model 136) undrivable=False
+04:26:13 det: 138/200 (model 137) undrivable=False
+04:26:14 det: 139/200 (model 138) undrivable=False
+04:26:20 det: 140/200 (model 139) undrivable=False
+04:26:38 det: 141/200 (model 140) undrivable=False
+04:27:09 det: 142/200 (model 141) undrivable=False
+04:27:37 det: 143/200 (model 142) undrivable=False
+04:28:37 det: 144/200 (model 143) undrivable=False
+04:36:08 det: 145/200 (model 144) undrivable=False
+04:36:31 det: 146/200 (model 145) undrivable=False
+04:36:58 det: 147/200 (model 146) undrivable=False
+04:37:10 det: 148/200 (model 147) undrivable=False
+04:37:14 det: 149/200 (model 149) undrivable=False
+04:37:15 det: 150/200 (model 150) undrivable=False
+04:37:15 det: 151/200 (model 148) undrivable=False
+04:37:29 det: 152/200 (model 151) undrivable=False
+04:37:42 det: 153/200 (model 152) undrivable=False
+04:38:22 det: 154/200 (model 153) undrivable=False
+04:38:52 det: 155/200 (model 154) undrivable=False
+04:40:01 det: 156/200 (model 155) undrivable=False
+04:47:04 det: 157/200 (model 156) undrivable=False
+04:47:37 det: 158/200 (model 157) undrivable=False
+04:48:06 det: 159/200 (model 158) undrivable=False
+04:48:21 det: 160/200 (model 160) undrivable=False
+04:48:22 det: 161/200 (model 159) undrivable=False
+04:48:23 det: 162/200 (model 161) undrivable=False
+04:48:24 det: 163/200 (model 162) undrivable=False
+04:48:46 det: 164/200 (model 163) undrivable=False
+04:48:54 det: 165/200 (model 164) undrivable=False
+04:49:35 det: 166/200 (model 165) undrivable=False
+04:50:06 det: 167/200 (model 166) undrivable=False
+04:51:13 det: 168/200 (model 167) undrivable=False
+04:55:46 det: 169/200 (model 168) undrivable=False
+04:56:11 det: 170/200 (model 169) undrivable=False
+04:56:29 det: 171/200 (model 170) undrivable=False
+04:56:33 det: 172/200 (model 171) undrivable=False
+04:56:33 det: 173/200 (model 173) undrivable=False
+04:56:34 det: 174/200 (model 172) undrivable=False
+04:56:36 det: 175/200 (model 174) undrivable=False
+04:56:50 det: 176/200 (model 175) undrivable=False
+04:56:51 det: 177/200 (model 176) undrivable=False
+04:57:22 det: 178/200 (model 177) undrivable=False
+04:57:42 det: 179/200 (model 178) undrivable=False
+04:58:23 det: 180/200 (model 179) undrivable=False
+05:02:29 det: 181/200 (model 180) undrivable=False
+05:02:52 det: 182/200 (model 181) undrivable=False
+05:03:10 det: 183/200 (model 183) undrivable=False
+05:03:10 det: 184/200 (model 184) undrivable=False
+05:03:10 det: 185/200 (model 182) undrivable=False
+05:03:13 det: 186/200 (model 185) undrivable=False
+05:03:15 det: 187/200 (model 186) undrivable=False
+05:03:28 det: 188/200 (model 188) undrivable=False
+05:03:30 det: 189/200 (model 187) undrivable=False
+05:03:57 det: 190/200 (model 189) undrivable=False
+05:04:14 det: 191/200 (model 190) undrivable=False
+05:04:47 det: 192/200 (model 191) undrivable=False
+05:08:01 det: 193/200 (model 192) undrivable=False
+05:08:21 det: 194/200 (model 193) undrivable=False
+05:08:33 det: 195/200 (model 194) undrivable=False
+05:08:35 det: 196/200 (model 195) undrivable=False
+05:08:37 det: 197/200 (model 196) undrivable=False
+05:08:38 det: 198/200 (model 197) undrivable=False
+05:08:39 det: 199/200 (model 198) undrivable=False
+05:08:47 det: 200/200 (model 199) undrivable=False
+05:52:08 stoch/tests: 1/60
+05:52:11 stoch/tests: 2/60
+05:52:11 stoch/tests: 3/60
+05:52:19 stoch/tests: 4/60
+05:52:19 stoch/tests: 5/60
+05:52:19 stoch/tests: 6/60
+05:52:19 stoch/tests: 7/60
+05:52:19 stoch/tests: 8/60
+05:52:19 stoch/tests: 9/60
+05:52:19 stoch/tests: 10/60
+05:52:19 stoch/tests: 11/60
+05:52:19 stoch/tests: 12/60
+06:32:51 stoch/tests: 13/60
+06:32:55 stoch/tests: 14/60
+06:32:58 stoch/tests: 15/60
+06:33:08 stoch/tests: 16/60
+06:33:23 stoch/tests: 17/60
+06:33:24 stoch/tests: 18/60
+06:33:31 stoch/tests: 19/60
+06:33:39 stoch/tests: 20/60
+06:33:41 stoch/tests: 21/60
+06:33:50 stoch/tests: 22/60
+06:33:50 stoch/tests: 23/60
+06:34:07 stoch/tests: 24/60
+07:12:57 stoch/tests: 25/60
+07:13:04 stoch/tests: 26/60
+07:13:08 stoch/tests: 27/60
+07:13:20 stoch/tests: 28/60
+07:13:42 stoch/tests: 29/60
+07:13:42 stoch/tests: 30/60
+07:13:42 stoch/tests: 31/60
+07:13:42 stoch/tests: 32/60
+07:13:42 stoch/tests: 33/60
+07:13:42 stoch/tests: 34/60
+07:13:42 stoch/tests: 35/60
+07:13:42 stoch/tests: 36/60
+07:13:42 stoch/tests: 37/60
+07:13:42 stoch/tests: 38/60
+07:13:42 stoch/tests: 39/60
+07:13:42 stoch/tests: 40/60
+07:13:42 stoch/tests: 41/60
+07:13:42 stoch/tests: 42/60
+07:13:42 stoch/tests: 43/60
+07:13:42 stoch/tests: 44/60
+07:13:42 stoch/tests: 45/60
+07:13:42 stoch/tests: 46/60
+07:13:42 stoch/tests: 47/60
+07:13:42 stoch/tests: 48/60
+07:13:42 stoch/tests: 49/60
+07:13:42 stoch/tests: 50/60
+07:13:42 stoch/tests: 51/60
+07:13:42 stoch/tests: 52/60
+07:13:42 stoch/tests: 53/60
+07:13:42 stoch/tests: 54/60
+07:18:17 stoch/tests: 55/60
+07:18:23 stoch/tests: 56/60
+07:18:29 stoch/tests: 57/60
+07:18:36 stoch/tests: 58/60
+07:18:36 stoch/tests: 59/60
+07:18:52 stoch/tests: 60/60
+07:26:38 ab: 1/30
+07:26:38 ab: 2/30
+07:26:38 ab: 3/30
+07:26:39 ab: 4/30
+07:26:40 ab: 5/30
+07:26:40 ab: 6/30
+07:26:40 ab: 7/30
+07:26:41 ab: 8/30
+07:26:41 ab: 9/30
+07:26:41 ab: 10/30
+07:26:42 ab: 11/30
+07:26:43 ab: 12/30
+07:33:51 ab: 13/30
+07:33:51 ab: 14/30
+07:33:51 ab: 15/30
+07:33:51 ab: 16/30
+07:33:54 ab: 17/30
+07:33:55 ab: 18/30
+07:33:58 ab: 19/30
+07:33:58 ab: 20/30
+07:33:58 ab: 21/30
+07:33:59 ab: 22/30
+07:33:59 ab: 23/30
+07:34:00 ab: 24/30
+07:38:57 ab: 25/30
+07:38:58 ab: 26/30
+07:38:58 ab: 27/30
+07:38:58 ab: 28/30
+07:39:01 ab: 29/30
+07:39:02 ab: 30/30
+07:39:30 converge: 1/20
+07:39:30 converge: 2/20
+07:39:30 converge: 3/20
+07:39:30 converge: 4/20
+07:39:30 converge: 5/20
+07:39:31 converge: 6/20
+07:39:58 converge: 7/20
+07:39:58 converge: 8/20
+07:39:58 converge: 9/20
+07:39:58 converge: 10/20
+07:39:58 converge: 11/20
+07:39:58 converge: 12/20
+07:39:58 converge: 13/20
+07:39:58 converge: 14/20
+07:39:59 converge: 15/20
+07:40:18 converge: 16/20
+07:40:19 converge: 17/20
+07:40:19 converge: 18/20
+07:40:19 converge: 19/20
+07:40:38 converge: 20/20
+07:40:57 visual: representative model k=0 ff=11.6
+07:40:57 done in 451.8 min

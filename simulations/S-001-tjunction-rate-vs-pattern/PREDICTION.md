@@ -303,14 +303,17 @@ Ganglion Stimulation: Understanding Pain Suppression Mechanisms." 2024 46th
 Annual International Conference of the IEEE EMBC, 2024, 4 pages, doi
 10.1109/EMBC53108.2024.10782923 (IEEE Xplore document 10782923;
 University of Connecticut).** Title, authors, venue and year verified through
-Crossref. **I could not read the abstract or the paper** (IEEE Xplore returns a
-page that needs a browser; Crossref holds no abstract), so I know its content
-only from the coordinator's one-line description (a NEURON model of Aδ and
-C-fibre transmission under DRG stimulation) and have not checked it. What S-1
-adds relative to that description is two specific questions: whether stimulation
-**pattern at matched mean rate** changes T-junction filtering (the acute version
-of the refuted C-001 idea), and whether a T-junction account can **retrodict the
-blinded human frequency ordering** of Piedade 2022 and 2023, with the thresholds
-fixed in advance and a positive control that can disqualify the result. It does
+Crossref. **Update (results commit):** PMID 40039770; the abstract was then read
+via PubMed. It is a NEURON model of Aδ- and C-fibre transmission under DRG
+stimulation with Markov-type sodium channel models (including NaV1.6), and
+reports that stimulation raises intra-axonal Na+ and lowers K+, disrupting
+transaxonal ionic gradients, causing activity-dependent conduction slowing and
+eventual conduction block in both fibre types. That is a **rival mechanism**
+to the Ca-dependent-K T-junction filter modelled here. What S-1 asks is
+different: whether stimulation **pattern at matched mean rate** changes
+T-junction filtering (the acute version of the refuted C-001 idea), and whether
+a T-junction account can **retrodict the blinded human frequency ordering** of
+Piedade 2022 and 2023, with thresholds fixed in advance and a positive control
+that can disqualify the result. It does
 not supersede or reproduce that work. Kent et al. 2018 (PMID 29377442), already
 cited above, remains the closest earlier DRG-stimulation computational model.
