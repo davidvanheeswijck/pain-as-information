@@ -1,6 +1,6 @@
 # Intent: act on the November 2026 gap review, simulation first
 
-Author: David Vanheeswijck
+Author: the programme owner
 Status: accepted 16/11/2026
 Area: simulation, harness
 Source: Claude Code session, 16/11/2026 (an independent review of the programme at 798701b by a Fable 5.2 reviewer, then the owner's go)
@@ -43,10 +43,12 @@ ganglion) is argued from one side of a contested literature. Several derived fil
 ## Decision log
 | Date | Who | Decision | Source |
 |---|---|---|---|
-| 16/11/2026 | David | Go on housekeeping, S-1 and its visual | session |
+| 16/11/2026 | owner | Go on housekeeping, S-1 and its visual | session |
+| 16/11/2026 | owner | Systematic scan of AI in pain research, kept in a private folder outside this repository until the owner decides | session |
 
 ## Open questions
 - After S-1: build the dorsal-horn gate model (S-2) or the generator-discrimination decision model (S-3) next: owner David
 
 ## Implemented by
-- (PRs added as they merge)
+- #1 this intent record
+- #2 housekeeping: status counts, seed-ensemble verdict guard, DRG counter-evidence
