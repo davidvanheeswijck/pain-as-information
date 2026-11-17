@@ -219,8 +219,8 @@ def task_converge(args):
     wf, cf = factors_for(idx)
     out = {}
     t0 = time.time()
+    model = new_model(wf, cf, P.DT_MAIN)   # one model for both dt (dt is a run argument)
     for dt in (P.DT_MAIN, P.DT_PUB):
-        model = new_model(wf, cf, dt)
         for cond in ("C1", "T", "TS", "TCS"):
             for s in (0, 20):
                 out[f"{cond}|{s}|{dt}"] = rate_run(model, idx, cond, s, 1, rC, rT, dt=dt)
@@ -229,12 +229,13 @@ def task_converge(args):
     return rec
 
 
-def task_visual(args):
+def task_visual(args, model=None):
     path, idx, rC, rT, collapsed, dt, control_passed = args
     if os.path.exists(path):
         return load(path)
-    wf, cf = factors_for(idx)
-    model = new_model(wf, cf, dt)
+    if model is None:
+        wf, cf = factors_for(idx)
+        model = new_model(wf, cf, dt)
     out = dict(network_index=idx, label="model units; not a stimulation setting", dt_ms=dt,
                control_passed=control_passed,
                window_ms=[P.T_SCORE0, P.T_SCORE1], rC_hz_per_fibre=rC, rT_hz_per_fibre=rT,
@@ -275,11 +276,9 @@ def run_stage_control(pool, out, fh, args):
                                                       n_sub=args.n_sub, n_conv=args.n_conv, ok=True))
         return acc
     # gate G1: candidate 0 at both dt
-    recs0 = []
-    for dt in (P.DT_MAIN, P.DT_PUB):
-        path = os.path.join(out, "cand0-dt{}.json".format(dt))
-        r = task_control((path, 0, dt))
-        recs0.append(r)
+    recs0 = pool.map(task_control, [(os.path.join(out, "cand0-dt{}.json".format(dt)), 0, dt)
+                                    for dt in (P.DT_MAIN, P.DT_PUB)], chunksize=1)
+    for dt, r in zip((P.DT_MAIN, P.DT_PUB), recs0):
         log(f"candidate 0 at dt {dt}: stage {r['stage']} accepted {r['accepted']} "
             f"W {r.get('W', {}).get('ok')} A {r.get('A', {}).get('ok')} F {r.get('F', {}).get('ok')}", fh)
     g1 = all(r["accepted"] for r in recs0)
@@ -344,7 +343,7 @@ def main():
     if not g4:
         log("G4 FAILED; stopping", fh)
         return 1
-    with Pool(args.workers, maxtasksperchild=16) as pool:
+    with Pool(args.workers, maxtasksperchild=1) as pool:   # one network per process: a second DorsalHorn() in a live process can crash NEURON
         accepted = None
         if "control" in stages:
             accepted = run_stage_control(pool, out, fh, args)
@@ -382,7 +381,7 @@ def main():
             if not os.path.exists(vpath):
                 m = new_model(*factors_for(0), P.DT_MAIN)
                 rT, _, _ = match_touch(m, 0, 0.0, P.DT_MAIN)
-                task_visual((vpath, 0, None, rT, 30, P.DT_MAIN, False))
+                task_visual((vpath, 0, None, rT, 30, P.DT_MAIN, False), model=m)
                 log("visual traces written for candidate 0 (control NOT passed)", fh)
     if "aggregate" in stages:
         import aggregate_s002

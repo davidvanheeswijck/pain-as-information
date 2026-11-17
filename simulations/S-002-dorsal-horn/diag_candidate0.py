@@ -37,7 +37,7 @@ def main():
     ap.add_argument("--workers", type=int, default=10)
     args = ap.parse_args()
     tasks = [("C", r, 0) for r in RC_GRID] + [("T", r, s) for r in RT_GRID for s in SHIFT_GRID]
-    with Pool(args.workers) as pool:
+    with Pool(args.workers, maxtasksperchild=1) as pool:
         res = dict(pool.map(one, tasks))
     out = dict(C_only_rate_hz={str(r): res[("C", r, 0)] for r in RC_GRID},
                touch_only_rate_hz={f"{r}|{s}": res[("T", r, s)] for r in RT_GRID for s in SHIFT_GRID},
