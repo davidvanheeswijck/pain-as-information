@@ -380,3 +380,52 @@ The flat-prior ensemble is reported so that this can be seen.
   work from a single lineage each.
 - Information gain is not clinical value. A bit that separates two hypotheses
   with the same management is worth less than one that changes it.
+
+---
+
+## Amendments made in the code commit (commit #2)
+
+Everything above this line is as committed in commit #1 and is not edited. This
+section was appended with the code, **before the main run**. No threshold,
+range, seed or verdict rule above is changed.
+
+**A. A pilot was run before the code was committed, and I saw its output.**
+Two smoke runs of the pipeline, 3 seeds of 20 draws (60 draws, the first three
+main seeds), written to the gitignored `results/pilot/`. They are not results.
+What they showed: control passed; every claim INCONCLUSIVE as it must be from
+3 seeds; best pair T2+T3; best of at most three about 0.82 bits; the machine
+midpoint within 0.01 bits of the hand arithmetic for every test. So the
+direction of the main run was visible to me before it started. The only code
+changes made after seeing pilot output are B and D below and two figure
+layout fixes.
+
+**B. A weakness in the P3 measure, found in the pilot. P3 is scored as
+pre-registered; a diagnostic is added beside it.** The pairwise Bayes error
+cannot exceed the smaller of the two renormalised priors, so a lopsided prior
+draw gives a low error with no test at all. My hand figure of "about 0.45"
+with no test holds at the mean prior only; across pilot draws the no-test
+median was 0.375, and under the flat prior the no-test error was already below
+0.15 in more than a third of draws. The measure therefore mixes what the tests
+do with what the prior does. **Post hoc diagnostic, not a threshold:** the same
+error with the pair's two priors set equal (0.5 with no test), reported for
+every pair under all four tests and for H1 against H3 under the best set of at
+most three. The pre-registered classes for Q3 also use the prior-weighted
+measure and are reported as pre-registered, with the equal-prior column
+beside them.
+
+**C. Strict inequality.** `verdict.decide` names a side only when the interval
+lies strictly above or below the threshold. The text above says "at or above".
+The difference can only turn a verdict into INCONCLUSIVE.
+
+**D. "Structurally unseparated by a test"** is decided from the rows
+themselves (largest row difference exactly zero in every draw), not from the
+error equalling the no-test error, which can also happen when a weak test
+never changes the best guess.
+
+**E. Order check.** The assertion that order does not change a fixed
+sequence is evaluated on the first five draws of each seed (every permutation
+of every set), not on all draws.
+
+**F. Mutation check.** `mutation_check.py` breaks the log base and the
+normalisation of `mutual_information` in a temporary copy and requires
+`test_infogain.py` to fail by assertion.
