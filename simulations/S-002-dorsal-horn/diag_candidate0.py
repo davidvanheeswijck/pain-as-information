@@ -23,12 +23,17 @@ RT_GRID = (10.0, 20.0, 40.0, 80.0)
 SHIFT_GRID = (0, 10, 20, 30, 40)
 
 
+F_RC = (1.0, 1.5)
+
+
 def one(task):
     import simulate_s002 as S
     kind, a, b = task
     m = S.new_model({}, {}, P.DT_MAIN)
     if kind == "C":
         return task, S.rate_run(m, 0, "C1", 0, 1, a, 0.0)
+    if kind == "F":   # SCS at b Hz with C background at a Hz per fibre (no touch), seed 1
+        return task, S.rate_run(m, 0, "CS", 0, 1, a, 0.0, freq=b)
     return task, S.rate_run(m, 0, "T", int(b), 1, 0.0, a)
 
 
@@ -36,17 +41,23 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--workers", type=int, default=10)
     args = ap.parse_args()
-    tasks = [("C", r, 0) for r in RC_GRID] + [("T", r, s) for r in RT_GRID for s in SHIFT_GRID]
+    tasks = [("C", r, 0) for r in RC_GRID] + [("T", r, s) for r in RT_GRID for s in SHIFT_GRID] + \
+        [("F", r, f) for r in F_RC for f in P.CONTROL_FREQS]
     with Pool(args.workers, maxtasksperchild=1) as pool:
         res = dict(pool.map(one, tasks))
     out = dict(C_only_rate_hz={str(r): res[("C", r, 0)] for r in RC_GRID},
                touch_only_rate_hz={f"{r}|{s}": res[("T", r, s)] for r in RT_GRID for s in SHIFT_GRID},
+               scs_with_C_background_rate_hz={f"{r}|{f}": res[("F", r, f)] for r in F_RC for f in P.CONTROL_FREQS},
                note="candidate 0, seed 1, one 6 s scored window; a pilot, not a result")
     path = os.path.join(HERE, "results", "pilot", "diag_candidate0.json")
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as fh:
         json.dump(out, fh, indent=1)
     print("C only (Hz per fibre -> WDR Hz):", out["C_only_rate_hz"])
+    for r in F_RC:
+        base = res[("C", r, 0)]
+        print(f"SCS frequency effect, C background {r} Hz per fibre (no-SCS rate {base:.2f}): " +
+              str({f: round(res[("F", r, f)], 2) for f in P.CONTROL_FREQS}))
     for r in RT_GRID:
         print(f"touch only at {r} Hz per fibre, WDR Hz by shift:", {s: round(res[('T', r, s)], 2) for s in SHIFT_GRID})
 
