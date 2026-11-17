@@ -50,6 +50,20 @@ def clear_all():
         h.delete_section(sec=sec)
 
 
+def junction_side_stem_x(stem, tj_secs):
+    """x on the stem section that is nearest the T-junction, from the parent/child
+    connections (not from a hard-coded 0 or 1): 0.1 if stem(0) is attached to a
+    junction section, 0.9 if a junction section is attached at stem(1)."""
+    ps = stem.parentseg()
+    if ps is not None and any(ps.sec.same(t) for t in tj_secs):
+        return 0.1
+    for t in tj_secs:
+        pt = t.parentseg()
+        if pt is not None and pt.sec.same(stem):
+            return 0.9
+    raise RuntimeError("stem is not connected to the T-junction")
+
+
 # --- C-neuron ---------------------------------------------------------------
 
 # Sundt 2015 Fig5d / Fig8c values.  Lengths are shortened (the axons are 5 mm
@@ -154,8 +168,9 @@ class CNeuron:
     def sites(self):
         return dict(
             peri_dist=self.peri(0.05), peri_pre=self.peri(0.95),
-            stem_mid=self.stem(0.5), stem_pre=self.stem(0.9), soma=self.soma(0.5),
-            central=self.central(0.04), tj=self.tjperi(0.5),
+            stem_mid=self.stem(0.5),
+            stem_pre=self.stem(junction_side_stem_x(self.stem, [self.tjperi])),  # junction side
+            soma=self.soma(0.5), central=self.central(0.04), tj=self.tjperi(0.5),
         )
 
 
@@ -248,6 +263,7 @@ class ANeuron:
     def sites(self):
         return dict(
             peri_dist=self.peri_last(0.5), peri_pre=self.peri_pre(0.5),
-            stem_mid=self.stem(0.5), stem_pre=self.stem(0.9), soma=self.soma(0.5),
-            central=self.central_first(0.5), tj=self.tj(0.5),
+            stem_mid=self.stem(0.5),
+            stem_pre=self.stem(junction_side_stem_x(self.stem, [self.tj])),  # junction side
+            soma=self.soma(0.5), central=self.central_first(0.5), tj=self.tj(0.5),
         )

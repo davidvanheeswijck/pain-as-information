@@ -256,7 +256,7 @@ def task_visual(args):
     out = dict(
         description=("Voltage traces for one representative accepted C-neuron variant (and an A-beta "
                      "comparator at 20 Hz). Time in ms from the start of stimulation; voltage in mV "
-                     "rounded to 0.1. stim_times are the 1 ms pulses at the mid-stem; test_times are "
+                     "rounded to 0.1. Model units; intracellular current injected at the mid-stem of a simplified model, not a clinical amplitude or a stimulation setting. stim_times are the 1 ms pulses at the mid-stem; test_times are "
                      "the peripheral probe pulses (2 Hz mean)."),
         dt_ms=dt, sample_every_ms=every, window_ms=window, probe_hz=PROBE_HZ,
         stimulus_amplitude_nA=dict(c_neuron=1.5 * drive, a_beta=1.5 * ab_drive),
@@ -440,6 +440,18 @@ def main():
     if "aggregate" in stages:
         import aggregate_s001
         aggregate_s001.main(out, pilot=a.pilot)
+        # one zip of the per-model files (the directories are gitignored: a PR with
+        # ~1,000 small files hits GitHub's diff limit)
+        import shutil
+        import zipfile
+        zp = os.path.join(out, "per-model-files.zip")
+        with zipfile.ZipFile(zp, "w", zipfile.ZIP_DEFLATED) as z:
+            for d in ("cand", "model", "stoch", "tests", "ab", "converge"):
+                for root, _, files in os.walk(os.path.join(out, d)):
+                    for fn in sorted(files):
+                        full = os.path.join(root, fn)
+                        z.write(full, os.path.relpath(full, out))
+        log(f"wrote {zp}", fh)
 
 
 if __name__ == "__main__":

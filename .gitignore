@@ -35,3 +35,10 @@ simulations/**/mod/*.c
 simulations/**/mod/*.cpp
 # Smoke-test output; never a result
 simulations/**/results/pilot/
+# S-1 per-model working files of the main run (resumable); committed as per-model-files.zip instead
+simulations/**/results/main/cand/
+simulations/**/results/main/model/
+simulations/**/results/main/stoch/
+simulations/**/results/main/tests/
+simulations/**/results/main/ab/
+simulations/**/results/main/converge/

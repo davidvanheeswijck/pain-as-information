@@ -164,6 +164,7 @@ def main(out, pilot=False):
     base = [fval(m["runs"].get("none")) for m in models.values()]
     R["F_by_regular_rate"] = tab
     R["F_probe_only_baseline"] = boot_mean(base)
+    R["F_probe_only_baseline"]["max"] = float(np.nanmax(base)) if len(base) else float("nan")
 
     # P1, P2
     cells = [p1_cell(models, stoch, p, a, min_n) for p in PATTERNS for a in AMPS]
@@ -240,13 +241,24 @@ def main(out, pilot=False):
     diffs, flips = [], 0
     for k, d in cv.items():
         if 0.025 in d and 0.0125 in d:
+            v = {dt: {p: fval(d[dt]["runs"][p]) for p in ("reg20", "reg80", "burst")} for dt in (0.025, 0.0125)}
             for pat in ("reg20", "reg80", "burst"):
-                a, b = fval(d[0.025]["runs"][pat]), fval(d[0.0125]["runs"][pat])
-                if np.isfinite(a) and np.isfinite(b):
-                    diffs.append(abs(a - b))
+                a_, b_ = v[0.025][pat], v[0.0125][pat]
+                if np.isfinite(a_) and np.isfinite(b_):
+                    diffs.append(abs(a_ - b_))
+            # classification flips (the pre-registered check): burst within 10 pts of
+            # reg20, and F80 >= F20 - 0.01, each classified at both dt
+            for fn in (lambda x: abs(x["burst"] - x["reg20"]) <= 0.10, lambda x: x["reg80"] >= x["reg20"] - 0.01):
+                try:
+                    if fn(v[0.025]) != fn(v[0.0125]):
+                        flips += 1
+                except Exception:
+                    pass
     R["convergence"] = dict(n_models=len(cv), median_abs_dF=float(np.median(diffs)) if diffs else None,
                             max_abs_dF=float(np.max(diffs)) if diffs else None,
-                            pass_=bool(diffs and np.median(diffs) <= 0.02))
+                            n_abs_dF_gt_0_05=int(sum(1 for x in diffs if x > 0.05)), n_comparisons=len(diffs),
+                            classification_flips=flips,
+                            pass_=bool(diffs and np.median(diffs) <= 0.02 and flips == 0))
 
     with open(os.path.join(out, "results.json"), "w") as f:
         json.dump(R, f, indent=1, default=lambda o: None if (isinstance(o, float) and not np.isfinite(o)) else float(o) if isinstance(o, np.floating) else bool(o) if isinstance(o, np.bool_) else int(o))
@@ -259,6 +271,66 @@ def main(out, pilot=False):
 
 def f2(x):
     return "n/a" if x is None or (isinstance(x, float) and not np.isfinite(x)) else f"{x:.3f}"
+
+
+def shows(R):
+    """'What this run shows', every number computed from R; sentences chosen by data."""
+    pc, c = R["positive_control"], R["positive_control"]["chao_qualitative"]
+    T = R["F_by_regular_rate"]
+    f4, f20, f80 = (T[f"reg{r}@1.5"] for r in (4, 20, 80))
+    ev20, ev80 = f20["evoked_fraction_median"], f80["evoked_fraction_median"]
+    tb = c["time_to_block_ms_median"]
+    base = R["F_probe_only_baseline"]
+    d = R["drive_matched_diagnostic"]
+    cells = R["P1"]["cells"]
+    maxdiff = max(abs(x["mean_diff"]) for x in cells)
+    minprop = min(x["prop_within_10pts"] for x in cells)
+    L = ["## What this run shows", ""]
+    if not pc["PASS"]:
+        L += ["Nothing here rescues the verdicts: the positive control failed, so P1 and P2 are **NO VERDICT** as pre-registered.", ""]
+    else:
+        L += ["The positive control passed; the verdicts in the table above are the pre-registered ones.", ""]
+    s = (f"**(a) Time course.** F at 1.5x is {f2(f4['F_mean'])} at 4 Hz, {f2(f20['F_mean'])} at 20 Hz and {f2(f80['F_mean'])} at 80 Hz; "
+         f"median time-to-block at regular 20 Hz is {f2(tb)} ms; median F(late) - F(early) is {f2(c['F_late_minus_F_early_median'])}. "
+         f"The probe-only baseline is F = {f2(base['mean'])} (max over models {f2(base['max'])}), so any block is caused by the stimulation, not by the 2 Hz probe. ")
+    if tb is not None and tb < 2000:
+        s += "Criterion (a) (block within 20 s) is **vacuous** here: the block is essentially immediate, so passing it says nothing about Chao's *progressive* block. "
+    if c["b_pass"]:
+        s += "Criterion (b) (progression) passes."
+    else:
+        s += ("Criterion (b) (progression) fails, so this model does not reproduce a progressive block. "
+              "Candidate causes, by what the data can say: the 2 Hz probe is not one (baseline above); the 'threshold' definition is not one if the evoked fraction at 4 Hz is about 1 "
+              f"(it is {f2(f4['evoked_fraction_median'])}); the remaining candidate is the tuning amendment (A in `PREDICTION.md`: Ca decay and SK conductance set against Sundt's 6 Hz following frequency). "
+              "That last point is a hypothesis; it was not tested by re-tuning, which would need a new pre-registration.")
+    L += [s, ""]
+    s = (f"**(b) Pattern against rate, in this model.** The largest mean difference from regular 20 Hz across the six cells is {f2(maxdiff)}, and the smallest proportion of models within 10 points is {f2(minprop)}. ")
+    if f20["F_mean"] > 0.9:
+        s += "F at regular 20 Hz is above 0.9, so there is little room for any pattern to raise it: this is partly a ceiling effect and is weak evidence about pattern in a model that blocks progressively. "
+    L += [s, ""]
+    s = (f"**(c) What high rates do.** At the junction-side stem site, the median fraction of pulses that evoke a spike is {f2(ev20)} at 20 Hz and {f2(ev80)} at 80 Hz (1.5x); F(80) = {f2(f80['F_mean'])} against F(20) = {f2(f20['F_mean'])}. ")
+    if ev80 is not None and ev20 and ev80 < 0.5 * ev20:
+        s += "F changes with rate in a regime where the stimulus has largely stopped evoking spikes, so a rate effect on F cannot be read as filtering. "
+    else:
+        s += "The stimulus keeps evoking spikes at 80 Hz, so the F change is not explained by lost drive. "
+    if d["n_with_d80_found"] == 0:
+        s += f"The post hoc drive-matched 80 Hz run could not be made: no amplitude up to 12x found a drive in {d['n_subsample']}/{d['n_subsample']} models."
+    L += [s, ""]
+    L += ["**Context, not a result.** A model that could pass this control would have to reproduce Sundt's 6 Hz following frequency *and* a block that builds over tens of seconds, and keep the stem drivable at the high rates. "
+          "A rival mechanism exists: Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770, NEURON, Markov Nav models) report that DRG stimulation raises intra-axonal Na and lowers K, disrupting transaxonal gradients, "
+          "with activity-dependent conduction slowing and eventual block in Aδ and C fibres. That is worth a separate pre-registered run; it is not built here.", ""]
+    if not pc["PASS"]:
+        L += ["## Conditional readings, NOT verdicts (control failed)", "",
+              f"Applying the pre-registered rules to these numbers anyway: P1 would read {R['P1']['verdict_if_control_passes'].lower()}; P2 would read {R['P2']['verdict_if_control_passes'].lower()}. "
+              "These are shown only so the reasons are visible. They carry no evidential weight because the model failed its own control.", ""]
+    return L
+
+
+def cond_line(name, R):
+    v = R[name]["verdict_if_control_passes"]
+    if R["positive_control"]["PASS"]:
+        return f"{name}: **{v}**."
+    return (f"*Conditional reading, NOT a verdict (positive control failed): the rule applied to these numbers "
+            f"would give {v.lower()}. See 'Conditional readings, NOT verdicts' below.*")
 
 
 def write_md(R, out, pilot):
@@ -300,12 +372,12 @@ def write_md(R, out, pilot):
     A("")
     A("Chao 2020 qualitative control at regular 20 Hz, 1.5x:")
     A("")
-    A(f"- (a) block defined within 20 s in {f2(c['frac_models_block_defined_within_20s'])} of models (need ≥0.5): {'pass' if c['a_pass'] else 'FAIL'}; median time-to-block {f2(c['time_to_block_ms_median'])} ms")
+    A(f"- (a) block defined within 20 s in {f2(c['frac_models_block_defined_within_20s'])} of models (need ≥0.5): {'pass' if c['a_pass'] else 'FAIL'}; median time-to-block {f2(c['time_to_block_ms_median'])} ms" + (" (vacuous: block is immediate)" if (c['time_to_block_ms_median'] or 1e9) < 2000 else ""))
     A(f"- (b) median F(late) - F(early) = {f2(c['F_late_minus_F_early_median'])} (need ≥0.20): {'pass' if c['b_pass'] else 'FAIL'}")
     ab = c["abeta_F_reg20_1_5"]
     A(f"- (c) Aβ F = {f2(ab['mean'])} [{f2(ab['lo'])}, {f2(ab['hi'])}] (need CI upper < 0.05): {'pass' if c['c_pass'] else 'FAIL'}")
     A("")
-    A("## F by regular rate (probe-only baseline: " + f"{f2(R['F_probe_only_baseline']['mean'])})")
+    A("## F by regular rate (probe-only baseline: " + f"mean {f2(R['F_probe_only_baseline']['mean'])}, max over models {f2(R['F_probe_only_baseline']['max'])})")
     A("")
     A("| Rate | Amp | F mean | 95% CI | n | median fraction of pulses evoking a spike |")
     A("|---|---|---|---|---|---|")
@@ -320,7 +392,7 @@ def write_md(R, out, pilot):
     for c in R["P1"]["cells"]:
         A(f"| {c['pattern']} | {c['amp']}x | {c['n']} | {f2(c['prop_within_10pts'])} | [{f2(c['wilson'][0])}, {f2(c['wilson'][1])}] | {f2(c['mean_diff'])} | [{f2(c['diff_ci'][0])}, {f2(c['diff_ci'][1])}] |")
     A("")
-    A(f"P1 if the control passes: **{R['P1']['verdict_if_control_passes']}**.")
+    A(cond_line("P1", R))
     A("")
     A("## P2: F(80 Hz) versus F(20 Hz)")
     A("")
@@ -330,7 +402,7 @@ def write_md(R, out, pilot):
         if c.get("n"):
             A(f"| {c['amp']}x | {c['n']} | {f2(c['mean_F20'])} | {f2(c['mean_F80'])} | {f2(c['prop_f80_ge_f20_tol'])} | [{f2(c['wilson'][0])}, {f2(c['wilson'][1])}] | {f2(c['prop_literal'])} | {f2(c['prop_fall_ge_20pct'])} (of {c['n_with_F20_ge_0_05']}) | [{f2(c['wilson_fall'][0])}, {f2(c['wilson_fall'][1])}] | {f2(c['evoked_fraction_median_20Hz'])} / {f2(c['evoked_fraction_median_80Hz'])} |")
     A("")
-    A(f"P2 if the control passes: **{R['P2']['verdict_if_control_passes']}**.")
+    A(cond_line("P2", R))
     A("")
     d = R["drive_matched_diagnostic"]
     A("## Diagnostics (not pre-registered thresholds)")
@@ -343,21 +415,11 @@ def write_md(R, out, pilot):
     A(f"- Pre-registered 10 Hz test train, subsample: F(none)={f2(t['none@probe10']['mean'])}, F(20 Hz)={f2(t['reg20@probe10']['mean'])}, F(80 Hz)={f2(t['reg80@probe10']['mean'])}, F(burst)={f2(t['burst@probe10']['mean'])}, F(Poisson)={f2(t['poisson@probe10']['mean'])}, F(jitter)={f2(t['jitter@probe10']['mean'])}; F(80)-F(20) = {f2(t['reg80_minus_reg20_probe10']['mean'])} [{f2(t['reg80_minus_reg20_probe10']['lo'])}, {f2(t['reg80_minus_reg20_probe10']['hi'])}].")
     A(f"- 5 Hz test train: F(none)={f2(t['none@probe5']['mean'])}, F(20 Hz)={f2(t['reg20@probe5']['mean'])}, F(80 Hz)={f2(t['reg80@probe5']['mean'])}.")
     cv = R["convergence"]
-    A(f"- dt-halving (0.025 vs 0.0125 ms), {cv['n_models']} models: median |dF| = {f2(cv['median_abs_dF'])}, max {f2(cv['max_abs_dF'])}; {'pass' if cv['pass_'] else 'FAIL, INCONCLUSIVE'}.")
+    A(f"- dt-halving (0.025 vs 0.0125 ms), {cv['n_models']} models: median |dF| = {f2(cv['median_abs_dF'])}, max {f2(cv['max_abs_dF'])}; {cv['n_abs_dF_gt_0_05']}/{cv['n_comparisons']} comparisons with |dF| > 0.05; classification flips: {cv['classification_flips']}; {'pass' if cv['pass_'] else 'FAIL, INCONCLUSIVE'}.")
     A("")
     if not pilot:
-        A("## What this run shows")
-        A("")
-        A("Nothing here rescues the verdicts: the positive control failed on Chao criterion (b), so P1 and P2 are **NO VERDICT** as pre-registered. The conditional readings above are shown only so that the reasons are visible.")
-        A("")
-        A("**(a) The model does not reproduce a progressive block.** Block is almost complete from the start at every rate of 4 Hz and above (F = 0.995 at 4 Hz, 0.96 at 20 Hz), with a median time-to-block of about 0.6 s, against Chao's block developing over about 20 s. The probe-only baseline is F = 0.000, so the block is caused by the stimulation, not by the 2 Hz probe, which makes the probe choice an unlikely culprit. At 4 Hz every pulse evokes a spike, so the threshold definition is not the culprit either. The most likely cause is the tuning amendment (A in `PREDICTION.md`): Ca decay of 1500 ms and the SK conductance were tuned so that a 21-pulse train fails above 6 Hz (Sundt), and a Ca-dependent K current that strong and that fast accumulates in under a second at 4 Hz plus probes. This is a hypothesis; it was not tested by re-tuning, which would need a new pre-registration.")
-        A("")
-        A("**(b) Under that model, matched-rate patterns are indistinguishable from rate.** Poisson, burst and jitter are all within 3 points of regular 20 Hz (the largest mean difference is burst, +0.030, CI [0.026, 0.035]), and at least 96% of models are within 10 points in every cell. Because F is already near 1 at 20 Hz there is little room for a pattern to raise it, so this is also a ceiling effect: it is weak evidence that pattern does not matter and cannot show that pattern would not matter in a model that blocks progressively.")
-        A("")
-        A("**(c) High rates lower F only by failing to drive the stem.** At 40 Hz and above 0.4-2% of pulses evoke a spike (median), against 95% at 20 Hz, and no amplitude up to 12x found a drive at 80 Hz. F falls from 0.96 to 0.43 because the stimulus stops generating spikes, not because the T-junction passes more. The 10 Hz and 5 Hz test trains on the subsample show the same ordering (F(80)-F(20) = -0.54).")
-        A("")
-        A("**What the next model would have to do differently** to make the control passable: reproduce Sundt's 6 Hz following frequency *and* a block that builds over tens of seconds, which a single Ca-dependent K time constant evidently cannot do here, and keep the stem drivable at 80 Hz (for example by a stimulus that does not depend on the same channels the filter depends on). A rival mechanism exists: Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770, NEURON, Markov Nav models incl. Nav1.6) report that DRG stimulation raises intra-axonal Na and lowers K, disrupting the transaxonal gradients, giving activity-dependent conduction slowing and eventual block in both Aδ and C fibres. That would give a slow progressive block of the kind Chao saw and is worth a **separate pre-registered run**; it is not built here.")
-        A("")
+        for line in shows(R):
+            A(line)
     A("## Aβ comparator F")
     A("")
     A("| Condition | mean F | 95% CI |")
