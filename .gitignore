@@ -42,3 +42,5 @@ simulations/**/results/main/stoch/
 simulations/**/results/main/tests/
 simulations/**/results/main/ab/
 simulations/**/results/main/converge/
+simulations/**/results/main/tuning/
+simulations/**/results/main/val/
