@@ -12,9 +12,9 @@ Pre-registration: `PREDICTION.md` (commit #1). Rules for P1 and P2 are S-1's, im
 | P1 pattern is approximately rate | NOT RUN: no parameter set met the calibration targets |
 | P2 no human ordering | NOT RUN: no parameter set met the calibration targets |
 
-**What this rules out, and what it points to.** Of the 22 calibrated candidates, 19 block in under 2 s and B1 (F in the first 5 s at most 0.50) holds in 0; B2 holds in 22 and B3 (onset 2 to 20 s) in 3. Of the 3 with onset between 2 and 20 s, 0 also meet B1 (the rest have F above 0.50 in the first 5 s). Within this declared space and channel set, then, a block that builds progressively by the B1 to B3 definition is not found: the Ca-dependent K block arrives within seconds. That points to a slower process, for example the ion-gradient run-down mechanism of Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770), as a candidate for a next pre-registered run. This is a pointer, not a conclusion; nothing here tests that mechanism.
+**What this found, and how far it reaches.** Of the 22 calibrated candidates (8 of 240 in round 1, 14 of 96 in round 2), 19 block in under 2 s; B1 (F in the first 5 s at most 0.50) holds in 0, B2 in 22 and B3 (onset 2 to 20 s) in 3. B1 fails because F in the first 5 s is above 0.50 in 22 candidates and because it is undefined (fewer than 3 scored probes) in 0. Of the 3 with onset between 2 and 20 s, 0 also meet B1. The nearest miss is candidate 1035 (J = 2.52): following frequencies 84.2 / 32.1 / 5.0 Hz, 3 of 3 inside their Sundt bands, onset 5.237 s, F in the first 5 s 0.750 (misses B1 by 0.25), failing B1. Best J is 4.119 in round 1 and 2.521 in round 2 (round 2, which is a local search around round-1 candidates, produced the best candidates, so J was still improving when the search stopped). The search stopped at its pre-registered budget, not at convergence. A block that builds progressively by the B1 to B3 definition was not found within this declared space and channel set. That points to a slower process, for example the ion-gradient run-down mechanism of Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770), as a candidate for a next pre-registered run, alongside a longer or wider search of this space. This is a pointer, not a conclusion; nothing here tests that mechanism.
 
-This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: 336 sampled candidates, of which 22 reached the calibration run (the funnel is in the table below). It does not say that no model could do both, and it is not a result about patients.
+This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: 336 sampled candidates, of which 22 reached the calibration run (the funnel is in the table below). Stimulus amplitude (fixed at 1.5x of the drive threshold), stimulus site (mid-stem) and the 20 Hz rate were not search dimensions. The following-frequency scan has about 6% resolution, so some candidates just outside a band might sit inside it on a finer scan: 55 candidates were stopped at the Na+Kdr or +KCNQ/M band with a following frequency within 6% beyond a band edge. It does not say that no model could do both, and it is not a result about patients.
 
 ## Tuning
 
@@ -27,7 +27,7 @@ Calibration targets: Na+Kdr 82.5-137.5 Hz, +KCNQ/M 22.5-37.5 Hz, +Ca-dependent K
 | candidates | 336 | 240 | 96 |
 | Na+Kdr following frequency in band | 210 | 141 | 69 |
 | +KCNQ/M in band (of those that passed the first) | 37 | 16 | 21 |
-| +SK following frequency in 2-40 Hz (calibration run done) | 23 | 8 | 15 |
+| +SK following frequency in 2-40 Hz (calibration run attempted; undrivable ones are counted in the next rows) | 23 | 8 | 15 |
 | of which in the 4.5-7.5 Hz band | 6 | 1 | 5 |
 | undrivable (no calibration run) | 1 | 0 | 1 |
 | calibration runs completed | 22 | 8 | 14 |

@@ -35,6 +35,24 @@ def jload(p):
 
 # --- tuning summary -----------------------------------------------------------
 
+def near_edge(rs, grid_step=0.06):
+    """Candidates stopped at the Na+Kdr or +KCNQ/M band whose following frequency lies just outside
+    the band, within the 6% resolution of the following-frequency scan (so a finer scan could
+    have put them inside).  Returns [(id, stage, ff, edge)]."""
+    out = []
+    for r in rs:
+        st = {"na_k_band": "na_k", "kcnq_band": "kcnq"}.get(r.get("stage"))
+        if st is None or not r["ff"].get(st):
+            continue
+        v = r["ff"][st]
+        lo, hi = TU.band(TU.TARGET_HZ[st])
+        if lo / (1 + grid_step) <= v < lo:
+            out.append((r["id"], st, v, lo))
+        elif hi < v <= hi * (1 + grid_step):
+            out.append((r["id"], st, v, hi))
+    return out
+
+
 def funnel(rs):
     cal = [r for r in rs if r.get("calibrated")]
     onsets = [r["flags"]["onset_s"] for r in cal]
@@ -60,6 +78,10 @@ def funnel(rs):
         F_early_median=float(np.median([r["run"]["F_early"] for r in cal if r["run"].get("F_early") is not None])) if any(r["run"].get("F_early") is not None for r in cal) else None,
         F_late_median=float(np.median([r["run"]["F_late"] for r in cal if r["run"].get("F_late") is not None])) if any(r["run"].get("F_late") is not None for r in cal) else None,
         n_meets=sum(1 for r in rs if r.get("meets")),
+        best_J=min((r["J"] for r in cal), default=None),
+        n_B1_fail_F_early_high=sum(1 for r in cal if r["run"].get("F_early") is not None and r["run"]["F_early"] > TU.B1_MAX_F_EARLY),
+        n_B1_fail_F_early_undefined=sum(1 for r in cal if r["run"].get("F_early") is None),
+        n_near_edge=len(near_edge(rs)),
     )
     return out
 
@@ -359,7 +381,7 @@ def tuning_md(R, A):
     A("| Stage of the funnel (all search candidates) | Rounds 1 + 2 | Round 1 | Round 2 |")
     A("|---|---|---|---|")
     rows = (("candidates", "n"), ("Na+Kdr following frequency in band", "n_na_k_band"), ("+KCNQ/M in band (of those that passed the first)", "n_kcnq_band"),
-            ("+SK following frequency in 2-40 Hz (calibration run done)", "n_sk_2_40"), ("of which in the 4.5-7.5 Hz band", "n_sk_band"),
+            ("+SK following frequency in 2-40 Hz (calibration run attempted; undrivable ones are counted in the next rows)", "n_sk_2_40"), ("of which in the 4.5-7.5 Hz band", "n_sk_band"),
             ("undrivable (no calibration run)", "n_undrivable"), ("calibration runs completed", "n_calibrated"),
             ("B1 holds (of calibrated)", "n_B1"), ("B2 holds", "n_B2"), ("B3 holds (onset 2-20 s)", "n_B3"),
             ("B1, B2 and B3 all hold, counting only the calibration-run candidates and ignoring whether their Sundt bands hold", "n_block_all"), ("**meet every calibration target**", "n_meets"))
@@ -410,10 +432,30 @@ def write_md_no_tuning(R, out, pilot):
     A(f"| P2 no human ordering | {R['verdicts']['P2']} |")
     A("")
     F = R["tuning"]["funnel_all"]
+    T = R["tuning"]
     if F["n_calibrated"]:
-        A(f"**What this rules out, and what it points to.** Of the {F['n_calibrated']} calibrated candidates, {F['n_onset_under_2s']} block in under 2 s and B1 (F in the first 5 s at most 0.50) holds in {F['n_B1']}; B2 holds in {F['n_B2']} and B3 (onset 2 to 20 s) in {F['n_B3']}. Of the {F['n_B3']} with onset between 2 and 20 s, {F['n_B1_and_B3']} also meet B1 (the rest have F above 0.50 in the first 5 s). Within this declared space and channel set, then, a block that builds progressively by the B1 to B3 definition is not found: the Ca-dependent K block arrives within seconds. That points to a slower process, for example the ion-gradient run-down mechanism of Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770), as a candidate for a next pre-registered run. This is a pointer, not a conclusion; nothing here tests that mechanism.")
+        b0 = T["best"][0]
+        miss = [n for n, k in (("B1", "B1"), ("B2", "B2"), ("B3", "B3")) if not b0["flags"][k]]
+        inb = [n for n in ("na_k", "kcnq", "sk") if TU.in_band(n, b0["ff"][n])]
+        r1j, r2j = T["funnel_r1"]["best_J"], T["funnel_r2"]["best_J"]
+        A(f"**What this found, and how far it reaches.** Of the {F['n_calibrated']} calibrated candidates ({T['funnel_r1']['n_calibrated']} of {T['funnel_r1']['n']} in round 1, {T['funnel_r2']['n_calibrated']} of {T['funnel_r2']['n']} in round 2), "
+          f"{F['n_onset_under_2s']} block in under 2 s; B1 (F in the first 5 s at most 0.50) holds in {F['n_B1']}, B2 in {F['n_B2']} and B3 (onset 2 to 20 s) in {F['n_B3']}. "
+          f"B1 fails because F in the first 5 s is above 0.50 in {F['n_B1_fail_F_early_high']} candidates and because it is undefined (fewer than 3 scored probes) in {F['n_B1_fail_F_early_undefined']}. "
+          f"Of the {F['n_B3']} with onset between 2 and 20 s, {F['n_B1_and_B3']} also meet B1. "
+          f"The nearest miss is candidate {b0['id']} (J = {b0['J']:.2f}): following frequencies {b0['ff']['na_k']:.1f} / {b0['ff']['kcnq']:.1f} / {b0['ff']['sk']:.1f} Hz, {len(inb)} of 3 inside their Sundt bands, onset {f2(b0['flags']['onset_s'])} s, F in the first 5 s {f2(b0['F_early'])}"
+          + (f" (misses B1 by {b0['F_early'] - TU.B1_MAX_F_EARLY:.2f})" if b0["F_early"] is not None and not b0["flags"]["B1"] else "")
+          + (f", failing {', '.join(miss)}" if miss else "") + ". "
+          f"Best J is {f2(r1j)} in round 1 and {f2(r2j)} in round 2"
+          + (" (round 2, which is a local search around round-1 candidates, produced the best candidates, so J was still improving when the search stopped). " if (r1j is not None and r2j is not None and r2j < r1j) else ". ")
+          + "The search stopped at its pre-registered budget, not at convergence. "
+          "A block that builds progressively by the B1 to B3 definition was not found within this declared space and channel set. "
+          "That points to a slower process, for example the ion-gradient run-down mechanism of Ladez, Liu, Chen and Feng (EMBC 2024, PMID 40039770), as a candidate for a next pre-registered run, "
+          "alongside a longer or wider search of this space. This is a pointer, not a conclusion; nothing here tests that mechanism.")
         A("")
-    A(f"This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: {F['n']} sampled candidates, of which {F['n_calibrated']} reached the calibration run (the funnel is in the table below). It does not say that no model could do both, and it is not a result about patients.")
+    A(f"This statement is about the declared space and model class only (nine parameters, ranges in `PREDICTION.md`; Sundt-type channels). It is a search result, not an exhaustive scan: {F['n']} sampled candidates, of which {F['n_calibrated']} reached the calibration run (the funnel is in the table below). "
+      f"Stimulus amplitude (fixed at 1.5x of the drive threshold), stimulus site (mid-stem) and the 20 Hz rate were not search dimensions. "
+      f"The following-frequency scan has about 6% resolution, so some candidates just outside a band might sit inside it on a finer scan: {F['n_near_edge']} candidates were stopped at the Na+Kdr or +KCNQ/M band with a following frequency within 6% beyond a band edge. "
+      "It does not say that no model could do both, and it is not a result about patients.")
     A("")
     tuning_md(R, A)
     A("## Visual traces")

@@ -454,3 +454,23 @@ bands directly and are unaffected; the report now states both edges and adds an
 "in Sundt bands" column. (ii) A data-generated pointer was added under the verdict
 (the ion-gradient mechanism, PMID 40039770, as a candidate for a next
 pre-registered run); it is a pointer, not a conclusion.
+
+### Amendment 3 (2026-11-17, review wording; append only, no rule, number or result changed)
+
+Two sentences in this file are my readings, not content of the abstracts they
+sit beside, and are labelled as such here:
+
+- "Ladez et al., PMID 40039770, argue the latter produces slow block" (Declared
+  limits). That is my reading. The abstract says activity-dependent conduction
+  slowing leading to eventual conduction block; it does not use the word "slow
+  block" for the mechanism.
+- "Kent's model is itself a Sundt-type SK model" (V1 paragraph). That is my
+  reading. The Kent abstract supports only that the amplified filtering depended
+  on calcium and calcium-dependent small-conductance potassium channels in a
+  validated C-type neuron model.
+
+The results report was also revised from the same per-candidate files (no
+re-run): the verdict section now gives the best J per round, the calibrated
+counts, the nearest miss, and the scope of the search (amplitude, site and rate
+were not search dimensions; a 6% following-frequency grid; the count of
+candidates stopped within 6% beyond a band edge).
