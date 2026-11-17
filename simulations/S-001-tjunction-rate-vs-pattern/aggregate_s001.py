@@ -164,11 +164,19 @@ def main(out, pilot=False):
             na = float(np.mean([r["n_arrived"] for r in runs]))
             ns = float(np.mean([r["n_scored"] for r in runs]))
             fa = boot_mean([fval(r, "F_all") for r in runs])
+            # failures among excluded probes (arrived but not scored), pooled over models:
+            # arrived*F_all - scored*F failures among arrived - scored
+            n_exc = sum(r["n_arrived"] - r["n_scored"] for r in runs)
+            fail_all = sum(r["n_arrived"] * r["F_all"] for r in runs if r.get("F_all") is not None)
+            fail_sc = sum(r["n_scored"] * r["F"] for r in runs if r.get("F") is not None)
+            excl_rate = (fail_all - fail_sc) / n_exc if n_exc else None
+            sc_rate = fail_sc / sum(r["n_scored"] for r in runs if r.get("F") is not None) if sum(r["n_scored"] for r in runs) else None
             tab[f"reg{fr}@{amp}"] = dict(F_mean=b["mean"], F_ci=[b["lo"], b["hi"]], n=b["n"],
                                          evoked_fraction_median=float(np.median(ev)) if ev else None,
                                          n_test_mean=nt, n_arrived_mean=na, n_scored_mean=ns,
                                          scored_over_test=ns / nt if nt else None,
-                                         F_all_mean=fa["mean"], F_all_ci=[fa["lo"], fa["hi"]])
+                                         F_all_mean=fa["mean"], F_all_ci=[fa["lo"], fa["hi"]],
+                                         n_excluded_total=n_exc, excluded_fail_rate=excl_rate, scored_fail_rate_pooled=sc_rate)
     base = [fval(m["runs"].get("none")) for m in models.values()]
     R["F_by_regular_rate"] = tab
     R["F_probe_only_baseline"] = boot_mean(base)
@@ -414,13 +422,13 @@ def write_md(R, out, pilot):
     A("")
     A("## F by regular rate (probe-only baseline: " + f"mean {f2(R['F_probe_only_baseline']['mean'])}, max over models {f2(R['F_probe_only_baseline']['max'])})")
     A("")
-    A("F is computed on *scored* probes only: probes that reach the pre-junction site and are not ambiguous with a stimulus spike (see `PREDICTION.md`, amendment E). `F_all` counts every arrived probe and treats any central crossing in the window as success, so it is a lower bound on F that includes stimulus spikes. Where the scored fraction is small, F is a statement about the gaps between stimulus volleys.")
+    A("F is computed on *scored* probes only: probes that reach the pre-junction site and are not ambiguous with a stimulus spike (see `PREDICTION.md`, amendment E). `F_all` keeps the ambiguous probes (every arrived probe; any central crossing in the window counts as success). At low rates it is below F; at high rates it exceeds F, because excluded probes fail more often than scored ones (last column). Where the scored fraction is small, F is a statement about the gaps between stimulus volleys.")
     A("")
-    A("| Rate | Amp | F mean | 95% CI | F_all mean | n models | mean probes (test / arrived / scored) | scored / test | median fraction of pulses evoking a spike |")
-    A("|---|---|---|---|---|---|---|---|---|")
+    A("| Rate | Amp | F mean | 95% CI | F_all mean | n models | mean probes (test / arrived / scored) | scored / test | median fraction of pulses evoking a spike | failure rate: scored / excluded probes |")
+    A("|---|---|---|---|---|---|---|---|---|---|")
     for key, t in R["F_by_regular_rate"].items():
         rate, amp = key[3:].split("@")
-        A(f"| {rate} Hz | {amp}x | {f2(t['F_mean'])} | [{f2(t['F_ci'][0])}, {f2(t['F_ci'][1])}] | {f2(t['F_all_mean'])} | {t['n']} | {t['n_test_mean']:.1f} / {t['n_arrived_mean']:.1f} / {t['n_scored_mean']:.1f} | {f2(t['scored_over_test'])} | {f2(t['evoked_fraction_median'])} |")
+        A(f"| {rate} Hz | {amp}x | {f2(t['F_mean'])} | [{f2(t['F_ci'][0])}, {f2(t['F_ci'][1])}] | {f2(t['F_all_mean'])} | {t['n']} | {t['n_test_mean']:.1f} / {t['n_arrived_mean']:.1f} / {t['n_scored_mean']:.1f} | {f2(t['scored_over_test'])} | {f2(t['evoked_fraction_median'])} | {f2(t['scored_fail_rate_pooled'])} / {f2(t['excluded_fail_rate'])} |")
     A("")
     A("## P1: pattern versus rate (difference from regular 20 Hz, matched pulse count)")
     A("")

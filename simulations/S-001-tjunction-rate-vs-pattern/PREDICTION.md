@@ -388,3 +388,14 @@ scored (about 14% of probes per model at 80 Hz, 1.5x, against about 74% at 20 Hz
 so F(80 Hz) describes probes that cross between stimulus volleys. `results.md`
 and `results.json` now report probes tested, arrived and scored per rate and
 amplitude, and F_all next to F. No threshold or verdict rule was changed.
+
+### Correction to amendment E (appended 2026-11-17, review)
+
+Amendment E above says `F_all` "is a lower bound on F". **That is wrong at high
+rates.** `F_all` keeps the ambiguous probes. At low rates it is below F; at high
+rates it exceeds F, because the excluded probes fail much more often than the
+scored ones (at 80 Hz, 1.5x, the pooled failure rate of excluded probes is about
+0.6 against about 0.05 for scored probes, so the exclusion rule discards most of
+the failures). The size of any rate effect on F therefore depends on the exclusion
+rule; `results.md` reports both F and F_all with the excluded-probe failure rate.
+The sentence in amendment E is left as written.

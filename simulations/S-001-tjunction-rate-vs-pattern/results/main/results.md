@@ -36,20 +36,20 @@ Chao 2020 qualitative control at regular 20 Hz, 1.5x:
 
 ## F by regular rate (probe-only baseline: mean 0.000, max over models 0.017)
 
-F is computed on *scored* probes only: probes that reach the pre-junction site and are not ambiguous with a stimulus spike (see `PREDICTION.md`, amendment E). `F_all` counts every arrived probe and treats any central crossing in the window as success, so it is a lower bound on F that includes stimulus spikes. Where the scored fraction is small, F is a statement about the gaps between stimulus volleys.
+F is computed on *scored* probes only: probes that reach the pre-junction site and are not ambiguous with a stimulus spike (see `PREDICTION.md`, amendment E). `F_all` keeps the ambiguous probes (every arrived probe; any central crossing in the window counts as success). At low rates it is below F; at high rates it exceeds F, because excluded probes fail more often than scored ones (last column). Where the scored fraction is small, F is a statement about the gaps between stimulus volleys.
 
-| Rate | Amp | F mean | 95% CI | F_all mean | n models | mean probes (test / arrived / scored) | scored / test | median fraction of pulses evoking a spike |
-|---|---|---|---|---|---|---|---|---|
-| 4 Hz | 1.0x | 0.994 | [0.993, 0.996] | 0.981 | 200 | 59.0 / 57.6 / 56.3 | 0.954 | 1.000 |
-| 20 Hz | 1.0x | 0.958 | [0.954, 0.962] | 0.881 | 200 | 59.0 / 51.4 / 44.2 | 0.749 | 0.960 |
-| 40 Hz | 1.0x | 0.882 | [0.874, 0.891] | 0.727 | 200 | 59.0 / 44.0 / 29.9 | 0.506 | 0.946 |
-| 60 Hz | 1.0x | 0.618 | [0.599, 0.637] | 0.480 | 200 | 59.0 / 36.9 / 14.4 | 0.245 | 0.938 |
-| 80 Hz | 1.0x | 0.297 | [0.278, 0.316] | 0.466 | 200 | 59.0 / 29.0 / 11.1 | 0.189 | 0.933 |
-| 4 Hz | 1.5x | 0.994 | [0.993, 0.996] | 0.982 | 200 | 59.0 / 57.6 / 56.3 | 0.954 | 1.000 |
-| 20 Hz | 1.5x | 0.961 | [0.957, 0.965] | 0.878 | 200 | 59.0 / 51.1 / 43.5 | 0.737 | 0.997 |
-| 40 Hz | 1.5x | 0.878 | [0.870, 0.887] | 0.714 | 200 | 59.0 / 43.3 / 28.1 | 0.476 | 0.989 |
-| 60 Hz | 1.5x | 0.529 | [0.505, 0.553] | 0.449 | 200 | 59.0 / 35.6 / 11.2 | 0.189 | 0.979 |
-| 80 Hz | 1.5x | 0.049 | [0.037, 0.062] | 0.429 | 200 | 59.0 / 27.4 / 8.0 | 0.136 | 0.974 |
+| Rate | Amp | F mean | 95% CI | F_all mean | n models | mean probes (test / arrived / scored) | scored / test | median fraction of pulses evoking a spike | failure rate: scored / excluded probes |
+|---|---|---|---|---|---|---|---|---|---|
+| 4 Hz | 1.0x | 0.994 | [0.993, 0.996] | 0.981 | 200 | 59.0 / 57.6 / 56.3 | 0.954 | 1.000 | 0.994 / 0.420 |
+| 20 Hz | 1.0x | 0.958 | [0.954, 0.962] | 0.881 | 200 | 59.0 / 51.4 / 44.2 | 0.749 | 0.960 | 0.958 / 0.404 |
+| 40 Hz | 1.0x | 0.882 | [0.874, 0.891] | 0.727 | 200 | 59.0 / 44.0 / 29.9 | 0.506 | 0.946 | 0.882 / 0.395 |
+| 60 Hz | 1.0x | 0.618 | [0.599, 0.637] | 0.480 | 200 | 59.0 / 36.9 / 14.4 | 0.245 | 0.938 | 0.619 / 0.391 |
+| 80 Hz | 1.0x | 0.297 | [0.278, 0.316] | 0.466 | 200 | 59.0 / 29.0 / 11.1 | 0.189 | 0.933 | 0.299 / 0.569 |
+| 4 Hz | 1.5x | 0.994 | [0.993, 0.996] | 0.982 | 200 | 59.0 / 57.6 / 56.3 | 0.954 | 1.000 | 0.994 / 0.435 |
+| 20 Hz | 1.5x | 0.961 | [0.957, 0.965] | 0.878 | 200 | 59.0 / 51.1 / 43.5 | 0.737 | 0.997 | 0.961 / 0.407 |
+| 40 Hz | 1.5x | 0.878 | [0.870, 0.887] | 0.714 | 200 | 59.0 / 43.3 / 28.1 | 0.476 | 0.989 | 0.878 / 0.407 |
+| 60 Hz | 1.5x | 0.529 | [0.505, 0.553] | 0.449 | 200 | 59.0 / 35.6 / 11.2 | 0.189 | 0.979 | 0.535 / 0.409 |
+| 80 Hz | 1.5x | 0.049 | [0.037, 0.062] | 0.429 | 200 | 59.0 / 27.4 / 8.0 | 0.136 | 0.974 | 0.050 / 0.587 |
 
 ## P1: pattern versus rate (difference from regular 20 Hz, matched pulse count)
 
