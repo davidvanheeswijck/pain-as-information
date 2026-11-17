@@ -77,6 +77,16 @@ be checked against that column before it is filed**, not after.
 - **Next.** A model that could pass this control must keep Sundt's ~6 Hz following frequency *and* block over tens of seconds. The candidates are re-tuning Ca decay and SK under a new pre-registration, or the rival ion-gradient run-down mechanism (Ladez, Liu, Chen & Feng, EMBC 2024, PMID 40039770), which predicts slow progressive block. Either needs its own pre-registered run.
 - **Known gap.** The generated "(c)" paragraph in `results.md` does not itself carry the caveat that the size of the fall depends on the exclusion rule. The caveat is in the table note and in PREDICTION.md's correction to amendment E.
 
+**S-3, generator discrimination: kill TRIGGERED, positive control passed.**
+2026-11-17, `simulations/S-003-generator-discrimination/`, PR #6. A decision-analysis model, not biophysics.
+
+- **Inputs.** Of 24 likelihood parameters, 4 are anchored on an abstract and 20 are elicited. The prior is elicited in full.
+- **Result.** Across 4,000 draws, the best sequence of at most three available observations, fixed or adaptive, yields a median 0.797 bits of a possible 1.900. That removes about 42% of prior entropy, and it reaches the pre-registered 1 bit in 0.040 of draws. No single test reaches 1 bit in any draw. Within this model's ranges, the available observations do not localise the generator. Whether 0.8 bits is clinically useful is a separate question.
+- **The specificity column, answered for this question.** No available observation separates a peripheral lesion (H1) from central amplification of normal input (H3): the median pairwise error with every test together is 0.234. Blocks and the ganglion-directed test cannot separate the two by construction (C-009). Only imaging and, weakly, stimulation on/off bear on that pair. P3 depends on the prior: it holds in 0.964 of draws under the pre-registered prior and 0.636 under a flat prior.
+- **Ranking.** A comparative block plus the ganglion-directed test is the top pair in 0.779 of draws. The ganglion-directed test is a research procedure. Without it, the best of three is a median 0.647 bits.
+- **Standing.** This describes how the ranking behaves across elicited ranges. Do not cite it as a measured accuracy of any test, and not as a protocol.
+- **Known gaps.** A 60-draw pilot was seen before the code commit. The pre-registered P3 measure mixes prior imbalance with test performance. The 30% false-positive anchor comes from zygapophysial joint blocks. Conditional independence between tests flatters sequences.
+
 ## What the programme should file next
 
 The evidence base now points at three things that are open rather than merely
