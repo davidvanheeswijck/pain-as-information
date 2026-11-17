@@ -42,4 +42,5 @@ passes both, that is itself the result and is reported as such.
 | 17/11/2026 | owner | Build S-1b (re-tuned T-junction); keep the AI brief private | session, decision ledger |
 
 ## Implemented by
-- (PRs added as they merge)
+- #8 this intent record
+- #9 S-1b: no tuning met the calibration targets within the pre-registered budget; P1 and P2 not run (see ledger/OPEN.md "Simulations")
