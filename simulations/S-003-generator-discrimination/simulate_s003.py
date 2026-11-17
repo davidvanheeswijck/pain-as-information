@@ -70,7 +70,7 @@ ALL_FOUR = ("T2", "T3", "T4", "T5")
 
 # name: (lo, hi, status, basis)
 PARAMS = {
-    "a": (0.60, 0.95, "anchored", "PMID 24704366: abolished in all 14, none with CRPS"),
+    "a": (0.60, 0.95, "anchored", "PMID 24704366: abolished in all 14; the abstract does not mention CRPS"),
     "u": (0.30, 0.70, "elicited", ""),
     "f": (0.15, 0.45, "anchored", "PMID 29913995: about 30%, zygapophysial joint blocks; transferred"),
     "g": (0.20, 0.60, "elicited", ""),
@@ -392,6 +392,8 @@ def analyse(cols, theta, priors, seed_idx, n_seeds, with_verdicts=True) -> dict:
         "adaptive depth 2": describe(cols["adaptA2"], seed_idx, n_seeds),
         "adaptive depth 3": describe(cols["adaptA3"], seed_idx, n_seeds),
         "at most 3, fixed or adaptive": describe(best_le3, seed_idx, n_seeds),
+        "at most 3, share of prior entropy removed": describe(
+            best_le3 / cols["prior_entropy"], seed_idx, n_seeds),
         "adaptive depth 3 minus best triple": describe(cols["adaptA3"] - best3, seed_idx, n_seeds),
         "set B triple": describe(best3b, seed_idx, n_seeds),
         "set B adaptive depth 3": describe(cols["adaptB3"], seed_idx, n_seeds),
@@ -433,7 +435,7 @@ def analyse(cols, theta, priors, seed_idx, n_seeds, with_verdicts=True) -> dict:
                      "rho_best_le3": spearman(theta[:, m], best_le3)})
     for h in range(4):
         sens.append({"parameter": f"prior {HYP[h]}", "tests": "all", "status":
-                     "anchored" if h == 0 else "elicited",
+                     "elicited",
                      "rho_best_triple": spearman(priors[:, h], target),
                      "rho_best_le3": spearman(priors[:, h], best_le3)})
     sens.sort(key=lambda d: -abs(d["rho_best_triple"]))
@@ -563,19 +565,31 @@ def write_markdown(path: Path, R: dict) -> None:
     w("| Claim | Statement | Proportion of draws | Wilson 95% | Per-seed mean [t 95%] | Threshold | Verdict |")
     w("|---|---|---|---|---|---|---|")
     w(claim_row("P1", "every single test is below 1 bit", c["P1"]))
-    w(claim_row("P2", "the best pair includes T3", c["P2"]))
+    w(claim_row("P2", "the best pair includes T3 (a research procedure, not a routine test)", c["P2"]))
     w(claim_row("P2b", "the best pair includes a block (T1 or T2)", c["P2b"]))
     w(claim_row("P3", f"H1 against H3: pairwise Bayes error is at least {P3_ERROR} under every set of at most 3 tests", c["P3"]))
     w(claim_row("Kill", "the best sequence of at most 3 tests, fixed or adaptive, reaches 1 bit (triggered when below 0.50)", c["Kill"]))
     w("")
+    w(f"**P3 depends on the prior.** The proportion is {c['P3']['proportion']:.3f} under the "
+      f"pre-registered prior and {flat['claims']['P3']['proportion']:.3f} under the secondary flat prior, "
+      f"with the same likelihood ranges. The measure is bounded by the smaller of the two priors, so a "
+      f"lopsided prior draw lowers it with no test at all. The verdict above is for the pre-registered "
+      f"prior only; the equal-prior diagnostic is in the section on pairs below.")
+    w("")
     k = c["Kill"]
     b = main["best"]["at most 3, fixed or adaptive"]
+    share = main["best"]["at most 3, share of prior entropy removed"]
     if k["verdict"] == "TRIGGERED":
         w(f"**The kill is triggered.** In the median draw the best sequence of at most three observations "
           f"yields {f3(b['median'])} bits (central 95% of draws {interval(b)}), against a prior "
           f"uncertainty of {f3(main['prior_entropy']['median'])} bits, and it reaches 1 bit in "
           f"{k['proportion']:.3f} of draws. Within this model and these ranges, the available clinical "
           f"observations cannot localise the generator. That is a result, not a failure.")
+        w("")
+        w(f"The kill is a statement about the pre-registered 1-bit threshold. The best sequence removes "
+          f"a median {share['median']:.0%} of the prior entropy (central 95% of draws "
+          f"{share['p2.5']:.0%} to {share['p97.5']:.0%}). Whether {b['median']:.1f} bits is clinically "
+          f"useful is a different question, and this model does not answer it.")
     elif k["verdict"] == "NOT TRIGGERED":
         w(f"**The kill is not triggered.** The best sequence of at most three observations reaches 1 bit "
           f"in {k['proportion']:.3f} of draws (median {f3(b['median'])} bits, central 95% of draws "
@@ -794,8 +808,10 @@ def write_markdown(path: Path, R: dict) -> None:
     n_anch = sum(1 for p in PNAMES if PARAMS[p][2].startswith("anchored"))
     w(f"{len(PNAMES)} parameters: {n_anch} anchored on a source, {len(PNAMES) - n_anch} elicited, "
       f"none fully sourced. Each is drawn as lo + (hi - lo) x Beta(2, 2). Prior: Dirichlet"
-      f"{tuple(int(a) for a in PRIOR_ALPHA)}; the H1 mean is anchored on PMID 40211731 (26% and 33%), "
-      f"the rest is elicited.")
+      f"{tuple(int(a) for a in PRIOR_ALPHA)}. The prior is elicited in full. PMID 40211731 is "
+      f"context for the H1 mean, not a source for it: its 26% (judged not to have CRPS) and its 33% (of "
+      f"those labelled CRPS type I, an inciting nerve injury identified) are two different quantities, "
+      f"and neither is the share whose pain is generated by a peripheral lesion.")
     w("")
     w("| Parameter | Used by | Range | Status | Basis |")
     w("|---|---|---|---|---|")

@@ -73,6 +73,46 @@ class HandComputed(unittest.TestCase):
         self.assertAlmostEqual(ig.pairwise_bayes_error(prior, ORACLE, 0, 2), 0.0, places=12)
 
 
+class PairwiseHandComputed(unittest.TestCase):
+    def test_mid_range_pairwise_error(self):
+        # Pair (0, 2) of prior (0.3, 0.2, 0.1, 0.4): renormalised 0.75 and
+        # 0.25. Rows (0.8, 0.2) and (0.3, 0.7). Outcome 1: min(0.75*0.8,
+        # 0.25*0.3) = min(0.6, 0.075) = 0.075. Outcome 2: min(0.75*0.2,
+        # 0.25*0.7) = min(0.15, 0.175) = 0.15. Error 0.225, against 0.25
+        # with no test: neither 0 nor the baseline.
+        prior = [0.3, 0.2, 0.1, 0.4]
+        rows = [[0.8, 0.2], [0.5, 0.5], [0.3, 0.7], [0.5, 0.5]]
+        self.assertAlmostEqual(ig.pairwise_bayes_error(prior, rows, 0, 2), 0.225, places=12)
+        self.assertAlmostEqual(ig.pairwise_bayes_error(prior, rows, 1, 3), 1 / 3, places=12)
+
+
+class AdaptiveHandComputed(unittest.TestCase):
+    def test_adaptive_strictly_beats_every_fixed_pair(self):
+        # Four equally likely hypotheses. A splits {0,1} from {2,3} perfectly.
+        # B tells 0 from 1 and is a coin flip under 2 and 3; C tells 2 from 3
+        # and is a coin flip under 0 and 1.
+        # Fixed A+B: 0 and 1 are identified, {2,3} keeps 1 bit half the time,
+        # so 2 - 0.5 = 1.5 bits. A+C is the same by symmetry. B+C: every
+        # joint outcome leaves two equally likely hypotheses, so 2 - 1 = 1.
+        # Adaptive: A, then B or C according to A's outcome: 2 bits.
+        prior = [0.25] * 4
+        tests = {
+            "A": [[1, 0], [1, 0], [0, 1], [0, 1]],
+            "B": [[1, 0], [0, 1], [0.5, 0.5], [0.5, 0.5]],
+            "C": [[0.5, 0.5], [0.5, 0.5], [1, 0], [0, 1]],
+        }
+
+        def fixed(x, y):
+            return ig.mutual_information(prior, ig.joint_rows([tests[x], tests[y]]))
+
+        self.assertAlmostEqual(fixed("A", "B"), 1.5, places=12)
+        self.assertAlmostEqual(fixed("A", "C"), 1.5, places=12)
+        self.assertAlmostEqual(fixed("B", "C"), 1.0, places=12)
+        gain, first = ig.adaptive_gain(prior, tests, 2)
+        self.assertAlmostEqual(gain, 2.0, places=12)
+        self.assertEqual(first, "A")
+
+
 class Sequences(unittest.TestCase):
     def test_order_does_not_change_a_fixed_sequence(self):
         prior = [0.3, 0.25, 0.25, 0.2]
