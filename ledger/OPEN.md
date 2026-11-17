@@ -4,7 +4,7 @@ The honest current position of the programme. Updated after every panel run and
 at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
-**Last updated:** 2026-11-16 (independent review recorded)
+**Last updated:** 2026-11-17 (S-1 recorded)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
 **Programme status:** not yet assessable (fewer than 10 conjectures)
 
@@ -64,6 +64,18 @@ The progression is real: existence, then necessity, and now **specificity**.
 Each time the programme asked whether something is true when it needed to know
 whether the measurement could tell the difference. **The next conjecture should
 be checked against that column before it is filed**, not after.
+
+## Simulations
+
+**S-1, DRG T-junction rate versus pattern: NO VERDICT, positive control failed.**
+2026-11-17, `simulations/S-001-tjunction-rate-vs-pattern/`, PR #3.
+
+- **Controls.** The model reproduces Sundt 2015's following frequencies: 89, 32 and 6.6 Hz against 110, 30 and 6. Removing SK breaks the 6 Hz control, as it should. The Chao 2020 qualitative control fails. Block is essentially immediate (median 0.56 s, F about 0.99 even at 4 Hz), not progressive, so P1 and P2 cannot be scored. The dt-halving check also failed, with one classification flip.
+- **Run 1 is void.** It counted evoked spikes on the soma side of the stimulus site, found in review. It is kept in `results/run1-void-site-defect/`. Its "lost drive at 80 Hz" explanation was an artefact of that defect.
+- **Conditional readings from run 2, not verdicts.** Matched-rate patterns sit within about 3 points of regular 20 Hz, at a ceiling. F falls from 20 to 80 Hz with the stimulus still driving the stem. The size of that fall depends on the probe-exclusion rule: F goes 0.96 to 0.05, F_all goes 0.88 to 0.43, and at 80 Hz excluded probes fail at 0.59 against 0.05 for scored ones. A mechanism that blocks C-type traffic almost completely at 4 Hz is not an account of the blinded human frequency ordering.
+- **Standing.** S-1 neither supports nor refutes the T-junction account, and C-001 stays refuted. Do not cite S-1 as evidence for or against pattern-specific ganglion stimulation.
+- **Next.** A model that could pass this control must keep Sundt's ~6 Hz following frequency *and* block over tens of seconds. The candidates are re-tuning Ca decay and SK under a new pre-registration, or the rival ion-gradient run-down mechanism (Ladez, Liu, Chen & Feng, EMBC 2024, PMID 40039770), which predicts slow progressive block. Either needs its own pre-registered run.
+- **Known gap.** The generated "(c)" paragraph in `results.md` does not itself carry the caveat that the size of the fall depends on the exclusion rule. The caveat is in the table note and in PREDICTION.md's correction to amendment E.
 
 ## What the programme should file next
 
