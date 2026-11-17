@@ -52,3 +52,5 @@ ganglion) is argued from one side of a contested literature. Several derived fil
 ## Implemented by
 - #1 this intent record
 - #2 housekeeping: status counts, seed-ensemble verdict guard, DRG counter-evidence
+- #3 S-1 simulation: NO VERDICT, positive control failed (see ledger/OPEN.md "Simulations")
+- Outstanding: the S-1 visual (item 3 above) is not built yet
