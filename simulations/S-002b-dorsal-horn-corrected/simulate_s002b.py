@@ -382,8 +382,9 @@ def git_state():
 def run_gate_tests(out, fh):
     """G4 (wiring + protocol) and G6 (oracle equivalence), run as subprocesses with python -B."""
     res = {}
+    env = {k: v for k, v in os.environ.items() if k != "S2B_PILOT"}   # the tests check the registered constants
     for gate, mods in (("g4", ["test_s2b_sites", "test_s2b_protocol"]), ("g6", ["test_s2b_oracle"])):
-        r = subprocess.run([sys.executable, "-B", "-m", "unittest", *mods], cwd=HERE, capture_output=True, text=True)
+        r = subprocess.run([sys.executable, "-B", "-m", "unittest", *mods], cwd=HERE, capture_output=True, text=True, env=env)
         res[gate] = dict(passed=r.returncode == 0, modules=mods, tail=r.stderr.strip().splitlines()[-3:],
                          file_sha256={m + ".py": file_sha(os.path.join(HERE, m + ".py")) for m in mods})
         save(os.path.join(out, f"gate_{gate}.json"), res[gate])
