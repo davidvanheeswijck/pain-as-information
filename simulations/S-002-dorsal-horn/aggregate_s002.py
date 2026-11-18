@@ -83,6 +83,28 @@ def p2_rule(shifts_eval, red):
     return "NOT SUPPORTED, NOT REFUTED", "mixed: some shifts reduce, some do not, none spanning"
 
 
+def shipped_facts():
+    """Facts read from the shipped data files (not simulated): which fibres carry the shipped SCS
+    pulses, what the A-delta rows connect to, and the weights that differ between folders."""
+    import s2_protocol as P2
+    frm = [int(float(x)) for x in open(os.path.join(P2.DATA, "FromVector.txt")).read().split()]
+    to = [int(float(x)) for x in open(os.path.join(P2.DATA, "ToVector.txt")).read().split()]
+    w = [float(x) for x in open(os.path.join(P2.DATA, "WeightVector_foreman.txt")).read().split()]
+    rows, tstop = P2.read_shipped_inputs("foreman")
+    scs_rows = [k for k in range(90, 105)]
+    f = dict(scs_fibres=sorted(set(frm[k] for k in scs_rows)), scs_target=sorted(set(to[k] for k in scs_rows)))
+    t = np.array(rows[scs_rows[0]])
+    t = t[t < tstop]
+    f.update(scs_first_ms=float(t[0]), scs_interval_ms=float(np.median(np.diff(t))), scs_n=int(len(t)),
+             scs_same_on_all=all(np.array_equal(np.array(rows[k]), np.array(rows[scs_rows[0]])) for k in scs_rows))
+    f["abeta_background_rate_hz"] = float(np.mean([len(np.array(rows[k])[np.array(rows[k]) < tstop]) for k in range(0, 15)]) / (tstop / 1000.0))
+    f["adelta_to_sg75_weights"] = sorted(set(w[k] for k in range(45, 60)))
+    f["adelta_to_wdr_weights"] = sorted(set(w[k] for k in range(60, 90)))
+    f["adelta_to_wdr_targets"] = sorted(set(to[k] for k in range(60, 90)))
+    f["surround_out_weights_foreman"] = sorted(set(w[k] for k in range(288, 291)))
+    return f
+
+
 def table_md(header, rows):
     out = ["| " + " | ".join(header) + " |", "|" + "---|" * len(header)]
     for r in rows:
@@ -190,11 +212,27 @@ def main(out):
     all_gates = g1 and g2 and g3 and g4 and len(models) >= target
     rj["all_gates"] = all_gates
 
+    sf = shipped_facts()
+    md.append("## What the shipped files show (read from the data files, not simulated)\n")
+    md.append(f"- **The A-fibre feature lumps Aβ and Aδ.** The A-fibre-inhibition input drives Aβ (rows 0 to 44) and Aδ (rows 45 to 89) together. "
+              f"The shipped weight of Aδ onto the local inhibitory interneuron (SG75, rows 45 to 59) is {sf['adelta_to_sg75_weights']} while Aδ drives the WDR neuron directly "
+              f"(rows 60 to 89, weights {sf['adelta_to_wdr_weights']}). Aδ therefore adds WDR spikes and cannot inhibit through SG75; Aβ is the fibre class that inhibits. "
+              "The pre-registered criterion counted both together, so the criterion cannot isolate Aβ inhibition.")
+    md.append(f"- **The shipped SCS pulses are on the surround fibres, not on Aβ.** In the shipped `Foreman SCS` input the pulses are on fibres {sf['scs_fibres'][0]} to {sf['scs_fibres'][-1]} "
+              f"(the surround input to SG76, whose outputs are GABA-A onto the WDR and EX neurons, rows 288 to 290; target cell index {sf['scs_target']}), identical on all 15, "
+              f"{sf['scs_n']} pulses, first at {sf['scs_first_ms']:.0f} ms, median interval {sf['scs_interval_ms']:.0f} ms (1 Hz). The Aβ fibres in that file carry a background of about "
+              f"{sf['abeta_background_rate_hz']:.1f} Hz per fibre. The pre-registered driver instead pulsed Aβ fibres 0 to 14, which excite the WDR directly. "
+              "This comes from the input file; it was not simulated here.")
+    md.append(f"- **Wind-up weights.** The wind-up control used the `Foreman SCS` weight table, in which the surround outputs (rows 288 to 290) are {sf['surround_out_weights_foreman']}; "
+              "the original `WindUp` folder has them at 0 (`PROVENANCE.md`). This does not affect the wind-up pass (the surround fibres are silent in that input) but it is a difference from the original wind-up run.\n")
+    md.append("- **Successor guidance (needs a fresh pre-registration).** Register an Aβ-only versus Aδ-only decomposition of the A-fibre control, an SCS driver on the surround fibres 30 to 44 as the shipped data show, "
+              "and a drive grid of about 0.5 to 2 Hz per C fibre.\n")
+
     if not all_gates:
         md.append("## NO VERDICT\n")
         reasons = []
         if not g1:
-            reasons.append("G1: the unmodified starting model does not pass the pre-registered control in this re-implementation, so nothing else was run beyond the control record above")
+            reasons.append("G1: the unmodified starting model does not pass the pre-registered control, so nothing else was run beyond the control record above")
         if g1 and not g2:
             reasons.append("G2: fewer than 200 accepted networks")
         if g1 and g2 and not g3:
@@ -217,7 +255,7 @@ def main(out):
             if r.get("F") and not r["F"]["ok"]:
                 sent.append("F failed")
             md.append("Conditional reading, not a verdict: candidate 0 at dt " + str(r["dt"]) + ": " + ("; ".join(sent) if sent else "see the table") +
-                      ". This describes this re-implementation and driver against the tolerances fixed in `PREDICTION.md`; it does not say the published model is wrong.\n")
+                      ". This describes the pre-registered control (its lumping of Aβ and Aδ and its SCS driver, see the section above) against the tolerances fixed in `PREDICTION.md`; it does not show the port or the published model to be wrong.\n")
         rj["verdicts"] = "NO VERDICT"
         write(out, rj, md)
         return rj

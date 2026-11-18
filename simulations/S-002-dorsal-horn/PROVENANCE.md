@@ -99,3 +99,13 @@ The iCaL mechanism of the original is copied as-is; the note in the table on
   synapses with the same index on a cell correspond to one input fibre; here the
   fibre is the "From" index of the connection table (0 to 74), with the same
   spike train on every connection of a fibre.
+
+## Added 2026-11-18 (Amendment 2)
+
+Two more plain-number files from the `Foreman SCS` folder, read as data to state what the shipped SCS input is
+(byte-identical to the originals, LF already):
+
+| File | Original path | sha256 |
+|---|---|---|
+| foreman_SpikeTimesVector.txt | Foreman SCS/SpikeTimesVector.txt | 54678f60c0ef1425604dac6d6536e329a0c975bee059560ccde84cc42a9fc8aa |
+| foreman_SpikeStatsVector.txt | Foreman SCS/SpikeStatsVector.txt | 1b2f6688738039816c8c04c297e1de8eceb3ed73f249b04b6c77d762204284da |

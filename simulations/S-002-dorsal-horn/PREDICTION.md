@@ -642,3 +642,47 @@ match grid that reaches the model's steep range (about 0.5 to 2 Hz per fibre), (
 own SCS and A-fibre protocols from the full text instead of my synchronous-all-fibres driver
 and whole-cycle spike counts, and (c) a fresh pre-registration, since the numbers above were
 seen. It would not be a continuation of this registration.
+
+### Amendment 2 (2026-11-18, after review of PR #12; append only, Amendment 1 is not edited): the cause of the NO VERDICT was misattributed
+
+No simulation was run for this amendment and no pre-registered rule, number or result
+changed. It corrects what Amendment 1 and `results.md` implied.
+
+1. **The failure is the control's design, not the port.** The pre-registered A feature
+   counts A-beta and A-delta events together. In the shipped table A-delta excites the WDR
+   neuron directly (rows 60 to 89) and has weight 0 onto the local inhibitory interneuron
+   SG75 (rows 45 to 59); A-beta is the class that inhibits via SG75. So the feature could
+   not isolate A-beta inhibition. A reviewer built the **original** ModelDB 168414 hoc
+   network (loading only `CellTemplates.hoc`, `MakeNetwork.hoc` and `RunSim_EP.hoc` with the
+   GUI line removed, no `mosinit` or `Shell.hoc`, this study's compiled mechanisms) and
+   scored it with the same rule. **That is the reviewer's result, reported to me; I have not
+   reproduced it and the repository holds no script or data for it** (my attempt to run such
+   a cross-check was blocked by a permission check and was not retried). Their table, spikes
+   per cycle: C only 11.3; all A fibres 19.4; C plus A-beta only 8.0 (0.71 of C only, which
+   would pass the 0.80 criterion); C plus A-delta only 23.3. The "C only" and "all A fibres"
+   values equal the port's candidate-0 values in `results/main/cand0-dt0.025.json` (11.3 and
+   19.4). **Retraction:** the suggestion in Amendment 1 and in the earlier `results.md` that
+   the failure may belong to the re-implementation is withdrawn; nothing found so far
+   indicates a fault in the port.
+2. **Successor note corrected.** Amendment 1's "(b) the paper's own A-fibre protocols" was
+   misdirected: the A control already used the shipped A-fibre-inhibition spike files
+   (`data/afib_*`). What is missing is the A-beta versus A-delta decomposition.
+3. **SCS driver, from the shipped input file (not simulated).** The shipped `Foreman SCS`
+   input (`data/foreman_*`) puts its pulses on fibres 30 to 44, the surround input to SG76
+   whose outputs are GABA-A onto the WDR and EX neurons (rows 288 to 290), identical on all
+   15 fibres, 25 pulses at 1 Hz from t = 16101 ms; the A-beta fibres in that file carry about
+   8.9 Hz per fibre of background. The pre-registered driver instead pulsed A-beta fibres 0 to
+   14, which excite the WDR directly. This replaces Amendment 1's "the authors' recruitment
+   pattern is not in the abstract": the downloaded data show it, and my driver differs from
+   it. The pilot finding that my driver excites at every frequency is therefore expected from
+   the wiring and is not evidence about the published 30 to 100 Hz window.
+4. **Wind-up weights.** The wind-up control ran with the `Foreman SCS` weight table, so rows
+   288 to 290 (SG76 outputs) are 0.007315 where the original `WindUp` folder has 0. The
+   surround fibres are silent in the wind-up input, so the pass is unaffected, but the run
+   is not identical to the original wind-up configuration.
+5. **Successor guidance (needs a fresh pre-registration).** Register an A-beta-only versus
+   A-delta-only decomposition of the A-fibre control; an SCS driver on the surround fibres 30
+   to 44 as the shipped data show; and a drive grid of about 0.5 to 2 Hz per C fibre.
+6. `results.md` was regenerated from the same files with a new data-generated section
+   ("What the shipped files show") and corrected wording; no measured number changed. Two
+   shipped files were added to `data/` (`PROVENANCE.md`).
