@@ -68,5 +68,5 @@ of a published review, that answers:
 | 18/11/2026 | owner | Go ahead with the evidence brief | session |
 
 ## Implemented by
-- this pull request: `evidence/10-descending-modulation.md`, the E-10 line in
-  `evidence/README.md`, and the regenerated dashboard
+- #16 this intent record, `evidence/10-descending-modulation.md`, the E-10
+  line in `evidence/README.md`, and the regenerated dashboard
