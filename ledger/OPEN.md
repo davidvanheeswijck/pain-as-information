@@ -89,7 +89,7 @@ be checked against that column before it is filed**, not after.
 **S-2, dorsal-horn model of touch-evoked pain: NO VERDICT, positive control failed by its own design.**
 2026-11-18, `simulations/S-002-dorsal-horn/`, PR #12.
 
-- **Model.** A Python port of Zhang, Janik & Grill 2014 (ModelDB 168414): afferents, two substantia gelatinosa interneurons, an inhibitory interneuron and a wide-dynamic-range projection neuron. The port is faithful as far as checked: a reviewer built the original hoc network and got identical control numbers. That cross-check is the reviewer's result. It is not reproduced in the repository; the coder's own run was blocked by a permission check.
+- **Model.** A Python port of Zhang, Janik & Grill 2014 (ModelDB 168414): afferents, two inhibitory substantia gelatinosa interneurons, one excitatory interneuron and a wide-dynamic-range projection neuron (corrected 2026-11-18: this line first called the third interneuron inhibitory; the pre-registration defines it as excitatory). The port is faithful as far as checked: a reviewer built the original hoc network and got identical control numbers. That cross-check is the reviewer's result. It is not reproduced in the repository; the coder's own run was blocked by a permission check.
 - **Control.** Wind-up passes. The pre-registered A-fibre inhibition feature fails: 19.4 spikes per cycle with A fibres against 11.3 without. The cause is the control's design, not the model. It counted Aβ and Aδ together. In the published network Aβ inhibits via an interneuron (8.0 against 11.3 when Aβ is added alone), while Aδ excites the projection neuron directly (23.3). P0 to P3 were not run.
 - **Stimulation driver.** The pre-registered driver pulsed the Aβ fibres. The authors' shipped input applies the stimulation pulses to a separate inhibitory surround input. The pilot's "excites at every frequency" is therefore expected from the wiring, and it is not evidence about the published 30 to 100 Hz window. This comes from the data file, not from a simulation.
 - **Pilot, not results.** Touch-evoked onset fell between 0 and 10 mV of anion shift in the unmodified model. The pre-registered C-input drive grid could not reach its target band.
@@ -105,6 +105,18 @@ be checked against that column before it is filed**, not after.
 - **Ranking.** A comparative block plus the ganglion-directed test is the top pair in 0.779 of draws. The ganglion-directed test is a research procedure. Without it, the best of three is a median 0.647 bits.
 - **Standing.** This describes how the ranking behaves across elicited ranges. Do not cite it as a measured accuracy of any test, and not as a protocol.
 - **Known gaps.** A 60-draw pilot was seen before the code commit. The pre-registered P3 measure mixes prior imbalance with test performance. The 30% false-positive anchor comes from zygapophysial joint blocks. Conditional independence between tests flatters sequences.
+
+## Evidence added since the independent review
+
+**E-10, descending modulation (the "pain brake"): a weaker handle than it looked.**
+2026-11-18, `evidence/10-descending-modulation.md`, PR #16. The brief is written from abstracts and registry records only, with 112 logged queries.
+
+- **The test.** Conditioned pain modulation (CPM) is a difference between two pain ratings, not a recording of a pathway. The pooled between-session reliability is an ICC of 0.44 in patients, with an interval from 0.11 to 0.69. There is no standard protocol.
+- **Prediction.** The two founding claims have not replicated cleanly. They are that a weak brake predicts chronic pain after surgery, and that a weak brake predicts benefit from one drug. A pooled association in musculoskeletal pain does exist (r = 0.36). Several groups find that a more efficient brake predicts doing better whatever the treatment, placebo included.
+- **CRPS.** Two small cohorts (n = 24 and n = 16) from independent groups found the brake not reduced, and if anything larger. The evidence leans towards facilitation, not a failed brake.
+- **Ganglion stimulation.** No study was found that tests whether baseline CPM or sensory testing predicts response or fading benefit. This rests on the logged queries and on a scan of registered outcomes in six ganglion-stimulation studies.
+- **Candidate conjecture, not filed.** "Baseline descending modulation predicts durability of ganglion-stimulation benefit" fails the specificity column as worded. E-10 §8.3 states a narrower within-person question.
+- **Bearing on the simulations.** The S-2 and S-2b circuit has no descending input. A successor pre-registration should carry that as a declared limit.
 
 ## What the programme should file next
 
