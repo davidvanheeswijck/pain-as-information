@@ -86,6 +86,16 @@ be checked against that column before it is filed**, not after.
 - **Standing.** S-1's NO VERDICT stands, and C-001 stays refuted. The quick re-tune inside this channel set did not rescue S-1. It is not shown to be impossible.
 - **Next.** Two candidates, each needing its own pre-registration: a longer or finer search of this space, starting near candidate 1035, or the slower ion-gradient mechanism (PMID 40039770). This is a pointer, not a conclusion.
 
+**S-2, dorsal-horn model of touch-evoked pain: NO VERDICT, positive control failed by its own design.**
+2026-11-18, `simulations/S-002-dorsal-horn/`, PR #12.
+
+- **Model.** A Python port of Zhang, Janik & Grill 2014 (ModelDB 168414): afferents, two substantia gelatinosa interneurons, an inhibitory interneuron and a wide-dynamic-range projection neuron. The port is faithful as far as checked: a reviewer built the original hoc network and got identical control numbers. That cross-check is the reviewer's result. It is not reproduced in the repository; the coder's own run was blocked by a permission check.
+- **Control.** Wind-up passes. The pre-registered A-fibre inhibition feature fails: 19.4 spikes per cycle with A fibres against 11.3 without. The cause is the control's design, not the model. It counted Aβ and Aδ together. In the published network Aβ inhibits via an interneuron (8.0 against 11.3 when Aβ is added alone), while Aδ excites the projection neuron directly (23.3). P0 to P3 were not run.
+- **Stimulation driver.** The pre-registered driver pulsed the Aβ fibres. The authors' shipped input applies the stimulation pulses to a separate inhibitory surround input. The pilot's "excites at every frequency" is therefore expected from the wiring, and it is not evidence about the published 30 to 100 Hz window. This comes from the data file, not from a simulation.
+- **Pilot, not results.** Touch-evoked onset fell between 0 and 10 mV of anion shift in the unmodified model. The pre-registered C-input drive grid could not reach its target band.
+- **Standing.** Nothing about allodynia, ganglion stimulation or fading benefit was tested. Questions 1 to 3 of the S-2 intent remain open.
+- **Next.** Run a fresh pre-registration with three changes: an Aβ-only versus Aδ-only decomposition of the control, a stimulation driver on the surround input as the authors' data show, and a C-input drive grid of about 0.5 to 2 Hz per fibre. Commit an original-hoc oracle script alongside it, as a hard requirement.
+
 **S-3, generator discrimination: kill TRIGGERED, positive control passed.**
 2026-11-17, `simulations/S-003-generator-discrimination/`, PR #6. A decision-analysis model, not biophysics.
 

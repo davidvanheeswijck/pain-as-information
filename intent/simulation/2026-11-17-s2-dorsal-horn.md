@@ -50,4 +50,5 @@ patient.
 | 17/11/2026 | owner | Build S-2 (dorsal-horn model), following the session's recommendation | session |
 
 ## Implemented by
-- (PRs added as they merge)
+- #11 this intent record
+- #12 S-2: NO VERDICT, the A-fibre control lumped Aβ with Aδ and the stimulation driver used the wrong input (see ledger/OPEN.md "Simulations")
