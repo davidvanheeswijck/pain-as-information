@@ -8,8 +8,9 @@
 > is named, and each is given with the kind of quantity it is and the population
 > it was measured in. **Full texts were not read**, so "the abstract does not
 > report X" is used throughout and is not a claim that the paper contains no X.
-> All 111 search queries are in the appendix, verbatim, with database, date and
-> hit count, per EPISTEMICS.md rule 11.
+> All 112 search queries are in the appendix, verbatim, with database, date and
+> hit count, per EPISTEMICS.md rule 11. The last one was added after review
+> and corrected §4.3.
 >
 > Bears on: HC-2 (readable outside the CNS), HC-3 (structure-targeted
 > intervention), PB-2 (fading benefit as habituation), PB-3 (night-time
@@ -18,7 +19,10 @@
 > Out of scope by instruction: congenital insensitivity to pain, ion-channel
 > and growth-factor drug programmes, gene silencing or editing, doses, any
 > stimulation setting, and any case-specific material. Drug findings are
-> reported at the level of "class X is reported to do Y in study Z".
+> reported at the level of "class X is reported to do Y in study Z". Named
+> drugs appear only where a cited title or a verbatim quotation contains the
+> name, or where a founding claim is about one drug; no dose is given
+> anywhere.
 >
 > Nothing here is medical advice (ETHICS.md §3). Sentences that begin
 > **Reading:** are this brief's interpretation and not a statement made by the
@@ -31,7 +35,10 @@
 The owner's question was whether the pain-modulation system could be "a key
 into regulating pain". The honest answer from the literature is: **the system
 is real, the test for it is weak, and the two findings that made it famous
-have not replicated cleanly.**
+have not replicated cleanly.** That is a statement about those two specific
+claims. Pooled across musculoskeletal pain studies, baseline CPM does
+correlate with later pain, mean r = 0.36 (95% CI 0.20-0.50; PMID 31045746),
+so CPM carries some prognostic signal at group level.
 
 1. **Descending modulation is established physiology.** A loop from the dorsal
    horn up to the brainstem and back down inhibits or facilitates the spinal
@@ -43,18 +50,23 @@ have not replicated cleanly.**
    less for all modalities" (PMID 35142147), agreement on who counts as a
    responder between two days is poor (PMID 30007061), and some healthy people
    show facilitation instead of inhibition (PMID 30699074).
-3. **The two headline prediction claims are single-group findings with
-   independent nulls.** Pre-operative CPM predicting chronic post-thoracotomy
-   pain (n=62, PMID 18079062) was not reproduced in a larger independent
-   lung-surgery cohort (PMID 37327358). CPM predicting duloxetine benefit in
+3. **The two headline prediction claims are single-group findings that later
+   independent work has not supported.** Pre-operative CPM predicting chronic
+   post-thoracotomy pain (n=62, PMID 18079062) has no independent replication
+   in thoracic surgery. A larger independent lung-surgery cohort that included
+   CPM in its test battery found no pre-operative QST difference
+   (PMID 37327358). Its abstract gives no CPM-specific result, and it used a
+   different CPM method and a different definition of chronic pain, so it is
+   a failure to find, not a clean null test of CPM. CPM predicting duloxetine benefit in
    painful diabetic neuropathy (n=30, PMID 22480803) has no independent
    replication found by these queries, and the nearest independent trials point
    the other way or find nothing (PMIDs 37994185, 42956041).
-4. **In CRPS the brake is reported intact.** Two independent groups, one in
-   early disease and one in chronic disease, found CPM no different from
-   healthy controls (PMIDs 28146319, 41244943). **Reading:** on present
-   evidence a "broken brake" is not the explanation of CRPS pain at group
-   level.
+4. **In CRPS the brake is reported intact, in two small cohorts.** Two
+   independent groups, one in early disease (n=24) and one in chronic disease
+   (n=16), found CPM not reduced against healthy controls; in the early cohort
+   it was, if anything, larger (PMIDs 28146319, 41244943). **Reading:** on
+   present evidence a "broken brake" is not the explanation of CRPS pain at
+   group level, and 40 patients cannot exclude a subgroup in whom it is.
 5. **For spinal cord stimulation, baseline CPM has been tied to outcome in
    three small studies, in opposite directions.** For dorsal root ganglion
    stimulation, **no study testing baseline CPM or QST as a predictor of
@@ -169,7 +181,9 @@ The useful distinction is between **static** and **dynamic** measures:
 | Dynamic QST, facilitatory | Does repeated input build up? | temporal summation, wind-up ratio | wind-up ratio only |
 | Dynamic QST, inhibitory | Does a second pain turn the first down? | **CPM**, offset analgesia | **no** |
 
-CPM is therefore an add-on to standard QST and not part of it. The NeuPSIG
+CPM is therefore an add-on to the DFNS battery and not part of it, going by
+the list of tests in that protocol's abstract. Other QST batteries may
+include it. The NeuPSIG
 consensus lists "the study of conditioned pain modulation" among the promising
 applications of QST, and states that QST "is not recommended as a stand-alone
 test for the diagnosis of neuropathic pain" (Backonja et al., PMID 23742795).
@@ -354,7 +368,7 @@ and supra-threshold ratings "did not predict CPTP".
 | Yarnitsky 2008, PMID 18079062 | Haifa | thoracotomy | 62 | **Yes.** OR 0.52 per 10 points |
 | Wilder-Smith 2010, PMID 20504133 | Nijmegen, with an Aalborg co-author | major abdominal | 20 | **Yes, in a pilot.** "More inhibitory preoperative eDNIC was associated with less late postoperative pain" |
 | Grosen 2014, PMID 24587268 | Aarhus / Aalborg | funnel chest repair | 42 enrolled; 15 with and 16 without pain at 6 months | **No.** "not significantly different ... concerning preoperative conditioned pain modulation response (Z = 1.0, P = 0.3)" |
-| Danielsen 2023, PMID 37327358 | Aalborg | lung cancer surgery, thoracoscopic or open | 121 completed (60.2%) | **No.** "No differences in values of preoperative QST assessments were found." CPM was among the tests |
+| Danielsen 2023, PMID 37327358 | Aalborg | lung cancer surgery, thoracoscopic or open | 121 completed (60.2%) | **Not found, and not reported separately.** "No differences in values of preoperative QST assessments were found." CPM was among the tests, by cuff algometry; the abstract gives no CPM-specific result. Chronic pain was defined as pain of any intensity at six months |
 | Petersen 2015, PMID 25599301 | Aalborg, with a Nijmegen co-author | total knee replacement | 78 (17 high-pain, 61 low-pain) | **Partly.** The low-pain group had inhibitory CPM before surgery and the high-pain group did not; the predictor the abstract names is temporal summation (R = 0.240, P = 0.037) |
 | Rice 2018, PMID 30236242 | Auckland | total knee replacement | 300 | **Not in the final models.** CPM was measured; the 6-month model kept temporal summation, the 12-month model kept no QST measure. The abstract does not report a CPM result |
 | Larsen 2021, PMID 33411890 | Aalborg, with a Boston co-author | total knee replacement | 131 | **Weakly.** Lower CPM correlated with higher 12-month pain, r = -0.18, P = 0.04 |
@@ -368,11 +382,16 @@ Three things in this table need saying out loud.
 
 **The founding result has not been reproduced in thoracic surgery by an
 independent group.** The two later chest-surgery cohorts, both Danish and
-neither sharing an author with the Haifa paper, are null (PMIDs 24587268,
-37327358). They are not exact replications: one is funnel chest repair in
-healthy young men, the other mixes thoracoscopic and open lung surgery and
-lost 40% to follow-up. But they are the nearest tests that exist, and the
-larger one has about twice the original's sample.
+neither sharing an author with the Haifa paper, did not find it
+(PMIDs 24587268, 37327358). They are not exact replications. One is funnel
+chest repair in healthy males and reports a CPM-specific null in 31 followed
+patients. The other mixes thoracoscopic and open lung surgery, lost 40% to
+follow-up, measured CPM by cuff algometry where the original used a fall in
+pain ratings, counted pain of any intensity as chronic pain, and reports only
+that no pre-operative QST value differed. Its abstract gives no CPM-specific
+figure, so it is a failure to find any QST difference in a study that included
+CPM, and not a clean null test of CPM. They are the nearest tests that exist,
+and the larger one has about twice the original's sample.
 
 **The one clean independent positive is in a different operation.** Dürsteler
 et al. in Barcelona share no author with the Haifa group, registered the study
@@ -415,7 +434,8 @@ different sets of studies with different outcomes.
 
 **Grade for "pre-operative CPM predicts chronic post-surgical pain": B, leaning
 D for thoracic surgery specifically.** One independent positive in knee
-replacement, a null in the nearest independent test of the original, and
+replacement, no QST difference in the nearest independent study of the
+original's setting (which did not report CPM separately), and
 systematic reviews that find temporal summation more consistent than CPM.
 
 #### Outside surgery
@@ -470,7 +490,7 @@ it would be a mechanism-matched prediction and not a general prognostic one.
 | Study | Group | Population and design | n | Result |
 |---|---|---|---|---|
 | Yarnitsky 2012, PMID 22480803 | Haifa | painful diabetic neuropathy; placebo run-in then drug | 30 | **Less efficient CPM, more benefit.** r = 0.628 |
-| Kisler 2019, PMID 31241488 | Haifa, same laboratory | migraine prevention; randomised, same drug class against placebo | 55 | CPM was measured. The predictor reported is higher baseline pain ratings to tonic heat (r = 0.47; P = 0.013). **The abstract does not report CPM as a predictor** |
+| Kisler 2019, PMID 31241488 | Haifa, same laboratory | migraine prevention; randomised, the same drug against placebo | 55 | CPM was measured. The predictor reported is higher baseline pain ratings to tonic heat (r = 0.47; P = 0.013). **The abstract does not report CPM as a predictor.** The authors read the result as support for the same idea in a broader form: pronociceptive patients "seem to be more likely than non-pronociceptive ones to benefit" |
 | Ferreira 2024, PMID 37994185 | Bauru, Brazil. No shared author | painful temporomandibular disorder; randomised, double-blind, same drug against placebo | 80 | The drug did not beat placebo (p = .82). "A more efficient CPM was associated with a greater pain intensity reduction regardless of the treatment group (p = .035)" |
 | Petersen 2022, PMID 35638317 | Aalborg. No shared author | knee osteoarthritis; randomised double-blind crossover, same drug against placebo | 25 | No group-level difference from placebo. A model combining QST, cognitive factors and clinical pain predicted response; CPM alone is not reported as a predictor |
 | Kreutzfeldt 2026, PMID 42956041 | Odense. No shared author | peripheral neuropathic pain; randomised double-blind crossover of a noradrenaline-dopamine reuptake inhibitor against placebo | 67 | Drug better than placebo by 0.5 points on a 0-10 scale. "No relation was found between response to treatment and efficiency of CPM or sensory phenotype" |
@@ -493,8 +513,10 @@ of good prognosis looks like. It does not depend on what the treatment is.
 **The mechanism-matched version has not been independently reproduced.** No
 study outside Haifa reporting "less efficient CPM predicts more benefit from a
 reuptake inhibitor" was found by these queries (appendix Q14, Q15, Q18, Q20;
-looser cross-check Q58). The same laboratory's own randomised follow-up, in
-migraine, reports a different predictor. The only independent randomised test
+looser cross-check Q58). The same laboratory's own randomised follow-up of the same
+drug, in migraine, reports a different predictor (baseline pain sensitivity,
+not CPM), which its authors read as consistent with the broader idea that
+more pronociceptive patients benefit more. The only independent randomised test
 in neuropathic pain, with a drug of a neighbouring class, found no relation at
 n=67. Its abstract describes the drug as one "that specifically inhibits
 neuronal noradrenaline and dopamine reuptake", so this is a test of a
@@ -564,8 +586,11 @@ original CPM data in adults with CRPS.
 
 24 patients with CRPS of under one year's duration, 17 with neuralgia, 23
 healthy. The CPM effect, in points on a 0-100 rating scale, was "healthy:
--12.5 ± 12.4 ... CRPS: -14.7 ± 15.7; neuralgia: -7.9 ± 9.8". The CRPS group
-also showed a late CPM effect the others did not. Conclusion: "An impairment
+-12.5 ± 12.4 ... CRPS: -14.7 ± 15.7; neuralgia: -7.9 ± 9.8". So CPM in
+CRPS was not reduced and was, if anything, larger: pain fell more steeply
+during conditioning than in healthy subjects, only the CRPS group showed a
+late CPM effect, and the authors write of the "unexpectedly high CPM in CRPS
+patients". Conclusion: "An impairment
 of endogenous pain inhibition does not explain the extent of pain in the early
 stage of CRPS or in neuralgia."
 
@@ -683,13 +708,66 @@ core authors appear across all of them.
 
 How this bears on descending modulation:
 
-**No cluster analysis found here includes a measure of descending
-inhibition.** The two DFNS cluster analyses use 13 QST parameters from the
-DFNS protocol, and CPM is not in that protocol (§1.4). The Zurich analysis
-describes its inputs as QST measures at a painful and a pain-free site. The profiles describe thresholds and wind-up at the painful site. They
-say nothing, either way, about the brake. Not found by these queries: a study
-relating DFNS cluster membership to CPM in CRPS (appendix Q26, Q30; no title
-among Q30's 24 records addresses it).
+**The DFNS cluster analyses listed above do not include a measure of
+descending inhibition.** The two DFNS analyses (PMIDs 27893485, 42538249) use
+13 QST parameters from the DFNS protocol, and the abstract that defines that
+protocol lists no CPM test (§1.4). The Zurich analysis describes its inputs as
+QST measures at a painful and a pain-free site, and its abstract does not
+mention CPM. Those profiles describe thresholds and wind-up. They say nothing,
+either way, about the brake.
+
+That statement is limited to those papers. **Cluster analyses that include
+CPM do exist in other pain populations**, and an earlier version of this
+brief was wrong to imply otherwise. A looser query, `(cluster analysis OR
+latent class OR k-means OR hierarchical clustering OR clusters)[tiab] AND
+"conditioned pain modulation"[tiab]`, returns 34 records (appendix Q112). All
+34 titles were screened and seven abstracts were read:
+
+- **Adolescents with neuropathic pain or CRPS** (Verriotis et al., London,
+  PMID 33394878). 66 adolescents, 52 with neuropathic pain and 14 with CRPS.
+  Individual QST plots were "matched to mechanism-related sensory profiles
+  (sensory loss, thermal hyperalgesia, and mechanical hyperalgesia)", and CPM
+  was measured in the same people: "Conditioned pain modulation was inhibitory
+  in 54%, facilitatory in 14%". This is the one study found that puts the DFNS
+  profiles and CPM in the same cohort that includes CRPS. The abstract does
+  not report CPM by profile or separately for the 14 with CRPS. It is
+  profile matching, not a cluster analysis, and it is in children.
+- **Young people with chronic pain, clustered on CPM and temporal summation**
+  (Ocay et al., Montreal, PMID 36213595; 668 participants aged 8 to 21). Three
+  clusters; the third (n = 151) combined "presence of TSP during the test
+  stimuli, and inefficient inhibitory CPM". The clusters account for "27.15%
+  of the total variation in the data".
+- **Young people with chronic back pain** (same group, PMID 35090183; n=198).
+  CPM was among the inputs. The three clusters the abstract describes are
+  defined by thresholds and psychosocial measures, and CPM is not named as a
+  distinguishing feature.
+- **Adults with chronic low back pain** (Rabey et al., Perth, PMID 26020225;
+  n=294). CPM was among the inputs to a latent class analysis. The three
+  clusters are described by temperature and pressure pain sensitivity;
+  temporal summation differed between them, and the abstract does not name
+  CPM as a distinguishing feature.
+- **Adults with knee osteoarthritis** (Lee et al., Tucson, PMID 42605842;
+  n=208). Five clusters, two of them labelled by impaired CPM ("high pressure
+  pain sensitivity and impaired descending inhibition", n = 86; "high pain
+  sensitivity and impaired pain modulation", n = 26).
+- **Early knee osteoarthritis** (Neelapala et al., PMID 37709187; n=750).
+  Latent classes built from inputs including CPM; "none of the phenotypes in
+  either model had a significant relationship with pain worsening" at two
+  years.
+- **Young adults with low back pain** (Lyons et al., PMID 41001699; n=78).
+  Three clusters from five variables including CPM.
+
+**Reading:** when CPM is put into a cluster analysis it sometimes defines a
+subgroup (young people with chronic pain, knee osteoarthritis) and sometimes
+does not (the two back pain cohorts). None of these is an adult CRPS or adult
+neuropathic pain cohort. Not found by these queries: a cluster analysis in
+adults with CRPS or peripheral neuropathic pain that includes CPM, or a study
+reporting CPM by DFNS cluster (appendix Q26, Q30, Q112).
+
+A disclosure about method. Q30 returned 24 records and was screened by title
+only. PMID 33394878 was in it and was missed, although its title names both
+somatosensory profiles and conditioned pain modulation. The same record is
+also in Q22 and Q23.
 
 **The allodynia-dominant CRPS phenotype is the rare one.** 22 of 604 is 3.6%;
 that division is this brief's. **Reading:** if touch-evoked allodynia is the
@@ -920,7 +998,8 @@ parameters are reported in this section.
 |---|---|---|---|---|---|
 | Schuh-Hofer 2018, PMID 30293158 | Mannheim / Heidelberg | SCS, stimulator on against off, unblinded | 8 neuropathic | "nearly absent" off, "16.3 ± 3.4% inhibition" on (p = 0.03) | wind-up ratio "strongly reduced" |
 | Meyer-Frießem 2019, PMID 30260842 | Bochum | SCS or peripheral nerve stimulation, on against off, not randomised, responders only | 28 (15 SCS) | smaller CPM off correlated with larger CPM gain on (SCS: r = -0.741, P = 0.002) | fewer hyperalgesic findings on, for SCS |
-| Goudman 2019, PMID 30916768 | Brussels | SCS, before against during | 17 after failed back surgery | under 30% showed CPM before; no change in responder numbers on the symptomatic side, more on the other side | not reported in the abstract |
+| Campbell 2015, PMID 25800088 | Baltimore | SCS, baseline, trial, 1 and 3 months after implant | not given in the abstract | "Results suggest few changes in QST over time"; a change in CPM is not reported separately | not detailed in the abstract |
+| Goudman 2019, PMID 30916768 | Brussels | SCS, before against during | 17 after failed back surgery | under 30% showed CPM before; "no differences in the numbers of CPM responders before and after SCS" on the symptomatic side, more responders on the other side | not reported in the abstract |
 | Ramaswamy 2019, PMID 30303595 | London | SCS, before against 3 months | 23 at baseline, 19 at 3 months | 65% inefficient before; "95% of patients had an efficient CPM" after | not reported in the abstract |
 | Kriek 2023, PMID 36050204 | Rotterdam | SCS, before against 3 months, within a randomised trial | 31 with CRPS | present before and after | allodynia and hyperalgesia reduced |
 | Sankarasubramanian 2021, PMID 33471409 | Ann Arbor | SCS **and DRG stimulation**, before against after | 16 | "no effects on VDT and CPM" | temporal summation reduced (p = 0.033) |
@@ -932,15 +1011,25 @@ parameters are reported in this section.
 
 What the table supports:
 
-- **For SCS, four small unblinded studies report better CPM with stimulation
-  and one CRPS study reports no change from a baseline that was already
-  normal.** Every one of the positive four is a before-and-after or on-and-off
-  comparison in people who knew their device state. By §5.3 that design cannot
-  separate a stimulation effect from an expectation effect. The only blinded
-  on-off comparison in the table did not measure CPM, and found no change in
-  static thresholds.
-- **For DRG stimulation, the two studies that measured CPM found no change**
-  (16 mixed with SCS, and 11). Both are pilots.
+- **For SCS, six studies in the table report on CPM or on QST that included
+  it, and they split three ways.** Three small unblinded studies report better
+  CPM with stimulation (Mannheim, n=8; Bochum, n=28 of whom 15 had SCS;
+  London, n=23). One is mixed: Brussels (n=17) found no difference in CPM
+  responders on the symptomatic side and more on the other side. Two report
+  no change: Rotterdam (n=31, CRPS, from a baseline where CPM was already
+  present) and Baltimore ("few changes in QST over time"). Every one of the
+  positive three is a before-and-after or on-and-off comparison in people who
+  knew their device state. By §5.3 that design cannot separate a stimulation
+  effect from an expectation effect. The only blinded on-off comparison in the
+  table did not measure CPM, and found no change in static thresholds.
+- **For DRG stimulation, three studies measured CPM and none reports a
+  change.** Two are mixed cohorts of SCS and DRG stimulation from one Ann
+  Arbor laboratory: 16 patients with "no effects" on CPM, and 33 enrolled (18
+  followed) in whom QST results "typically failed to reach statistical
+  significance". Whether the two cohorts overlap is not stated in the
+  abstracts. The third is 11 patients with DRG stimulation alone. All three
+  are pilots, and neither mixed-cohort abstract gives a result for the DRG
+  patients separately.
 - **The more consistent signal is on the facilitation side.** Reduced temporal
   summation or wind-up is reported with SCS in Mannheim, with mixed SCS and
   DRG stimulation in Ann Arbor, and with DRG stimulation in CRPS in Erlangen,
@@ -979,7 +1068,7 @@ risk of bias" (Odonkor et al., *J Pers Med* 2026, PMID 42930761). It reports
 that neither of the two multivariable prediction models in the field "underwent
 external validation".
 
-An older pilot in 13 patients found that vibration threshold and tolerance to
+An older pilot that enrolled 13 patients, with usable data from 12, found that vibration threshold and tolerance to
 electrical stimulation changed during an SCS trial and that these changes
 "correlated with the decision regarding the permanent implantation"
 (Eisenberg et al., PMID 17147592). That is a change during the trial, not a
@@ -1230,16 +1319,16 @@ ledger.
 | | Commitment | Bearing of this brief |
 |---|---|---|
 | HC-1 | Structure beyond mean rate | **Indirect.** Descending control acts on the convergent dorsal horn neurons and depresses their responses to both C-fibre and low-threshold input (PMID 460935). The same afferent pattern therefore produces a different spinal output depending on a state that is not in the afferent traffic. Any test of whether a pattern carries a percept needs that state held constant or measured. This does not touch the HC-1 killer |
-| HC-2 | Readable outside the CNS | **Presses in the same direction as E-01 §6, with a caveat.** Descending modulation is a second way, besides dorsal horn disinhibition, for the pain-relevant discrimination to be made centrally. It needs supraspinal structures (PMID 460936), so no peripheral sensor can see it. The caveat is §4.1: in CRPS the inhibitory arm is reported intact in two independent cohorts, and in neuropathic pain the findings conflict (§4.4). So this is a mechanism that *could* defeat peripheral readout, without evidence that it is the operative one in the motivating phenotype |
+| HC-2 | Readable outside the CNS | **Presses in the same direction as E-01 §6, with a caveat.** Descending modulation is a second way, besides dorsal horn disinhibition, for the pain-relevant discrimination to be made centrally. It needs supraspinal structures (PMID 460936), so no peripheral sensor can see it. The caveat is §4.1: in CRPS the inhibitory arm is reported intact in two independent cohorts, both small (n=24 and n=16), and in neuropathic pain the findings conflict (§4.4). So this is a mechanism that *could* defeat peripheral readout, without evidence that it is the operative one in the motivating phenotype |
 | HC-3 | Structure-targeted beats channel destruction | **A confound more than a rival.** Expectation acts through the descending system (PMID 19709634) and moves the CPM measure (PMID 26809850). Any unblinded comparison of two interventions, including the head-to-head that the HC-3 killer describes, will contain an expectation effect delivered by this route. That reinforces E-03's weight on blinding. Separately, where implanted stimulation changes a central measure, the more consistent one is temporal summation and not CPM (§6.1) |
 | HC-4 | A realisable transducer exists | **No bearing.** |
-| PB-2 | Fading benefit is habituation to a fixed stimulus | **A rival explanation that nobody has tested.** A slow change in central state, either less inhibition or more facilitation, would also produce fading benefit, and would not respond to varying the stimulus. No study relating any descending-modulation measure to fading was found (§6.4), so this neither supports nor weakens PB-2. It adds an alternative PB-2 has to be distinguished from |
+| PB-2 | Fading benefit is habituation to a fixed stimulus | **A rival explanation, with no test of it found by these queries.** A slow change in central state, either less inhibition or more facilitation, would also produce fading benefit, and would not respond to varying the stimulus. No study relating any descending-modulation measure to fading was found (§6.4), so this neither supports nor weakens PB-2. It adds an alternative PB-2 has to be distinguished from |
 | PB-3 | Night-time allodynia has a distinct signature | **Thin, and it cuts against "distinct peripheral signature".** Fragmented sleep reduced pain inhibition and raised spontaneous pain in healthy women (PMID 17520794, 10 per arm), which offers a central route by which nights could be worse. Against that, CPM did not vary by time of day in 48 healthy men (PMID 25545856), and the pooled sleep effect is null outside women (PMID 37914093). Not found by these queries: CPM measured at night, or in relation to nocturnal allodynia, in any patient group (appendix Q109) |
 
 **Reading, on the owner's question.** The pain-modulation system is not
 ruled in or out as "a key". What the evidence does not support is the simple
 version, a broken brake that explains CRPS pain and could be repaired. The two
-studies that looked found the brake working.
+studies that looked found the brake working, in 24 and 16 patients.
 
 ### 8.2 Bearing on the S-2 and S-2b dorsal-horn simulations
 
@@ -1248,10 +1337,14 @@ Source for the simulation facts: `ledger/OPEN.md` ("Simulations") and
 changed for this brief.
 
 1. **The model has no descending input, and its declared limits do not say
-   so.** Its inputs are Aβ, Aδ and C afferents and a surround input, onto two
-   substantia gelatinosa interneurons, an inhibitory interneuron and a
-   wide-dynamic-range projection neuron. The word "descending" does not occur
-   in the S-2 directory. The founding DNIC paper is specifically about that
+   so.** The pre-registration lists four cells: two substantia gelatinosa
+   interneurons (cells 75 and 76, releasing GABA and glycine), one
+   **excitatory** interneuron (cell 77, the "EX cell") and the
+   wide-dynamic-range projection neuron (cell 78). Its inputs are Aβ, Aδ and C
+   afferents and a surround input. The summary line in `ledger/OPEN.md` calls
+   the third cell "an inhibitory interneuron"; the pre-registration is the
+   source followed here, and the ledger was not edited. The word "descending"
+   does not occur in the S-2 directory. The founding DNIC paper is specifically about that
    class of projection neuron: 67 of 68 convergent neurons were inhibited, and
    the companion paper found the effect absent in other dorsal horn cell types
    (PMIDs 460935, 460936). So the cell whose output S-2 scores is the cell
@@ -1310,9 +1403,13 @@ could tell the difference.
    modulation" can only mean a CPM test. Its between-session reliability in
    patients is 0.44 (95% CI 0.11-0.69) on the one protocol with data
    (PMID 35142147), and day-to-day agreement on who is a responder is poor
-   (PMIDs 30007061, 31715262). A single baseline reading is mostly noise at the
-   level of the individual. A null result would not show that descending
-   modulation is irrelevant, only that one noisy reading did not predict.
+   (PMIDs 30007061, 31715262). The point estimate implies that a
+   single baseline reading carries a large share of measurement error at the
+   level of the individual. The interval is wide: it runs up to 0.69, which
+   would be usable, and down to 0.11, which would not. So reliability in this
+   population is poorly known and not shown to be adequate. A null result
+   would not show that descending modulation is irrelevant, only that one
+   reading of uncertain reliability did not predict.
 2. **A positive result would not be specific to descending modulation.** CPM
    moves with expectation, attention, sleep, age, sex and opioid use (§2.3,
    §5). Each of those could plausibly predict durability on its own, and
@@ -1366,11 +1463,12 @@ would refute the claim that descending modulation is what carries it.
 - No study relating baseline CPM or QST to durability of any implanted
   stimulation was found (§6.4, seven query rows and one registry scan).
 - The published datasets that hold a baseline CPM value before ganglion
-  stimulation are two pilots: 16 patients mixed with SCS and measured once
-  after treatment (PMID 33471409), extended to 33 enrolled with 18 followed and
+  stimulation are three pilots: 16 patients mixed with SCS and measured once
+  after treatment (PMID 33471409); from the same laboratory, 33 enrolled with
+  18 followed and
   "appreciable attrition" to twelve months (PMID 40909374); and 11 patients
-  measured at about one month (PMID 33369117). None is large enough, long
-  enough or restricted to ganglion stimulation.
+  measured at about one month (PMID 33369117). None is large enough or long
+  enough, and only the smallest is restricted to ganglion stimulation.
 - The large datasets with long follow-up did not register a sensory-testing
   outcome: the randomised trial of 152, the post-approval study of 426 and the
   recruiting real-world study with a target of 2000 (registry scan R1, §6.4).
@@ -1437,7 +1535,7 @@ on average, effect size .78 across 30 studies (PMID 22981090). Pooled
 between-session reliability of CPM is "fair or less for all modalities"
 (PMID 35142147). Some pain-free people show facilitation on a CPM test
 (PMID 30699074). Expectation and attention move the CPM result
-(PMIDs 26809850, 39541722). The standard QST battery does not contain CPM
+(PMIDs 26809850, 39541722). The DFNS QST battery, as its abstract lists it, does not contain CPM
 (PMID 16697110). Chronic pain association signals are enriched in forebrain
 neurons and in one nociceptor subtype of the human ganglion (PMID 41055971).
 Explantation of implanted stimulators for diminished pain relief is common
@@ -1447,7 +1545,7 @@ over ten years in one large centre (PMID 39084704).
 review says it "is a reliable measure" with caveats (PMID 27559835), a later
 meta-analysis and three responder studies say not (§2). Whether pre-operative
 CPM predicts chronic post-surgical pain: positive in the founding thoracotomy
-cohort and in one independent knee cohort, null in two later chest-surgery
+cohort and in one independent knee cohort, not found in two later chest-surgery
 cohorts and in the largest knee cohort (§3.1). Whether CPM predicts drug
 response, and in which direction (§3.2). Whether CPM is reduced in neuropathic
 pain: reduced, unchanged and *increased* have all been reported (§4.4).
@@ -1456,7 +1554,7 @@ to spinal cord stimulation, and in which direction (§6.2). Whether spinal cord
 stimulation changes CPM, given that every positive study is unblinded (§6.1).
 
 **SPECULATIVE.** That a deficit in descending inhibition contributes to pain
-in CRPS: two independent cohorts found none (§4.1). That descending modulation
+in CRPS: two independent cohorts, of 24 and 16 patients, found none (§4.1). That descending modulation
 explains fading benefit of ganglion stimulation: no data found (§6.4). That
 baseline CPM predicts durability of ganglion-stimulation benefit: no data
 found, and the claim as worded cannot be refuted (§8.3). That the link between
@@ -1497,6 +1595,11 @@ limits that a reader should carry forward.
   (PMID 22392567).
 - **Europe PMC full-text results were screened by title**, and for Q104 only
   the first 15 of 73.
+- **PubMed results were also screened by title, and that has already failed
+  once.** A relevant record in Q30 (PMID 33394878) was missed and found only
+  in review; §4.3 is corrected. Other absence statements in this brief rest on
+  the same title screening and carry the same risk. Each was re-read after the
+  review and scoped to the queries or papers it rests on.
 - **Independence was judged from author lists and first and last
   affiliations.** Shared funding, shared training and shared data were not
   checked.
@@ -1509,7 +1612,7 @@ limits that a reader should carry forward.
 
 ## Appendix: every query, verbatim
 
-All 111 queries were run on 18 November 2026 and are listed in the order
+All 112 queries were run on 18 November 2026 and are listed in the order
 they were run, including the ones that found nothing useful. PubMed queries
 went to the NCBI E-utilities `esearch` endpoint (`db=pubmed`,
 `sort=relevance`); the count is the total reported by the endpoint. Europe
@@ -1633,6 +1736,7 @@ full. Abstracts were read for every paper cited in the brief.
 | Q109 | PubMed | 2026-11-18 | `"conditioned pain modulation"[tiab] AND (circadian[tiab] OR diurnal[tiab] OR "time of day"[tiab] OR nocturnal[tiab])` | 6 | §5.2, §8.1: time of day, PB-3 |
 | Q110 | PubMed | 2026-11-18 | `("dorsal root ganglion stimulation"[tiab] OR "DRG stimulation"[tiab]) AND (sham[tiab] OR placebo[tiab]) AND (randomized[tiab] OR randomised[tiab])` | 12 | §6.4: sham-controlled ganglion stimulation trials |
 | Q111 | PubMed | 2026-11-18 | `("conditioned pain modulation"[tiab]) AND ("nerve injury"[tiab] OR "post-surgical neuropathic"[tiab] OR "postsurgical neuropathic"[tiab] OR "persistent postsurgical"[tiab]) AND (patients[tiab])` | 7 | §4.4: CPM after nerve injury |
+| Q112 | PubMed | 2026-11-18 | `(cluster analysis OR latent class OR k-means OR hierarchical clustering OR clusters)[tiab] AND "conditioned pain modulation"[tiab]` | 34 | §4.3: looser cross-check of Q26 and Q30, added after review; all 34 titles screened, 7 abstracts read. The reviewer's run of the same string returned 20 on the same day; the difference was not investigated |
 
 Two retrievals that were not searches:
 
