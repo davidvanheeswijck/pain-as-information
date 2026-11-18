@@ -8,6 +8,8 @@ Source: Claude Code session, 17/11/2026
 ## In the owner's words
 > "i follow your recommendation" (17/11/2026), in reply to three options after S-1b. The recommendation, given in the same session before work started, was S-2, the dorsal-horn model, because two T-junction runs had ended without a verdict and touch-evoked allodynia had never been modelled separately from background pain.
 
+> "Do first the recommendation" (18/11/2026), in reply to a choice between a corrected S-2 and a programme review. The recommendation was a corrected S-2 (S-2b) under a fresh pre-registration, with the three fixes PR #12 identified, and with running the original ModelDB model as a committed oracle, which the reply approves.
+
 ## Problem
 The programme's motivating phenotype has touch-evoked allodynia and a separate
 background pain. The evidence base (E-01 §5 and §6) says allodynia is carried on
@@ -48,6 +50,7 @@ patient.
 | Date | Who | Decision | Source |
 |---|---|---|---|
 | 17/11/2026 | owner | Build S-2 (dorsal-horn model), following the session's recommendation | session |
+| 18/11/2026 | owner | Build S-2b: a fresh pre-registration with an Aβ-only versus Aδ-only control, stimulation on the surround input as the authors' data show, a corrected C drive grid, and a committed original-model oracle; the programme review at ten pieces of work comes after | session |
 
 ## Implemented by
 - #11 this intent record
