@@ -1,0 +1,7 @@
+2026-11-17 23:58:48 start; workers 12; stages ['control', 'measure', 'sweep', 'converge', 'visual', 'aggregate']; out results/main
+2026-11-17 23:58:48 G4 wiring test passed: True
+2026-11-18 00:24:25 candidate 0 at dt 0.025: stage A accepted False W True A False F None
+2026-11-18 00:24:25 candidate 0 at dt 0.0125: stage A accepted False W True A False F None
+2026-11-18 00:24:25 G1 FAILED: candidate 0 does not pass the control; NO VERDICT, stopping
+2026-11-18 00:25:56 visual traces written for candidate 0 (control NOT passed)
+2026-11-18 00:25:56 done

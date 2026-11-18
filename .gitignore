@@ -44,3 +44,5 @@ simulations/**/results/main/ab/
 simulations/**/results/main/converge/
 simulations/**/results/main/tuning/
 simulations/**/results/main/val/
+# S-2 per-network working files (resumable); committed as per-model-files.zip instead
+simulations/**/results/main/sweep/
