@@ -12,6 +12,7 @@ resolve, and marks what it could not verify.
 | [E-04](04-quantum-audit.md) | Quantum effects in biology, and quantum technology for neuroscience | Branch B, Branch C |
 | [E-05](05-crps.md) | CRPS: mechanism, natural history, and why treatment fails | PB-2, PB-3, PB-5 |
 | [E-06](06-prior-art-ai-harness.md) | Prior art on multi-model harnesses for hypothesis evaluation | the harness itself |
+| [E-10](10-descending-modulation.md) | The pain brake: descending modulation, what the CPM test measures and predicts | HC-2, HC-3, PB-2, PB-3, S-2 |
 
 ## Rules
 
