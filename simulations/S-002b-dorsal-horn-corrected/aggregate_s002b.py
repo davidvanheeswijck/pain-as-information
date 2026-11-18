@@ -406,9 +406,9 @@ def gate_line(res):
 def write_report(out, res):
     L = []
     A = L.append
-    A("# S-2b results: corrected dorsal-horn run")
-    A("")
     A("These results are not stimulation settings.")
+    A("")
+    A("# S-2b results: corrected dorsal-horn run")
     A("")
     A("Every number below is generated from the data files in this directory. Model units: E_anion shifts are in "
       "model millivolts, frequencies are those of a synthetic pulse train in a four-cell model, rates are model "
