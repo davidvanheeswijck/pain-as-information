@@ -369,3 +369,39 @@ About 0.9 x 0.7 x 0.7 x 0.65 = **29%** that G6, G1-G4 all hold so that P0 and P2
 control, with the control numbers reported. The most informative failure would be G5 failing while G1 holds:
 the model reproduces its own inhibitory and wind-up behaviour but not its published stimulation-frequency
 window on this driver.
+
+---
+
+## Amendments (appended after commit #1; the text above is not edited)
+
+### Amendment 1 (2026-11-18, after commit #2 and before the main run): the pipeline pilot
+
+**Disclosure.** After the code was committed (`7afbdf7`, then `b89c639`), `simulate_s002b.py --pilot` was run
+once end to end, 2026-11-18 15:33 to 15:57, 8 workers, writing only the gitignored `results/pilot/`. It uses a
+smaller protocol (3 s runs scored on [1, 3) s, one seed, shifts 0, 5, 15 and 20 mV, an ensemble target of 4
+networks, 2 networks for the validation, sweep and convergence subsamples). **Nothing from it is a result**; G2
+and G3 fail there by construction. A first start of the pilot, minutes earlier, stopped at its own gate because
+the gate tests (which check the registered constants) inherited the pilot environment; the fix is `b89c639`.
+
+**What the pilot showed, and what I did about it (nothing).**
+
+1. The pipeline runs end to end and writes results.json, results.md, the PNGs, the traces and the zip. The
+   candidate-0 A-control counts of the port equal the oracle's at both `dt` (C only, C plus Aβ, C plus Aδ, C plus
+   all A: 11.3, 8.0, 23.3, 19.4 at 0.025 ms; 11.2, 7.0, 23.2, 15.8 at 0.0125 ms).
+2. **The held-out frequency feature F failed for candidate 0 at both `dt` in the pilot protocol.** With touch 9 Hz
+   and C input (baseline 7.5 Hz), stimulation on the surround fibres lowered the WDR rate to 4.5 Hz at 5 Hz, 1.0 Hz
+   at 10 Hz and 0 at 20 Hz and every higher frequency in the grid; nothing excited it under 30 Hz or over
+   100 Hz (one seed, 2 s scored window, so a pilot reading, not a result). If that holds in the main
+   protocol, G5 fails.
+3. In the pilot protocol candidate 0's drive match was 1.25 Hz per fibre (the registered protocol's curve gives
+   1.0); the windows differ, and the match in the main run is whatever the registered rule gives.
+
+**No design change was made on the basis of the pilot**: F stays held out, G5 stays as registered, thresholds
+and predictions above are unchanged. The only change is my belief: I now put the probability that candidate 0
+passes F at both `dt` (G5) at **10%**, not 30%, so about **3%** that P1 and P3 are read as verdicts. If G5 fails,
+P1 and P3 print NO VERDICT and a labelled conditional reading, as registered, and the result for Q2a and Q3 is
+that the model does not reproduce its published stimulation-frequency window on this driver.
+
+**Compute estimate** (simulated seconds times the observed 1.7 to 2 s of wall per simulated second per core):
+control about 4 h, main measurement about 5 h, validation, sweep and convergence about 2 h, at 12 workers:
+**about 11 hours of wall time**, dominated by the main measurement and the control of 1000 or so candidates.

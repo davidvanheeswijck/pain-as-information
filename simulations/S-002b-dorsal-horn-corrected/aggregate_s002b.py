@@ -577,6 +577,23 @@ def write_report(out, res):
     A("`visual-traces.json` and `visual-traces.png`: one accepted network, WDR membrane potential at no shift and at a "
       "collapsed shift, touch alone and touch with stimulation on the surround input.")
     A("")
+    A("## Disclosures: checks and pilots run before the main run")
+    A("")
+    cp = os.path.join(HERE, "results", "prereg", "response-curve.json")
+    if os.path.exists(cp):
+        cv_ = load(cp)
+        A("The one unmodified-model response curve allowed before the pre-registration (candidate 0, shift 0, C input only; "
+          "`results/prereg/response-curve.json`), used only to place the C-drive grid. WDR rate (Hz, mean of "
+          f"{len(cv_['seeds'])} seeds) against the rate per C fibre (Hz):")
+        A("")
+        A("| rate per C fibre | " + " | ".join(str(c["rC_hz_per_fibre"]) for c in cv_["curve"]) + " |")
+        A("|---|" + "---|" * len(cv_["curve"]))
+        A("| WDR rate | " + " | ".join(fmt(c["wdr_rate_hz_mean"], 1) for c in cv_["curve"]) + " |")
+        A("")
+    A("A pipeline pilot with a smaller protocol ran under the gitignored `results/pilot/` after the code was committed; "
+      "nothing from it is a result, and `PREDICTION.md` Amendment 1 records what was seen. The oracle "
+      "(`results/oracle/original-hoc-crosscheck.json`) and the tests ran before the main run and are logged in `run.log`.")
+    A("")
     A("## Declared limits")
     A("")
     A("See `PREDICTION.md`. The weights are under-constrained, so these outputs are discriminating hypotheses about a "
