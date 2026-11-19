@@ -52,4 +52,5 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 | 19/11/2026 | owner | Pivot: close the original hard core with a written record; continue as evidence appraisal for the three questions | session, decision ledger |
 
 ## Implemented by
-- (PRs added as they merge)
+- #20 (this intent)
+- D-003 pivot PR: "D-003: close the original hard core; restate the programme as evidence appraisal" (PROGRAMME.md, README.md, ledger/DECISIONS.md, ledger/OPEN.md)

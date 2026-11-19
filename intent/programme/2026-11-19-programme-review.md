@@ -25,7 +25,8 @@ owner and is not taken by recording it.
 | 19/11/2026 | owner | Run the programme review now, independently, before further simulation | session |
 
 ## Open questions
-- Whether to close the original hard core with a written record and continue as evidence appraisal, as the review recommends: owner
+- Whether to close the original hard core with a written record and continue as evidence appraisal, as the review recommends: owner. Answered 19/11/2026: see `2026-11-19-pivot-to-evidence-appraisal.md`.
 
 ## Implemented by
-- (PRs added as they merge)
+- #19 (the review recorded in ledger/OPEN.md)
+- D-003 pivot PR, which marks the open question below as decided: "D-003: close the original hard core; restate the programme as evidence appraisal"

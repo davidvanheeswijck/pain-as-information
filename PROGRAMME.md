@@ -1,5 +1,13 @@
 # The programme
 
+> **Closure note, 2026-11-19.** The original hard core below is closed as the
+> programme's purpose by [D-003](ledger/DECISIONS.md). The first review found
+> the programme degenerating, and HC-2's killer is met for touch-evoked pain.
+> The text of the hard core, the belt and the branches is left as it was written,
+> so the change stays visible. The standing of each commitment is marked under its
+> heading. The programme continues as evidence appraisal: see "The programme from
+> 2026-11-19" at the end of this file.
+
 Written as a Lakatosian research programme rather than a hypothesis, because
 the interesting failure mode here is not "the idea was wrong" but "the idea was
 rescued so many times it stopped forbidding anything".
@@ -18,6 +26,8 @@ core commitment falls, the programme is abandoned, not amended.
 
 ### HC-1. Nociceptive traffic carries structure beyond mean rate
 
+*Standing, 2026-11-19: weakly supported, not falsified; one unreplicated ex vivo study, never tested here (`ledger/OPEN.md`, E-01 §2). Closed with the core.*
+
 There is information in the *pattern* of nociceptor firing, not only in how
 much of it there is: burst structure, inter-spike interval statistics,
 synchrony across fibres, or the identity of the recruited population.
@@ -28,6 +38,8 @@ information once those are controlled, across modalities and across
 neuropathic and nociceptive states.
 
 ### HC-2. That structure is readable outside the CNS
+
+*Standing, 2026-11-19: fallen for touch-evoked pain; stands only for detecting ongoing activity, at group level (D-003, E-01 §5 and §6).*
 
 Enough of the structure survives at the axon, the peripheral nerve trunk or the
 dorsal root ganglion to be measured by a physically realisable sensor, without
@@ -40,6 +52,8 @@ innocuous barrage. Note that this is the commitment the evidence currently
 presses hardest on, and it may well be the one that dies.
 
 ### HC-3. Structure-targeted intervention beats channel destruction
+
+*Standing, 2026-11-19: not shown; the foothold at the ganglion is argued from one side, and spinal frequency specificity is probably dose (E-03 §1 and §3).*
 
 An intervention that acts on the structure can reduce perceived pain while
 leaving the channel's other traffic substantially intact, and does so better
@@ -55,6 +69,8 @@ modality blocks large myelinated fibres before small unmyelinated ones, then
 belt has to move to a different transducer.
 
 ### HC-4. A physically realisable transducer exists
+
+*Standing, 2026-11-19: partly; quantum information manipulation of pain signalling is below 0.1% with no literature, while quantum instrumentation survives as a costed specification (E-04, C-008). Not pursued further (D-003).*
 
 There is at least one mechanism, buildable this century, that can apply the
 intervention of HC-3 at the required spatial and temporal resolution in a human
@@ -130,3 +146,56 @@ hypotheses grew while the number of forbidden observations did not.
 
 A programme that is degenerating for two consecutive reviews is closed, and
 this file records why. That is the point of writing it down in advance.
+
+## The programme from 2026-11-19
+
+Decided in [D-003](ledger/DECISIONS.md) (intent:
+`intent/programme/2026-11-19-pivot-to-evidence-appraisal.md`). The hard core
+above is closed. This section says what the programme is now.
+
+### Purpose
+
+Evidence appraisal, at population level. The programme reads the published
+record, says what it supports and what it does not, and registers predictions
+that can fail. It does not make claims about any person's care (ETHICS.md §1
+and §3). The refutation ledger, the evidence briefs and the harness are kept.
+
+### The three questions
+
+Framed as questions a treating team faces:
+
+1. Which generator maintains long-standing regional neuropathic pain: a
+   peripheral lesion, the ganglion, or central amplification?
+2. Why does the benefit of ganglion stimulation fade?
+3. Are touch-evoked allodynia and background pain separable mechanisms?
+
+### Simulation rule
+
+Simulation happens only on a published model that first reproduces its own
+results in this repository, and only with a verdict rule whose every outcome is
+reachable. A control that cannot fail, or a rule that cannot return the opposite
+verdict, does not count.
+
+### What would count as progress
+
+The test in "Progressive or degenerating" stands as written. Applied here: a
+prediction registered against data not yet read, scored afterwards, and
+confirmed. An evidence map is useful work, and it is not progress by this test.
+The order is fixed: first an evidence map for the three questions, built from
+full texts; then one prediction registered against data not yet read, and
+scored. A prediction confirmed by computation on the model it was derived from
+does not count: the first review found that the hand predictions that came true
+were of this kind, or forecast an instrument failure.
+
+### Review rule going forward
+
+The review is triggered **every ten pieces of work (conjectures, simulations or
+briefs)** since the last review. The owner moved the trigger from every tenth
+conjecture on 2026-11-18, so the sentence under "Progressive or degenerating"
+that says "every tenth conjecture" is superseded by this one. A second consecutive degenerating
+review closes the programme, and this file records why.
+
+### Not to do
+
+A longer S-1b search. The ion-gradient model. An S-2c. The Branch B trade-off
+surface, or any sensor work. A tenth conjecture filed only to trigger a review.

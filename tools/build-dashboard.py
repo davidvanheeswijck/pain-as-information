@@ -921,7 +921,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
         board_body = f"""
   <div class="board-columns">
     <div>
-      <h3>Hard core</h3>
+      <h3>Original hard core (closed)</h3>
       <ul class="board-list">{hc_html or '<li class="empty-state">none found</li>'}</ul>
     </div>
     <div>
@@ -931,7 +931,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
   </div>"""
     hardcore_section = f"""
 <section id="hardcore" aria-labelledby="hardcore-h">
-  <h2 id="hardcore-h">Hard core and protective belt</h2>
+  <h2 id="hardcore-h">Original hard core (closed 2026-11-19, D-003) and protective belt</h2>
   {board_body}
 </section>
 """
