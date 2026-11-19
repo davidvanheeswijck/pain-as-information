@@ -4,7 +4,7 @@ The honest current position of the programme. Updated after every panel run and
 at every ten pieces of work (conjectures, simulations or briefs) for the
 progressive-or-degenerating review defined in PROGRAMME.md.
 
-**Last updated:** 2026-11-19 (E-11 and its stop-rule outcome recorded; S-3 line of work stopped; E-05 corrected from full texts)
+**Last updated:** 2026-11-19 (P-003 registered and read: unscorable, source not obtained; attempt 1 of 2)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
 **Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; continuing as evidence appraisal
 
@@ -165,7 +165,14 @@ From D-003 (2026-11-19), in order:
    exist", with E-11's scope: "not found in open full text by these queries;
    32 sources were not read in full". The S-3 line of work stops.
 2. **Then one prediction registered against data not yet read,** and scored.
-   This is the current step. No prediction is registered yet.
+   This is the current step.
+   **P-003, registered and read 2026-11-19: UNSCORABLE (source not obtained).**
+   - **Registration.** `predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`, merged at `6a803c7` before any read (PR #24). The claim: pain under blinded sham is at least 1.0 point below the same participants' pre-implant pain, in the sham-controlled crossover trial in established responders (Tabatabaei et al. 2026).
+   - **Read.** It began 55 seconds after the registration reached main (PR #25, `RESULT.md`). None of the four declared routes returned the full text. The paper is not in PMC and is not flagged as full text in Europe PMC, and the publisher page refused the scripted request twice.
+   - **Outcome.** The paper was not read. The claim is neither supported nor refuted. The registered probability of this outcome was 0.60.
+   - **Stop rule.** This is attempt 1 of 2. Two registrations that end unscorable for lack of a source send the question of closing to the owner. The rule is first written in that registration.
+   - **What the outcome does not show.** It is a statement about the declared routes, not about availability. The open-access lookup lists a repository copy of the paper, which the registration's closed route list did not allow. The stop rule does not distinguish "no open copy exists" from "the declared routes could not reach one".
+   - **Standing.** No prediction has yet been scored against unread data.
 
 **Candidates for step 2, as listed in E-11 ("Candidate predictions against
 unread data").** None is registered and no direction is stated.
