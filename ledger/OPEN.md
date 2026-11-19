@@ -4,7 +4,7 @@ The honest current position of the programme. Updated after every panel run and
 at every ten pieces of work (conjectures, simulations or briefs) for the
 progressive-or-degenerating review defined in PROGRAMME.md.
 
-**Last updated:** 2026-11-19 (programme review recorded)
+**Last updated:** 2026-11-19 (E-11 and its stop-rule outcome recorded; S-3 line of work stopped; E-05 corrected from full texts)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
 **Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; continuing as evidence appraisal
 
@@ -122,6 +122,7 @@ be checked against that column before it is filed**, not after.
 - **Ranking.** A comparative block plus the ganglion-directed test is the top pair in 0.779 of draws. The ganglion-directed test is a research procedure. Without it, the best of three is a median 0.647 bits.
 - **Standing.** This describes how the ranking behaves across elicited ranges. Do not cite it as a measured accuracy of any test, and not as a protocol.
 - **Known gaps.** A 60-draw pilot was seen before the code commit. The pre-registered P3 measure mixes prior imbalance with test performance. The 30% false-positive anchor comes from zygapophysial joint blocks. Conditional independence between tests flatters sequences.
+- **Stopped, 2026-11-19.** Per the review's stop rule as applied in E-11, the S-3 line of work stops. The decision model is not rebuilt, because fewer than a third of its 24 likelihoods can be anchored: 0 on a number read in a full text in a relevant population, and 3 if abstracts are accepted. The result above stands as recorded, a description of how a ranking behaves across elicited ranges. See `evidence/11-evidence-map.md`, "Anchoring count" ("The S-3 likelihood parameters" and "The stop rule").
 
 ## Evidence added since the independent review
 
@@ -135,6 +136,19 @@ be checked against that column before it is filed**, not after.
 - **Candidate conjecture, not filed.** "Baseline descending modulation predicts durability of ganglion-stimulation benefit" fails the specificity column as worded. E-10 §8.3 states a narrower within-person question.
 - **Bearing on the simulations.** The S-2 and S-2b circuit has no descending input. A successor pre-registration should carry that as a declared limit.
 
+**E-11, evidence map for the three questions, from full texts: the S-3 likelihoods are not anchored, and the stop rule is met.**
+2026-11-19, `evidence/11-evidence-map.md`, PR #22. Step 1 of D-003. Every number below is taken from E-11.
+
+- **Size.** The map has 46 rows across the three questions: 17 for Q-A, 16 for Q-B and 13 for Q-C. 15 full texts were read, in part or in whole. 32 further sources were read as abstracts only. 11 of the 46 rows carry a number read in a full text.
+- **Anchoring.** Of S-3's 24 likelihood parameters, 0 can be anchored on a number read in a full text in a relevant population. If abstracts are accepted the count is 3 of 24 (a, f and q1), the same three S-3 already listed. The definition of "anchored" is E-11's own. It was fixed after the tables were built and was not pre-registered.
+- **Stop-rule outcome.** The rule: fewer than a third of the 24 anchored means the finding is "the data to rank these observations do not exist"; at least half is success. A third of 24 is 8. The count is under it on either definition. E-11's own scope for the finding: "not found in open full text by these queries; 32 sources were not read in full". It is a statement about what that pass retrieved. It is not a demonstration that the numbers are absent from the literature.
+- **Q-A, which generator.** Every human number found for a diagnostic peripheral nerve block is from an abstract, from 4 to 16 people, and none is from a cohort described as both CRPS-labelled and long-standing. No controlled diagnostic block aimed at a suspected peripheral lesion in CRPS-labelled pain was found by these queries. The full-text numbers are for imaging and surgery, in populations that do not match.
+- **Q-B, why benefit fades.** In the one matched trial, group benefit held from 3 to 12 months (56 of 69 responders, then 49 of 66); that trial was unblinded and run by the manufacturer. Beyond a year the cohorts disagree. The largest CRPS-containing explant series (249 implants, 43% CRPS, abstract only) makes fading look rarest: about 2% explanted per year, 6 for inadequate relief. Two small independent cohorts make it look common: 5 of 16 and 8 of 32. No study of ganglion stimulation was found that compares the three explanations (habituation, lead or hardware drift, disease progression) in people whose benefit fades.
+- **Q-C, allodynia and background pain.** No row has a number read in a full text. The abstracts point both ways at once: the two can be separated by which fibres carry them and by some drug classes, and they rise and fall together in the same person. No source read gives paired numbers for the two in people with a ganglion stimulator.
+- **The stop rule was not written down first.** Its wording was not in any repository file before the work. E-11 searched `intent/`, `ledger/`, `PROGRAMME.md` and `README.md`, did not find it, and quotes it as given with its brief. The rule was therefore applied, and it was not pre-registered in a file. PROGRAMME.md now carries the lesson as a rule.
+- **Bearing on E-05.** The full-text reading found three places where E-05 was thin or wrong: the "habituates more" claim, the stimulation-holiday figure and one p-value. E-05 is corrected with dated notes (2026-11-19), and the pooled explant series is added there.
+- **Standing.** A map, not progress by the test in PROGRAMME.md. It ranks nothing and registers no prediction. It is not exhaustive: 42 logged queries, screened by title.
+
 ## What the programme does next
 
 From D-003 (2026-11-19), in order:
@@ -144,7 +158,49 @@ From D-003 (2026-11-19), in order:
    neuropathic pain (peripheral lesion, ganglion, central); why the benefit of
    ganglion stimulation fades; whether touch-evoked allodynia and background
    pain are separable mechanisms.
+   **Done 2026-11-19: E-11 (`evidence/11-evidence-map.md`, PR #22).** Outcome:
+   0 of S-3's 24 likelihood parameters anchored on a number read in a full
+   text in a relevant population, 3 of 24 if abstracts are accepted. By the
+   stop rule the finding is "the data to rank these observations do not
+   exist", with E-11's scope: "not found in open full text by these queries;
+   32 sources were not read in full". The S-3 line of work stops.
 2. **Then one prediction registered against data not yet read,** and scored.
+   This is the current step. No prediction is registered yet.
+
+**Candidates for step 2, as listed in E-11 ("Candidate predictions against
+unread data").** None is registered and no direction is stated.
+
+- **P-1.** The posted registry results of the manufacturer's post-approval
+  study of ganglion stimulation in lower-limb CRPS: (a) the posted value for
+  the registered 12-month percent change in overall pain intensity, with the
+  number analysed; (b) the stated reasons for not completing.
+- **P-2.** The full text of the 12-month habituation sub-study of the pivotal
+  trial (Levy et al. 2020): the responder rate in the ganglion-stimulation arm
+  at 1 month and at 12 months, which the abstract gives for the comparator
+  arm only.
+- **P-3.** The full text of the sham-controlled crossover trial in established
+  responders (Tabatabaei et al. 2026): pain under sham set against the same
+  participants' pain before implant, if reported.
+- **P-4.** The full text of the block study in E-11 row A1 (Haroutounian et
+  al. 2014): the statistic behind the statement that relief of evoked
+  hypersensitivity was not related to relief of spontaneous pain, and whether
+  any participant carried a CRPS label.
+
+**Contamination note, 2026-11-19: P-1 quantity (a) is no longer unread.**
+
+- During review of E-11, a reviewer read the posted registry record for P-1 to
+  check that it could be scored.
+- The reviewer passed back enrolment and completion totals. In its final
+  report it also passed back a posted value for the registered 12-month
+  outcome.
+- That value is not written in this repository, and it is not to be written
+  here.
+- P-1 quantity (a) is therefore no longer unread for the session that
+  coordinates this work. That session cannot register it as a prediction
+  against unread data.
+- P-1 quantity (b), the reasons for non-completion, remains unread.
+- P-2, P-3 and P-4 are not affected by this note. Their prior exposure is as
+  E-11 declares it.
 
 **Not to do.** A longer S-1b search. The ion-gradient model. An S-2c. The
 Branch B trade-off surface, or any sensor work. A tenth conjecture filed only

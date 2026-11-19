@@ -193,6 +193,11 @@ scored. A prediction confirmed by computation on the model it was derived from
 does not count: the first review found that the hand predictions that came true
 were of this kind, or forecast an instrument failure.
 
+Any stop rule or threshold for a piece of work must be written into a file in
+this repository before that work starts (the case: the E-11 stop rule, which
+was in no repository file before the map was built; see
+`evidence/11-evidence-map.md`, "The stop rule", and `ledger/OPEN.md`, E-11).
+
 ### Review rule going forward
 
 The review is triggered **every ten pieces of work (conjectures, simulations or
