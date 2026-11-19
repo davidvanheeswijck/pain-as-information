@@ -47,7 +47,7 @@ All 17 mechanism files are identical to the originals after CRLF normalisation: 
 
 ### Ensemble funnel
 
-Candidates considered (index order): 1441; accepted: 200 of a target of 200; rejected at W: 600; rejected at A-beta: 631; rejected at the drive match: 9 (candidate 0 is counted among the accepted and not among these).
+Candidates considered (index order, candidate 0 included): 1441. Rejected: 1240 (at W: 600; at A-beta: 631; at the drive match: 9). Passed all calibration features: 201 (candidate 0 plus 200 of the others). Kept: 200, the target being 200; 1 candidate(s) that passed in the last batch were dropped by the cap. Accounting: 1441 considered = 1240 rejected + 201 passed.
 
 ## Verdicts
 
@@ -55,7 +55,7 @@ Networks measured: 200. Intervals are bootstrap 95% CIs over networks (10000 res
 
 ### P0 (Q1): onset of touch-evoked projection-neuron output
 
-Median onset shift 12.5 mV, CI [10.0, 15.0]; 100% of networks have an onset on the grid (onset = first shift at which R_T rises 2.0 Hz above its value at 0). Threshold: median at most 10.0 mV. Registered rule: SUPPORTED iff the CI upper bound is at most 10.0; REFUTED iff the CI lower bound is above 10.0; otherwise INCONCLUSIVE. The CI lower bound is 10.0 and the threshold is 10.0, so the lower bound equals the threshold. Resolution is limited by the shift grid, 0, 2.5, 5, 7.5, 10, 15, 20, 30 mV: onsets and the CI ends can only fall on grid values, and the median of an even-sized sample can fall between two of them. Verdict: **INCONCLUSIVE**.
+Median onset shift 12.5 mV, CI [10.0, 15.0]; 100% of networks have an onset on the grid (onset = first shift at which R_T rises 2.0 Hz above its value at 0). Threshold: median at most 10.0 mV. Registered rule: SUPPORTED iff the CI upper bound is at most 10.0; REFUTED iff the CI lower bound is above 10.0; otherwise INCONCLUSIVE. The CI lower bound is 10.0 and the threshold is 10.0, so the lower bound equals the threshold. Resolution is limited by the shift grid, 0, 2.5, 5, 7.5, 10, 15, 20, 30 mV: onsets and the CI ends can only fall on grid values, and the median of an even-sized sample can fall between two of them. 100 of 200 networks have an onset at or below 10.0 mV, so the point estimate sits on the threshold. INCONCLUSIVE here is a discretisation outcome on the registered grid: a median that falls between two grid values cannot be placed on one side of the threshold. Verdict: **INCONCLUSIVE**.
 
 ### P1 (Q2a): stimulation on the surround input at 40 Hz, touch-evoked output
 
@@ -87,7 +87,22 @@ red_S = 1 - mean(R_TS)/mean(R_T); red_C = 1 - mean(R_Ch)/mean(R_C1). Classes: R 
 
 Shifts considered (at or above the median onset 12.5 mV, E defined): [15, 20, 30]. Classes there: ['N', 'N', 'N']. Registered rule: SUPPORTED iff red_Ch is class N (upper bound below 0.2) at every considered shift, with at least two such shifts; REFUTED iff it is class R at every one; INCONCLUSIVE if re-classing spanning cells could decide it; otherwise NOT SUPPORTED, NOT REFUTED. Verdict: **SUPPORTED**.
 
-In plain terms: at the shifts [15, 20, 30] mV, where touch drives the projection neuron, halving the C input does not reduce the touch-evoked excess (E, the rate with touch and C minus the rate with C alone); red_Ch is about 0.01, -0.01, -0.02 there. This is a property of this four-cell model, not a finding about people. It says nothing about whether C input matters for touch-evoked pain in a patient, and it is read at shifts where the touch-evoked rate is already far above the C-driven rate.
+**Diagnostic: the P2 test is not informative at these shifts.** red_Ch = 1 - mean(E_h)/mean(E). The largest reduction it could show is reached if halving C removed every influence of C on the total (R_TCh = R_T), which gives ceiling = 1 - (mean R_T - mean R_Ch)/mean E. Computed from the data:
+
+| shift (mV) | ceiling of red_Ch | can reach class R (>= 0.2) | interaction TC - T - C1 (Hz) [CI] | total output reduction when C is halved, 1 - TCh/TC [CI] |
+|---|---|---|---|---|
+| 0 | n/a | no | -3.65 [-4.16, -3.13] | 0.17 [0.13, 0.21] |
+| 2.5 | n/a | no | -3.38 [-3.92, -2.82] | 0.18 [0.14, 0.22] |
+| 5 | -4.19 | no | -2.91 [-3.50, -2.31] | 0.18 [0.15, 0.22] |
+| 7.5 | -0.69 | no | -2.31 [-2.97, -1.65] | 0.16 [0.14, 0.19] |
+| 10 | -0.12 | no | -1.12 [-1.84, -0.40] | 0.16 [0.14, 0.18] |
+| 15 | 0.12 | no | 3.85 [2.89, 4.85] | 0.12 [0.11, 0.13] |
+| 20 | 0.03 | no | 2.43 [1.74, 3.11] | 0.04 [0.04, 0.04] |
+| 30 | -0.01 | no | -0.96 [-1.49, -0.45] | 0.01 [0.01, 0.01] |
+
+At the considered shifts [15, 20, 30] mV the ceiling is 0.12, 0.03, -0.01, so the registered rule **could not have returned REFUTED** there. The verdict word above is what the registered rule produces, and it is therefore **not informative** about whether touch-evoked output is independent of C input: E is almost the touch-only rate, and red_Ch is near 0 whenever C adds roughly additively. The informative quantity is the interaction (table), and total output does fall when C is halved: 12% at 15 mV, 4% at 20 mV, 1% at 30 mV.
+
+In plain terms: at the shifts where touch drives the projection neuron, the excess over C alone (E) is nearly the touch-only rate, so removing half of the C input barely changes E; that is why red_Ch is about 0.01, -0.01, -0.02 there. It does not show that touch-evoked output is independent of C input: the total output (touch plus C) is lower when C is halved, by the percentages above, and the interaction is small relative to the touch-only rate. This is a property of this four-cell model, not a finding about people. No positive control was registered for red_Ch (PREDICTION.md Amendment 3). Cells below the registered read window, at 7.5 and 10 mV, give red_Ch of -1.03, -0.31; they are outside the rule and are not part of the verdict.
 
 ### P3 (Q3): which observable change separates the three causes
 
@@ -119,7 +134,7 @@ These are what the registered rules would print if the gate that failed had held
 - R-A, ratio to C only, C_adelta: median 2.17, IQR [1.81, 2.91], n = 200.
 - R-A, ratio to C only, C_all_A: median 1.37, IQR [1.06, 1.76], n = 200.
 - R-A, share of accepted networks in which C plus A-delta exceeds C only: 200/200, Wilson [0.98, 1.00].
-- R-F, held-out frequency feature on 60 accepted networks: evaluable 18, pass 0; Wilson of pass among all [0.00, 0.06].
+- R-F, held-out frequency feature on 60 accepted networks: evaluable 18, pass 0. Only 18 of 60 are evaluable because of the registered baseline rule: a network is evaluable only if its touch-plus-C rate without stimulation at shift 0 is at least 1.0 Hz (F_BASE_MIN), and 42 of 60 are below it (the tonic Abeta input inhibits the C-driven rate). Wilson 95% interval of the pass share: among the evaluable networks [0.00, 0.18]; among all 60 [0.00, 0.06].
 - Median rho(f) over evaluable networks: 5 Hz 0.50; 10 Hz 0.14; 20 Hz 0.00; 30 Hz 0.00; 40 Hz 0.00; 60 Hz 0.00; 100 Hz 0.00; 150 Hz 0.00; 200 Hz 0.00.
 
 ## Convergence (dt halving)

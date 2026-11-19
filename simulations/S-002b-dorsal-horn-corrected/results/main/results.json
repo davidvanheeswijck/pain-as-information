@@ -1383,7 +1383,9 @@
    2.5,
    10.0
   ],
-  "verdict_if_gates": "INCONCLUSIVE"
+  "n_at_or_below_limit": 100,
+  "n_networks": 200,
+  "verdict": "INCONCLUSIVE"
  },
  "P1": {
   "red_S": [
@@ -1490,7 +1492,8 @@
    "R",
    "R"
   ],
-  "verdict_if_gates": "SUPPORTED"
+  "verdict": "NO VERDICT",
+  "conditional_reading_not_a_verdict": "supported"
  },
  "P2": {
   "red_Ch": [
@@ -1545,7 +1548,130 @@
    "N",
    "N"
   ],
-  "verdict_if_gates": "SUPPORTED"
+  "diagnostics": [
+   {
+    "shift": 0,
+    "ceiling_red_Ch": NaN,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -3.645625,
+     -4.1612656249999995,
+     -3.1293593750000004
+    ],
+    "total_reduction_when_C_halved": [
+     0.16577208918249386,
+     0.12909329740557782,
+     0.21392945467103866
+    ]
+   },
+   {
+    "shift": 2.5,
+    "ceiling_red_Ch": NaN,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -3.375625,
+     -3.9169062500000003,
+     -2.8237187500000003
+    ],
+    "total_reduction_when_C_halved": [
+     0.17726747067569804,
+     0.1402399683725084,
+     0.22307357869040303
+    ]
+   },
+   {
+    "shift": 5,
+    "ceiling_red_Ch": -4.190615835777124,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -2.91125,
+     -3.5037812500000003,
+     -2.310625
+    ],
+    "total_reduction_when_C_halved": [
+     0.1775205016883743,
+     0.14650465449478556,
+     0.2168988557535506
+    ]
+   },
+   {
+    "shift": 7.5,
+    "ceiling_red_Ch": -0.687732342007435,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -2.313125,
+     -2.965625,
+     -1.6549843750000002
+    ],
+    "total_reduction_when_C_halved": [
+     0.159606968871274,
+     0.136207095655794,
+     0.18685752860155766
+    ]
+   },
+   {
+    "shift": 10,
+    "ceiling_red_Ch": -0.11726063393003772,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -1.124375,
+     -1.839375,
+     -0.39875
+    ],
+    "total_reduction_when_C_halved": [
+     0.1594076207127063,
+     0.1376093457297611,
+     0.18441024372679635
+    ]
+   },
+   {
+    "shift": 15,
+    "ceiling_red_Ch": 0.1218925421010425,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     3.853125,
+     2.891859375,
+     4.850625
+    ],
+    "total_reduction_when_C_halved": [
+     0.11965840039415343,
+     0.10704283527249793,
+     0.13410891728530755
+    ]
+   },
+   {
+    "shift": 20,
+    "ceiling_red_Ch": 0.03114526161727038,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     2.428125,
+     1.74434375,
+     3.1069062499999998
+    ],
+    "total_reduction_when_C_halved": [
+     0.03954307631375986,
+     0.036660430910770765,
+     0.04252817718017278
+    ]
+   },
+   {
+    "shift": 30,
+    "ceiling_red_Ch": -0.005410208586912768,
+    "ceiling_can_reach_threshold": false,
+    "interaction": [
+     -0.9625,
+     -1.49125,
+     -0.4524843750000002
+    ],
+    "total_reduction_when_C_halved": [
+     0.013557682836188523,
+     0.012454006055180485,
+     0.014686286682230732
+    ]
+   }
+  ],
+  "could_return_refuted_at_considered_shifts": false,
+  "verdict": "SUPPORTED"
  },
  "reading_A": {
   "C_abeta": {
@@ -1578,6 +1704,8 @@
  "reading_F": {
   "n": 60,
   "n_evaluable": 18,
+  "n_below_baseline_min": 42,
+  "baseline_min_hz": 1.0,
   "n_pass": 0,
   "wilson_pass_of_all": [
    0.0,
@@ -3139,6 +3267,7 @@
     }
    }
   ],
-  "verdict_if_gates": "INCONCLUSIVE"
+  "verdict": "NO VERDICT",
+  "conditional_reading_not_a_verdict": "inconclusive"
  }
 }

@@ -415,3 +415,30 @@ inhibition. Whether such input would change any of the model's outputs here is n
 `evidence/10-descending-modulation.md` §8.2. The report (`results/main/results.md`) was also reworded after the
 run, display only: the P1 and P3 conditional readings moved under a "not verdicts" heading, the registered rules
 for P0 and P2 are quoted beside their verdicts, and P2's SUPPORTED is stated in plain terms.
+
+### Amendment 3 (2026-11-19, after review of PR #15; append only): the P2 rule was non-diagnostic as registered
+
+No simulation was re-run and no registered rule, threshold or number changed; the verdict words stand as the
+registered rules produced them.
+
+1. **P2 as registered could not have returned REFUTED at the shifts it reads.** The rule reads red_Ch at shifts
+   at or above the median onset (here 15, 20 and 30 mV) and REFUTES only if red_Ch is class R (lower bound >= 0.20)
+   at every one. There the excess E = R_TC - R_C1 is almost the touch-only rate R_T, so red_Ch is near 0 whenever C adds
+   roughly additively. The largest red_Ch reachable (if halving C removed every influence of C on the total, R_TCh =
+   R_T) is 1 - (R_T - R_Ch)/E, computed in `results.md` from the data: 0.12, 0.03 and -0.01 at 15, 20 and 30 mV,
+   all below 0.20. **The P2 SUPPORTED is therefore not informative** about whether touch-evoked output is
+   independent of C input. **No positive control was registered for red_Ch** (a case in which the rule would have
+   to return REFUTED); that was a design omission of this file. The report now labels the verdict so, prints the
+   ceiling, and reports the informative quantities: the interaction TC - T - C1 per shift with bootstrap CIs, and
+   the fall in total output when C is halved (12% at 15 mV in the data).
+2. **Pilot disclosure, explicit.** The pipeline pilot of Amendment 1 ran the full pipeline, and I did read its
+   `results/pilot/results.md`, which contains P0 and P2 quantities on 4 networks of a smaller protocol (3 s runs, 1
+   seed, shifts 0, 5, 15, 20 mV): a median onset of 15 mV with CI [5, 20], red_S, red_C and red_Ch tables, and P2
+   classes N at 15 and 20 mV with E of 31.9 and 81.6 Hz. Amendment 1 disclosed only the F reading, which was the part
+   I acted on; the P0 and P2 readings were seen too, and they did not change any threshold, rule or prediction. The
+   predictions above were written before that pilot.
+3. **Report changes, display and output only:** `results.json` now carries `verdict` ("NO VERDICT" for P1 and P3) and
+   `conditional_reading_not_a_verdict` in lower case instead of an upper-case verdict field; R-F explains that 42 of 60
+   networks fall below the registered baseline rule F_BASE_MIN = 1.0 Hz and prints both Wilson intervals; P0 states the
+   onset distribution (100 of 200 networks at or below 10 mV, so the estimate sits on the threshold and INCONCLUSIVE is
+   a discretisation outcome on the registered grid); the funnel accounting is explicit.

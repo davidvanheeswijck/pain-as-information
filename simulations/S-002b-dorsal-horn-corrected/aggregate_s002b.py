@@ -231,12 +231,41 @@ def analyse(out):
     ch = [klass(red_ch[j][1], red_ch[j][2]) for j in first]
     res["P2"] = dict(red_Ch=[list(a) for a in red_ch], shifts_considered=[sh[j] for j in first], class_Ch=ch,
                      verdict_if_gates=decide_p2(ch) if n >= P.N_ENSEMBLE else "INCONCLUSIVE")
+    # P2 diagnostics: could the registered rule have returned REFUTED, and what does C do to the total?
+    diag = []
+    for j, s_ in enumerate(sh):
+        Tm, Cm, TCm, Chm = (M[k][:, j].mean() for k in ("T", "C1", "TC", "Ch"))
+        TChm = M["TCh"][:, j].mean()
+        Em = TCm - Cm
+        ceil = 1.0 - (Tm - Chm) / Em if Em > 0 else float("nan")
+        inter = M["TC"][:, j] - M["T"][:, j] - M["C1"][:, j]
+        bi = inter[idx].mean(axis=1)
+        tot = P.ratio_reduction_ci(M["TCh"][:, j], M["TC"][:, j], idx) if TCm > 0 else (float("nan"),) * 3
+        diag.append(dict(shift=s_, ceiling_red_Ch=float(ceil), ceiling_can_reach_threshold=bool(ceil >= THR),
+                         interaction=[float(inter.mean()), float(np.percentile(bi, 2.5)), float(np.percentile(bi, 97.5))],
+                         total_reduction_when_C_halved=[float(x) for x in tot]))
+    res["P2"]["diagnostics"] = diag
+    res["P2"]["could_return_refuted_at_considered_shifts"] = bool(any(diag[j]["ceiling_can_reach_threshold"] for j in first))
+    res["P0"]["n_at_or_below_limit"] = int(sum(1 for o in ov if o <= P.P0_ONSET_LIMIT))
+    res["P0"]["n_networks"] = n
     # readings: A-beta / A-delta decomposition
     res["reading_A"] = reading_a(out, nets, acc)
     # validation F
     res["reading_F"] = reading_f(out, acc)
     # P3
     res["P3"] = p3(out, nets, acc, M)
+    # verdict fields: a gated-off question has verdict "NO VERDICT" and a lower-case conditional reading
+    for key, ok in (("P0", res["gates_for_p0_p2"]), ("P1", res["gates_for_p1_p3"]), ("P2", res["gates_for_p0_p2"]),
+                    ("P3", res["gates_for_p1_p3"])):
+        d = res.get(key)
+        if d is None:
+            continue
+        raw = d.pop("verdict_if_gates")
+        if ok:
+            d["verdict"] = raw
+        else:
+            d["verdict"] = "NO VERDICT"
+            d["conditional_reading_not_a_verdict"] = raw.lower()
     return res
 
 
@@ -306,7 +335,8 @@ def reading_f(out, acc):
         v = [r["rho"][str(f)] for r in ev if str(f) in r["rho"]]
         if v:
             rho[str(f)] = dict(median=float(np.median(v)), q25=float(np.percentile(v, 25)), q75=float(np.percentile(v, 75)))
-    return dict(n=len(recs), n_evaluable=len(ev), n_pass=len(ok), wilson_pass_of_all=list(P.wilson(len(ok), len(recs))),
+    return dict(n=len(recs), n_evaluable=len(ev), n_below_baseline_min=len(recs) - len(ev), baseline_min_hz=P.F_BASE_MIN,
+                n_pass=len(ok), wilson_pass_of_all=list(P.wilson(len(ok), len(recs))),
                 wilson_pass_of_evaluable=list(P.wilson(len(ok), len(ev))) if ev else None, rho=rho)
 
 
@@ -385,7 +415,7 @@ def p3(out, nets, acc, M):
 # --- report -----------------------------------------------------------------------------------------------------
 
 def word(res, which, gated_ok):
-    v = res[which]["verdict_if_gates"]
+    v = res[which]["verdict"]
     if gated_ok:
         return f"**{v}**"
     return "NO VERDICT (the conditional reading is under \"Conditional readings, not verdicts\" below)"
@@ -465,9 +495,15 @@ def write_report(out, res):
         st = acc.get("rejected_at_stage", {})
         A("### Ensemble funnel")
         A("")
-        A(f"Candidates considered (index order): {acc['considered']}; accepted: {len(acc['accepted'])} of a target of "
-          f"{acc['target']}; rejected at W: {st.get('W', 0)}; rejected at A-beta: {st.get('A', 0)}; rejected at the "
-          f"drive match: {st.get('rC', 0)} (candidate 0 is counted among the accepted and not among these).")
+        rej = st.get('W', 0) + st.get('A', 0) + st.get('rC', 0)
+        passed = st.get('accepted', 0) + 1
+        A(f"Candidates considered (index order, candidate 0 included): {acc['considered']}. Rejected: {rej} "
+          f"(at W: {st.get('W', 0)}; at A-beta: {st.get('A', 0)}; at the drive match: {st.get('rC', 0)}). Passed all "
+          f"calibration features: {passed} (candidate 0 plus {st.get('accepted', 0)} of the others). Kept: "
+          f"{len(acc['accepted'])}, the target being {acc['target']}; "
+          + (f"{passed - len(acc['accepted'])} candidate(s) that passed in the last batch were dropped by the cap. "
+             if passed > len(acc['accepted']) else "")
+          + f"Accounting: {acc['considered']} considered = {rej} rejected + {passed} passed.")
         A("")
     if "P0" not in res:
         A("## Verdicts")
@@ -493,6 +529,9 @@ def write_report(out, res):
       + (", so the lower bound equals the threshold" if abs(p0['ci'][0] - P.P0_ONSET_LIMIT) < 1e-9 else "") +
       f". Resolution is limited by the shift grid, {', '.join(str(x) for x in P.SHIFTS)} mV: onsets and the "
       f"CI ends can only fall on grid values, and the median of an even-sized sample can fall between two of them. "
+      f"{p0['n_at_or_below_limit']} of {p0['n_networks']} networks have an onset at or below {P.P0_ONSET_LIMIT} mV, so the "
+      f"point estimate sits on the threshold. INCONCLUSIVE here is a discretisation outcome on the registered grid: "
+      f"a median that falls between two grid values cannot be placed on one side of the threshold. "
       f"Verdict: {word(res, 'P0', ok02)}.")
     A("")
     p1 = res["P1"]
@@ -524,14 +563,40 @@ def write_report(out, res):
       f"every one; INCONCLUSIVE if re-classing spanning cells could decide it; otherwise NOT SUPPORTED, NOT REFUTED. "
       f"Verdict: {word(res, 'P2', ok02)}.")
     A("")
-    if ok02 and p2["verdict_if_gates"] == "SUPPORTED":
-        A(f"In plain terms: at the shifts {p2['shifts_considered']} mV, where touch drives the projection neuron, halving the "
-          "C input does not reduce the touch-evoked excess (E, the rate with touch and C minus the rate with C alone); "
-          "red_Ch is about "
-          + ", ".join(fmt(p2['red_Ch'][list(P.SHIFTS).index(x)][0]) for x in p2['shifts_considered']) +
-          " there. This is a property of this four-cell model, not a finding about people. It says nothing about whether "
-          "C input matters for touch-evoked pain in a patient, and it is read at shifts where the touch-evoked "
-          "rate is already far above the C-driven rate.")
+    dg = {d["shift"]: d for d in p2["diagnostics"]}
+    A("**Diagnostic: the P2 test is not informative at these shifts.** red_Ch = 1 - mean(E_h)/mean(E). The largest "
+      "reduction it could show is reached if halving C removed every influence of C on the total (R_TCh = R_T), "
+      "which gives ceiling = 1 - (mean R_T - mean R_Ch)/mean E. Computed from the data:")
+    A("")
+    A("| shift (mV) | ceiling of red_Ch | can reach class R (>= 0.2) | interaction TC - T - C1 (Hz) [CI] | total output reduction when C is halved, 1 - TCh/TC [CI] |")
+    A("|---|---|---|---|---|")
+    for j, s_ in enumerate(P.SHIFTS):
+        d = dg[s_]
+        A(f"| {s_} | {fmt(d['ceiling_red_Ch'])} | {'yes' if d['ceiling_can_reach_threshold'] else 'no'} | "
+          f"{ci_str(*d['interaction'])} | {ci_str(*d['total_reduction_when_C_halved'])} |")
+    A("")
+    cons = p2["shifts_considered"]
+    if cons:
+        A(f"At the considered shifts {cons} mV the ceiling is "
+          + ", ".join(fmt(dg[x]['ceiling_red_Ch']) for x in cons)
+          + (f", so the registered rule **could {'not ' if not p2['could_return_refuted_at_considered_shifts'] else ''}have "
+             "returned REFUTED** there. " if True else "")
+          + ("The verdict word above is what the registered rule produces, and it is therefore **not informative** about "
+             "whether touch-evoked output is independent of C input: E is almost the touch-only rate, and red_Ch is "
+             "near 0 whenever C adds roughly additively. "
+             if not p2["could_return_refuted_at_considered_shifts"] else "")
+          + "The informative quantity is the interaction (table), and total output does fall when C is halved: "
+          + ", ".join(f"{fmt(100 * dg[x]['total_reduction_when_C_halved'][0], 0)}% at {x} mV" for x in cons) + ".")
+        A("")
+    A("In plain terms: at the shifts where touch drives the projection neuron, the excess over C alone (E) is "
+      "nearly the touch-only rate, so removing half of the C input barely changes E; that is why red_Ch is about "
+      + ", ".join(fmt(p2['red_Ch'][list(P.SHIFTS).index(x)][0]) for x in cons) +
+      " there. It does not show that touch-evoked output is independent of C input: the total output (touch plus C) "
+      "is lower when C is halved, by the percentages above, and the interaction is small relative to the touch-only "
+      "rate. This is a property of this four-cell model, not a finding about people. No positive control was registered "
+      "for red_Ch (PREDICTION.md Amendment 3). Cells below the registered read window, at 7.5 and 10 mV, give red_Ch of "
+      + ", ".join(fmt(p2['red_Ch'][list(P.SHIFTS).index(x)][0]) for x in (7.5, 10)) +
+      "; they are outside the rule and are not part of the verdict.")
     A("")
     p3r = res.get("P3")
     A("### P3 (Q3): which observable change separates the three causes")
@@ -558,7 +623,7 @@ def write_report(out, res):
         A(f"Uniform-loss reading for H (|change in u| <= 0.10 and the optimum unchanged): {p3r['uniform_H'][0]} of "
           f"{p3r['uniform_H'][1]} evaluable networks. Verdict: {word(res, 'P3', ok13)}.")
         A("")
-        if ok13 and p3r["verdict_if_gates"] == "SUPPORTED":
+        if ok13 and p3r["verdict"] == "SUPPORTED":
             A("Candidate observation for a treating team to consider, a hypothesis and never advice: if, over time, "
               "relief of touch-evoked pain falls before relief of background pain does, and the stimulation frequency at "
               "which the combined pain is lowest moves, that is the pattern the model associates with progressive "
@@ -577,11 +642,11 @@ def write_report(out, res):
                "networks pass, and candidate 0 fails it at both dt), so the reduction it shows cannot be read as the "
                "published stimulation effect.") if rfx else ""
         A(f"- p1, conditional reading, not a verdict: the registered rule applied to the surround-input stimulation data "
-          f"would read \"{res['P1']['verdict_if_gates'].lower()}\" (classes of red_S: {res['P1']['class_S']}; of red_C: "
+          f"would read \"{res['P1']['conditional_reading_not_a_verdict']}\" (classes of red_S: {res['P1']['class_S']}; of red_C: "
           f"{res['P1']['class_C']}).{why}")
         if p3r is not None:
             A(f"- p3, conditional reading, not a verdict: the registered rule applied to the sweep subsample would read "
-              f"\"{p3r['verdict_if_gates'].lower()}\".{why}")
+              f"\"{p3r['conditional_reading_not_a_verdict']}\".{why}")
     else:
         A("None: all gates held.")
     A("")
@@ -599,7 +664,12 @@ def write_report(out, res):
     rf = res.get("reading_F")
     if rf:
         A(f"- R-F, held-out frequency feature on {rf['n']} accepted networks: evaluable {rf['n_evaluable']}, pass "
-          f"{rf['n_pass']}; Wilson of pass among all [{fmt(rf['wilson_pass_of_all'][0])}, {fmt(rf['wilson_pass_of_all'][1])}].")
+          f"{rf['n_pass']}. Only {rf['n_evaluable']} of {rf['n']} are evaluable because of the registered baseline rule: "
+          f"a network is evaluable only if its touch-plus-C rate without stimulation at shift 0 is at least "
+          f"{rf['baseline_min_hz']} Hz (F_BASE_MIN), and {rf['n_below_baseline_min']} of {rf['n']} are below it "
+          "(the tonic Abeta input inhibits the C-driven rate). Wilson 95% interval of the pass share: among the evaluable "
+          f"networks [{fmt(rf['wilson_pass_of_evaluable'][0])}, {fmt(rf['wilson_pass_of_evaluable'][1])}]; among all "
+          f"{rf['n']} [{fmt(rf['wilson_pass_of_all'][0])}, {fmt(rf['wilson_pass_of_all'][1])}].")
         A("- Median rho(f) over evaluable networks: " + "; ".join(f"{f} Hz {fmt(v['median'])}" for f, v in rf["rho"].items()) + ".")
     A("")
     cv = res["convergence"]

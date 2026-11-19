@@ -51,3 +51,10 @@ tables) are listed with their hashes in the script (`FILES`) and in the JSON.
   two conditions to the shipped length and the committed JSON shows that the per-cycle counts are the same.
 - The shipped `loadqueue()` procedure is redefined with the same body plus a skip vector, to leave out the
   events of the dropped fibre classes. The recorders, `init()` and `run()` are the shipped `OutputData()`.
+
+## The main run's log
+
+`results/main/run.log` records the pre-rebase HEAD `e57dbf9` and "uncommitted changes: True"; the only
+uncommitted file was `run.log` itself. The gate test hashes in `gate_g4.json` equal the committed test files, and
+`simulate_s002b.py` and `s2b_protocol.py` are unchanged since the commit before the run (the later commits changed
+only the aggregator, `PREDICTION.md` and results).
