@@ -55,3 +55,5 @@ patient.
 ## Implemented by
 - #11 this intent record
 - #12 S-2: NO VERDICT, the A-fibre control lumped Aβ with Aδ and the stimulation driver used the wrong input (see ledger/OPEN.md "Simulations")
+- #14 the decision to build S-2b
+- #15 S-2b: onset inconclusive, reduced-C test not informative, stimulation questions no verdict (see ledger/OPEN.md "Simulations")

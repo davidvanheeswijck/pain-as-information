@@ -96,6 +96,17 @@ be checked against that column before it is filed**, not after.
 - **Standing.** Nothing about allodynia, ganglion stimulation or fading benefit was tested. Questions 1 to 3 of the S-2 intent remain open.
 - **Next.** Run a fresh pre-registration with three changes: an Aβ-only versus Aδ-only decomposition of the control, a stimulation driver on the surround input as the authors' data show, and a C-input drive grid of about 0.5 to 2 Hz per fibre. Commit an original-hoc oracle script alongside it, as a hard requirement.
 
+**S-2b, corrected dorsal-horn run: onset inconclusive, reduced-C test not informative, stimulation questions no verdict.**
+2026-11-19, `simulations/S-002b-dorsal-horn-corrected/`, PR #15.
+
+- **Model and controls.** The original ModelDB 168414 hoc network is now run in the repository (`crosscheck_original_hoc.py`). The port matches it exactly: C only 11.3, all A fibres 19.4, C plus Aβ only 8.0, C plus Aδ only 23.3 spikes per cycle. The corrected Aβ-only control passes (0.71 of C only). 200 networks were accepted from 1,441 candidates. The dt-halving check passed with no flips.
+- **Q1, onset: INCONCLUSIVE.** Touch (Aβ) input starts to drive the projection neuron at a median anion-reversal shift of 12.5 mV, with a 95% interval of 10.0 to 15.0, against a registered threshold of at most 10 mV. Exactly 100 of the 200 networks have an onset at or below 10 mV, so the estimate sits on the threshold. The verdict is a discretisation outcome on the registered grid.
+- **Q2b, reduced C input: SUPPORTED by the registered rule, and not informative.** The rule could not have returned REFUTED at the shifts it reads. The largest reachable value of its measure there is 0.12, 0.03 and −0.01, against a threshold of 0.20, and no positive control was registered. What the data show instead is small. The touch-by-C interaction is +3.9, +2.4 and −1.0 Hz at 15, 20 and 30 mV. Total output falls by 12%, 4% and 1% when C input is halved. This is not evidence that touch-evoked output is independent of C input.
+- **Q2a and Q3, stimulation: NO VERDICT.** The held-out published frequency window is not reproduced on the surround-input driver. Stimulation silences the neuron from 20 Hz upward and never excites it. The unmodified model fails the feature at both time steps, and 0 of 18 evaluable networks pass. The other 42 of the 60 tested fall below the registered baseline rule.
+- **Disclosures.** A four-network pilot showed P0 and P2 quantities before the main run (PREDICTION.md, Amendment 3). No rule, threshold or prediction changed after it.
+- **Standing.** This is a four-cell model with under-constrained weights and no descending (brainstem) input. Nothing here is a finding about patients or a stimulation setting. Questions 1 to 3 of the S-2 intent remain open.
+- **Next, if pursued.** A fresh pre-registration with three changes: a finer onset grid, a reduced-C test whose opposite verdict is reachable and which has a positive control, and a study of why the published frequency window is not reproduced.
+
 **S-3, generator discrimination: kill TRIGGERED, positive control passed.**
 2026-11-17, `simulations/S-003-generator-discrimination/`, PR #6. A decision-analysis model, not biophysics.
 
