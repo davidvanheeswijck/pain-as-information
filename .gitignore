@@ -46,3 +46,5 @@ simulations/**/results/main/tuning/
 simulations/**/results/main/val/
 # S-2 per-network working files (resumable); committed as per-model-files.zip instead
 simulations/**/results/main/sweep/
+# S-2b per-network working files (resumable); committed as per-model-files.zip instead
+simulations/**/results/main/valid/
