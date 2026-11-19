@@ -3,8 +3,10 @@
 **Written 2026-11-19 (about 21:00 UTC), before the source was read.** The
 source is the full text of the sham-controlled crossover trial of ganglion
 stimulation in established responders, Tabatabaei et al. 2026 (identifier in
-`evidence/05-crps.md`, §6b). This file names the trial by author and year only,
-so that no tool run over this folder fetches its record.
+`evidence/05-crps.md`, §6b). This file names the trial with its identifiers
+removed (no PubMed number, DOI or registry number), so that no tool run over
+this folder fetches its record. The quoted citation in §2 still carries the
+author list, title and journal.
 
 Intent: `intent/programme/2026-11-19-pivot-to-evidence-appraisal.md`. This is
 step 2 of D-003 (`ledger/DECISIONS.md`): one prediction registered against data
@@ -19,6 +21,27 @@ registering agent being wrong.
 
 Nothing here is a statement about any person, and nothing here is a stimulation
 setting (ETHICS.md §3).
+
+> **Read this first. Three limits of this registration.**
+>
+> 1. **It predicts one unread number.** Pain under sham in this trial is
+>    already in the repository, from the abstract (median 6.0). The only
+>    unread half of the quantity is the participants' pain before implant.
+> 2. **The test is not severe.** A SUPPORTED verdict would mostly reflect that
+>    people are implanted when their pain scores are high. REFUTED is the
+>    informative outcome.
+> 3. **The registered likeliest outcome is UNSCORABLE.** The registering
+>    agent puts 0.84 on the registration ending unscorable (0.55 because the
+>    full text is not obtained, 0.29 because pre-implant pain is not reported
+>    in a usable form), and 0.16 on any verdict.
+
+**Revised before merge.** This file was first committed at `0da91a6` and
+revised on the same branch after a review of the pull request, before the
+merge and before any read of the source. The review found no leak. The
+revision tightened the scoring rule, the source routes and the verdict rule,
+and the probabilities in §4 were restated to match the tighter rules. The
+earlier text is in the branch history. From the merge onwards the file is
+append-only.
 
 ## 1. The question, and why it bears on Q-B
 
@@ -217,11 +240,25 @@ and, in the contamination note of the same section:
 > P-2, P-3 and P-4 are not affected by this note. Their prior exposure is as
 > E-11 declares it.
 
+**`ledger/OPEN.md`, "Superseded 2026-11-19: the earlier 'what the programme
+should file next'", item 3.** It does not name the trial. It reads as a
+reference to it, or to it together with the two Düsseldorf trials:
+
+> **The dorsal root ganglion frequency question**, which is the only place
+> HC-3 still stands, and which now has blinded sham-controlled human support
+> for the target if not yet for the frequency.
+
 **`evidence/03-writing-the-signal.md`** does not mention the trial. Its §3
 still says "No sham arm exists for DRG stimulation anywhere", and
 `conjectures/C-001-drg-habituation-is-filter-fatigue.md` says "no
-sham-controlled DRG trial exists anywhere". Both sentences predate the trial's
-publication and are corrected by E-05.
+sham-controlled DRG trial exists anywhere". The second sentence is copied in
+the panel record of that conjecture,
+`pipeline/reviews/C-001-drg-habituation-is-filter-fatigue/20260831T234656Z/ballot.md`
+("no sham-controlled DRG trial exists anywhere"). All three were written
+before the programme knew of the trial and are corrected by E-05. A search of
+`pipeline/reviews/` and `conjectures/` for "sham" found no other statement
+about the existence of a sham-controlled trial of ganglion stimulation, and no
+mention of this trial.
 
 ### What is therefore already known
 
@@ -337,43 +374,89 @@ which pain under blinded sham returns to the pre-implant level.
 **In the Umeå trial, the participants' pain under blinded sham is at least 1.0
 point below their pain before implant, on the 11-point scale: D ≥ 1.0.**
 
-Direction: sham below pre-implant. Threshold: 1.0 point. Two reference values
-are used by the rule: 0 (no difference, the Piedade 2022 result) and 2.0 (the
-"usual 2-point MCID" on this scale, as E-03 §1 words it). The threshold sits
-midway between them.
+Direction: sham below pre-implant. Threshold: 1.0 point.
+
+**The threshold is chosen, not derived.** Nothing in the repository yields
+1.0. It was picked by the registering agent as the smallest gap it would call
+"clearly below", midway between two reference values that the rule also uses:
+
+- 0, no difference, which is the Piedade 2022 result (E-11 row B9);
+- 2.0, the figure the repository uses as the usual minimum clinically
+  important difference on this scale: "below the usual 2-point MCID"
+  (`evidence/03-writing-the-signal.md` §1, "The systematic reviews", on a
+  10-point scale) and "the usual 2-point or 30% minimum clinically important
+  difference" (same file, §5, "Botulinum toxin A").
+
+The threshold is lower than what §3 expects (D of 1.5 to 2). The claim is
+therefore easier to meet than the registering agent's own expectation, and
+that is declared. With the interval rule below and the spreads expected, the
+claim is in practice supported only from about D = 1.5 upwards.
 
 ### Verdict rule
 
 Let D be the point estimate and [L, U] its 95% interval, both obtained as set
-out under "Scoring rule".
+out under "Scoring rule". Checked in this order:
 
-- **SUPPORTED** if D ≥ 1.0 **and** L > 0.
-  The estimate meets the threshold and "no difference" is excluded.
-- **REFUTED** if D < 1.0 **and** U < 2.0.
-  The estimate is under the threshold and a two-point gap is excluded.
-- **INCONCLUSIVE** otherwise: D ≥ 1.0 with L ≤ 0, or D < 1.0 with U ≥ 2.0.
+1. **SUPPORTED** if D ≥ 1.0 **and** L > 0.
+   The estimate meets the threshold and "no difference" is excluded.
+2. **REFUTED** if U < 1.0, **or** if D ≤ 0.5 **and** U < 2.0.
+   Either the whole interval is below the threshold, or the estimate is at
+   most half a point and a two-point gap is excluded.
+3. **INCONCLUSIVE** otherwise.
+
+**The boundaries, stated plainly.**
+
+- An estimate just under the threshold and one just on it never get opposite
+  verdicts. With the same interval, D = 0.99 is INCONCLUSIVE (it is not
+  SUPPORTED, and it is REFUTED only if U < 1.0, which a D of 0.99 allows only
+  for an interval narrower than 0.01 above it) and D = 1.00 is SUPPORTED or
+  INCONCLUSIVE. Estimates above 0.5 and below 1.0 are INCONCLUSIVE unless the
+  whole interval is below 1.0.
+- REFUTED can hold with L > 0. That happens only when the whole interval lies
+  below 1.0, or nearly so (for example D = 0.4 with an interval of 0.1 to
+  0.7). Sham pain is then reliably below pre-implant pain, and by less than
+  the claimed point. That is a refutation of "at least 1.0", and `RESULT.md`
+  says so in those words.
+- The cut-offs are still sharp at D = 1.0 against INCONCLUSIVE, at D = 0.5,
+  and at the interval bounds. A sharp rule is the price of a mechanical one.
 
 If the verdict is REFUTED, `RESULT.md` also says which reading of §1 the
-numbers fit: "at about the pre-implant level" if the interval contains 0, and
-"above the pre-implant level" if U < 0.
+numbers fit: "at about the pre-implant level" if the interval contains 0,
+"below the pre-implant level, by less than a point" if L > 0, and "above the
+pre-implant level" if U < 0.
 
 ### All three verdicts are reachable
 
-Three synthetic examples. None is a guess at the paper. Each uses the sham
-value already known (median 6.0, IQR 4.0 to 7.0, n = 20) and the group-summary
-method (C) of the scoring rule. For the sham median the standard error is
-1.2533 × (3.0 / 1.35) / √20 = 0.62.
+Synthetic examples. None is a guess at the paper. Each uses the sham value
+already known (median 6.0, IQR 4.0 to 7.0, n = 20) and method (C) of the
+scoring rule, with no widening unless stated.
 
-| Synthetic pre-implant score, n = 20 | D | Standard error of D | 95% interval | Verdict |
+- Sham: SD = 3.0 / 1.35 = 2.2222; SE = 1.2533 × 2.2222 / √20 = 0.6228.
+- Pre-implant with an IQR two points wide: SD = 2.0 / 1.35 = 1.4815;
+  SE = 1.2533 × 1.4815 / √20 = 0.4152.
+- SE of D = √(0.4152² + 0.6228²) = 0.7485. Half-width = 1.96 × 0.7485 = 1.467.
+
+| Synthetic pre-implant score, n = 20 | Widening | D | 95% interval | Verdict |
 |---|---|---|---|---|
-| Median 8.0 (IQR 7.0 to 9.0) | 2.0 | √(0.42² + 0.62²) = 0.75 | 0.53 to 3.47 | **SUPPORTED** (D ≥ 1.0, L > 0) |
-| Median 6.0 (IQR 5.0 to 7.0) | 0.0 | 0.75 | −1.47 to 1.47 | **REFUTED** (D < 1.0, U < 2.0) |
-| Median 7.0 (IQR 6.0 to 8.0) | 1.0 | 0.75 | −0.47 to 2.47 | **INCONCLUSIVE** (D ≥ 1.0, L ≤ 0) |
+| Median 8.0 (IQR 7.0 to 9.0) | none | 2.0 | 0.53 to 3.47 | **SUPPORTED** (D ≥ 1.0, L > 0) |
+| Median 6.0 (IQR 5.0 to 7.0) | none | 0.0 | −1.47 to 1.47 | **REFUTED** (D ≤ 0.5, U < 2.0) |
+| Median 7.0 (IQR 6.0 to 8.0) | none | 1.0 | −0.47 to 2.47 | **INCONCLUSIVE** (D ≥ 1.0, L ≤ 0) |
+| Median 6.5 (IQR 5.5 to 7.5) | none | 0.5 | −0.97 to 1.97 | **REFUTED** (D ≤ 0.5, U < 2.0) |
+| Median 8.0 (IQR 7.0 to 9.0) | 0.5 (construct unstated) | 2.0 | 0.03 to 3.97 | **SUPPORTED** |
+| Median 7.5 (IQR 6.5 to 8.5) | 0.5 (construct unstated) | 1.5 | −0.47 to 3.47 | **INCONCLUSIVE** |
+| Median 6.0 (IQR 5.0 to 7.0) | 0.5 (construct unstated) | 0.0 | −1.97 to 1.97 | **REFUTED** |
 
-With spreads of this size the rule works out as: SUPPORTED from about D = 1.5
-upwards, REFUTED up to about D = 0.5, INCONCLUSIVE between. A paper that
-reports a paired comparison would give a narrower interval and a narrower
-inconclusive band.
+**Reachability bands with these spreads** (half-width 1.467 plus widening):
+
+| Total widening | SUPPORTED when | REFUTED when | INCONCLUSIVE between |
+|---|---|---|---|
+| none | D > 1.47 | D ≤ 0.50 | 0.50 < D ≤ 1.47 |
+| 0.5 | D > 1.97 | D < 0.03 | 0.03 ≤ D ≤ 1.97 |
+| 1.0 | D > 2.47 | D < −0.47 | −0.47 ≤ D ≤ 2.47 |
+| 1.5 | D > 2.97 | D < −0.97 | −0.97 ≤ D ≤ 2.97 |
+
+A paper that reports a paired comparison would give a narrower interval and a
+narrower inconclusive band.
 
 ### Scoring rule
 
@@ -390,37 +473,94 @@ verbatim in `RESULT.md` with its location in the paper.
   difference is recorded.
 - *Pain before implant:* a pain intensity score that the paper states was
   taken before the stimulator was implanted (before trial stimulation or
-  before the permanent implant; if both are given, the earlier). The quoted
-  wording must make this plain. A "baseline" taken at enrolment, with the
-  stimulator already in use, is **not** pre-implant pain and is not used.
+  before the permanent implant). The quoted wording must make this plain. A
+  "baseline" taken at enrolment, with the stimulator already in use, is
+  **not** pre-implant pain and is not used.
 - *Scale:* 0 to 10. A 0 to 100 mm scale is divided by 10. A percentage relief
   figure is not converted into a score.
+- *Construct.* Pre-implant pain must be the same pain construct as the sham
+  outcome: pain intensity, with the same definition (average, worst, least or
+  current pain, and the same body region if the paper distinguishes regions).
+  One rule, in three cases:
+  - the paper states the definition of both and they are the same: scored,
+    no widening;
+  - the paper states the definition of both and they differ (for example
+    average pain under sham and worst pain before implant), or the
+    pre-implant number is not a pain intensity score: UNSCORABLE (quantity
+    not reported);
+  - the definition of the pre-implant score is not stated, or that of the
+    sham outcome is not: scored, and 0.5 is added to each side of the
+    interval.
+- *If the paper gives more than one pre-implant pain score,* the reader does
+  not choose. The order is: first, the one whose stated definition matches the
+  sham outcome; among those that match, or if none states a definition, the
+  earliest in time; if that still leaves more than one, the one reported in
+  the baseline table before any reported only in text.
 - *Which statistic:* medians if the paper gives medians for both; otherwise
-  means for both; otherwise one of each (see "mixed" below).
+  means for both; otherwise one of each (see "mixed" below). If medians and
+  means are both given for both, medians.
+
+**Constants and conversions, used wherever they apply.** There is no other
+source of a standard error.
+
+- The multiplier for every 95% interval built by the reader is z = 1.96. A
+  t multiplier is never used. This is approximate for 20 people and declared.
+- Standard deviation from a median with an interquartile range:
+  SD = (Q3 − Q1) / 1.35.
+- Standard deviation from a range only: SD = (maximum − minimum) / 4.
+- Standard error of a mean: SE = SD / √n.
+- Standard error of a median: SE = 1.2533 × SD / √n.
+- Standard error from a reported standard error: used as given.
+- Standard error from a reported confidence interval for a mean, a median or
+  a difference: SE = (upper − lower) / (2 × z), with z = 1.645 for a 90%
+  interval, 1.960 for 95% and 2.576 for 99%. An interval whose level is not
+  stated is taken as 95%. An interval at any other stated level is not used,
+  and the number is treated as having no reported spread. No further factor
+  is applied to a standard error obtained this way.
+- A p-value is never converted into a standard error.
+- *Borrowed SD.* If one of the two numbers has no reported spread, it takes
+  the SD of the other (after the conversions above).
+- *Fallback SD.* If neither has, both take SD = 3.0 / 1.35 = 2.2222 (the sham
+  IQR already known).
+- With a borrowed or fallback SD, the standard-error formula is that of the
+  number receiving it: 1.2533 × SD / √n if that number is a median, SD / √n if
+  it is a mean.
+- n is the number of participants behind each number, as the paper states it.
+  If it is not stated for a number, the n of the primary analysis population
+  is used; if that is not stated, 20.
 
 **How D, L and U are obtained.** The first method that the paper allows:
 
-- **(A) The paper's own paired comparison.** If the paper reports the
-  difference between pre-implant and sham pain with a 95% confidence interval,
-  those are D, L and U, with the sign set so that D is pre-implant minus sham.
-- **(B) Per-participant values.** If the paper or its supplementary files give
-  both scores for each participant, d = pre-implant minus sham is computed per
-  participant; D is the mean of d, the standard error is SD(d) / √n, and
-  [L, U] = D ± 1.96 × SE.
+- **(A) The paper's own paired comparison.** The paper reports the difference
+  between pre-implant and sham pain in the same participants (a mean
+  difference, a median difference or a Hodges-Lehmann estimate) with a
+  confidence interval. The sign is set so that D is pre-implant minus sham.
+  With a 95% interval, or one of unstated level, those are D, L and U as
+  reported. With a 90% or 99% interval, SE is obtained by the conversion above
+  and [L, U] = D ± 1.96 × SE. With an interval at any other level, with a
+  p-value only, or with "not significant" only, method (A) is not available
+  and the reader goes to (B), then (C).
+- **(B) Per-participant values.** The paper or its supplementary files give
+  both scores for each participant. d = pre-implant minus sham is computed per
+  participant, over the participants who have both. D is the mean of d, SD(d)
+  is the sample standard deviation (n − 1 in the denominator),
+  SE = SD(d) / √n, and [L, U] = D ± 1.96 × SE.
 - **(C) Group summaries.** D = centre of pre-implant minus centre of sham.
-  Standard error of each centre: for a mean, SD / √n; for a median,
-  1.2533 × (IQR width / 1.35) / √n. If only a range (minimum to maximum) is
-  given, SD is taken as range / 4. If a standard error or a confidence
-  interval is given for a centre, it is used directly. If one number has no
-  spread, the other number's SD is used for it. If neither has, SD = 2.2 for
-  both (the sham IQR already known, divided by 1.35). The standard error of D
-  is √(SE_pre² + SE_sham²), and [L, U] = D ± 1.96 × SE. n is the number of
-  participants behind each number, as the paper states it.
+  Each centre gets a standard error by the conversions above.
+  SE of D = √(SE_pre² + SE_sham²), and [L, U] = D ± 1.96 × SE of D.
 
-  This treats the two scores as independent. They are paired, so the interval
-  is wider than a paired one would be. That is declared and accepted: it makes
-  INCONCLUSIVE more likely, not SUPPORTED. The multiplier 1.96 is used in every
-  case and is approximate for 20 people.
+  Method (C) treats the two scores as independent. They are paired, so the
+  interval is wider than a paired one would be. That is declared and
+  accepted: it makes INCONCLUSIVE more likely, not SUPPORTED.
+
+**Widenings.** Each adds 0.5 to each side of the interval, under any method.
+They **stack by addition**, each counted at most once, so the total is 0, 0.5,
+1.0 or 1.5:
+
+- construct not stated (above);
+- mixed statistics: a mean for one number and a median for the other, under
+  method (C);
+- a value read off a figure axis (below), whether one of the numbers or both.
 
 **Special cases.**
 
@@ -428,8 +568,6 @@ verbatim in `RESULT.md` with its location in the paper.
   pre-implant pain score for the trial participants, the outcome is
   UNSCORABLE (quantity not reported); see §5. The sham number cannot be
   missing, since the abstract holds it.
-- *Mixed statistics* (a mean for one, a median for the other): method (C) is
-  applied to the pair as given, and 0.5 is added to each side of the interval.
 - *Different subsets.* If the two numbers are reported for different sets of
   participants, they are used only if one set contains the other and the
   smaller holds at least 80% of the larger (16 of 20, for example). The
@@ -437,17 +575,17 @@ verbatim in `RESULT.md` with its location in the paper.
   pain is given only for a subgroup such as one diagnosis, the outcome is
   UNSCORABLE (quantity not reported).
 - *Only a figure.* If a number appears only in a figure, a value printed in
-  the figure is used as it stands. If none is printed, the reader reads the
-  centre and the spread off the axis to the nearest 0.5, says so, and adds 0.5
-  to each side of the interval. If the figure cannot be read to the nearest
-  0.5, the outcome is UNSCORABLE (quantity not reported).
+  the figure is used as it stands, with no widening. If none is printed, the
+  reader reads the centre and the spread off the axis to the nearest 0.5,
+  says so, and the figure widening applies. If the figure cannot be read to
+  the nearest 0.5, the outcome is UNSCORABLE (quantity not reported).
 - *Ambiguity.* If the rule above does not decide a case, the reader does not
   choose the reading that gives a verdict. The reader appends an amendment to
   this file that states the ambiguity, scores the case under each reading, and
   reports INCONCLUSIVE if the readings disagree.
 
 Comparisons use unrounded values. `RESULT.md` prints D, L and U to two
-decimals.
+decimals, and each intermediate standard error to four.
 
 ### Secondary quantities (not part of the verdict)
 
@@ -463,38 +601,89 @@ primary verdict. Neither can change it.
 - **S2, whether pre-implant pain is reported for the same individuals.**
   Prediction: it is **not** reported in a form the scoring rule can use. My
   probability that it is reported in a usable form, given the full text is
-  obtained: 0.40.
+  obtained: 0.35.
 
 ### Probabilities, stated before the source is read
 
 Two steps come before any verdict.
 
-- The full text is obtained by the declared routes: **0.60**.
-- Given that, pre-implant pain is reported in a usable form: **0.40**.
+- The full text is obtained by the declared routes, as §5 defines "obtained":
+  **0.45**.
+- Given that, pre-implant pain is reported in a usable form: **0.35**.
 
-So the registration is scored with probability 0.24.
+So the registration is scored with probability 0.16.
 
 | Outcome | Given that it is scored | Overall |
 |---|---|---|
-| SUPPORTED | 0.50 | **0.12** |
-| REFUTED | 0.15 | **0.04** |
-| INCONCLUSIVE | 0.35 | **0.08** |
-| UNSCORABLE (source not obtained) | n/a | **0.40** |
-| UNSCORABLE (quantity not reported) | n/a | **0.36** |
+| SUPPORTED | 0.40 | **0.06** |
+| REFUTED | 0.10 | **0.02** |
+| INCONCLUSIVE | 0.50 | **0.08** |
+| UNSCORABLE (source not obtained) | n/a | **0.55** |
+| UNSCORABLE (quantity not reported) | n/a | **0.29** |
 
 The single likeliest outcome is UNSCORABLE (source not obtained).
+
+These replace the figures in the first committed version of this file (0.60
+and 0.40 for the two steps; 0.12, 0.04, 0.08, 0.40 and 0.36 overall). The
+change follows the rules, not any new information about the paper: the routes
+are now capped at one scripted request each, "obtained" now needs the methods
+and results as text, a differing construct is now unscorable, and an unstated
+construct now widens the interval, which moves likely outcomes from SUPPORTED
+to INCONCLUSIVE.
 
 ## 5. Unscorable conditions and the stop rule, written now
 
 PROGRAMME.md requires any stop rule or threshold to be in a repository file
 before the work starts. These are the rules for this registration.
 
-- **UNSCORABLE (source not obtained).** The declared routes are: PubMed Central
-  through NCBI E-utilities; Europe PMC full text; the publisher's open-access
-  page; and one lookup of an open-access location service of the Unpaywall
-  kind, following the location it returns. Supplementary files reached by the
-  same routes count. If the reader cannot obtain the full text by these
-  routes, the registration is closed as UNSCORABLE (source not obtained). It
+### The declared routes
+
+Four routes, tried in this order. The list is closed: no other route, service,
+mirror, repository search, web search, browser session, login, library proxy or
+request to an author is used. The reader stops at the first route that returns
+the full text as defined below.
+
+Every request is scripted, sends the user-agent string
+`research-reader/1.0 (scripted; one request per step)` and carries no cookies
+and no contact details of the owner. Each step below is **one request**.
+Redirects followed automatically within a request are not counted. There are
+no retries with altered headers, a different user-agent, a different client or
+a different address. If a request gets no HTTP response at all (a timeout or a
+dropped connection), the identical request may be sent once more, after at
+least 60 seconds. Any HTTP response, including a refusal, ends that step.
+
+1. **PubMed Central through NCBI E-utilities.** One `elink` request from the
+   PubMed record to `db=pmc`. If it returns a PMC identifier, one `efetch`
+   request with `db=pmc` and `retmode=xml`.
+2. **Europe PMC full text.** One request to the Europe PMC REST `search`
+   endpoint for the PubMed number. If the record is flagged as having full
+   text, one request to its `fullTextXML` endpoint.
+3. **The publisher's open-access page.** One request to `https://doi.org/`
+   followed by the DOI.
+4. **Unpaywall.** One request to `https://api.unpaywall.org/v2/` followed by
+   the DOI, with a generic, non-personal contact address in the `email`
+   parameter. If the response has a `best_oa_location`, one request to its
+   `url_for_pdf`, or to its `url` if there is no PDF address. No other
+   location in the response is tried.
+
+Supplementary files count if the obtained full text links to them, with one
+request per file under the same conditions.
+
+### What "full text obtained" means
+
+The methods and the results sections are readable as text (XML, HTML, or text
+extracted locally from a PDF), including whichever table or passage reports
+the participants' baseline characteristics and pain scores. A page that shows
+only the abstract does not count. Neither does a page that shows the abstract
+with a preview, a first page, or tables that are images with no text. If the
+results are readable and a needed table is an image only, the full text is
+obtained and the missing table is handled by the scoring rule (it may lead to
+UNSCORABLE (quantity not reported)).
+
+### The outcomes
+
+- **UNSCORABLE (source not obtained).** If no route returns the full text as
+  defined, the registration is closed as UNSCORABLE (source not obtained). It
   is **not** rescued from the abstract, from a secondary source, or from any
   other route.
 - **UNSCORABLE (quantity not reported).** If the full text is obtained and
@@ -502,13 +691,21 @@ before the work starts. These are the rules for this registration.
   scoring rule can use, the registration is closed as UNSCORABLE (quantity not
   reported). E-11 notes that this "would itself be worth recording"; it is
   recorded, and it is not a verdict on the claim.
-- **The stop rule.** Per the programme review of 2026-11-19, as given with the
-  brief for this registration: **two registrations that end unscorable for
-  lack of a source mean the programme cannot generate testable predictions
-  with existing methods, and the question of closing goes to the owner.** A
-  search of this repository on 2026-11-19 for "unscorable" and "two
-  registrations" found the rule in no file, so it is quoted as given and this
-  file is where it is first written down, before the read.
+
+### The stop rule
+
+**Two registrations that end unscorable for lack of a source mean the
+programme cannot generate testable predictions with existing methods, and the
+question of closing goes to the owner.**
+
+- **Where it comes from.** The independent programme review of 2026-11-19, as
+  relayed to the registering agent by the coordinating session in the brief
+  for this registration. The registering agent has not seen the review's own
+  wording of it.
+- **Where it is written.** This file is the first place the rule is written
+  in this repository. A search on 2026-11-19 at commit `dfd9804` for
+  "unscorable" and "two registrations" found it in no file. It is written
+  here before the read, as PROGRAMME.md requires.
 - **This registration is attempt 1.**
 - UNSCORABLE (quantity not reported) is not "for lack of a source" and does
   not count towards the two. It is still not progress by the test in
@@ -542,23 +739,31 @@ before the work starts. These are the rules for this registration.
 
 Do these in order. Do not skip a step, and do not change the order.
 
-1. **Confirm the registration predates the read.** Check that this file is on
-   `main`. Record the merge commit's hash and its commit time from
-   `git log --format='%H %cI' -1 origin/main -- predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`.
-   Record the time at which you start step 2. If the file is not on `main`,
-   stop.
+1. **Confirm the registration predates the read.** Run `git fetch origin`
+   first. Then run
+   `git log --format='%H %cI' -1 origin/main -- predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`
+   and record the hash and the timestamp of that commit: it is the last commit
+   on `origin/main` that touches this file. If the command prints nothing,
+   the file is not on `main`: stop. Record the time at which you start step
+   2. **If any read of the source began before that commit's timestamp, by
+   you or by any session whose output you have seen, the result is void:**
+   write that in `RESULT.md` and stop.
 2. **Obtain the full text by the declared routes only** (§5), in the order
-   listed there. Take the identifier from `evidence/05-crps.md` §6b. Log each
-   attempt: the route, the request, the time, and what came back (status and
-   size, not content). Stop at the first route that returns the full text. If
-   none does, write `RESULT.md` with the verdict UNSCORABLE (source not
-   obtained) and the log, and stop. Do not read the abstract in place of the
-   full text, and do not try any other route.
+   listed there, one request per step, with the user-agent stated there. Take
+   the identifiers from `evidence/05-crps.md` §6b. Log each request: the
+   route, the address, the time, and what came back (HTTP status and size,
+   not content). Stop at the first route that returns the full text as §5
+   defines it. If none does, write `RESULT.md` with the verdict UNSCORABLE
+   (source not obtained) and the log, and stop. Do not read the abstract in
+   place of the full text, do not retry with altered headers, and do not try
+   any other route.
 3. **Extract the numbers.** Quote verbatim, with the location (section, table
-   or figure, and the row or sentence): pain under sham; pain before implant,
-   with the words that show it was taken before implant; the number of
-   participants behind each; the spread of each; any paired comparison of the
-   two; time since implant (S1). Say which analysis population each belongs
+   or figure, and the row or sentence): pain under sham, with the paper's
+   definition of that outcome; pain before implant, with the words that show
+   it was taken before implant and the words that define it, or a statement
+   that no definition is given; the number of participants behind each; the
+   spread of each; any paired comparison of the two; time since implant (S1).
+   Say which analysis population each belongs
    to. If pre-implant pain is absent, quote what the baseline table does
    report, and say which sections you searched and for which terms.
 4. **Apply the rule in §4 mechanically.** State which method (A, B or C) and

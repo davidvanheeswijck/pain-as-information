@@ -59,4 +59,4 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 - #21 (D-003: close the original hard core; restate the programme as evidence appraisal; the closure record): PROGRAMME.md, README.md, ledger/DECISIONS.md, ledger/OPEN.md
 - #22 (E-11: evidence map for the three questions, from full texts; step 1 of the next steps): evidence/11-evidence-map.md
 - #23 (record E-11 and its stop-rule outcome; correct E-05 from full texts): ledger/OPEN.md, evidence/05-crps.md, PROGRAMME.md
-- P-003 registration (step 2, the registration only, merged before the source is read): predictions/README.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md
+- #24 (P-003 registration; step 2, the registration only, merged before the source is read): predictions/README.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md
