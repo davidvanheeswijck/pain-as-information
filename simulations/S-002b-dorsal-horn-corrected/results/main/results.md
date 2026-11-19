@@ -153,7 +153,7 @@ The one unmodified-model response curve allowed before the pre-registration (can
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | WDR rate | 0.1 | 0.4 | 0.8 | 0.9 | 2.1 | 3.5 | 7.5 | 13.5 | 22.9 | 30.8 | 38.5 | 42.4 | 50.5 | 56.8 | 64.4 | 66.6 | 73.0 |
 
-A pipeline pilot with a smaller protocol ran under the gitignored `results/pilot/` after the code was committed; nothing from it is a result, and `PREDICTION.md` Amendment 1 records what was seen. The oracle (`results/oracle/original-hoc-crosscheck.json`) and the tests ran before the main run and are logged in `run.log`.
+A pipeline pilot with a smaller protocol ran under the gitignored `results/pilot/` after the code was committed; nothing from it is a result, and `PREDICTION.md` Amendments 1 and 3 record what was seen (Amendment 3 adds the P0 and P2 readings). The oracle (`results/oracle/original-hoc-crosscheck.json`) and the tests ran before the main run and are logged in `run.log`.
 
 ## Declared limits
 

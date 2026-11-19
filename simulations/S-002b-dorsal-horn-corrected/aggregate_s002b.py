@@ -701,7 +701,7 @@ def write_report(out, res):
         A("| WDR rate | " + " | ".join(fmt(c["wdr_rate_hz_mean"], 1) for c in cv_["curve"]) + " |")
         A("")
     A("A pipeline pilot with a smaller protocol ran under the gitignored `results/pilot/` after the code was committed; "
-      "nothing from it is a result, and `PREDICTION.md` Amendment 1 records what was seen. The oracle "
+      "nothing from it is a result, and `PREDICTION.md` Amendments 1 and 3 record what was seen (Amendment 3 adds the P0 and P2 readings). The oracle "
       "(`results/oracle/original-hoc-crosscheck.json`) and the tests ran before the main run and are logged in `run.log`.")
     A("")
     A("## Declared limits")
