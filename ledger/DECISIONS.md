@@ -89,6 +89,13 @@ should go: **optically pumped magnetometry** of nerve traffic. That is quantum
 technology, it works today, and the benefit is geometric rather than
 computational.
 
+> **Status, 2026-11-19 (D-003).** The list below was written for the original hard
+> core. D-003 overrides it in part: T-junction modelling is no longer "the highest
+> value compute in the programme", and item 3 (forward magnetic modelling for
+> Branch B, "it should be done first") is no longer planned, because Branch B
+> sensor work is on D-003's not-to-do list. What still stands: do not buy quantum
+> computing capacity, and the sensor and resource-estimate facts above.
+
 **Where simulation compute would actually help, since the question was asked in
 the form of an offer.** The programme does have real compute needs. They are
 all classical, and all of them are cheap by comparison:
@@ -166,6 +173,12 @@ sensitivity, because they are the only class whose bandwidth (DC to 2 kHz)
 clears the roughly 1 ms width of a compound action potential. Alkali OPMs run
 150 to 350 Hz and hit exactly that wall.
 
+> **Status, 2026-11-19 (D-003).** The decision to spend Branch B effort on
+> superficial-nerve helium-4 OPMs is overridden in part: D-003 puts the Branch B
+> trade-off surface and any sensor work on the not-to-do list, so no spending is
+> planned there. The sensor facts above (NV against OPM sensitivity, the bimodal
+> signal, the 1 ms bandwidth argument) still stand as the record.
+
 **What would reverse it.** An NV sensitivity below about 100 fT/√Hz sustained
 near DC, or an alkali OPM with usable gain above 1 kHz.
 
@@ -175,3 +188,114 @@ Magnetospinography has never detected even Aδ fibres, because conduction
 velocity dispersion phase-cancels the compound volley, and C-fibres are ten
 times slower again. That is the conjecture this branch turns on and it has not
 yet been written.
+
+---
+
+## D-003. Close the original hard core; continue as evidence appraisal. 2026-11-19
+
+**Decision.** The original hard core (HC-1 to HC-4 in `PROGRAMME.md`) is closed
+as the programme's purpose. "Read the pain signal and rewrite it" is no longer
+what this repository is trying to do. It continues as evidence appraisal for
+three questions a treating team faces (below). The owner accepted this on
+2026-11-19, in reply to four options after the programme review of that day
+(`intent/programme/2026-11-19-pivot-to-evidence-appraisal.md`).
+
+**Why.** Every reason below is in this repository's own files.
+
+- *HC-2's killer is met for touch-evoked pain.* PROGRAMME.md states the killer
+  as a demonstration that "the pain-relevant discrimination is *created*
+  centrally from peripherally indistinguishable traffic". `ledger/OPEN.md`
+  records that "allodynia is a clean counterexample in principle: the traffic
+  that hurts arrives on Aβ fibres and is indistinguishable from normal touch,
+  because the pathology is in the dorsal horn", and that "the discrimination
+  between pain and touch is made centrally" (E-01 §5 and §6). The ledger said
+  this after the first evidence pass and narrowed the programme in its "reframing" section
+  instead of recording a hard-core change. The independent review of
+  2026-11-16 flagged the bookkeeping, and nothing was decided until now. HC-2
+  stands only for what is peripherally readable: fibre class, intensity and a
+  group-level ongoing-activity signature that separates painful from painless
+  neuropathy (E-01 §6).
+- *The counter-material in E-01 §5, and why "fallen" still holds.* E-01 §5
+  records a coincidence account, in which tactile allodynia "arises from
+  **coincidence** of normal touch input with touch-independent ongoing
+  nociceptor firing" (Ghitani et al., PMID 40269164), and a human block result,
+  in which "primary afferent input is critical for maintaining neuropathic pain"
+  (Haroutounian et al., PMID 24704366). E-01 says of the second that it "does
+  not contradict the mechanism described there": "Allodynia's discrimination
+  really is made centrally, and the Aβ traffic that hurts really is
+  indistinguishable from touch", and "Central sensitisation behaved as a gain
+  applied to an input, not as a generator". HC-2's killer is worded for the Aβ
+  touch route, and on that route it is met. The counter-material bears on a
+  different matter, which is the third question below: whether touch-evoked
+  allodynia and background pain are separable, and which generator maintains
+  them. It is carried forward there, not discarded.
+- *HC-3's foothold is argued from one side.* E-03 §3 says "HC-3's foothold at
+  the ganglion should be read as argued from one side". The positive evidence is
+  rat work and a supporting model from one lineage. Two models from an
+  independent group do not find the T-junction mechanism at clinical amplitude
+  (E-03 §3): one reports direct Aβ activation and no direct C-fibre activation
+  and does not model T-junction silencing, and the other finds the route only
+  above clinical amplitudes, in one population of model neurons.
+  Frequency specificity at the spinal cord is probably dose (E-03 §1, PROCO).
+- *The review verdict of 2026-11-19.* The independent reviewer applied the test
+  in PROGRAMME.md and found the programme degenerating at its first review: no
+  prediction since 2026-09-01 was novel, testable and then confirmed by evidence
+  not used to construct it. Four of the five November simulations ended without
+  an informative verdict. What the programme learned about the world in that
+  period is E-10, and it is negative. Recorded in `ledger/OPEN.md`, "Programme
+  review, 2026-11-19".
+- *PROGRAMME.md's own rule.* It says that if a core commitment falls, "the
+  programme is abandoned, not amended". Keeping the programme running
+  under the same name with the core quietly narrowed is the move it was
+  written to prevent. This decision closes the core in writing instead.
+
+**Earlier decisions it overrides in part.** D-001's list of where simulation
+compute would help (T-junction modelling as the highest-value compute; Branch B
+forward modelling "should be done first") and D-002's Branch B spending. D-001's
+rule not to buy quantum computing capacity, and the sensor facts in both,
+stand. Each now carries a dated status line.
+
+**What this decision does not say.** It does not say the evidence briefs, the
+refutation ledger or the harness are wrong or abandoned. They are kept, and
+they are the tools the new purpose uses. The original hard core stays readable
+in `PROGRAMME.md`, with a closure note, so the change is not hidden.
+
+**The new purpose.** Evidence appraisal, at population level, for three
+questions framed as ones a treating team faces:
+
+1. Which generator maintains long-standing regional neuropathic pain: a
+   peripheral lesion, the ganglion, or central amplification?
+2. Why does the benefit of ganglion stimulation fade?
+3. Are touch-evoked allodynia and background pain separable mechanisms?
+
+Nothing in this programme is advice about any person's care (ETHICS.md §1, §3).
+The next two steps, in order, are an evidence map for the three questions built
+from full texts, then one prediction registered against data not yet read.
+
+**The simulation rule.** Simulation happens only on a published model that
+first reproduces its own results in this repository, and only with a verdict
+rule whose every outcome is reachable. This follows from the November record:
+the instrument was qualified and the question asked in one registration, on
+models known from abstracts, and in S-2b a rule that could not have returned
+REFUTED was scored SUPPORTED.
+
+**What would reverse it.** Any one of:
+
+- A demonstration that a peripheral measurement separates painful from
+  non-painful touch-evoked traffic, which would undo the HC-2 killer for
+  allodynia. The bar: a measurement made on a peripheral nerve or ganglion (not
+  cortex, cord or the percept itself), scored blind to the painful or
+  non-painful label, and replicated independently.
+- A replicated, blinded human result showing a pattern-specific effect beyond
+  dose at the ganglion, which would revive HC-3. The bar: a sham-controlled
+  design in which charge and electrode position are matched across patterns,
+  blinded participants and assessors, and independent replication (the PROCO
+  result in E-03 §1 shows what an unmatched comparison is worth).
+
+Reversal needs an observation about the world. Inconclusive simulations do not
+count: S-1 to S-2b returned no informative verdict on the core, and S-3 says only that the available
+observations do not localise the generator within its modelled ranges.
+
+**Not to do.** A longer S-1b search. The ion-gradient model. An S-2c. The
+Branch B trade-off surface, or any sensor work. A tenth conjecture filed only
+to trigger a review.

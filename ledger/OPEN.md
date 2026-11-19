@@ -1,12 +1,12 @@
 # Open state
 
 The honest current position of the programme. Updated after every panel run and
-at every tenth conjecture for the progressive-or-degenerating review defined in
-PROGRAMME.md.
+at every ten pieces of work (conjectures, simulations or briefs) for the
+progressive-or-degenerating review defined in PROGRAMME.md.
 
 **Last updated:** 2026-11-19 (programme review recorded)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
-**Programme status:** degenerating (first review, 2026-11-19); the hard-core decision on HC-2 is open with the owner
+**Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; continuing as evidence appraisal
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
 > is the design working: nine filed, nine closed, each with a recorded reason
@@ -14,7 +14,11 @@ PROGRAMME.md.
 > things that are *not* true plus one costed engineering specification, which
 > is more than it started with.
 
-## Where the hard core stands
+## Where the hard core stood (closed 2026-11-19, D-003)
+
+> **Closed 2026-11-19.** The original hard core was closed by
+> [D-003](DECISIONS.md). The table is kept as the record of where each
+> commitment stood, with the closing standing marked in each row.
 
 Read from the evidence base and from the one panel run so far. Recorded so it
 can be checked later against what the programme actually finds, which is the
@@ -22,12 +26,14 @@ only way to tell whether the panel is doing work or ratifying priors.
 
 | | Commitment | Standing after the first evidence pass |
 |---|---|---|
-| HC-1 | Structure beyond mean rate | **Weakly supported.** One ex vivo study classifies three chemical stimuli at 79.7% from three-spike interval structure where rate fails (E-01 §2). Unreplicated, not in vivo, not human. The consensus direction is combinatorial population coding, in which the informative structure is *across* fibres rather than *within* one. |
-| HC-2 | Readable outside the CNS | **Pressed hard, and it may not survive.** What is peripherally readable is fibre class, intensity, and a pathological ongoing-activity signature that separates painful from painless neuropathy at group level. What is not readable is pain *quality*, and allodynia is a clean counterexample in principle: the traffic that hurts arrives on Aβ fibres and is indistinguishable from normal touch, because the pathology is in the dorsal horn (E-01 §5, §6). |
-| HC-3 | Structure-targeted beats channel destruction | **Alive, but not where the programme started looking.** Frequency specificity at the spinal cord is probably dose: PROCO found 1, 4, 7 and 10 kHz equivalent once position and charge were controlled, and the same waveform is null blinded and large open-label in the same patients (E-03). It survives one level out, at the dorsal root ganglion, where 20 Hz field stimulation abates C-fibre trains while Aβ passes unattenuated. Note the constraint that kills the naive version: for kilohertz block, threshold varies **inversely** with axon diameter, so large fibres block first. |
-| HC-4 | A realisable transducer exists | **Partly, and not the one expected.** Quantum *information manipulation* of pain signalling is below 0.1% with no literature at all (E-04). What survives is quantum *instrumentation*: a superficial nerve gives about 1 pT at 6.5 mm and has been read in humans. The open question is whether unmyelinated traffic is reachable at all, since dispersion has so far prevented even Aδ detection. That is now C-004. |
+| HC-1 | Structure beyond mean rate | **Weakly supported, not falsified; no informative test here (S-1 gave no verdict).** One ex vivo study classifies three chemical stimuli at 79.7% from three-spike interval structure where rate fails (E-01 §2). Unreplicated, not in vivo, not human. The consensus direction is combinatorial population coding, in which the informative structure is *across* fibres rather than *within* one. |
+| HC-2 | Readable outside the CNS | **Fallen for touch-evoked pain; stands only for what is peripherally readable: fibre class, intensity and a group-level ongoing-activity signature (D-003, 2026-11-19).** Originally recorded as "pressed hard, and it may not survive". What is peripherally readable is fibre class, intensity, and a pathological ongoing-activity signature that separates painful from painless neuropathy at group level. What is not readable is pain *quality*, and allodynia is a clean counterexample in principle: the traffic that hurts arrives on Aβ fibres and is indistinguishable from normal touch, because the pathology is in the dorsal horn (E-01 §5, §6). |
+| HC-3 | Structure-targeted beats channel destruction | **Not shown; the foothold at the ganglion is argued from one side (E-03 §3): one independent model reports direct Aβ activation and does not model T-junction silencing, and the other finds the route only above clinical amplitudes in one population of model neurons.** The original wording of this row read "alive", and the review of 2026-11-16 found it unrevised. Frequency specificity at the spinal cord is probably dose: PROCO found 1, 4, 7 and 10 kHz equivalent once position and charge were controlled, and the same waveform is null blinded and large open-label in the same patients (E-03). It survives one level out, at the dorsal root ganglion, where 20 Hz field stimulation abates C-fibre trains while Aβ passes unattenuated in the rat work of one lineage; two models from an independent group do not find that mechanism at clinical amplitude (E-03 §3). Note the constraint that kills the naive version: for kilohertz block, threshold varies **inversely** with axon diameter, so large fibres block first. |
+| HC-4 | A realisable transducer exists | **Partly, and not the one expected; not pursued further (D-003).** Quantum *information manipulation* of pain signalling is below 0.1% with no literature at all (E-04). What survives is quantum *instrumentation*: a superficial nerve gives about 1 pT at 6.5 mm and has been read in humans. The open question is whether unmyelinated traffic is reachable at all, since dispersion has so far prevented even Aδ detection. That is now C-004. |
 
 ## The reframing this already forces
+
+*Annotation, 2026-11-19: this narrowing is now recorded as a hard-core decision, D-003. The reframing below is the earlier bookkeeping, kept as written.*
 
 The evidence base does not support "read the pain signal and rewrite it" as
 stated. It supports something narrower and still worth having: **detect the
@@ -129,7 +135,25 @@ be checked against that column before it is filed**, not after.
 - **Candidate conjecture, not filed.** "Baseline descending modulation predicts durability of ganglion-stimulation benefit" fails the specificity column as worded. E-10 §8.3 states a narrower within-person question.
 - **Bearing on the simulations.** The S-2 and S-2b circuit has no descending input. A successor pre-registration should carry that as a declared limit.
 
-## What the programme should file next
+## What the programme does next
+
+From D-003 (2026-11-19), in order:
+
+1. **An evidence map for the three questions, built from full texts.** The
+   three questions: which generator maintains long-standing regional
+   neuropathic pain (peripheral lesion, ganglion, central); why the benefit of
+   ganglion stimulation fades; whether touch-evoked allodynia and background
+   pain are separable mechanisms.
+2. **Then one prediction registered against data not yet read,** and scored.
+
+**Not to do.** A longer S-1b search. The ion-gradient model. An S-2c. The
+Branch B trade-off surface, or any sensor work. A tenth conjecture filed only
+to trigger a review.
+
+### Superseded 2026-11-19: the earlier "what the programme should file next"
+
+Kept visible so the change is not hidden. It was written for the original hard
+core, which D-003 closed. Item 2 is on the Not-to-do list above.
 
 The evidence base now points at three things that are open rather than merely
 unexamined:
@@ -294,9 +318,11 @@ the owner's decision, not the tenth conjecture; nine conjectures are filed.
   reframing, three conjecture successions, S-1b, S-2b) followed an observed
   failure. Live conjecture killers went from nine at peak to none.
 - **Hard core.** HC-2's killer is stated in this ledger's own words for
-  touch-evoked pain and is not recorded as a decision. PROGRAMME.md says a
+  touch-evoked pain and was not recorded as a decision. PROGRAMME.md says a
   fallen commitment means the programme is abandoned, not amended. README.md's
-  wording of HC-2 differs from PROGRAMME.md's. The HC-3 row is unrevised.
+  wording of HC-2 differed from PROGRAMME.md's. The HC-3 row was unrevised.
+  **The HC-2 decision is taken: D-003, 2026-11-19.** The README wording and the
+  HC-3 row were brought into line in the same change.
 - **November simulations.** Four of five ended without an informative verdict.
   Causes: model class (S-1, S-1b), control design (S-2), the measure (S-2b P0
   and P2), a model that does not reproduce its published result (S-2b P1 and
@@ -308,7 +334,8 @@ the owner's decision, not the tenth conjecture; nine conjectures are filed.
 - **Recommendation, for the owner.** Close the original hard core with a
   written record (D-003) and continue as evidence appraisal for the three
   clinical questions. Simulate only on a published model that first reproduces
-  its own results here.
+  its own results here. **Taken by the owner on 2026-11-19 and recorded as
+  D-003.**
 - **Not to do.** A longer S-1b search, the ion-gradient model, an S-2c, the
   Branch B trade-off surface, a tenth conjecture filed to trigger a review.
 - **Rule.** A second consecutive degenerating review closes the programme.
@@ -328,14 +355,15 @@ housekeeping named below, and none is a decision.
   clinically. A rat study from the original lineage finds the T-junction filter
   already weakened after injury. Added to `evidence/03-writing-the-signal.md`
   §3 ("Two Michigan models disagree with the lineage above").
-  The HC-3 row above still reads as "alive" and has not been revised.
+  The HC-3 row above has since been revised (2026-11-19).
 - **(b) HC-2's killer is arguably met for allodynia, and the programme was
   narrowed rather than the hard core changed.** E-01 §6 says no peripheral
   decoder can succeed in principle for allodynia, because the traffic that hurts
   is indistinguishable from normal touch. The "reframing" section above narrows
   the programme instead of recording a hard-core change. **Whether that is the
   right bookkeeping is a decision for the owner. It is flagged here, not
-  taken.**
+  taken.** **Taken 2026-11-19: D-003 closes the original hard core and records
+  HC-2 as fallen for touch-evoked pain.**
 - **(c) The work has gone to Branch B, which bears on none of the motivating
   phenotype's questions.** Those are: which generator (neuroma, ganglion or
   central) drives the pain; why the benefit of ganglion stimulation fades in

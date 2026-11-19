@@ -470,6 +470,7 @@ def get_git_info(root: Path) -> dict:
 # --------------------------------------------------------------------------
 
 HC_HEADING_RE = re.compile(r"^###\s+(HC-\d+)\.\s+(.+?)\s*$", re.MULTILINE)
+STANDING_RE = re.compile(r"^\*(Standing,.+?)\*\s*$", re.MULTILINE | re.DOTALL)
 PB_ITEM_RE = re.compile(
     r"^-\s+(PB-\d+)\.\s*(.*?)(?=\n-\s+PB-\d+\.|\Z)", re.MULTILINE | re.DOTALL,
 )
@@ -488,10 +489,18 @@ def parse_programme(root: Path) -> tuple[list[dict], list[dict]]:
         start = m.end()
         end = matches[i + 1].start() if i + 1 < len(matches) else len(hc_section)
         body = hc_section[start:end]
+        # A standing line (`*Standing, ...*`) records where the commitment
+        # stands. Show it next to the commitment's first sentence, in full.
+        standing_m = STANDING_RE.search(body)
+        standing = ""
+        if standing_m:
+            standing = " ".join(standing_m.group(1).split())
+            body = body[:standing_m.start()] + body[standing_m.end():]
         hard_core.append({
             "id": m.group(1),
             "title": m.group(2).strip(),
             "summary": first_sentence(body),
+            "standing": standing,
         })
 
     protective_belt = []
@@ -824,7 +833,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
     header = f"""
 <header class="page-header">
   <h1>Pain as Information — programme dashboard</h1>
-  <p class="thesis">Chronic neuropathic pain as a signalling problem, tested by trying to kill the idea, not to confirm it.</p>
+  <p class="thesis">Chronic neuropathic pain as a signalling problem, tested by trying to kill the idea, not to confirm it. The original hard core was closed on 2026-11-19 (D-003); the programme now appraises evidence on three clinical questions.</p>
   <p class="meta">
     Generated <span id="generated-ts">{ts_str}</span> from repository state
     at commit <code id="git-sha">{esc(sha)}</code>
@@ -894,7 +903,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
 """
 
     # ---- E. hard core board ---------------------------------------------
-    def board_item(item_id: str, title: str, summary: str) -> str:
+    def board_item(item_id: str, title: str, summary: str, standing: str = "") -> str:
         bearers = conjectures_bearing_on(conjectures, item_id)
         if bearers:
             links = ", ".join(
@@ -906,14 +915,19 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
                 '<p class="bears-on empty-inline">No conjecture attached yet.</p>'
             )
         title_html = f"<strong>{esc(item_id)}.</strong> {esc(title)}" if title else esc(item_id)
+        standing_html = (
+            f'<p class="board-summary"><strong>{esc(standing)}</strong></p>'
+            if standing else ""
+        )
         return f"""
     <li class="board-item">
       <p class="board-title">{title_html}</p>
       <p class="board-summary">{esc(summary)}</p>
+      {standing_html}
       {bears_html}
     </li>"""
 
-    hc_html = "".join(board_item(h["id"], h["title"], h["summary"]) for h in hard_core)
+    hc_html = "".join(board_item(h["id"], h["title"], h["summary"], h["standing"]) for h in hard_core)
     pb_html = "".join(board_item(p["id"], "", p["summary"]) for p in protective_belt)
     if not hard_core and not protective_belt:
         board_body = '<p class="empty-state">PROGRAMME.md defines no hard core or protective belt yet.</p>'
@@ -921,7 +935,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
         board_body = f"""
   <div class="board-columns">
     <div>
-      <h3>Hard core</h3>
+      <h3>Original hard core (closed)</h3>
       <ul class="board-list">{hc_html or '<li class="empty-state">none found</li>'}</ul>
     </div>
     <div>
@@ -931,7 +945,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
   </div>"""
     hardcore_section = f"""
 <section id="hardcore" aria-labelledby="hardcore-h">
-  <h2 id="hardcore-h">Hard core and protective belt</h2>
+  <h2 id="hardcore-h">Original hard core (closed 2026-11-19, D-003) and protective belt</h2>
   {board_body}
 </section>
 """
