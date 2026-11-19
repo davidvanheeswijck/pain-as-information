@@ -14,7 +14,11 @@ progressive-or-degenerating review defined in PROGRAMME.md.
 > things that are *not* true plus one costed engineering specification, which
 > is more than it started with.
 
-## Where the hard core stands
+## Where the hard core stood (closed 2026-11-19, D-003)
+
+> **Closed 2026-11-19.** The original hard core was closed by
+> [D-003](DECISIONS.md). The table is kept as the record of where each
+> commitment stood, with the closing standing marked in each row.
 
 Read from the evidence base and from the one panel run so far. Recorded so it
 can be checked later against what the programme actually finds, which is the
@@ -22,12 +26,14 @@ only way to tell whether the panel is doing work or ratifying priors.
 
 | | Commitment | Standing after the first evidence pass |
 |---|---|---|
-| HC-1 | Structure beyond mean rate | **Weakly supported, not falsified.** One ex vivo study classifies three chemical stimuli at 79.7% from three-spike interval structure where rate fails (E-01 §2). Unreplicated, not in vivo, not human. The consensus direction is combinatorial population coding, in which the informative structure is *across* fibres rather than *within* one. |
-| HC-2 | Readable outside the CNS | **Fallen for touch-evoked pain; stands only for ongoing-activity detection (D-003, 2026-11-19).** Originally recorded as "pressed hard, and it may not survive". What is peripherally readable is fibre class, intensity, and a pathological ongoing-activity signature that separates painful from painless neuropathy at group level. What is not readable is pain *quality*, and allodynia is a clean counterexample in principle: the traffic that hurts arrives on Aβ fibres and is indistinguishable from normal touch, because the pathology is in the dorsal horn (E-01 §5, §6). |
-| HC-3 | Structure-targeted beats channel destruction | **Not shown; the foothold at the ganglion is argued from one side (E-03 §3).** The original wording of this row read "alive", and the review of 2026-11-16 found it unrevised. Frequency specificity at the spinal cord is probably dose: PROCO found 1, 4, 7 and 10 kHz equivalent once position and charge were controlled, and the same waveform is null blinded and large open-label in the same patients (E-03). It survives one level out, at the dorsal root ganglion, where 20 Hz field stimulation abates C-fibre trains while Aβ passes unattenuated in the rat work of one lineage; two models from an independent group do not find that mechanism at clinical amplitude (E-03 §3). Note the constraint that kills the naive version: for kilohertz block, threshold varies **inversely** with axon diameter, so large fibres block first. |
+| HC-1 | Structure beyond mean rate | **Weakly supported, not falsified; no informative test here (S-1 gave no verdict).** One ex vivo study classifies three chemical stimuli at 79.7% from three-spike interval structure where rate fails (E-01 §2). Unreplicated, not in vivo, not human. The consensus direction is combinatorial population coding, in which the informative structure is *across* fibres rather than *within* one. |
+| HC-2 | Readable outside the CNS | **Fallen for touch-evoked pain; stands only for what is peripherally readable: fibre class, intensity and a group-level ongoing-activity signature (D-003, 2026-11-19).** Originally recorded as "pressed hard, and it may not survive". What is peripherally readable is fibre class, intensity, and a pathological ongoing-activity signature that separates painful from painless neuropathy at group level. What is not readable is pain *quality*, and allodynia is a clean counterexample in principle: the traffic that hurts arrives on Aβ fibres and is indistinguishable from normal touch, because the pathology is in the dorsal horn (E-01 §5, §6). |
+| HC-3 | Structure-targeted beats channel destruction | **Not shown; the foothold at the ganglion is argued from one side (E-03 §3): one independent model reports direct Aβ activation and does not model T-junction silencing, and the other finds the route only above clinical amplitudes in one population of model neurons.** The original wording of this row read "alive", and the review of 2026-11-16 found it unrevised. Frequency specificity at the spinal cord is probably dose: PROCO found 1, 4, 7 and 10 kHz equivalent once position and charge were controlled, and the same waveform is null blinded and large open-label in the same patients (E-03). It survives one level out, at the dorsal root ganglion, where 20 Hz field stimulation abates C-fibre trains while Aβ passes unattenuated in the rat work of one lineage; two models from an independent group do not find that mechanism at clinical amplitude (E-03 §3). Note the constraint that kills the naive version: for kilohertz block, threshold varies **inversely** with axon diameter, so large fibres block first. |
 | HC-4 | A realisable transducer exists | **Partly, and not the one expected; not pursued further (D-003).** Quantum *information manipulation* of pain signalling is below 0.1% with no literature at all (E-04). What survives is quantum *instrumentation*: a superficial nerve gives about 1 pT at 6.5 mm and has been read in humans. The open question is whether unmyelinated traffic is reachable at all, since dispersion has so far prevented even Aδ detection. That is now C-004. |
 
 ## The reframing this already forces
+
+*Annotation, 2026-11-19: this narrowing is now recorded as a hard-core decision, D-003. The reframing below is the earlier bookkeeping, kept as written.*
 
 The evidence base does not support "read the pain signal and rewrite it" as
 stated. It supports something narrower and still worth having: **detect the

@@ -53,4 +53,4 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 
 ## Implemented by
 - #20 (this intent)
-- D-003 pivot PR: "D-003: close the original hard core; restate the programme as evidence appraisal" (PROGRAMME.md, README.md, ledger/DECISIONS.md, ledger/OPEN.md)
+- #21 (D-003: close the original hard core; restate the programme as evidence appraisal): PROGRAMME.md, README.md, ledger/DECISIONS.md, ledger/OPEN.md

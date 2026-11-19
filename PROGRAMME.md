@@ -26,7 +26,7 @@ core commitment falls, the programme is abandoned, not amended.
 
 ### HC-1. Nociceptive traffic carries structure beyond mean rate
 
-*Standing, 2026-11-19: weakly supported, not falsified; one unreplicated ex vivo study, never tested here (`ledger/OPEN.md`, E-01 §2). Closed with the core.*
+*Standing, 2026-11-19: weakly supported, not falsified; one unreplicated ex vivo study, and no informative test here (S-1 gave no verdict) (ledger/OPEN.md, E-01 §2). Closed with the core.*
 
 There is information in the *pattern* of nociceptor firing, not only in how
 much of it there is: burst structure, inter-spike interval statistics,
@@ -39,7 +39,7 @@ neuropathic and nociceptive states.
 
 ### HC-2. That structure is readable outside the CNS
 
-*Standing, 2026-11-19: fallen for touch-evoked pain; stands only for detecting ongoing activity, at group level (D-003, E-01 §5 and §6).*
+*Standing, 2026-11-19: fallen for touch-evoked pain; stands only for what is peripherally readable: fibre class, intensity and a group-level ongoing-activity signature (D-003, E-01 §6).*
 
 Enough of the structure survives at the axon, the peripheral nerve trunk or the
 dorsal root ganglion to be measured by a physically realisable sensor, without
@@ -53,7 +53,7 @@ presses hardest on, and it may well be the one that dies.
 
 ### HC-3. Structure-targeted intervention beats channel destruction
 
-*Standing, 2026-11-19: not shown; the foothold at the ganglion is argued from one side, and spinal frequency specificity is probably dose (E-03 §1 and §3).*
+*Standing, 2026-11-19: not shown; the foothold at the ganglion is argued from one side (one independent model reports direct Aβ activation and does not model T-junction silencing; the other finds the route only above clinical amplitudes in one population of model neurons), and spinal frequency specificity is probably dose (E-03 §1 and §3).*
 
 An intervention that acts on the structure can reduce perceived pain while
 leaving the channel's other traffic substantially intact, and does so better
@@ -106,12 +106,16 @@ not up it, and a branch may not borrow credibility from the one above it.
 
 ### Branch A. Temporal and spatial structure (classical)
 
+*Standing, 2026-11-19: superseded. The sentence below that this is "where the programme expects to actually get somewhere" described the original hard core; Branch A conjectures C-001, C-003, C-005, C-007 and C-009 are all refuted (`ledger/REFUTED.md`). D-003 closes the purpose.*
+
 Frequency, pattern, closed-loop control, selective recruitment. Ordinary
 electrophysiology and ordinary signal processing. This is where the programme
 expects to actually get somewhere, and it is where the near-term conjectures
 should live.
 
 ### Branch B. Quantum technology as instrument
+
+*Standing, 2026-11-19: parked. The branch stays as a costed specification (C-008); D-003 puts the Branch B trade-off surface and any sensor work on the not-to-do list.*
 
 Quantum sensing to *read* (NV-centre magnetometry, optically pumped
 magnetometers, magnetoneurography) and quantum computation to *design*
@@ -120,6 +124,8 @@ anything quantum happens inside the neuron. Engineering feasibility questions
 with real numbers attached, so they can be settled rather than argued.
 
 ### Branch C. Quantum effects in neural tissue (speculative)
+
+*Standing, 2026-11-19: not pursued. Both Branch C conjectures (C-002, C-006) are refuted, and D-003 does not carry the branch forward.*
 
 Nuclear spin, radical pairs, coherence in biomolecules, as a substrate for or
 a handle on neural signalling. Guarded by `pipeline/gates/01-physical-plausibility.md`,
@@ -133,7 +139,7 @@ Branch C is not banned. It is expensive, and it has to pay.
 
 ## Progressive or degenerating
 
-The programme is reviewed against this test at every tenth conjecture, and the
+The programme is reviewed against this test at every tenth conjecture [superseded 2026-11-19: every ten pieces of work, see "The programme from 2026-11-19" below], and the
 verdict is written into `ledger/OPEN.md` with a date.
 
 **Progressive** if, since the last review, the belt has produced at least one

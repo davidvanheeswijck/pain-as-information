@@ -89,6 +89,13 @@ should go: **optically pumped magnetometry** of nerve traffic. That is quantum
 technology, it works today, and the benefit is geometric rather than
 computational.
 
+> **Status, 2026-11-19 (D-003).** The list below was written for the original hard
+> core. D-003 overrides it in part: T-junction modelling is no longer "the highest
+> value compute in the programme", and item 3 (forward magnetic modelling for
+> Branch B, "it should be done first") is no longer planned, because Branch B
+> sensor work is on D-003's not-to-do list. What still stands: do not buy quantum
+> computing capacity, and the sensor and resource-estimate facts above.
+
 **Where simulation compute would actually help, since the question was asked in
 the form of an offer.** The programme does have real compute needs. They are
 all classical, and all of them are cheap by comparison:
@@ -166,6 +173,12 @@ sensitivity, because they are the only class whose bandwidth (DC to 2 kHz)
 clears the roughly 1 ms width of a compound action potential. Alkali OPMs run
 150 to 350 Hz and hit exactly that wall.
 
+> **Status, 2026-11-19 (D-003).** The decision to spend Branch B effort on
+> superficial-nerve helium-4 OPMs is overridden in part: D-003 puts the Branch B
+> trade-off surface and any sensor work on the not-to-do list, so no spending is
+> planned there. The sensor facts above (NV against OPM sensitivity, the bimodal
+> signal, the 1 ms bandwidth argument) still stand as the record.
+
 **What would reverse it.** An NV sensitivity below about 100 fT/√Hz sustained
 near DC, or an alkali OPM with usable gain above 1 kHz.
 
@@ -199,12 +212,30 @@ three questions a treating team faces (below). The owner accepted this on
   this after the first evidence pass and narrowed the programme in its "reframing" section
   instead of recording a hard-core change. The independent review of
   2026-11-16 flagged the bookkeeping, and nothing was decided until now. HC-2
-  stands only for the detection of ongoing activity, which separates painful
-  from painless neuropathy at group level.
+  stands only for what is peripherally readable: fibre class, intensity and a
+  group-level ongoing-activity signature that separates painful from painless
+  neuropathy (E-01 §6).
+- *The counter-material in E-01 §5, and why "fallen" still holds.* E-01 §5
+  records a coincidence account, in which tactile allodynia "arises from
+  **coincidence** of normal touch input with touch-independent ongoing
+  nociceptor firing" (Ghitani et al., PMID 40269164), and a human block result,
+  in which "primary afferent input is critical for maintaining neuropathic pain"
+  (Haroutounian et al., PMID 24704366). E-01 says of the second that it "does
+  not contradict the mechanism described there": "Allodynia's discrimination
+  really is made centrally, and the Aβ traffic that hurts really is
+  indistinguishable from touch", and "Central sensitisation behaved as a gain
+  applied to an input, not as a generator". HC-2's killer is worded for the Aβ
+  touch route, and on that route it is met. The counter-material bears on a
+  different matter, which is the third question below: whether touch-evoked
+  allodynia and background pain are separable, and which generator maintains
+  them. It is carried forward there, not discarded.
 - *HC-3's foothold is argued from one side.* E-03 §3 says "HC-3's foothold at
   the ganglion should be read as argued from one side". The positive evidence is
   rat work and a supporting model from one lineage. Two models from an
-  independent group do not find the T-junction mechanism at clinical amplitude.
+  independent group do not find the T-junction mechanism at clinical amplitude
+  (E-03 §3): one reports direct Aβ activation and no direct C-fibre activation
+  and does not model T-junction silencing, and the other finds the route only
+  above clinical amplitudes, in one population of model neurons.
   Frequency specificity at the spinal cord is probably dose (E-03 §1, PROCO).
 - *The review verdict of 2026-11-19.* The independent reviewer applied the test
   in PROGRAMME.md and found the programme degenerating at its first review: no
@@ -217,6 +248,12 @@ three questions a treating team faces (below). The owner accepted this on
   programme is abandoned, not amended". Keeping the programme running
   under the same name with the core quietly narrowed is the move it was
   written to prevent. This decision closes the core in writing instead.
+
+**Earlier decisions it overrides in part.** D-001's list of where simulation
+compute would help (T-junction modelling as the highest-value compute; Branch B
+forward modelling "should be done first") and D-002's Branch B spending. D-001's
+rule not to buy quantum computing capacity, and the sensor facts in both,
+stand. Each now carries a dated status line.
 
 **What this decision does not say.** It does not say the evidence briefs, the
 refutation ledger or the harness are wrong or abandoned. They are kept, and
@@ -246,9 +283,14 @@ REFUTED was scored SUPPORTED.
 
 - A demonstration that a peripheral measurement separates painful from
   non-painful touch-evoked traffic, which would undo the HC-2 killer for
-  allodynia.
+  allodynia. The bar: a measurement made on a peripheral nerve or ganglion (not
+  cortex, cord or the percept itself), scored blind to the painful or
+  non-painful label, and replicated independently.
 - A replicated, blinded human result showing a pattern-specific effect beyond
-  dose at the ganglion, which would revive HC-3.
+  dose at the ganglion, which would revive HC-3. The bar: a sham-controlled
+  design in which charge and electrode position are matched across patterns,
+  blinded participants and assessors, and independent replication (the PROCO
+  result in E-03 §1 shows what an unmatched comparison is worth).
 
 Reversal needs an observation about the world. Inconclusive simulations do not
 count: S-1 to S-2b returned no informative verdict on the core, and S-3 says only that the available

@@ -34,17 +34,20 @@ fell, the programme was finished, not patched. Each is stated with its killer in
 [PROGRAMME.md](PROGRAMME.md), which keeps the original text. Their standing now:
 
 1. Nociceptive traffic carries structure beyond mean firing rate. *Weakly
-   supported, not falsified; never tested here.*
+   supported, not falsified; no informative test here (S-1 gave no verdict).*
 2. That structure is readable outside the central nervous system, at the axon,
    the peripheral nerve trunk or the dorsal root ganglion. *Fallen for
-   touch-evoked pain. It stands only for detecting ongoing activity, at group
-   level.* (An earlier version of this file said "at least partly readable" and
+   touch-evoked pain. It stands only for what is peripherally readable: fibre
+   class, intensity and a group-level ongoing-activity signature.* (An earlier version of this file said "at least partly readable" and
    named the cord. PROGRAMME.md never said either, and this is now the same
    wording.)
 3. An intervention that targets the structure can change perceived pain without
    proportionally degrading the channel's other traffic. *Not shown. The
-   foothold at the ganglion is argued from one side, and frequency specificity
-   at the spinal cord is probably dose.*
+   foothold at the ganglion is argued from one side (one independent model
+   reports direct Aβ activation and does not model T-junction silencing; the
+   other finds the route only above clinical amplitudes, in one population of
+   model neurons), and frequency specificity at the spinal cord is probably
+   dose.*
 4. There exists a physically realisable transducer for such an intervention.
    *Partly: quantum instrumentation survives as a costed specification, quantum
    manipulation of pain signalling does not. Not pursued further.*
@@ -249,7 +252,9 @@ once electrode position and charge were controlled, and the same waveform is
 null when blinded and large when open-label **in the same patients**. At the
 dorsal root ganglion, 20 Hz field stimulation abates C-fibre trains while Aβ
 passes unattenuated in rat work from one lineage, but two models from an
-independent group do not find that mechanism at clinical amplitude, so that
+independent group do not find it at clinical amplitude (one reports direct Aβ
+activation and does not model T-junction silencing; the other finds the route
+only above clinical amplitudes, in one population of model neurons), so that
 foothold is argued from one side. A blinded sham-controlled crossover trial
 published in May 2026 showed dorsal root ganglion stimulation beating sham by
 2.5 points on an 11-point pain scale in established responders. The target is on

@@ -29,4 +29,4 @@ owner and is not taken by recording it.
 
 ## Implemented by
 - #19 (the review recorded in ledger/OPEN.md)
-- D-003 pivot PR, which marks the open question below as decided: "D-003: close the original hard core; restate the programme as evidence appraisal"
+- #21 (marks the open question above as decided, D-003)
