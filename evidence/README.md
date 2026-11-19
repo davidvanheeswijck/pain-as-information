@@ -13,6 +13,7 @@ resolve, and marks what it could not verify.
 | [E-05](05-crps.md) | CRPS: mechanism, natural history, and why treatment fails | PB-2, PB-3, PB-5 |
 | [E-06](06-prior-art-ai-harness.md) | Prior art on multi-model harnesses for hypothesis evaluation | the harness itself |
 | [E-10](10-descending-modulation.md) | The pain brake: descending modulation, what the CPM test measures and predicts | HC-2, HC-3, PB-2, PB-3, S-2 |
+| [E-11](11-evidence-map.md) | Evidence map for the three questions, from full texts: which generator, why ganglion-stimulation benefit fades, whether allodynia and background pain separate | D-003, S-3 |
 
 ## Rules
 
