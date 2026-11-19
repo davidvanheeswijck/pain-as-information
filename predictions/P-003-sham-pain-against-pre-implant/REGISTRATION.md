@@ -842,3 +842,52 @@ Do these in order. Do not skip a step, and do not change the order.
 ## Amendments (appended after the registration; the text above is not edited)
 
 None.
+
+### Amendment 1, 2026-11-19, by the reader
+
+"None." above is the state at the merge and is left in place. This amendment
+was written after the read was attempted, by the reader (Claude Fable 5.2),
+once all four routes of §5 had been tried. No text of the source was obtained
+or read; see `RESULT.md`. It changes no rule. It records two places where §5
+left a choice to the reader, and how each reading comes out.
+
+**1. Route 2 does not say which Europe PMC field means "flagged as having
+full text", nor which result type to request.**
+
+- What was done: one `search` request with `resultType=lite`, chosen because
+  that result type carries no abstract. The record's flags were `inEPMC` "N",
+  `inPMC` "N", `isOpenAccess` "N" and `hasPDF` "N". The reader took the
+  record as not flagged, and sent no `fullTextXML` request.
+- Readings: taking the flag to be `inEPMC`, `inPMC`, `isOpenAccess` or
+  `hasPDF`, or any combination of them, gives the same answer: not flagged,
+  no further request. The record also has `hasTextMinedTerms` "Y". The reader
+  does not take that as a full-text flag, since it can be set from an
+  abstract alone, and the record has no PMC identifier for a `fullTextXML`
+  address. Under that reading one more request would have been sent. It was
+  not sent, so its result is not known; with `inEPMC` "N" the reader expects
+  it would have returned no full text, and says plainly that this is an
+  expectation and not an observation.
+- Outcome under the readings the reader accepts: the same, route 2 returns no
+  full text.
+
+**2. Route 4's second request had the same address as route 3's request.**
+
+- The Unpaywall response had a `best_oa_location` with no `url_for_pdf` and a
+  `url` equal to `https://doi.org/` followed by the DOI, which is exactly the
+  route 3 address. Route 3 had already been refused (HTTP 403). §5 forbids
+  retries with altered headers and allows an identical repeat only when no
+  HTTP response came back; it also makes this request a step of its own.
+- What was done: the request was sent once, as route 4 states, with the same
+  headers as every other request. It was refused again (HTTP 403).
+- Readings: sent once as a separate step (done), or not sent because it
+  repeats a refused request. Both give the same outcome: no full text from
+  route 4.
+
+**How the readings score.** Under every reading above the outcome is
+UNSCORABLE (source not obtained). The readings do not disagree, so the
+ambiguity rule of §4 does not turn the outcome into INCONCLUSIVE; that rule
+concerns scoring, and nothing was scored.
+
+**Observed, for whoever writes the next registration.** The Unpaywall response
+also listed a repository location. §5 says "No other location in the response
+is tried", and it was not requested.
