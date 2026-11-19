@@ -8,6 +8,8 @@ Source: Claude Code session, 19/11/2026 (also answered in the owner's decision l
 ## In the owner's words
 > "yes go ahead" (19/11/2026), in reply to four options after the programme review of the same day (pivot; continue as is; narrow the core and keep simulating; close and write up), with the pivot recommended.
 
+> "yes go ahead" (19/11/2026), in reply to the recommendation to register the sham-trial prediction (P-3) first, by an agent that has not read the paper.
+
 ## Problem
 The independent review of 2026-11-19 scored the programme as degenerating under
 the test in PROGRAMME.md. No prediction since the programme opened has been
@@ -50,9 +52,11 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 | Date | Who | Decision | Source |
 |---|---|---|---|
 | 19/11/2026 | owner | Pivot: close the original hard core with a written record; continue as evidence appraisal for the three questions | session, decision ledger |
+| 19/11/2026 | owner | Step 2: register the sham-trial prediction (P-3) first, by an agent that has not read the paper; a different agent reads the source afterwards | session |
 
 ## Implemented by
 - #20 (this intent)
 - #21 (D-003: close the original hard core; restate the programme as evidence appraisal; the closure record): PROGRAMME.md, README.md, ledger/DECISIONS.md, ledger/OPEN.md
 - #22 (E-11: evidence map for the three questions, from full texts; step 1 of the next steps): evidence/11-evidence-map.md
 - #23 (record E-11 and its stop-rule outcome; correct E-05 from full texts): ledger/OPEN.md, evidence/05-crps.md, PROGRAMME.md
+- P-003 registration (step 2, the registration only, merged before the source is read): predictions/README.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md
