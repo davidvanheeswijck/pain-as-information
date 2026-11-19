@@ -4,9 +4,9 @@ The honest current position of the programme. Updated after every panel run and
 at every tenth conjecture for the progressive-or-degenerating review defined in
 PROGRAMME.md.
 
-**Last updated:** 2026-11-17 (S-1 recorded)
+**Last updated:** 2026-11-19 (programme review recorded)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
-**Programme status:** not yet assessable (fewer than 10 conjectures)
+**Programme status:** degenerating (first review, 2026-11-19); the hard-core decision on HC-2 is open with the owner
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
 > is the design working: nine filed, nine closed, each with a recorded reason
@@ -279,6 +279,39 @@ corrupting results rather than failing loudly.
 
 The same first two bugs exist in the sibling `own-the-machine-tools/review.sh`,
 which this harness was derived from.
+
+## Programme review, 2026-11-19
+
+An independent reviewer applied the test in PROGRAMME.md ("Progressive or
+degenerating"). Recorded, not resolved. The trigger was ten pieces of work, by
+the owner's decision, not the tenth conjecture; nine conjectures are filed.
+
+- **Verdict: degenerating, first review.** No prediction since 2026-09-01 was
+  novel, testable and then confirmed by evidence not used to construct it. The
+  hand predictions that came true (S-3, S-1b, S-2) were confirmed by
+  computation on the same model, or forecast an instrument failure.
+- **Belt.** PB-1 to PB-5 are unchanged in text. Every de facto change (the
+  reframing, three conjecture successions, S-1b, S-2b) followed an observed
+  failure. Live conjecture killers went from nine at peak to none.
+- **Hard core.** HC-2's killer is stated in this ledger's own words for
+  touch-evoked pain and is not recorded as a decision. PROGRAMME.md says a
+  fallen commitment means the programme is abandoned, not amended. README.md's
+  wording of HC-2 differs from PROGRAMME.md's. The HC-3 row is unrevised.
+- **November simulations.** Four of five ended without an informative verdict.
+  Causes: model class (S-1, S-1b), control design (S-2), the measure (S-2b P0
+  and P2), a model that does not reproduce its published result (S-2b P1 and
+  P3). Common cause: the instrument was qualified and the question asked in one
+  registration, on models known from abstracts. Each failure was forecast in
+  the hand prediction or seen in a pilot before the main run.
+- **Learned about the world.** E-10 only, and it is negative: a weak test, an
+  intact brake in two small CRPS cohorts, no predictor studies found.
+- **Recommendation, for the owner.** Close the original hard core with a
+  written record (D-003) and continue as evidence appraisal for the three
+  clinical questions. Simulate only on a published model that first reproduces
+  its own results here.
+- **Not to do.** A longer S-1b search, the ion-gradient model, an S-2c, the
+  Branch B trade-off surface, a tenth conjecture filed to trigger a review.
+- **Rule.** A second consecutive degenerating review closes the programme.
 
 ## Independent review, 2026-11-16
 
