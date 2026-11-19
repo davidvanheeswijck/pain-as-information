@@ -134,7 +134,7 @@ a sham stimulation phase.
 | Trial | Design | Result |
 |---|---|---|
 | Chapman-style frequency trial, *Acta Neurochir* 2022, PMID 35217898, n=19 (7 with CRPS) | 20, 40, 60, 80 Hz and sham, randomised order, 4-day phases, 2-day washouts | **20 Hz best on every variable** (VAS, McGill, EQ-5D, Beck). VAS 3.7 at 20 Hz rising to **5.8 at 80 Hz**, significant across all measures, and the smallest increase in analgesic use |
-| Low-frequency follow-up, *Acta Neurochir* 2023, PMID 36705762, n=17 | 4, 20, 60 Hz and sham, subthreshold amplitude, 5-day phases | 4 Hz VAS 3.8, 20 Hz 4.2, 60 Hz 4.6, **sham 5.3**. 4 Hz significant only against sham (p=0.001). Low frequency **not** significantly better than 20 Hz; the authors flag possible underpowering |
+| Low-frequency follow-up, *Acta Neurochir* 2023, PMID 36705762, n=17 | 4, 20, 60 Hz and sham, subthreshold amplitude, 5-day phases | 4 Hz VAS 3.8, 20 Hz 4.2, 60 Hz 4.6, **sham 5.3**. 4 Hz significant only against sham (p=0.001). **Correction, 2026-11-19 (E-11, row B9 and "What reading the full text changed" item 3):** p=0.001 is the abstract's value: "this was only statistically significant when compared to sham (p = 0.001)". The paper's results text (PMC10068636) gives a different value for the same comparison, the lowest tested frequency against sham: "stimulation with 4 Hz was not significantly different from 20 Hz (p = 0.743) and 60 Hz (p = 0.577), only from sham (p = 0.017)". The results text gives p < 0.001 for a different comparison, baseline against sham. Both values are recorded here; which is right is not established. Low frequency **not** significantly better than 20 Hz; the authors flag possible underpowering |
 
 Two things follow, and they pull in opposite directions.
 
@@ -162,15 +162,72 @@ not an answer.
 **The independent long-term data look nothing like ACCURATE, and they point the other way.**
 
 - Eldabe et al. (*Pain* 2022;163:702-10, PMID 35302973), 32 implanted, followed 5 to 7 years: **only 50% still using the device**; of the 16 survivors, **only 2 still had the original implanted pulse generator**; 8 explanted for dissatisfaction.
-- Gatzinsky et al. (*Reg Anesth Pain Med* 2025;50:923-9, PMID 39084704), n=400: cumulative explantation **17% at 3 years, 23% at 5 years, 38% at 10 years**; explantation **specifically for diminished pain relief 10%, 14% and 23%**, with **DRG carrying a higher risk of that outcome than SCS**.
+- Gatzinsky et al. (*Reg Anesth Pain Med* 2025;50:923-9, PMID 39084704), n=400: cumulative explantation **17% at 3 years, 23% at 5 years, 38% at 10 years**; explantation **specifically for diminished pain relief 10%, 14% and 23%**, with **DRG carrying a higher risk of that outcome than SCS**. **Correction, 2026-11-19 (E-11, row B3):** n=400 is the whole cohort, all device types together, and so are the percentages above; the abstract gives no count of DRG devices. The full text (PMC12703264) gives it: "16 of 47 patients (34%) implanted with a device from Abbott received a system for DRG stimulation". The higher risk for DRG rests on those 16 devices: "8 of 16 devices, which were all implanted to treat conditions with focal neuropathic pain, were explanted during the whole study period", and "Five explantations were due to diminished pain relief, two because of lead dysfunction and one because of the need for an MRI." The hazard ratio for 5-year explantation due to diminished pain relief, DRG stimulation against the other devices in a Cox model of 395 patients, is "HR 3.03; 95% CI 1.20 to 7.71; p=0.02" univariable and "HR 6.73; 95% CI 1.26 to 35.88; p=0.03" multivariable. On the DRG side that hazard ratio rests on at most 5 events, the five diminished-relief explants among the 16 devices; the five are counted over the whole study period, and the passages read do not give how many fell inside the model's 5 years. That is why the interval runs from 1.26 to 35.88. All 16 were implanted by one surgeon.
 - Vanloon et al. (Belgian-led, *Neuromodulation* 2025;28:234-48, PMID 39601733), 634 participants: complications 37%, lead fracture 6%, migration 6%, **explantation 12%, primarily for insufficient relief**.
 - Chapman et al. (*Neuromodulation* 2026, PMID 42439846), 375 leads: **lead fracture in 22.8% of patients**, Kaplan-Meier cumulative about 15% at 60 months.
 
 **So the sponsor-authored 12-month claim that DRG does not habituate is contradicted by independent multi-year data in which DRG habituates more.** C-001 currently cites Levy for the habituation framing and must be revised accordingly: its premise survives and arguably strengthens, but one of its supports does not.
 
+**Correction, 2026-11-19: "habituates more" is stronger than the data carry.**
+The sentence above is left as written and is corrected here, from the full-text
+reading in E-11 (`evidence/11-evidence-map.md`, rows B3, B4 and B16, and "What
+reading the full text changed" item 1).
+
+- **The denominator is 16 devices.** The only comparative figure behind
+  "habituates more" is the Gatzinsky hazard ratio: 6.73, with a 95% interval
+  from 1.26 to 35.88 (multivariable), from 16 DRG devices at one centre, 5 of
+  them explanted for diminished pain relief. The abstract's n=400 and its 10%,
+  14% and 23% are the whole cohort, mostly dorsal column systems. This is a
+  signal from one centre. It does not show that DRG stimulation habituates
+  more than SCS.
+- **"Diminished pain relief" is a recorded reason for removal.** Not
+  stated in the full text read (E-11, row B3): whether lead position or
+  disease course was examined before a removal was recorded under this
+  reason. That is a statement about what was read, not a fact about how the
+  study was run. On what was read, the five cannot be assigned to
+  habituation. The hazard ratio rests on at most these 5 events.
+- **A pooled explant series was missing from this section, and it points the
+  other way.** Chapman et al., "Dorsal root ganglion stimulation device
+  explantation: A multicenter pooled data analysis" (*Pain Pract*
+  2022;22:522-31, PMID 35429364), **abstract only; the full text was not
+  retrieved (not in PMC)**. Four pain centres, "249 patients with 756 leads
+  and a mean 27-month follow-up"; "CRPS (n = 106, 43%)". "The explantation
+  rate was ~2% per year (n = 10 total)." "Six patients were explanted for
+  inadequate pain relief." "Five explanted patients experienced a
+  therapy-related complication before eventual explantation: one transient
+  post-procedural neuritis and pocket site pain, one lead fracture, two lead
+  migrations, and one experienced a fracture, a migration, and pocket site
+  pain." So 4 of the 10 explanted had a lead fracture or migration first. It
+  is the largest CRPS-containing series E-11 found, and it makes fading look
+  rarest: 6 of 249, against 5 of 16 (Gatzinsky) and 8 of 32 (Eldabe). These
+  are different quantities over different horizons and are not merged.
+  Explantation undercounts fading, since a device can be left in place and
+  switched off. The series comes from implanting centres reviewing their own
+  patients.
+- **Its relation to the consensus statement.** The consensus guidance
+  (Chapman et al. 2023, PMID 36942306) states, as quoted in E-11 from its
+  full text, that "loss of efficacy, or habituation, has not yet been
+  demonstrated with DRG-S". E-11 records that it rests this on the Levy
+  12-month sub-study and on this explant series. The two share a first
+  author, and one author of the series is the first author of ACCURATE, so
+  the statement and the series are not independent of each other or of the
+  pivotal trial. E-11 also records that the guidance reports "only 7
+  explanted for inadequate pain relief" from the series, where the series'
+  abstract says six. The statement conflicts with the Gatzinsky and Eldabe
+  cohorts, in which devices were removed for diminished relief.
+- **Corrected reading.** The sponsor-authored 12-month claim is not
+  established beyond 12 months, and the multi-year cohorts disagree on how
+  often relief is lost. Two small independent cohorts (16 and 32 devices)
+  make it look common. One larger pooled series, from authors close to the
+  pivotal trial and read as an abstract only, makes it look rare. No source
+  read in E-11 compares habituation, lead or hardware failure and disease
+  progression in people with a DRG stimulator whose benefit has faded.
+
 ### Salvage, before explant. This is the most actionable finding in the brief.
 
 > **Stimulation holiday.** D'Souza and Her, *Reg Anesth Pain Med* 2022 (PMID 35985769). **40 patients with loss of efficacy. Relief rose from 8.7% to 39.4% one month after a holiday, a mean difference of 30.6 points.** **Attribution correction:** the paper's title is "Stimulation holiday rescues analgesia after habituation and loss of efficacy from **10-kilohertz dorsal column spinal cord stimulation**". This is not a DRG study. Applying the 30.6-point figure to a DRG system is an **extrapolation, not a citation**, and must be stated as such whenever it is used. The mechanism (receptor or network re-sensitisation after a period without stimulation) is plausible at both targets, but the number belongs to dorsal column 10 kHz.
+>
+> **Correction, 2026-11-19 (E-11, row B10; full text PMC9613866).** Three facts belong beside the figure, and this brief did not state them. (1) **Hardware causes were excluded by design:** "Exclusion criteria were any patient complications or hardware issues that may explain loss of efficacy (eg, lead migration, lead fracture, etc) instead of therapy habituation." So the series says nothing about loss of benefit that has a lead or hardware cause. (2) **Reading: there was no comparison group.** The paper does not say this in a sentence; it is this brief's reading of the design, a retrospective before-and-after review of one group: "Of 212 patients, 40 (18.9%) experienced loss of efficacy and underwent stimulation holiday". **Reading:** no group restarted without a pause, so regression to the mean and expectation are not excluded. The headline figure also rests on fewer than 40 patients: "Of the 40 patients who experienced loss of efficacy, 35 reported preholiday percentage pain relief", and the paired comparison is reported with "n=35", so the 30.6-point mean difference is from 35 of the 40. And 34 of the 40 were on the 10 kHz waveform alone: "Overall, 34 patients (85.0%) received 10 kHz SCS and 6 patients (15.0%) received tonic/10 kHz combination SCS after the stimulation holiday, which was the same waveform type they received before the stimulation holiday." The authors' own limitation: "our study design was retrospective, contained a small sample size, and did not incorporate an a priori power analysis." (3) **A quarter did not respond at all:** "Ten patients experienced 0% pain relief before and after stimulation holiday", 10 of 40. The responder rate one month after the pause was 57.5% (23 of 40). The cohort had no CRPS group; the main indication was "failed back surgery syndrome in 65.0% of patients".
 
 > **Waveform conversion.** Systematic review of 22 studies and 1,591 patients: **77.9% of salvage trials reported successful** (Yener et al., *Neuromodulation* 2026, PMID 42249871).
 
@@ -466,7 +523,7 @@ Results are not yet posted.
 
 **ESTABLISHED.** Budapest criteria have high sensitivity and mediocre specificity and are a screening tool. CRPS-I and II is a historical distinction with near-identical sensory profiles. Which criteria a patient meets depends on when you examine them. A large minority of CRPS-labelled patients have another diagnosis, often a treatable focal nerve lesion. **SCS in CRPS loses its advantage over physiotherapy entirely by 5 years.** Neurostimulation carries substantial hardware attrition. IVIG does not work in long-standing CRPS. Sympathetic blockade is not effective. Amputation carries about 47% CRPS recurrence and no demonstrated advantage. Surgery for functional or fixed foot dystonia does not help.
 
-**CONTESTED.** Whether small-fibre loss is focal, unilateral or common. Whether S1 map reorganisation exists at all in the form claimed. Whether cold phenotype is prognostic or a marker of chronicity. Whether bisphosphonates have a clinically meaningful effect. Whether fixed dystonia in CRPS is organic, functional or a spectrum. **Whether DRG habituates less than SCS: the only supporting data are 12-month and sponsor-authored, and the independent multi-year data point the other way.** Whether graded motor imagery does anything outside its originator's trials.
+**CONTESTED.** Whether small-fibre loss is focal, unilateral or common. Whether S1 map reorganisation exists at all in the form claimed. Whether cold phenotype is prognostic or a marker of chronicity. Whether bisphosphonates have a clinically meaningful effect. Whether fixed dystonia in CRPS is organic, functional or a spectrum. **Whether DRG habituates less than SCS: the only supporting data are 12-month and sponsor-authored, and the independent multi-year data point the other way.** (Corrected 2026-11-19: the comparative figure in those data rests on 16 DRG devices, and a pooled 249-patient explant series, read as an abstract only, points the opposite way; see the correction in §4.) Whether graded motor imagery does anything outside its originator's trials.
 
 **SPECULATIVE.** Autoantibody causation. Anti-CGRP, IL-1 blockade, low-dose naltrexone, vagus nerve stimulation, focused ultrasound, psilocybin and plasma exchange in CRPS. **Closed-loop DRG stimulation, which does not exist.** Topical phenytoin for CRPS, which has no CRPS evidence at all beyond two single-patient reports.
 
@@ -486,7 +543,7 @@ Results are not yet posted.
 4. **Characterise the deformity.** Test whether the toe curl is **correctable under general anaesthesia** (PMID 34649761). If it is, the fixed-dystonia pathway applies and the Gray and Singh data say **do not operate**.
 5. **DFNS-protocol quantitative sensory testing** at a certified laboratory (PMID 16697110), reported against the new CRPS-specific three-cluster classification (Vollert, Baron, Forstenpointner, *Br J Anaesth* 2026, PMID 42538249, n=604). Be honest that phenotype-guided drug selection is a research strategy, not a standard: it worked for oxcarbazepine (PMID 25139589) and failed to replicate for lacosamide (PMID 37565715).
 6. **Skin biopsy for intraepidermal nerve fibre density** to the EFNS/PNS guideline (PMID 20642627), with the caveat that reduction may be **bilateral**, so the contralateral limb is not a valid control.
-7. **Interrogate the device before considering explant.** Impedances, lead position and integrity, then the **NACC 2024 salvage ladder**: reprogramming, waveform change, **stimulation holiday** (best value, zero cost, +30.6 points in D'Souza's series), lead revision, target conversion.
+7. **Interrogate the device before considering explant.** Impedances, lead position and integrity, then the **NACC 2024 salvage ladder**: reprogramming, waveform change, **stimulation holiday** (best value, zero cost, +30.6 points in D'Souza's series), lead revision, target conversion. **Correction, 2026-11-19:** the +30.6 figure is from a dorsal column device, in a series that excluded hardware causes by design, had no comparison group, and in which 10 of 40 patients had 0% relief before and after; see the correction under "Salvage, before explant" in §4. "Best value" is not supported for a DRG system by that series.
 8. **If a focal generator is found and surgery is contemplated**, the applicable evidence for this subgroup is Poppler et al. (PMID 29189515). Realistic long-term expectation from the best lower-limb dataset (PMID 32513643, mean 8.9-year follow-up): **NRS 7.3 to 4.9; 59% improved, 19% with severe persistent pain.** Quote Hernigou 2025 on recurrence risk (8% to 32%, OR 5.4).
 9. **Screen the amputation question out, not in**, and put Gilanyi's 47% recurrence in front of the patient.
 
