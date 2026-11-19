@@ -405,3 +405,13 @@ that the model does not reproduce its published stimulation-frequency window on 
 **Compute estimate** (simulated seconds times the observed 1.7 to 2 s of wall per simulated second per core):
 control about 4 h, main measurement about 5 h, validation, sweep and convergence about 2 h, at 12 workers:
 **about 11 hours of wall time**, dominated by the main measurement and the control of 1000 or so candidates.
+
+### Amendment 2 (2026-11-19, after the main run; append only): a declared limit added
+
+No rule, number or result changed. One declared limit is added to the list above: **the circuit has no
+descending (brainstem) input.** The four-cell network contains afferent fibres, two inhibitory interneurons, one
+excitatory interneuron and one projection neuron, and nothing that stands for descending facilitation or
+inhibition. Whether such input would change any of the model's outputs here is not tested. Source:
+`evidence/10-descending-modulation.md` §8.2. The report (`results/main/results.md`) was also reworded after the
+run, display only: the P1 and P3 conditional readings moved under a "not verdicts" heading, the registered rules
+for P0 and P2 are quoted beside their verdicts, and P2's SUPPORTED is stated in plain terms.

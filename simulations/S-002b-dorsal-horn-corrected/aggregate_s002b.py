@@ -388,7 +388,7 @@ def word(res, which, gated_ok):
     v = res[which]["verdict_if_gates"]
     if gated_ok:
         return f"**{v}**"
-    return f"NO VERDICT (conditional reading, not a verdict: {v})"
+    return "NO VERDICT (the conditional reading is under \"Conditional readings, not verdicts\" below)"
 
 
 def gate_line(res):
@@ -487,6 +487,12 @@ def write_report(out, res):
     A(f"Median onset shift {fmt(p0['median'], 1)} mV, CI [{fmt(p0['ci'][0], 1)}, {fmt(p0['ci'][1], 1)}]; "
       f"{fmt(100 * p0['share_with_onset'], 0)}% of networks have an onset on the grid (onset = first shift at which "
       f"R_T rises {P.ONSET_RISE} Hz above its value at 0). Threshold: median at most {P.P0_ONSET_LIMIT} mV. "
+      f"Registered rule: SUPPORTED iff the CI upper bound is at most {P.P0_ONSET_LIMIT}; REFUTED iff the CI lower bound "
+      f"is above {P.P0_ONSET_LIMIT}; otherwise INCONCLUSIVE. The CI lower bound is {fmt(p0['ci'][0], 1)} and the threshold is "
+      f"{fmt(P.P0_ONSET_LIMIT, 1)}"
+      + (", so the lower bound equals the threshold" if abs(p0['ci'][0] - P.P0_ONSET_LIMIT) < 1e-9 else "") +
+      f". Resolution is limited by the shift grid, {', '.join(str(x) for x in P.SHIFTS)} mV: onsets and the "
+      f"CI ends can only fall on grid values, and the median of an even-sized sample can fall between two of them. "
       f"Verdict: {word(res, 'P0', ok02)}.")
     A("")
     p1 = res["P1"]
@@ -513,7 +519,19 @@ def write_report(out, res):
           f"{klass(p2['red_Ch'][j][1], p2['red_Ch'][j][2])} |")
     A("")
     A(f"Shifts considered (at or above the median onset {fmt(p0['median'], 1)} mV, E defined): "
-      f"{p2['shifts_considered']}. Classes there: {p2['class_Ch']}. Verdict: {word(res, 'P2', ok02)}.")
+      f"{p2['shifts_considered']}. Classes there: {p2['class_Ch']}. Registered rule: SUPPORTED iff red_Ch is class N "
+      f"(upper bound below {THR}) at every considered shift, with at least two such shifts; REFUTED iff it is class R at "
+      f"every one; INCONCLUSIVE if re-classing spanning cells could decide it; otherwise NOT SUPPORTED, NOT REFUTED. "
+      f"Verdict: {word(res, 'P2', ok02)}.")
+    A("")
+    if ok02 and p2["verdict_if_gates"] == "SUPPORTED":
+        A(f"In plain terms: at the shifts {p2['shifts_considered']} mV, where touch drives the projection neuron, halving the "
+          "C input does not reduce the touch-evoked excess (E, the rate with touch and C minus the rate with C alone); "
+          "red_Ch is about "
+          + ", ".join(fmt(p2['red_Ch'][list(P.SHIFTS).index(x)][0]) for x in p2['shifts_considered']) +
+          " there. This is a property of this four-cell model, not a finding about people. It says nothing about whether "
+          "C input matters for touch-evoked pain in a patient, and it is read at shifts where the touch-evoked "
+          "rate is already far above the C-driven rate.")
     A("")
     p3r = res.get("P3")
     A("### P3 (Q3): which observable change separates the three causes")
@@ -534,6 +552,9 @@ def write_report(out, res):
             A(f"| {names[k]} | {c['k']}/{c['n']} | [{fmt(c['wilson'][0])}, {fmt(c['wilson'][1])}] | "
               f"{h['selective_loss'][0]}/{h['selective_loss'][1]} | {h['optimum_moves'][0]}/{h['optimum_moves'][1]} |")
         A("")
+        A("The rows are listed in a fixed order and no ordering of the changes is a finding: without a gated verdict "
+          "the proportions are a descriptive table of a subsample.")
+        A("")
         A(f"Uniform-loss reading for H (|change in u| <= 0.10 and the optimum unchanged): {p3r['uniform_H'][0]} of "
           f"{p3r['uniform_H'][1]} evaluable networks. Verdict: {word(res, 'P3', ok13)}.")
         A("")
@@ -544,6 +565,25 @@ def write_report(out, res):
               "disinhibition. A change in which region the paraesthesia covers is outside this model.")
         else:
             A("No candidate observation is offered: P3 is not a gated SUPPORTED verdict.")
+    A("")
+    A("## Conditional readings, not verdicts")
+    A("")
+    A("These are what the registered rules would print if the gate that failed had held. They are not verdicts and no "
+      "verdict word applies to them.")
+    A("")
+    if not ok13:
+        rfx = res.get("reading_F")
+        why = (f" The same driver fails the held-out frequency feature (R-F: {rfx['n_pass']} of {rfx['n_evaluable']} evaluable "
+               "networks pass, and candidate 0 fails it at both dt), so the reduction it shows cannot be read as the "
+               "published stimulation effect.") if rfx else ""
+        A(f"- p1, conditional reading, not a verdict: the registered rule applied to the surround-input stimulation data "
+          f"would read \"{res['P1']['verdict_if_gates'].lower()}\" (classes of red_S: {res['P1']['class_S']}; of red_C: "
+          f"{res['P1']['class_C']}).{why}")
+        if p3r is not None:
+            A(f"- p3, conditional reading, not a verdict: the registered rule applied to the sweep subsample would read "
+              f"\"{p3r['verdict_if_gates'].lower()}\".{why}")
+    else:
+        A("None: all gates held.")
     A("")
     A("## Registered readings (no verdict word)")
     A("")
@@ -597,7 +637,8 @@ def write_report(out, res):
     A("## Declared limits")
     A("")
     A("See `PREDICTION.md`. The weights are under-constrained, so these outputs are discriminating hypotheses about a "
-      "four-cell model and say nothing about any patient. These results are not stimulation settings.")
+      "four-cell model and say nothing about any patient. The circuit has no descending (brainstem) input "
+      "(`evidence/10-descending-modulation.md` §8.2). These results are not stimulation settings.")
     return "\n".join(L) + "\n"
 
 
