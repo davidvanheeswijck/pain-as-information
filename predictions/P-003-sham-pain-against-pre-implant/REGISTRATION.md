@@ -31,17 +31,25 @@ setting (ETHICS.md §3).
 >    people are implanted when their pain scores are high. REFUTED is the
 >    informative outcome.
 > 3. **The registered likeliest outcome is UNSCORABLE.** The registering
->    agent puts 0.84 on the registration ending unscorable (0.55 because the
->    full text is not obtained, 0.29 because pre-implant pain is not reported
->    in a usable form), and 0.16 on any verdict.
+>    agent puts 0.86 on the registration ending unscorable (0.60 because the
+>    full text is not obtained, 0.26 because pre-implant pain is not reported
+>    in a usable form), and 0.14 on any verdict.
 
-**Revised before merge.** This file was first committed at `0da91a6` and
-revised on the same branch after a review of the pull request, before the
-merge and before any read of the source. The review found no leak. The
-revision tightened the scoring rule, the source routes and the verdict rule,
-and the probabilities in §4 were restated to match the tighter rules. The
-earlier text is in the branch history. From the merge onwards the file is
+**Revised before merge.** This file was first committed at `0da91a6`. It was
+revised on the same branch at `570ac46`, and once more in the commit after
+that, each time after a review of the pull request, before the merge and
+before any read of the source. The reviews found no leak. The revisions
+tightened the scoring rule, the source routes and the verdict rule, and the
+probabilities in §4 were restated to match the tighter rules. The pull request
+is to be merged with a merge commit, not a squash, so that `0da91a6`,
+`570ac46` and the final revision all stay in the history of `main` and the
+earlier text can be read there. From the merge onwards the file is
 append-only.
+
+**Attestation by the coordinating session, recorded as relayed.** The
+coordinating session attests that no session whose output it has seen had read
+the paper before the merge. The registering agent cannot check this and
+records it as given; its own statement is in §2.
 
 ## 1. The question, and why it bears on Q-B
 
@@ -406,24 +414,29 @@ out under "Scoring rule". Checked in this order:
 
 **The boundaries, stated plainly.**
 
-- An estimate just under the threshold and one just on it never get opposite
-  verdicts. With the same interval, D = 0.99 is INCONCLUSIVE (it is not
-  SUPPORTED, and it is REFUTED only if U < 1.0, which a D of 0.99 allows only
-  for an interval narrower than 0.01 above it) and D = 1.00 is SUPPORTED or
-  INCONCLUSIVE. Estimates above 0.5 and below 1.0 are INCONCLUSIVE unless the
-  whole interval is below 1.0.
-- REFUTED can hold with L > 0. That happens only when the whole interval lies
-  below 1.0, or nearly so (for example D = 0.4 with an interval of 0.1 to
+- An estimate of 1.0 or more is SUPPORTED or INCONCLUSIVE. It is never
+  REFUTED.
+- An estimate above 0.5 and below 1.0 is REFUTED only if U < 1.0. Otherwise
+  it is INCONCLUSIVE. It is never SUPPORTED.
+- An estimate of 0.5 or less is REFUTED if U < 2.0, and INCONCLUSIVE
+  otherwise.
+- REFUTED can hold with L > 0 (for example D = 0.4 with an interval of 0.1 to
   0.7). Sham pain is then reliably below pre-implant pain, and by less than
-  the claimed point. That is a refutation of "at least 1.0", and `RESULT.md`
-  says so in those words.
+  the claimed point. That is a refutation of "at least 1.0".
 - The cut-offs are still sharp at D = 1.0 against INCONCLUSIVE, at D = 0.5,
   and at the interval bounds. A sharp rule is the price of a mechanical one.
 
-If the verdict is REFUTED, `RESULT.md` also says which reading of §1 the
-numbers fit: "at about the pre-implant level" if the interval contains 0,
-"below the pre-implant level, by less than a point" if L > 0, and "above the
-pre-implant level" if U < 0.
+**The wording that goes with REFUTED.** If the verdict is REFUTED,
+`RESULT.md` adds exactly one of these four phrases, the first that applies:
+
+1. U < 0: "above the pre-implant level".
+2. U < 1.0 and L > 0: "below the pre-implant level, by less than a point".
+3. U < 1.0 and L ≤ 0: "at about the pre-implant level".
+4. Otherwise (the verdict rests on D ≤ 0.5 with U < 2.0, and U is 1.0 or
+   more): "not shown to be a point or more below the pre-implant level".
+
+The phrase "below the pre-implant level, by less than a point" is used only
+under 2, that is, only when U < 1.0.
 
 ### All three verdicts are reachable
 
@@ -518,10 +531,22 @@ source of a standard error.
   and the number is treated as having no reported spread. No further factor
   is applied to a standard error obtained this way.
 - A p-value is never converted into a standard error.
+- *An unlabelled "x ± y".* If the paper gives a value as "x ± y" and nowhere
+  says whether y is a standard deviation, a standard error or half a
+  confidence interval, y is treated as a standard deviation, and `RESULT.md`
+  says that this was done.
 - *Borrowed SD.* If one of the two numbers has no reported spread, it takes
-  the SD of the other (after the conversions above).
-- *Fallback SD.* If neither has, both take SD = 3.0 / 1.35 = 2.2222 (the sham
-  IQR already known).
+  the SD of the other. If the other's spread is an SD, an interquartile range
+  or a range, that SD is the one given by the conversions above. If the
+  other's spread is a standard error, or a confidence interval converted to
+  one, it is converted back with the other number's own n: SD = SE × √n if
+  the other number is a mean, and SD = SE × √n / 1.2533 if it is a median. If
+  no conversion is possible (for example the other number's spread is an
+  interval at an unusable level, or belongs to a difference and not to the
+  number), the other number counts as having no reported spread and the
+  fallback SD applies to both.
+- *Fallback SD.* If neither number has a usable spread, both take
+  SD = 3.0 / 1.35 = 2.2222 (the sham IQR already known).
 - With a borrowed or fallback SD, the standard-error formula is that of the
   number receiving it: 1.2533 × SD / √n if that number is a median, SD / √n if
   it is a mean.
@@ -608,28 +633,38 @@ primary verdict. Neither can change it.
 Two steps come before any verdict.
 
 - The full text is obtained by the declared routes, as §5 defines "obtained":
-  **0.45**.
+  **0.40**.
 - Given that, pre-implant pain is reported in a usable form: **0.35**.
 
-So the registration is scored with probability 0.16.
+So the registration is scored with probability 0.14.
 
 | Outcome | Given that it is scored | Overall |
 |---|---|---|
 | SUPPORTED | 0.40 | **0.06** |
-| REFUTED | 0.10 | **0.02** |
-| INCONCLUSIVE | 0.50 | **0.08** |
-| UNSCORABLE (source not obtained) | n/a | **0.55** |
-| UNSCORABLE (quantity not reported) | n/a | **0.29** |
+| REFUTED | 0.10 | **0.01** |
+| INCONCLUSIVE | 0.50 | **0.07** |
+| UNSCORABLE (source not obtained) | n/a | **0.60** |
+| UNSCORABLE (quantity not reported) | n/a | **0.26** |
 
 The single likeliest outcome is UNSCORABLE (source not obtained).
 
-These replace the figures in the first committed version of this file (0.60
-and 0.40 for the two steps; 0.12, 0.04, 0.08, 0.40 and 0.36 overall). The
-change follows the rules, not any new information about the paper: the routes
-are now capped at one scripted request each, "obtained" now needs the methods
-and results as text, a differing construct is now unscorable, and an unstated
-construct now widens the interval, which moves likely outcomes from SUPPORTED
-to INCONCLUSIVE.
+**These figures were restated twice before the merge, and the earlier ones are
+kept here.** Neither change followed any new information about the paper.
+
+| Version | Obtained | Usable, given obtained | SUPPORTED | REFUTED | INCONCLUSIVE | Not obtained | Not reported |
+|---|---|---|---|---|---|---|---|
+| `0da91a6` | 0.60 | 0.40 | 0.12 | 0.04 | 0.08 | 0.40 | 0.36 |
+| `570ac46` | 0.45 | 0.35 | 0.06 | 0.02 | 0.08 | 0.55 | 0.29 |
+| final (above) | 0.40 | 0.35 | 0.06 | 0.01 | 0.07 | 0.60 | 0.26 |
+
+- From the first to the second: the routes were capped at one scripted
+  request each, "obtained" came to need the methods and results as text, a
+  differing construct became unscorable, and an unstated construct came to
+  widen the interval, which moves likely outcomes from SUPPORTED to
+  INCONCLUSIVE.
+- From the second to the final: the Unpaywall request was fixed to a
+  placeholder address on a reserved domain (§5), which the service may
+  refuse. That makes the fourth route less likely to work.
 
 ## 5. Unscorable conditions and the stop rule, written now
 
@@ -661,10 +696,17 @@ least 60 seconds. Any HTTP response, including a refusal, ends that step.
 3. **The publisher's open-access page.** One request to `https://doi.org/`
    followed by the DOI.
 4. **Unpaywall.** One request to `https://api.unpaywall.org/v2/` followed by
-   the DOI, with a generic, non-personal contact address in the `email`
-   parameter. If the response has a `best_oa_location`, one request to its
-   `url_for_pdf`, or to its `url` if there is no PDF address. No other
-   location in the response is tried.
+   the DOI, with `email=reader@example.org`. Every reader uses exactly that
+   address. It is a non-personal placeholder on a domain reserved for
+   examples; no real address, and never the owner's, is sent. If the response
+   has a `best_oa_location`, one request to its `url_for_pdf`, or to its `url`
+   if there is no PDF address. No other location in the response is tried.
+
+   A declared weakness of this step, from the registering agent's memory of
+   the service's documentation and not from any lookup: the service asks
+   callers to give their own email address, and it may refuse a placeholder.
+   If it does, that refusal is an HTTP response and ends the step like any
+   other. The address is not changed and the request is not repeated.
 
 Supplementary files count if the obtained full text links to them, with one
 request per file under the same conditions.
@@ -740,14 +782,25 @@ question of closing goes to the owner.**
 Do these in order. Do not skip a step, and do not change the order.
 
 1. **Confirm the registration predates the read.** Run `git fetch origin`
-   first. Then run
-   `git log --format='%H %cI' -1 origin/main -- predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`
-   and record the hash and the timestamp of that commit: it is the last commit
-   on `origin/main` that touches this file. If the command prints nothing,
-   the file is not on `main`: stop. Record the time at which you start step
-   2. **If any read of the source began before that commit's timestamp, by
-   you or by any session whose output you have seen, the result is void:**
-   write that in `RESULT.md` and stop.
+   first. Then record the hash and the timestamp of three commits, with `F`
+   standing for
+   `predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`:
+   - the commit that **added** the file:
+     `git log --diff-filter=A --format='%H %cI' origin/main -- F`;
+   - the **last** commit that touches it:
+     `git log --format='%H %cI' -1 origin/main -- F`;
+   - the commit on the first-parent line of `main` that brought it in (the
+     merge commit): `git log --first-parent --format='%H %cI' -1 origin/main -- F`.
+
+   If the first command prints nothing, the file is not on `main`: stop. Run
+   `git log --format='%H %cI %s' origin/main -- F` and, for each commit after
+   the one that added the file, say whether it changes any rule text (anything
+   in §4, §5 or §7) or only appends below the "Amendments" heading. The
+   **binding time** is the latest timestamp among: the merge commit, and every
+   commit that changes rule text. Record the time at which you start step 2.
+   **The read must start after the binding time. If any read of the source
+   began before it, by you or by any session whose output you have seen, the
+   result is void:** write that in `RESULT.md` and stop.
 2. **Obtain the full text by the declared routes only** (§5), in the order
    listed there, one request per step, with the user-agent stated there. Take
    the identifiers from `evidence/05-crps.md` §6b. Log each request: the
