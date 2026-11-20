@@ -55,11 +55,21 @@ needs.
 commit, not a squash, so that every commit on its branch stays in the history
 of `main`. From the merge onwards the file is append-only.
 
-**No attestation was relayed for this attempt.** P-003 recorded an attestation
-by the coordinating session. The registering agent of this file was given
-none, and does not write one on another session's behalf. What the P-003
-reader reports about its own exposure is quoted in §1. The registering agent's
-own statement is in §2.
+**Revised before merge.** This file was first committed at `df9380f`. It was
+revised once on the same branch, before the merge and before any read of the
+source: the first version said that no attestation had been relayed, and the
+attestation below was then relayed and added. Two limits listed in §8 (items
+4 and 5) were put to the coordinating session, which decided to leave them as
+written. No rule text in §4, §5 or §7 was changed by the revision.
+
+**Attestation by the coordinating session, recorded as relayed.** "The
+coordinating session attests that, up to the merge of this registration, no
+session whose output it has seen has read the paper's
+abstract-beyond-what-the-repository-quotes or its full text; the P-003
+reader's requests returned no full text and its report shows none." The
+registering agent cannot check this and records it as given. What the P-003
+reader reports about its own exposure is quoted in §1. The registering
+agent's own statement is in §2.
 
 ## 1. Relation to P-003, and the question
 
