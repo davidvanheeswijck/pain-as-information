@@ -4,9 +4,9 @@ The honest current position of the programme. Updated after every panel run and
 at every ten pieces of work (conjectures, simulations or briefs) for the
 progressive-or-degenerating review defined in PROGRAMME.md.
 
-**Last updated:** 2026-11-19 (P-003 registered and read: unscorable, source not obtained; attempt 1 of 2)
+**Last updated:** 2026-11-20 (P-004 unscorable; the two-unscorable stop rule is met; the question of closing is with the owner)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
-**Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; continuing as evidence appraisal
+**Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; evidence appraisal paused at the stop rule (2026-11-20), the question of closing is with the owner
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
 > is the design working: nine filed, nine closed, each with a recorded reason
@@ -173,6 +173,14 @@ From D-003 (2026-11-19), in order:
    - **Stop rule.** This is attempt 1 of 2. Two registrations that end unscorable for lack of a source send the question of closing to the owner. The rule is first written in that registration.
    - **What the outcome does not show.** It is a statement about the declared routes, not about availability. The open-access lookup lists a repository copy of the paper, which the registration's closed route list did not allow. The stop rule does not distinguish "no open copy exists" from "the declared routes could not reach one".
    - **Standing.** No prediction has yet been scored against unread data.
+
+   **P-004, attempt 2 at the same paper, registered and read 2026-11-20: UNSCORABLE (source not obtained). The stop rule is met.**
+   - **Registration.** `predictions/P-004-sham-pain-against-pre-implant-attempt-2/REGISTRATION.md`, merged at `9ddf580` before any read (PR #27). The paper, quantity and claim are the same as P-003. The scoring rules are carried byte for byte, and a committed check with a mutation self-test confirms it. The one change is a fifth route, to repository copies listed by the open-access lookup, with a version rule and a PDF text rule. "P-004" is a folder number, not E-11's candidate P-4.
+   - **Read.** It began after the registration reached main (PR #28, `RESULT.md`). Five requests were made, one per step. PubMed Central and Europe PMC do not hold the paper. The publisher refused the scripted client with HTTP 403. The one repository copy the lookup lists is labelled as the submitted version. It answered with an automated bot challenge served as HTTP 200, with no link to follow.
+   - **Outcome.** The paper was not read. The claim is neither supported nor refuted. The registered probability of this outcome was 0.48, the single likeliest. Recorded kind of failure: a route was refused by a bot block.
+   - **Stop rule: 2 of 2.** Two registrations have ended unscorable for lack of a source. By the rule as written, the question of closing the programme goes to the owner. Nothing further is done here.
+   - **What it does not show.** That no open copy exists, or that the claim is wrong. Both failures are of scripted access being turned away. A person with a browser, a library login or a copy of the paper could probably read it. That route was never declared, and it would need a new registration written before the read.
+   - **Standing.** The programme has made no prediction that was scored against unread data. Under PROGRAMME.md's test it has no progress to show since D-003.
 
 **Candidates for step 2, as listed in E-11 ("Candidate predictions against
 unread data").** None is registered and no direction is stated.
