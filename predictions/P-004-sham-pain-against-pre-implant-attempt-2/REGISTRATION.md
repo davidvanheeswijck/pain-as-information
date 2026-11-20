@@ -27,7 +27,7 @@ registering agent being wrong.
 Nothing here is a statement about any person, and nothing here is a stimulation
 setting (ETHICS.md §3).
 
-> **Read this first. Four limits of this registration.**
+> **Read this first. Five limits of this registration.**
 >
 > 1. **It predicts one unread number.** Pain under sham in this trial is
 >    already in the repository, from the abstract (median 6.0). The only
@@ -35,13 +35,25 @@ setting (ETHICS.md §3).
 > 2. **The test is not severe.** A SUPPORTED verdict would mostly reflect that
 >    people are implanted when their pain scores are high. REFUTED is the
 >    informative outcome.
-> 3. **The registered likeliest outcome is still UNSCORABLE.** The
->    registering agent puts 0.81 on the registration ending unscorable (0.45
->    because the full text is not obtained, 0.36 because pre-implant pain is
->    not reported in a usable form), and 0.19 on any verdict. The single
->    likeliest outcome is UNSCORABLE (source not obtained), at 0.45. If a
->    verdict is reached, the likeliest is INCONCLUSIVE (0.13 overall).
-> 4. **This is attempt 2 of 2 under the stop rule.** If it ends UNSCORABLE
+> 3. **The informative outcome is harder to reach in this attempt than in
+>    P-003.** A copy obtained by the new route is expected to be the submitted
+>    version, which widens the interval by 0.5 on each side. At that likely
+>    total widening of 0.5, with the synthetic spreads of §4 and method (C),
+>    REFUTED needs D below about 0.03 (0.033 before rounding), that is,
+>    pre-implant pain at or below the sham level. In P-003, with no widening,
+>    it needed D ≤ 0.5. SUPPORTED needs D above 1.97 (1.967), against 1.47
+>    (1.467) in P-003. **At the maximum total widening of 2.0 the rule is
+>    close to uninformative:** SUPPORTED needs D above 3.47 (3.467) and
+>    REFUTED needs D below −1.47 (−1.467), so nearly every plausible paper
+>    would be INCONCLUSIVE. These thresholds are rounded to two decimals; the
+>    figures in brackets are the same values to three.
+> 4. **The registered likeliest outcome is still UNSCORABLE.** The
+>    registering agent puts 0.82 on the registration ending unscorable (0.48
+>    because the full text is not obtained, 0.34 because pre-implant pain is
+>    not reported in a usable form), and 0.18 on any verdict. The single
+>    likeliest outcome is UNSCORABLE (source not obtained), at 0.48. If a
+>    verdict is reached, the likeliest is INCONCLUSIVE (0.12 overall).
+> 5. **This is attempt 2 of 2 under the stop rule.** If it ends UNSCORABLE
 >    (source not obtained), the stop rule is met and the question of closing
 >    the programme goes to the owner (§5).
 
@@ -56,11 +68,30 @@ commit, not a squash, so that every commit on its branch stays in the history
 of `main`. From the merge onwards the file is append-only.
 
 **Revised before merge.** This file was first committed at `df9380f`. It was
-revised once on the same branch, before the merge and before any read of the
-source: the first version said that no attestation had been relayed, and the
-attestation below was then relayed and added. Two limits listed in §8 (items
-4 and 5) were put to the coordinating session, which decided to leave them as
-written. No rule text in §4, §5 or §7 was changed by the revision.
+revised twice on the same branch, each time before the merge and before any
+read of the source. Neither revision followed any information about the
+paper.
+
+- *First revision, `af1a963`.* The first version said that no attestation had
+  been relayed; the attestation below was then relayed and added. Two limits
+  listed in §8 (items 4 and 5) were put to the coordinating session, which
+  decided to leave them as written. No rule text in §4, §5 or §7 changed.
+- *Second revision, the commit after `af1a963`, after a review of the pull
+  request.* The review found no leak and confirmed the carried rules
+  identical. **Rule text in §5 changed before merge:**
+  - route 5, step (b), was rewritten so that it is deterministic (which
+    links are candidates, which are excluded, the parser, how addresses are
+    resolved and compared, and what counts as an HTML landing page);
+  - the kind-of-failure record now rests on the HTTP status alone;
+  - the PDF text rule gained a word-count method, a note on column order,
+    and a second extraction with the fallback tool when the first yields too
+    little text.
+
+  Outside §5: the box above gained limit 3; the band thresholds are said to
+  be rounded; the publisher's host name is masked in one quotation in §2;
+  `registration_checks.py` gained a self-test; reader step 2 logs more; and
+  the probabilities in §4 were restated (the earlier figures are kept
+  there). The carried P-003 blocks were not touched.
 
 **Attestation by the coordinating session, recorded as relayed.** "The
 coordinating session attests that, up to the merge of this registration, no
@@ -119,7 +150,8 @@ when pain under sham is lower than pain before implant.
 
 **The paper was not read in attempt 1.** The outcome of P-003 was about
 routes, not about the paper. P-003's `RESULT.md` summarises its request log
-like this (quoted in full; the block carries no identifier):
+like this (quoted in full; the block holds no PubMed number, DOI, registry
+number or host name):
 
 > **In one paragraph.** None of the four declared routes returned the full
 > text. PubMed Central and Europe PMC do not hold it. The publisher refused
@@ -221,7 +253,13 @@ owner's approval of P-003 and a pointer to it. Everything else that is new is
 below.
 
 In the quotations, the trial's PubMed number and DOI are replaced by `[PMID]`
-and `[DOI]`. That is the only change.
+and `[DOI]`, and the publisher's host name in one redirect address is
+replaced by `[publisher host]`. Those are the only changes. What remains
+unmasked, here and in the rest of this file: the first author's name and the
+year, the name of the centre, the names of the lookup services and their
+public addresses, and the title of the publisher's refusal page. None of
+these is an identifier of the paper that a tool could resolve. The masked
+values are in P-003's `RESULT.md`.
 
 **P-003 `RESULT.md`, §2, the access log.** The columns "Time" and "Address
 requested" are left out here because the addresses carry the identifiers. The
@@ -231,7 +269,7 @@ other cells are quoted as they stand:
 > |---|---|---|---|---|
 > | 1 | 1, PubMed Central: `elink` | 200 | 326 bytes | XML link result with an empty link set: no PMC identifier. No `efetch` request follows. |
 > | 2 | 2, Europe PMC: `search` | 200 | 1,089 bytes | JSON, one record, bibliographic fields and flags only (the `lite` result type carries no abstract). Flags: `inEPMC` "N", `inPMC` "N", `isOpenAccess` "N", `hasPDF` "N". Not flagged as having full text. No `fullTextXML` request follows. |
-> | 3 | 3, publisher: `doi.org` | **403** | 5,546 bytes | Redirected to `https://rapm.bmj.com/lookup/doi/[DOI]`. An HTML refusal page from the publisher's access-control service (page title "Attention Required! \| Cloudflare"). No article content. |
+> | 3 | 3, publisher: `doi.org` | **403** | 5,546 bytes | Redirected to `https://[publisher host]/lookup/doi/[DOI]`. An HTML refusal page from the publisher's access-control service (page title "Attention Required! \| Cloudflare"). No article content. |
 > | 4 | 4, Unpaywall: lookup | 200 | 4,052 bytes | JSON metadata record. The placeholder address was accepted. `best_oa_location` is present: `url_for_pdf` is null, `url` is `https://doi.org/[DOI]`, licence "cc-by", version "publishedVersion". |
 > | 5 | 4, Unpaywall: `best_oa_location.url` | **403** | 5,546 bytes | The same refusal as request 3, same redirect target, same size. No article content. |
 
@@ -463,7 +501,18 @@ output repeat P-003's table exactly. The rows it adds:
 | 1.5 | D > 2.97 | D < −0.97 | −0.97 ≤ D ≤ 2.97 |
 | 2.0 | D > 3.47 | D < −1.47 | −1.47 ≤ D ≤ 3.47 |
 
+**The thresholds are rounded.** They are printed to two decimals, as P-003
+printed them. As computed, the half-width before widening is 1.4670, so the
+SUPPORTED thresholds are 1.467, 1.967, 2.467, 2.967 and 3.467, and the
+REFUTED thresholds from a widening of 0.5 upwards are 0.033, −0.467, −0.967
+and −1.467. The script prints both forms. Scoring uses unrounded values, as
+the carried rule says.
+
 **What this means, said plainly.**
+
+- **REFUTED, the informative outcome, is harder to reach here than in
+  P-003.** With no widening it needs D ≤ 0.5. At the likely total of 0.5 it
+  needs D below 0.033: pre-implant pain at or below the sham level.
 
 - All three verdicts stay reachable at every total, including 2.0. The table
   shows one example of each.
@@ -663,20 +712,26 @@ repository copy is listed by the lookup; its version label is the submitted
 one; and whether pre-implant pain is reported is as unknown as it was.
 
 **Step 1. The full text is obtained by the declared routes, as §5 defines
-"obtained": 0.55** (P-003: 0.40, and it was not obtained).
+"obtained": 0.52** (P-003: 0.40, and it was not obtained; the first version
+of this file: 0.55, see "Restated once before the merge" below).
 
 - Routes 1 to 4 failed a day ago and are expected to fail again. Together
   they add about 0.01 (a deposit in PubMed Central in the meantime).
-- Nearly all of the 0.55 is route 5. It needs five things in a row, and the
+- Nearly all of the 0.52 is route 5. It needs five things in a row, and the
   registering agent's rough figures for each are: the lookup answers the
   placeholder address again (0.95); the response still lists the repository
   entry (0.98); the repository answers a scripted client with an unusual
   user-agent and does not block it (0.85); a file holding the full text is
-  reached within two requests under the first-link rule, which fails if the
-  record has no file, the file is under embargo, the file sits on another
-  host, or the page builds its links by script (0.75); and the file gives
-  methods and results as text under the PDF text rule (0.92). The product is
-  0.55.
+  reached within two requests under the first-link rule (0.70); and the file
+  gives methods and results as text under the PDF text rule (0.92). The
+  product is 0.51, and with routes 1 to 4 the total is 0.52.
+- The fourth factor fails if the record has no file, the file is under
+  embargo, the file sits on another host, the page builds its links by
+  script, or **the first candidate in document order is the wrong file**: a
+  site-wide document such as a policy or a guide linked in the page header,
+  or a navigation link whose path happens to contain "fulltext". The rule
+  requests that one and the entry ends. The exclusions in step (b) remove
+  one way to fail (a link back to the page itself) and leave this one.
 - For: a lookup service that labels a repository entry with a version has
   usually found a file there, and university repositories exist to be
   harvested by scripts.
@@ -689,7 +744,7 @@ one; and whether pre-implant pain is reported is as unknown as it was.
 version could report more or less than the published one, and the registering
 agent has no reason to lean either way.
 
-So the registration is scored with probability 0.55 × 0.35 = 0.19.
+So the registration is scored with probability 0.52 × 0.35 = 0.18.
 
 **Step 3. Given that it is scored.** If the full text is obtained, it is
 almost certainly the submitted version, so the version widening applies and
@@ -702,28 +757,45 @@ would be narrower, and is the main way SUPPORTED stays possible.
 |---|---|---|---|---|
 | SUPPORTED | 0.25 | **0.05** | 0.40 | 0.06 |
 | REFUTED | 0.07 | **0.01** | 0.10 | 0.01 |
-| INCONCLUSIVE | 0.68 | **0.13** | 0.50 | 0.07 |
-| UNSCORABLE (source not obtained) | n/a | **0.45** | n/a | 0.60 |
-| UNSCORABLE (quantity not reported) | n/a | **0.36** | n/a | 0.26 |
+| INCONCLUSIVE | 0.68 | **0.12** | 0.50 | 0.07 |
+| UNSCORABLE (source not obtained) | n/a | **0.48** | n/a | 0.60 |
+| UNSCORABLE (quantity not reported) | n/a | **0.34** | n/a | 0.26 |
 | Sum | 1.00 | **1.00** | 1.00 | 1.00 |
 
 | | Obtained | Usable, given obtained | Scored |
 |---|---|---|---|
 | P-003, final | 0.40 | 0.35 | 0.14 |
-| This registration | 0.55 | 0.35 | 0.19 |
+| This registration | 0.52 | 0.35 | 0.18 |
 
-Arithmetic, unrounded: scored 0.1925; SUPPORTED 0.0481; REFUTED 0.0135;
-INCONCLUSIVE 0.1309; not obtained 0.4500; not reported 0.3575. These sum to
+Arithmetic, unrounded: scored 0.1820; SUPPORTED 0.0455; REFUTED 0.0127;
+INCONCLUSIVE 0.1238; not obtained 0.4800; not reported 0.3380. These sum to
 1.0000. The overall column is rounded to two decimals and sums to 1.00.
 
-**The single likeliest outcome is UNSCORABLE (source not obtained), at 0.45.**
-The second is UNSCORABLE (quantity not reported), at 0.36. A verdict of any
-kind has 0.19, and the likeliest verdict is INCONCLUSIVE.
+**The single likeliest outcome is UNSCORABLE (source not obtained), at 0.48.**
+The second is UNSCORABLE (quantity not reported), at 0.34. A verdict of any
+kind has 0.18, and the likeliest verdict is INCONCLUSIVE.
+
+**Restated once before the merge, and the earlier figures are kept here.**
+The change followed no information about the paper.
+
+| Version | Obtained | Usable, given obtained | SUPPORTED | REFUTED | INCONCLUSIVE | Not obtained | Not reported |
+|---|---|---|---|---|---|---|---|
+| `df9380f` and `af1a963` | 0.55 | 0.35 | 0.05 | 0.01 | 0.13 | 0.45 | 0.36 |
+| final (above) | 0.52 | 0.35 | 0.05 | 0.01 | 0.12 | 0.48 | 0.34 |
+
+- What changed: the factor for "a file is reached within two requests under
+  the first-link rule" went from 0.75 to 0.70. Making step (b) deterministic
+  after review made one failure plain that the first figure had not priced:
+  the rule takes the first candidate in document order, and that can be the
+  wrong file.
+- What did not change: the other four factors. The second extraction with
+  the fallback tool can only help the fifth factor, by a little; it stays at
+  0.92. The figures given that the registration is scored are unchanged.
 
 **What these figures are not.** They are one agent's judgement, stated so that
 it can be checked against the outcome. The P-003 figure for "obtained" (0.40)
 was followed by a failure, which is what a 0.60 chance of failure looks like
-and says little about calibration from one case. The rise from 0.40 to 0.55
+and says little about calibration from one case. The rise from 0.40 to 0.52
 follows from access metadata recorded in P-003's `RESULT.md`, not from any
 information about the paper's content.
 
@@ -818,10 +890,11 @@ sent again unchanged, cannot return anything new.
    a. **One scripted request** to its `url_for_pdf` if that field is present
       and not null, else to its `url`.
 
-   b. **If that returns an HTML landing page** (an HTML response with HTTP
-      status 200 that is not itself the full text as defined below), **one
-      further request** to the first link on that page that points to a PDF
-      or full-text file on the same host.
+   b. **If that returns an HTML landing page, one further request** to the
+      first link on that page that points to a PDF or full-text file on the
+      same host. "First" means the first candidate in document order **after
+      the exclusions below**. If no candidate remains, the entry ends with no
+      second request. Every term in this step is defined below.
 
    Each of (a) and (b) is one request, under the conditions carried above:
    **the same user-agent**, no cookies, no contact details, redirects inside
@@ -835,26 +908,69 @@ sent again unchanged, cannot return anything new.
 
    - *At most two requests per entry.* If (b) returns another HTML page that
      is not the full text, the entry ends there. No third request.
-   - *"The first link".* The page's HTML source is read in document order.
-     The candidates are the `href` of each `a` and `link` element and the
-     `content` of a `meta` element named `citation_pdf_url`. Each is resolved
-     against the page's final address. A candidate "points to a PDF or
-     full-text file" if its path ends in `.pdf` (ignoring letter case and any
-     query string), or the element declares the type `application/pdf`, or
-     the element is the `citation_pdf_url` one, or the path contains
-     `fulltext` (ignoring letter case). The first candidate in document order
-     that qualifies and is on the same host is the one requested. The reader
-     does not pick a later one because it looks more promising.
-   - *"The same host".* The host name of the candidate equals, ignoring
-     letter case, the host name of the final address of the landing-page
-     response, after its redirects. A file on any other host, including a
-     subdomain, is not requested.
-   - *No link qualifies:* the entry ends with no further request.
-   - *An address already answered.* If the address for (a) or (b) is the
+   - *"An HTML landing page".* A response to (a) with HTTP status 200 whose
+     `Content-Type` header starts with `text/html` (ignoring letter case),
+     and which is not itself the full text as defined below. If such a page
+     is itself the full text, the entry has returned the full text and (b)
+     is not needed.
+   - *A limit of that definition, said plainly.* A page served with status
+     200 and `text/html` that is in fact a bot challenge or an access-denied
+     page cannot be told apart from a landing page mechanically. **It is
+     treated as a landing page.** Step (b) is applied to it like any other.
+     If the entry then ends without full text, the kind of failure recorded
+     for it is "no full text in any response", unless a non-200 refusal was
+     received for that entry (see "The kind of failure" below). A bot block
+     served with status 200 is therefore recorded as the wrong kind. The
+     reader may describe the page in a note; the note changes no record.
+   - *The parser.* The landing page is parsed with Python's standard-library
+     `html.parser` (`HTMLParser`), and only start tags of elements are used.
+     Text inside comments and inside `script` elements is ignored, so a link
+     that exists only in a comment or in script is not a link. The body is
+     decoded with the character set named in the `Content-Type` header, or
+     as UTF-8 if none is named, with undecodable bytes replaced.
+   - *The links, in document order.* The links are, in the order their start
+     tags appear in the source: the `href` of each `a` element and of each
+     `link` element, and the `content` of each `meta` element whose `name`
+     is `citation_pdf_url` (ignoring letter case). An element without that
+     attribute, or with an empty one, is not a link.
+   - *Resolving.* Each link is resolved against **the final address of (a)**,
+     that is, the address (a) ended at after its redirects, with
+     `urllib.parse.urljoin`. **A `<base href>` in the page is ignored.** Any
+     fragment is then stripped (`urllib.parse.urldefrag`). **Path parameters
+     such as `;jsessionid=…` and query strings are kept as they are**, both
+     in the address compared and in the address requested.
+   - *"Points to a PDF or full-text file".* A link qualifies if at least one
+     of these holds: its path ends in `.pdf`; its path contains `fulltext`;
+     its element declares `type="application/pdf"`; or its element is the
+     `citation_pdf_url` one. **For the `.pdf` and `fulltext` tests only the
+     path component is examined, ignoring letter case**: the `path` given by
+     `urllib.parse.urlparse` for the resolved address, which leaves out the
+     query string, the fragment and the parameters of the last path segment.
+   - *Exclusions.* A qualifying link is **not a candidate** if any of these
+     holds for its resolved, fragment-stripped address:
+     - it equals the address requested in (a), or the final address (a)
+       ended at;
+     - it is on a different host;
+     - it is the same string as an address already requested in this attempt
+       that received an HTTP response.
+   - *"The same host".* The host name of the link's address equals, ignoring
+     letter case, the host name of the final address of (a). A file on any
+     other host, including a subdomain, is on a different host. A link with
+     no host name after resolving (for example a `mailto:` or `javascript:`
+     address) is on a different host.
+   - *Which one is requested.* **The first candidate in document order after
+     those exclusions.** An excluded link does not use up the step: the
+     reader passes over it and takes the next. The reader does not pick a
+     later candidate because it looks more promising. **If no candidate
+     remains, the entry ends with no second request.**
+   - *An address already answered, for (a).* If the address for (a) is the
      same string as one already requested in this attempt that received an
-     HTTP response, the step is skipped and logged as skipped.
-   - *Any other response to (a)* (a refusal, an error status, a file that is
-     neither HTML nor readable full text): the entry ends.
+     HTTP response, (a) is skipped and logged as skipped, and the entry
+     ends.
+   - *Any other response to (a)* (a refusal, an error status, a 200 response
+     that is neither `text/html` nor readable full text): the entry ends.
+   - *The response to (b)* either is the full text as defined below, or it
+     is not, and the entry ends either way.
    - *Order and stopping.* The reader goes on to the next repository entry
      only if the current one did not return the full text as defined below,
      and stops at the first that does. When the entries are exhausted, route
@@ -918,21 +1034,40 @@ The carried definition below counts "text extracted locally from a PDF". This
 rule says how.
 
 - **The tool.** `pdftotext` from Poppler, run as `pdftotext -layout` on the
-  downloaded file. **The fallback, if `pdftotext` is absent or fails to run
-  on the file:** the Python library `pypdf`, taking `extract_text()` of each
-  page in order. No other extraction tool is used. No optical character
-  recognition is used, by any tool.
-- **The tool is recorded:** its name and version, and the command or call.
-  Installing either named tool is not a request for the source; if the reader
-  installs one, that is logged.
+  downloaded file. **The fallback:** the Python library `pypdf`, taking
+  `extract_text()` of each page in order. No other extraction tool is used.
+  No optical character recognition is used, by any tool.
+- **When the fallback is used.** In two cases, and once per file:
+  - `pdftotext` is absent, or fails to run on the file;
+  - `pdftotext` runs and its output has fewer than 1,500 words. The fallback
+    is then **also** tried, once, **and its result decides**: if the
+    fallback's output meets the test below, the full text is obtained and
+    the fallback's output is the text that is read; if it does not, the copy
+    does not count.
+
+  If `pdftotext` yields 1,500 words or more, the fallback is not run.
+- **The tool is recorded:** the name and version of each tool run, the
+  command or call, and the word count each gave. Installing either named
+  tool is not a request for the source; if the reader installs one, that is
+  logged.
 - **"Full text obtained" from a PDF needs the methods and the results
   readable as text after extraction:** the extracted text holds the passages
   that describe the trial's methods and report its results, as running
   words, and at least 1,500 words in all. The figure of 1,500 is chosen, not
   derived; it stands for "more than an abstract and a cover page".
-- **A scanned or image-only PDF does not count.** If extraction gives no
-  text, or less than the above, the copy is not the full text, and the reader
-  goes on as if the request had returned nothing usable.
+- **How words are counted.** Whitespace-separated tokens of the whole
+  extracted text: the length of Python's `text.split()`. Nothing is removed
+  first, so headers, reference lists and table cells count.
+- **Column order.** `-layout` keeps the page layout, and on a two-column
+  page it may interleave the columns line by line. **That does not
+  disqualify the text.** The test is whether the methods and results are
+  there as words, not whether they come out in reading order. If interleaved
+  columns make a needed number impossible to attribute, that is a matter
+  for the scoring rule (its "Ambiguity" case), not for this one.
+- **A scanned or image-only PDF does not count.** If extraction, by the
+  tool whose result decides, gives no text or less than the above, the copy
+  is not the full text, and the reader goes on as if the request had
+  returned nothing usable.
 - A PDF that is readable but in which a needed table is an image is handled
   as the carried definition says: the full text is obtained, and the missing
   table goes to the scoring rule.
@@ -994,14 +1129,21 @@ the distinction.**
 If the outcome is UNSCORABLE (source not obtained), `RESULT.md` states, for
 each route and each step, exactly one of:
 
-- **"no route returned a response containing full text"** kind: the service
-  answered and what it returned held no full text (no identifier, not
-  flagged, a landing page with no qualifying link, a file that fails the PDF
-  text rule, an entry not listed);
-- **"a route was refused by a bot block"** kind: the request was stopped by
-  an access-control service before any content was served (HTTP 401, 403 or
-  429, or a challenge page at any status);
+- **"no route returned a response containing full text"** kind (in short,
+  "no full text in any response"): the service answered and what it returned
+  held no full text (no identifier, not flagged, a landing page with no
+  candidate link, a file that fails the PDF text rule, an entry not listed,
+  an error status other than those below);
+- **"a route was refused by a bot block"** kind: a non-200 refusal, that is,
+  a response with HTTP status 401, 403 or 429;
 - "skipped", or "no HTTP response", where those apply.
+
+**The record rests on the HTTP status alone, and that is a limit.** A bot
+challenge or access-denied page served with status 200 cannot be told apart
+mechanically from an ordinary page (see route 5, "A limit of that
+definition"). It is recorded as the "no full text in any response" kind
+unless a non-200 refusal was also received for the same step or entry. The
+record can therefore undercount bot blocks. It cannot overcount them.
 
 and then one overall line, by this rule: if at least one step was of the
 bot-block kind, the overall record is **"a route was refused by a bot
@@ -1075,9 +1217,11 @@ not change the order.
    began before it, by you or by any session whose output you have seen, the
    result is void:** write that in `RESULT.md` and stop.
 
-   Also run `python3 registration_checks.py carried` in this folder and record
-   its output. If it reports a difference, say so in `RESULT.md` and apply
-   P-003's wording for that block.
+   Also run `python3 registration_checks.py carried` and
+   `python3 registration_checks.py selftest` in this folder and record their
+   output. The second shows that the first can fail. If `carried` reports a
+   difference, say so in `RESULT.md` and apply P-003's wording for that
+   block.
 2. **Obtain the full text by the declared routes only** (§5), in the order
    listed there, one request per step, with the user-agent stated there. Take
    the identifiers from `evidence/05-crps.md` §6b. **Log every request**: the
@@ -1085,9 +1229,12 @@ not change the order.
    size, and the kind of response, not content). Log every skipped step too,
    with the reason. For route 5, log the number of repository entries in the
    lookup response, and for each: its position in `oa_locations`, its
-   `version` and `license` fields, which address field was used, and, if a
-   second request was made, which element of the landing page supplied the
-   link. Stop at the first route that returns the full text as §5 defines it.
+   `version` and `license` fields, which address field was used, the
+   `Content-Type` and the final address of the response to (a), and, for a
+   landing page: how many links qualified, which were excluded and under
+   which exclusion, and which element supplied the link requested (or that
+   no candidate remained). Stop at the first route that returns the full
+   text as §5 defines it.
    If none does, write `RESULT.md` with the verdict UNSCORABLE (source not
    obtained), the log and the kind-of-failure record of §5, state that the
    stop rule is met, and stop. Do not read the abstract in place of the full
@@ -1095,9 +1242,9 @@ not change the order.
 3. **Record the version label and the extraction tool.** State which route
    and which lookup entry the copy came from, its version label by the
    version rule, any version wording in the document itself, the file type
-   and size, and, for a PDF, the extraction tool, its version, the command,
-   and the word count of the extracted text. Say whether the version widening
-   applies.
+   and size, and, for a PDF, each extraction tool run, its version, the
+   command, and the word count it gave (whitespace-separated tokens), and
+   which tool's result decided. Say whether the version widening applies.
 4. **Extract the numbers.** Quote verbatim, with the location (section, table
    or figure, and the row or sentence): pain under sham, with the paper's
    definition of that outcome; pain before implant, with the words that show
@@ -1181,6 +1328,10 @@ has to wonder whether it was seen.
 13. **The folder number P-004 collides with candidate P-4** in E-11 and the
     ledger, which is a different paper. The top of this file says so. The
     numbering is not changed here.
+14. **Route 5 takes the first candidate link, even if it is the wrong
+    file,** and it records a bot block served with status 200 as "no full
+    text in any response". Both follow from keeping step (b) mechanical.
+    Both are stated in §5, and the first is priced in §4.
 
 ---
 
