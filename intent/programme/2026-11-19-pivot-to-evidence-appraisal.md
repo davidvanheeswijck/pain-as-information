@@ -10,6 +10,8 @@ Source: Claude Code session, 19/11/2026 (also answered in the owner's decision l
 
 > "yes go ahead" (19/11/2026), in reply to the recommendation to register the sham-trial prediction (P-3) first, by an agent that has not read the paper.
 
+> "yes go ahead" (20/11/2026), in reply to the recommendation to register a second attempt on the same unread paper with the repository route declared in advance.
+
 ## Problem
 The independent review of 2026-11-19 scored the programme as degenerating under
 the test in PROGRAMME.md. No prediction since the programme opened has been
@@ -53,6 +55,7 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 |---|---|---|---|
 | 19/11/2026 | owner | Pivot: close the original hard core with a written record; continue as evidence appraisal for the three questions | session, decision ledger |
 | 19/11/2026 | owner | Step 2: register the sham-trial prediction (P-3) first, by an agent that has not read the paper; a different agent reads the source afterwards | session |
+| 20/11/2026 | owner | Step 2, attempt 2: register a second attempt on the same unread paper, with the repository route declared in advance; the claim and the scoring rules are unchanged; it is attempt 2 of 2 under the stop rule | session |
 
 ## Implemented by
 - #20 (this intent)
@@ -60,3 +63,5 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 - #22 (E-11: evidence map for the three questions, from full texts; step 1 of the next steps): evidence/11-evidence-map.md
 - #23 (record E-11 and its stop-rule outcome; correct E-05 from full texts): ledger/OPEN.md, evidence/05-crps.md, PROGRAMME.md
 - #24 (P-003 registration; step 2, the registration only, merged before the source is read): predictions/README.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md
+- #25, #26 (P-003 result: unscorable, source not obtained, attempt 1 of 2; and its ledger entry): predictions/P-003-sham-pain-against-pre-implant/RESULT.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md (Amendment 1), ledger/OPEN.md
+- #27 (P-004 registration: attempt 2 on the same unread paper, repository route declared in advance; the registration only, merged before the source is read): predictions/P-004-sham-pain-against-pre-implant-attempt-2/REGISTRATION.md, predictions/P-004-sham-pain-against-pre-implant-attempt-2/registration_checks.py
