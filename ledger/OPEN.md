@@ -6,7 +6,9 @@ progressive-or-degenerating review defined in PROGRAMME.md.
 
 **Last updated:** 2026-11-21 (D-004: kept open as an evidence resource only; the owner's decision after the stop rule)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
-**Programme status:** closed as a research programme by D-003; kept open as an evidence resource only by D-004 (2026-11-21)
+**Programme status:** original hard core closed by D-003 (2026-11-19); kept open as an evidence resource only by D-004 (2026-11-21)
+
+> Earlier header status (2026-11-20): degenerating at the first review; evidence appraisal paused at the stop rule; the question of closing with the owner. Replaced 2026-11-21.
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
 > is the design working: nine filed, nine closed, each with a recorded reason
@@ -165,8 +167,11 @@ confirm). What is kept up:
 - **The refutation ledger and the harness**, as published.
 - **This file**, for the record of what was tried.
 
-The review cycle is suspended while D-004 stands. Reversing needs D-005, written
-before any such work starts.
+The review cycle is read as suspended while D-004 stands. That is an
+interpretation for the owner to confirm; the owner did not decide it. The
+every-ten-pieces trigger is already at ten, so the suspension is the only thing
+that prevents a second review. Reversing needs D-005, written before any such
+work starts.
 
 ### Superseded 2026-11-21: "What the programme does next"
 

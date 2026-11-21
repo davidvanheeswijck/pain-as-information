@@ -250,17 +250,21 @@ resolved, queries logged, full text where it can be read, and the source-status
 tags used in E-11. The refutation ledger and the harness stay as published.
 Nothing here is medical advice (ETHICS.md §1, §3).
 
-### The review cycle is suspended
+### The review cycle is suspended (an interpretation, for the owner to confirm)
 
-A second consecutive degenerating review closes the programme. With no
-predictions or simulations there is nothing for a progressive-or-degenerating
-review to assess, so the review cycle is suspended while D-004 stands. The first
-verdict (degenerating, 2026-11-19) stands. If work resumes under a D-005, the
-next review counts as the second.
+The owner did not decide this; D-004 reads it from the owner's words. A second
+consecutive degenerating review closes the programme. With no predictions or
+simulations there is nothing for a progressive-or-degenerating review to assess,
+so the review cycle is read as suspended while D-004 stands. The every-ten-pieces
+trigger is already at ten, so the suspension is the only thing that prevents a
+second review. The first verdict (degenerating, 2026-11-19) stands. If work
+resumes under a D-005, the next review counts as the second.
 
-### What would reverse it
+### What would reverse it (drafted, pending confirmation)
 
-Access to full texts by a declared human or institutional route, together with a
-registered prediction the owner approves; or a published, validated model that
-reproduces its own results in this repository and bears on one of the three
-questions. Either needs D-005, written before any such work starts.
+Access to full texts by a declared human or institutional route (which resembles
+the option the owner did not choose, and is listed as what would be needed, not
+as a plan), together with a registered prediction the owner approves; or a
+published, validated model that reproduces its own results in this repository
+and bears on one of the three questions, as judged by the owner in D-005. Either
+needs D-005, written before any such work starts.

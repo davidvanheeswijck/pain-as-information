@@ -311,21 +311,36 @@ to trigger a review.
 ## D-004. Keep the repository open as an evidence resource only. 2026-11-21
 
 **Decision.** The repository stays open as an evidence resource. It registers no
-further predictions and runs no further simulations. The owner accepted this on
-2026-11-21, in reply to four options after the stop rule was met (close and write
-up; keep open as an evidence resource only; continue with a human route; pause).
-In the owner's words: "Keep it open as an evidence resource only."
+further predictions and runs no further simulations.
 (`intent/programme/2026-11-21-evidence-resource-only.md`).
 
-**Interpretation, for the owner to confirm.** The owner's words and the option as
-put name predictions and simulations. They do not name conjectures or panels.
-This record also files no further conjectures and runs no further panels. It
-reads them as paused as a consequence, for two reasons from this repository's own
-files: D-003 already lists "a tenth conjecture filed only to trigger a review"
-under not-to-do, and `PROGRAMME.md` describes the conjecture-and-panel loop as
-the machinery of the original hard core, which D-003 closed. If the owner meant
-otherwise, a later decision says so. Nothing is deleted: the harness stays as
-published and can be run again under D-005.
+**What the owner decided.** On 2026-11-21, in reply to four options after the
+stop rule was met (close and write up; keep open as an evidence resource only;
+continue with a human route; pause), the owner chose option 2 as put: no further
+predictions or simulations; the briefs are updated when relevant papers appear.
+In the owner's words: "Keep it open as an evidence resource only."
+
+**Drafted, pending confirmation.** The rest of this record was drafted by the
+session and is not stated by the owner: the pause of conjectures and panels, the
+suspended review cycle, the reversal conditions and the D-005 requirement, and
+the maintenance detail beyond "briefs are updated". The owner is asked to
+confirm or change each.
+
+**Interpretation, for the owner to confirm.** Two points are read from the
+owner's words, not given by them.
+
+1. *Conjectures and panels.* The owner's words and the option as put name
+   predictions and simulations. They do not name conjectures or panels. This
+   record also files no further conjectures and runs no further panels, reading
+   them as paused as a consequence, for two reasons from this repository's own
+   files: D-003 already lists "a tenth conjecture filed only to trigger a review"
+   under not-to-do, and `PROGRAMME.md` describes the conjecture-and-panel loop as
+   the machinery of the original hard core, which D-003 closed.
+2. *The review cycle.* It is read as suspended while D-004 stands (see "Relation
+   to the review rule"). The owner did not decide this.
+
+If the owner meant otherwise, a later decision says so. Nothing is deleted: the
+harness stays as published and can be run again under D-005.
 
 **Why.** Every reason below is in this repository's own files.
 
@@ -371,24 +386,29 @@ not reverse D-003.
 - Nothing here is medical advice, and nothing reads as advice about any person's
   care (ETHICS.md §1, §3). ETHICS.md is unchanged.
 
-**What would reverse it.** Any one of:
+**What would reverse it** (drafted, pending confirmation). Any one of:
 
 - Access to full texts by a declared human or institutional route (a library
   login, or a copy supplied by a named person), together with a registered
-  prediction the owner approves, written and merged before the read.
+  prediction the owner approves, written and merged before the read. This
+  resembles option 3, which the owner did not choose. It is listed as what would
+  be needed, not as a plan.
 - A published, validated model that reproduces its own results in this
   repository and bears on one of the three questions, meeting D-003's simulation
-  rule (a verdict rule whose every outcome is reachable).
+  rule (a verdict rule whose every outcome is reachable). Whether it bears on one
+  of the three questions is judged by the owner, in D-005.
 
 Reversing needs a new decision, **D-005**, written before any such work starts.
 Work that starts first is not covered by this record.
 
-**Relation to the review rule.** `PROGRAMME.md` says a programme that is
-degenerating for two consecutive reviews is closed. D-004 sits with that as
-follows. The first review (2026-11-19) found the programme degenerating. With no
-predictions or simulations being made, there is nothing for a progressive-or-
-degenerating review to assess, so the review cycle is suspended while D-004
-stands. It is not skipped to avoid a verdict: the first verdict stands, and no
+**Relation to the review rule** (an interpretation for the owner to confirm; the
+owner did not decide it). `PROGRAMME.md` says a programme that is degenerating
+for two consecutive reviews is closed. The first review (2026-11-19) found the
+programme degenerating. With no predictions or simulations being made, there is
+nothing for a progressive-or-degenerating review to assess, so this record reads
+the review cycle as suspended while D-004 stands. The every-ten-pieces trigger is
+already at ten, so the suspension is the only thing that prevents a second
+review. It is not meant to skip a verdict: the first verdict stands, and no
 second one is possible without new work. If work resumes under a D-005, the next
 review counts as the second consecutive review.
 

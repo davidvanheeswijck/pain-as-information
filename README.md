@@ -2,11 +2,12 @@
 
 This repository is now a **public evidence base on chronic neuropathic pain as a
 signalling problem**. It holds ten evidence briefs, a record of nine refuted
-conjectures and the simulations that tested them, a closed research programme,
-and the method that was used. It is kept open as an evidence resource only
-([D-004](ledger/DECISIONS.md), 2026-11-21): no further predictions or
-simulations are run, and the briefs are corrected and updated when relevant
-papers appear.
+conjectures, seven simulations (two closed conjectures, C-004 and C-008; five
+later ones, S-1 to S-3, S-1b and S-2b, tested published models), a closed
+research programme, and the method that was used. It is kept open as an evidence
+resource only ([D-004](ledger/DECISIONS.md), 2026-11-21): no further predictions
+or simulations are run, and the briefs are corrected and updated when relevant
+papers appear. No prediction was scored against unread data.
 
 **What it set out to do.** It began as a research programme asking whether
 chronic neuropathic pain can be treated as a **signalling** problem rather than
@@ -17,9 +18,9 @@ instead of silencing the nerve by drug, current or knife.
 programme review found the programme degenerating, and the owner closed the
 original hard core in writing ([D-003](ledger/DECISIONS.md)). The programme
 continued for two days as evidence appraisal on three questions a treating team
-faces. Its one prediction, registered against a paper not yet read, was tried
-twice and could not be scored, because scripted access to the paper failed both
-times. The stop rule was met.
+faces. Its one prediction, registered against a paper not yet read, was registered
+twice (P-003, P-004) and neither could be scored, because scripted access to the
+paper failed both times. The stop rule was met.
 
 **What it is now.** An evidence resource. The record of what failed is the
 useful part, and it is public.
@@ -105,18 +106,19 @@ evidence for three questions framed as ones a treating team faces:
 3. Are touch-evoked allodynia and background pain separable mechanisms?
 
 Step 1 was an evidence map built from full texts (E-11). Step 2 was one
-prediction registered against data not yet read. It was tried twice (P-003,
-P-004) and was unscorable both times, which met the stop rule. The owner then
+prediction registered against data not yet read. It was registered twice
+(P-003, P-004) and neither registration could be scored, which met the stop
+rule. The owner then
 decided, in [D-004](ledger/DECISIONS.md), to keep the repository open as an
 evidence resource only.
 
-What is no longer done: no further predictions, simulations, conjectures or
-panels. (The last two are paused as a consequence of D-004, an interpretation
-the decision flags for the owner to confirm.) What is maintained: the briefs are
-corrected when an error is found and updated when a relevant paper appears, and
-the refutation ledger and the harness stay as published. The review cycle is
-suspended while D-004 stands. Reversing D-004 needs a new decision, D-005,
-written before any work starts. See "The repository from 2026-11-21" in
+What is no longer done: no further predictions or simulations, which is what the
+owner decided. Conjectures and panels are also paused, and the review cycle is
+read as suspended while D-004 stands. Both are interpretations of the owner's
+words that D-004 flags for the owner to confirm. What is maintained: the briefs
+are corrected when an error is found and updated when a relevant paper appears,
+and the refutation ledger and the harness stay as published. Reversing D-004
+needs a new decision, D-005, written before any work starts. See "The repository from 2026-11-21" in
 [PROGRAMME.md](PROGRAMME.md).
 
 ## On the quantum question
@@ -223,7 +225,7 @@ The design commitments behind that loop are in
 | Path | What lives there |
 |---|---|
 | `evidence/` | The research base. Ten briefs (E-01 to E-08, E-10, E-11), each separating established from contested from speculative. |
-| `predictions/` | The two registered predictions (P-003, P-004) and their unscorable results. No further predictions are registered (D-004). |
+| `predictions/` | Two registrations of one prediction (P-003, P-004) and their unscorable results. No further predictions are registered (D-004). |
 | `conjectures/` | Numbered hypotheses. One file each, template enforced. |
 | `pipeline/gates/` | The adversarial prompts. The interesting part. |
 | `pipeline/reviews/` | Verbatim model verdicts, committed, failures included. |
@@ -289,9 +291,9 @@ not used to construct it. The owner then closed the original hard core and
 chose evidence appraisal over continuing as before, narrowing the core and
 simulating on, or closing and writing up.
 
-**The stop rule, 2026-11-20.** The two predictions registered against one unread
-paper (P-003, P-004) were both unscorable, because scripted routes could not
-obtain it. Two predictions registered, none scored. That is a statement about
+**The stop rule, 2026-11-20.** Two registrations of one prediction
+against one unread paper (P-003, P-004) were both unscorable, because scripted
+routes could not obtain it. Two registrations, neither scored. That is a statement about
 access, not about the claim or the paper. The owner chose to keep the repository
 open as an evidence resource only (D-004, 2026-11-21).
 
