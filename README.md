@@ -3,11 +3,12 @@
 This repository is now a **public evidence base on chronic neuropathic pain as a
 signalling problem**. It holds ten evidence briefs, a record of nine refuted
 conjectures, seven simulations (two closed conjectures, C-004 and C-008; five
-later ones, S-1 to S-3, S-1b and S-2b, tested published models), a closed
+later ones: S-1, S-1b, S-2 and S-2b were built on published biophysical models,
+and S-3 was a decision-analysis model with elicited likelihoods), a closed
 research programme, and the method that was used. It is kept open as an evidence
 resource only ([D-004](ledger/DECISIONS.md), 2026-11-21): no further predictions
-or simulations are run, and the briefs are corrected and updated when relevant
-papers appear. No prediction was scored against unread data.
+or simulations are run, and the briefs are updated when relevant papers appear
+(the owner's decision). No prediction was scored against unread data.
 
 **What it set out to do.** It began as a research programme asking whether
 chronic neuropathic pain can be treated as a **signalling** problem rather than
@@ -116,8 +117,10 @@ What is no longer done: no further predictions or simulations, which is what the
 owner decided. Conjectures and panels are also paused, and the review cycle is
 read as suspended while D-004 stands. Both are interpretations of the owner's
 words that D-004 flags for the owner to confirm. What is maintained: the briefs
-are corrected when an error is found and updated when a relevant paper appears,
-and the refutation ledger and the harness stay as published. Reversing D-004
+are updated when a relevant paper appears (the owner's decision). The detail
+that they are also corrected when an error is found, and that the refutation
+ledger and the harness stay as published, was drafted by the session and is
+pending the owner's confirmation. Reversing D-004
 needs a new decision, D-005, written before any work starts. See "The repository from 2026-11-21" in
 [PROGRAMME.md](PROGRAMME.md).
 
