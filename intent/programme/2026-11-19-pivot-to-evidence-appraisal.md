@@ -65,3 +65,7 @@ surface or any sensor work; a tenth conjecture filed only to trigger a review.
 - #24 (P-003 registration; step 2, the registration only, merged before the source is read): predictions/README.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md
 - #25, #26 (P-003 result: unscorable, source not obtained, attempt 1 of 2; and its ledger entry): predictions/P-003-sham-pain-against-pre-implant/RESULT.md, predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md (Amendment 1), ledger/OPEN.md
 - #27 (P-004 registration: attempt 2 on the same unread paper, repository route declared in advance; the registration only, merged before the source is read): predictions/P-004-sham-pain-against-pre-implant-attempt-2/REGISTRATION.md, predictions/P-004-sham-pain-against-pre-implant-attempt-2/registration_checks.py
+- #28, #29 (P-004 result: unscorable, source not obtained, attempt 2 of 2, the stop rule met; and its ledger entry): predictions/P-004-sham-pain-against-pre-implant-attempt-2/RESULT.md, ledger/OPEN.md
+
+The pivot ended at the stop rule (P-004, 2026-11-20). The owner's decision that
+followed is D-004 (`intent/programme/2026-11-21-evidence-resource-only.md`).

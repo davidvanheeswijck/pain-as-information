@@ -43,6 +43,26 @@ and derived documents are where errors hide. Where a correction has been
 applied, the corrected claim is stated plainly rather than annotated as a
 change, and git history holds the diff.
 
+## Maintenance
+
+From 2026-11-21 the briefs are maintained, not extended (D-004,
+`../ledger/DECISIONS.md`).
+
+**Updating a brief.** When a relevant paper appears, add it under the rules
+above: the identifier resolves, the queries are logged, the full text is read
+where it can be, and every number carries its source. Do not write a number from
+recall.
+
+**Marking a correction.** Where an error is found in a brief, mark it where it
+sits with "Correction, <date>" and the reason, as E-05 does, and keep the
+original claim readable beside it. This is the working form of the rule above:
+the corrected claim is stated plainly, and the dated note says what changed and
+on what evidence.
+
+**Source-status tags.** Rows in E-11 carry exactly one of `number read in full
+text`, `number from abstract only`, `direction only` or `no data found`. They are
+defined in E-11 ("How to read the tables"). New rows use the same tags.
+
 ## Known gaps
 
 Tracked in [../ledger/OPEN.md](../ledger/OPEN.md) so they stay visible rather

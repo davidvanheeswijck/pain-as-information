@@ -1,16 +1,28 @@
 # Pain as Information
 
-A research programme that began by asking whether chronic neuropathic pain can
-be treated as a **signalling** problem rather than a **tissue** problem: read
-what the nerve is actually sending, and rewrite it, instead of silencing the
-nerve by drug, current or knife.
+This repository is now a **public evidence base on chronic neuropathic pain as a
+signalling problem**. It holds ten evidence briefs, a record of nine refuted
+conjectures and the simulations that tested them, a closed research programme,
+and the method that was used. It is kept open as an evidence resource only
+([D-004](ledger/DECISIONS.md), 2026-11-21): no further predictions or
+simulations are run, and the briefs are corrected and updated when relevant
+papers appear.
 
-**That original aim is closed.** On 2026-11-19 the first programme review found
-the programme degenerating, and the owner closed the original hard core in
-writing ([D-003](ledger/DECISIONS.md)). The programme continues as **evidence
-appraisal**: reading the published record on three questions a treating team
-faces, at population level, and registering predictions that can fail. What it
-set out to do, what happened and what it is now are all below.
+**What it set out to do.** It began as a research programme asking whether
+chronic neuropathic pain can be treated as a **signalling** problem rather than
+a **tissue** problem: read what the nerve is actually sending, and rewrite it,
+instead of silencing the nerve by drug, current or knife.
+
+**What happened.** The conjectures were all refuted. On 2026-11-19 the first
+programme review found the programme degenerating, and the owner closed the
+original hard core in writing ([D-003](ledger/DECISIONS.md)). The programme
+continued for two days as evidence appraisal on three questions a treating team
+faces. Its one prediction, registered against a paper not yet read, was tried
+twice and could not be scored, because scripted access to the paper failed both
+times. The stop rule was met.
+
+**What it is now.** An evidence resource. The record of what failed is the
+useful part, and it is public.
 
 Today's clinic has three moves. Damp everything systemically (opioids,
 gabapentinoids, duloxetine). Destroy the wire (neurotomy, radiofrequency
@@ -19,7 +31,31 @@ denervation, in the last resort amputation). Or shout over the line
 they do not distinguish the signal from the channel. That was the motivation.
 
 This repository holds the research base, the conjectures, and the machinery
-that tries to kill them.
+that tried to kill them.
+
+## How to use this
+
+- **The briefs** are in [evidence/](evidence/README.md), one file per subject.
+  Each separates established from contested from speculative, and each
+  identifier resolves. Start with the table in `evidence/README.md`. E-11 maps
+  the three questions below to what the literature offers.
+- **Source-status tags.** In E-11 every row carries exactly one tag.
+  `number read in full text` means the number was read in the open full text.
+  `number from abstract only` means it was read in an abstract and no further.
+  `direction only` means the source gives a direction and no usable number.
+  `no data found` means the logged queries returned nothing on point, which is
+  a statement about those queries and not about the literature.
+- **Corrections** are marked in the brief as "Correction, <date>", with the
+  original claim readable beside it. E-05 has several.
+- **The refuted ideas** are in [ledger/REFUTED.md](ledger/REFUTED.md): nine
+  conjectures, each with the reason it died and the condition for re-proposing
+  it. The numbered files are in [conjectures/](conjectures/).
+- **What was tried and what failed** is in [ledger/OPEN.md](ledger/OPEN.md),
+  and the decisions with their reasons are in
+  [ledger/DECISIONS.md](ledger/DECISIONS.md).
+- **Nothing here is medical advice.** It is population-level reading of the
+  published record, with no patient data, and it says nothing about any
+  person's care. See [ETHICS.md](ETHICS.md).
 
 ## What this is not
 
@@ -58,22 +94,30 @@ that for touch-evoked pain: the traffic that hurts arrives on Aβ fibres and is
 indistinguishable from normal touch. "Read the signal and rewrite it" is
 therefore closed as this programme's purpose.
 
-## What the programme is now
+## What the repository is now
 
-Evidence appraisal, for three questions framed as ones a treating team faces:
+An evidence resource. From 2026-11-19 to 2026-11-20 the programme appraised the
+evidence for three questions framed as ones a treating team faces:
 
 1. Which generator maintains long-standing regional neuropathic pain: a
    peripheral lesion, the ganglion, or central amplification?
 2. Why does the benefit of ganglion stimulation fade?
 3. Are touch-evoked allodynia and background pain separable mechanisms?
 
-Next, in order: an evidence map for the three questions built from full texts,
-then one prediction registered against data not yet read. Simulation happens
-only on a published model that first reproduces its own results here, with a
-verdict rule whose every outcome is reachable. The refutation ledger, the
-evidence briefs and the harness stay. The review now falls every ten pieces of
-work, and a second consecutive degenerating review closes the programme. See
-"The programme from 2026-11-19" in [PROGRAMME.md](PROGRAMME.md).
+Step 1 was an evidence map built from full texts (E-11). Step 2 was one
+prediction registered against data not yet read. It was tried twice (P-003,
+P-004) and was unscorable both times, which met the stop rule. The owner then
+decided, in [D-004](ledger/DECISIONS.md), to keep the repository open as an
+evidence resource only.
+
+What is no longer done: no further predictions, simulations, conjectures or
+panels. (The last two are paused as a consequence of D-004, an interpretation
+the decision flags for the owner to confirm.) What is maintained: the briefs are
+corrected when an error is found and updated when a relevant paper appears, and
+the refutation ledger and the harness stay as published. The review cycle is
+suspended while D-004 stands. Reversing D-004 needs a new decision, D-005,
+written before any work starts. See "The repository from 2026-11-21" in
+[PROGRAMME.md](PROGRAMME.md).
 
 ## On the quantum question
 
@@ -140,9 +184,11 @@ be traced back to a file here.
 The calibration plot is the part worth looking at first. If every posterior sits
 above its prior, the programme is not learning, it is agreeing with itself.
 
-## How the programme runs
+## The method, and how it ran
 
-Conjecture in, adversarial panel, verdict, ledger. Repeat.
+Conjecture in, adversarial panel, verdict, ledger. Repeat. This is the loop the
+programme ran while it was filing conjectures. It is kept as published and is
+paused under D-004; the tools are still here and the record is what they produced.
 
 ```
 conjectures/C-0NN-*.md            a numbered conjecture, with its own killer
@@ -176,7 +222,8 @@ The design commitments behind that loop are in
 
 | Path | What lives there |
 |---|---|
-| `evidence/` | The research base. Nine briefs, each separating established from contested from speculative. |
+| `evidence/` | The research base. Ten briefs (E-01 to E-08, E-10, E-11), each separating established from contested from speculative. |
+| `predictions/` | The two registered predictions (P-003, P-004) and their unscorable results. No further predictions are registered (D-004). |
 | `conjectures/` | Numbered hypotheses. One file each, template enforced. |
 | `pipeline/gates/` | The adversarial prompts. The interesting part. |
 | `pipeline/reviews/` | Verbatim model verdicts, committed, failures included. |
@@ -184,6 +231,10 @@ The design commitments behind that loop are in
 | `tools/` | The runner, the panel selector, the linter, the citation verifier. |
 
 ## Use
+
+To read, see "How to use this" above. The commands below run the tools; the
+panel step is paused under D-004, and the linter and verifier are what keep the
+briefs honest.
 
     cp .env.example .env && $EDITOR .env      # REQUESTY_API_KEY; .env is gitignored
     tools/lint-conjecture.py conjectures/C-001-*.md
@@ -198,9 +249,10 @@ actually said is stamped into every verdict. See [tools/README.md](tools/README.
 
 ## Status
 
-**Degenerating at the first review (2026-11-19). The original hard core is
-closed by D-003, and the programme continues as evidence appraisal.** The
-current position is kept in [ledger/OPEN.md](ledger/OPEN.md).
+**Degenerating at the first review (2026-11-19). The original hard core was
+closed by D-003. The repository is kept open as an evidence resource only by
+D-004 (2026-11-21).** The current position is kept in
+[ledger/OPEN.md](ledger/OPEN.md).
 
 ### What happened
 
@@ -236,6 +288,12 @@ since the programme opened was novel, testable and then confirmed by evidence
 not used to construct it. The owner then closed the original hard core and
 chose evidence appraisal over continuing as before, narrowing the core and
 simulating on, or closing and writing up.
+
+**The stop rule, 2026-11-20.** The two predictions registered against one unread
+paper (P-003, P-004) were both unscorable, because scripted routes could not
+obtain it. Two predictions registered, none scored. That is a statement about
+access, not about the claim or the paper. The owner chose to keep the repository
+open as an evidence resource only (D-004, 2026-11-21).
 
 ### What the evidence pass established
 

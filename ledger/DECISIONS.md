@@ -272,6 +272,12 @@ Nothing in this programme is advice about any person's care (ETHICS.md §1, §3)
 The next two steps, in order, are an evidence map for the three questions built
 from full texts, then one prediction registered against data not yet read.
 
+> **Status, 2026-11-21 (D-004).** Step 1 was done (E-11). Step 2 ended at the stop
+> rule: P-003 and P-004 were both unscorable. D-004 keeps the repository open as an
+> evidence resource only, so no further prediction is registered. The three
+> questions stay as the frame the briefs are read against. The text above is left
+> as written.
+
 **The simulation rule.** Simulation happens only on a published model that
 first reproduces its own results in this repository, and only with a verdict
 rule whose every outcome is reachable. This follows from the November record:
@@ -299,3 +305,94 @@ observations do not localise the generator within its modelled ranges.
 **Not to do.** A longer S-1b search. The ion-gradient model. An S-2c. The
 Branch B trade-off surface, or any sensor work. A tenth conjecture filed only
 to trigger a review.
+
+---
+
+## D-004. Keep the repository open as an evidence resource only. 2026-11-21
+
+**Decision.** The repository stays open as an evidence resource. It registers no
+further predictions and runs no further simulations. The owner accepted this on
+2026-11-21, in reply to four options after the stop rule was met (close and write
+up; keep open as an evidence resource only; continue with a human route; pause).
+In the owner's words: "Keep it open as an evidence resource only."
+(`intent/programme/2026-11-21-evidence-resource-only.md`).
+
+**Interpretation, for the owner to confirm.** The owner's words and the option as
+put name predictions and simulations. They do not name conjectures or panels.
+This record also files no further conjectures and runs no further panels. It
+reads them as paused as a consequence, for two reasons from this repository's own
+files: D-003 already lists "a tenth conjecture filed only to trigger a review"
+under not-to-do, and `PROGRAMME.md` describes the conjecture-and-panel loop as
+the machinery of the original hard core, which D-003 closed. If the owner meant
+otherwise, a later decision says so. Nothing is deleted: the harness stays as
+published and can be run again under D-005.
+
+**Why.** Every reason below is in this repository's own files.
+
+- *The review of 2026-11-19 found the programme degenerating.* No prediction
+  since 2026-09-01 was novel, testable and then confirmed by evidence not used to
+  construct it (`ledger/OPEN.md`, "Programme review, 2026-11-19").
+- *D-003 closed the original hard core* and set two steps: an evidence map, then
+  one prediction registered against data not yet read.
+- *The stop rule was met.* E-11 (step 1) found that 0 of S-3's 24 likelihood
+  parameters could be anchored on a number read in a full text, and 3 of 24 on
+  abstracts. Step 2 then ended unscorable twice. The two-unscorable stop rule is
+  first written in the P-003 registration, and `ledger/OPEN.md` records it as
+  met.
+- *P-003 and P-004 were both unscorable.* Scripted open routes could not obtain
+  the paper (P-003 `RESULT.md`, P-004 `RESULT.md`). The registered probabilities
+  of those outcomes were 0.60 and 0.48, the single likeliest in each case.
+- *No prediction was ever scored against unread data.* The ledger says so:
+  "The programme has made no prediction that was scored against unread data."
+
+The ledger's own limit on what this shows, quoted from its P-004 entry ("What it
+does not show"): "That no open copy exists, or that the claim is wrong. Both
+failures are of scripted access being turned away. A person with a browser, a
+library login or a copy of the paper could probably read it. That route was never
+declared, and it would need a new registration written before the read."
+
+**What this decision does not say.** It does not say the claim in P-003 and P-004
+is wrong. It does not say the paper is unavailable. It does not say the evidence
+briefs are complete: E-11 is a map from 46 rows, not an exhaustive search, and
+`ledger/OPEN.md` lists the gaps. It does not close the repository, and it does
+not reverse D-003.
+
+**What "evidence resource" means in practice.**
+
+- Briefs are corrected when an error is found. The correction is dated and marked
+  where it is made (the "Correction, <date>" convention in E-05), and the
+  original claim stays readable beside it.
+- Briefs are updated when a relevant paper appears, under the existing rules
+  (`EPISTEMICS.md`): citations resolved, queries logged, full text where it can
+  be read, and source-status tags as in E-11 (`number read in full text`,
+  `number from abstract only`, `direction only`, `no data found`).
+- The refutation ledger (`ledger/REFUTED.md`) and the harness remain as
+  published.
+- Nothing here is medical advice, and nothing reads as advice about any person's
+  care (ETHICS.md §1, §3). ETHICS.md is unchanged.
+
+**What would reverse it.** Any one of:
+
+- Access to full texts by a declared human or institutional route (a library
+  login, or a copy supplied by a named person), together with a registered
+  prediction the owner approves, written and merged before the read.
+- A published, validated model that reproduces its own results in this
+  repository and bears on one of the three questions, meeting D-003's simulation
+  rule (a verdict rule whose every outcome is reachable).
+
+Reversing needs a new decision, **D-005**, written before any such work starts.
+Work that starts first is not covered by this record.
+
+**Relation to the review rule.** `PROGRAMME.md` says a programme that is
+degenerating for two consecutive reviews is closed. D-004 sits with that as
+follows. The first review (2026-11-19) found the programme degenerating. With no
+predictions or simulations being made, there is nothing for a progressive-or-
+degenerating review to assess, so the review cycle is suspended while D-004
+stands. It is not skipped to avoid a verdict: the first verdict stands, and no
+second one is possible without new work. If work resumes under a D-005, the next
+review counts as the second consecutive review.
+
+**Earlier decisions.** D-004 overrides none of D-001 to D-003. D-003's "next two
+steps" carry a dated status line, because the second step ended at the stop
+rule. D-003's simulation rule stands as a condition for any resumption under a
+D-005.
