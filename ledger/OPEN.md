@@ -4,9 +4,11 @@ The honest current position of the programme. Updated after every panel run and
 at every ten pieces of work (conjectures, simulations or briefs) for the
 progressive-or-degenerating review defined in PROGRAMME.md.
 
-**Last updated:** 2026-11-20 (P-004 unscorable; the two-unscorable stop rule is met; the question of closing is with the owner)
+**Last updated:** 2026-11-21 (D-004: kept open as an evidence resource only; the owner's decision after the stop rule)
 **Conjectures filed:** 9 · **panelled:** 7 (eight runs; C-003 twice) · **refuted:** 9 · **wounded:** 0 · **draft:** 0
-**Programme status:** degenerating at the first review (2026-11-19); original hard core closed by D-003; evidence appraisal paused at the stop rule (2026-11-20), the question of closing is with the owner
+**Programme status:** original hard core closed by D-003 (2026-11-19); kept open as an evidence resource only by D-004 (2026-11-21)
+
+> Earlier header status (2026-11-20): degenerating at the first review; evidence appraisal paused at the stop rule; the question of closing with the owner. Replaced 2026-11-21.
 
 > **Every conjecture filed so far is now refuted.** That is not a crisis, it
 > is the design working: nine filed, nine closed, each with a recorded reason
@@ -72,6 +74,10 @@ whether the measurement could tell the difference. **The next conjecture should
 be checked against that column before it is filed**, not after.
 
 ## Simulations
+
+*Note, 2026-11-21: the "Next" and "Next, if pursued" lines below are pointers
+written at the time. Under D-004 no further simulation is run, so none is
+planned.*
 
 **S-1, DRG T-junction rate versus pattern: NO VERDICT, positive control failed.**
 2026-11-17, `simulations/S-001-tjunction-rate-vs-pattern/`, PR #3.
@@ -149,7 +155,28 @@ be checked against that column before it is filed**, not after.
 - **Bearing on E-05.** The full-text reading found three places where E-05 was thin or wrong: the "habituates more" claim, the stimulation-holiday figure and one p-value. E-05 is corrected with dated notes (2026-11-19), and the pooled explant series is added there.
 - **Standing.** A map, not progress by the test in PROGRAMME.md. It ranks nothing and registers no prediction. It is not exhaustive: 42 logged queries, screened by title.
 
-## What the programme does next
+## What is maintained
+
+From D-004 (2026-11-21). No further predictions or simulations are run, and no
+further conjectures or panels (an interpretation D-004 flags for the owner to
+confirm). What is kept up:
+
+- **The evidence briefs.** Corrected when an error is found, with a dated
+  "Correction, <date>" note. Updated when a relevant paper appears, under the
+  rules in EPISTEMICS.md, with queries logged and source-status tags as in E-11.
+- **The refutation ledger and the harness**, as published.
+- **This file**, for the record of what was tried.
+
+The review cycle is read as suspended while D-004 stands. That is an
+interpretation for the owner to confirm; the owner did not decide it. The
+every-ten-pieces trigger is already at ten, so the suspension is the only thing
+that prevents a second review. Reversing needs D-005, written before any such
+work starts.
+
+### Superseded 2026-11-21: "What the programme does next"
+
+Kept visible so the change is not hidden. Step 2 ended at the stop rule, and
+D-004 followed.
 
 From D-003 (2026-11-19), in order:
 
@@ -165,7 +192,8 @@ From D-003 (2026-11-19), in order:
    exist", with E-11's scope: "not found in open full text by these queries;
    32 sources were not read in full". The S-3 line of work stops.
 2. **Then one prediction registered against data not yet read,** and scored.
-   This is the current step.
+   **Ended at the stop rule, 2026-11-20 (P-004 below); see D-004.** The line
+   "This is the current step" that stood here is superseded.
    **P-003, registered and read 2026-11-19: UNSCORABLE (source not obtained).**
    - **Registration.** `predictions/P-003-sham-pain-against-pre-implant/REGISTRATION.md`, merged at `6a803c7` before any read (PR #24). The claim: pain under blinded sham is at least 1.0 point below the same participants' pre-implant pain, in the sham-controlled crossover trial in established responders (Tabatabaei et al. 2026).
    - **Read.** It began 55 seconds after the registration reached main (PR #25, `RESULT.md`). None of the four declared routes returned the full text. The paper is not in PMC and is not flagged as full text in Europe PMC, and the publisher page refused the scripted request twice.
@@ -181,9 +209,12 @@ From D-003 (2026-11-19), in order:
    - **Stop rule: 2 of 2.** Two registrations have ended unscorable for lack of a source. By the rule as written, the question of closing the programme goes to the owner. Nothing further is done here.
    - **What it does not show.** That no open copy exists, or that the claim is wrong. Both failures are of scripted access being turned away. A person with a browser, a library login or a copy of the paper could probably read it. That route was never declared, and it would need a new registration written before the read.
    - **Standing.** The programme has made no prediction that was scored against unread data. Under PROGRAMME.md's test it has no progress to show since D-003.
+   - Owner's decision, 2026-11-21: D-004.
 
 **Candidates for step 2, as listed in E-11 ("Candidate predictions against
-unread data").** None is registered and no direction is stated.
+unread data").** None is registered and no direction is stated. *Note,
+2026-11-21: under D-004 no further prediction is registered, so these are kept
+as a record and are not planned.*
 
 - **P-1.** The posted registry results of the manufacturer's post-approval
   study of ganglion stimulation in lower-limb CRPS: (a) the posted value for

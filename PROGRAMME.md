@@ -1,12 +1,18 @@
 # The programme
 
+> **Note, 2026-11-21.** The evidence appraisal that followed the closure below
+> ended at its stop rule. [D-004](ledger/DECISIONS.md) keeps the repository open
+> as an evidence resource only: no further predictions or simulations. See "The
+> repository from 2026-11-21" at the end of this file.
+
 > **Closure note, 2026-11-19.** The original hard core below is closed as the
 > programme's purpose by [D-003](ledger/DECISIONS.md). The first review found
 > the programme degenerating, and HC-2's killer is met for touch-evoked pain.
 > The text of the hard core, the belt and the branches is left as it was written,
 > so the change stays visible. The standing of each commitment is marked under its
 > heading. The programme continues as evidence appraisal: see "The programme from
-> 2026-11-19" at the end of this file.
+> 2026-11-19" at the end of this file. [Superseded 2026-11-21: that appraisal
+> ended at its stop rule; see the note above and D-004.]
 
 Written as a Lakatosian research programme rather than a hypothesis, because
 the interesting failure mode here is not "the idea was wrong" but "the idea was
@@ -155,6 +161,11 @@ this file records why. That is the point of writing it down in advance.
 
 ## The programme from 2026-11-19
 
+> **Standing, 2026-11-21.** Paused at the stop rule (P-003 and P-004 both
+> unscorable) and superseded by [D-004](ledger/DECISIONS.md). The text below is
+> kept as written. Its promises of further predictions and of a review every ten
+> pieces of work are not being carried out; see "The repository from 2026-11-21".
+
 Decided in [D-003](ledger/DECISIONS.md) (intent:
 `intent/programme/2026-11-19-pivot-to-evidence-appraisal.md`). The hard core
 above is closed. This section says what the programme is now.
@@ -210,3 +221,50 @@ review closes the programme, and this file records why.
 
 A longer S-1b search. The ion-gradient model. An S-2c. The Branch B trade-off
 surface, or any sensor work. A tenth conjecture filed only to trigger a review.
+
+## The repository from 2026-11-21
+
+Decided in [D-004](ledger/DECISIONS.md) (intent:
+`intent/programme/2026-11-21-evidence-resource-only.md`). The owner's words:
+"Keep it open as an evidence resource only."
+
+### What it is now
+
+A public evidence base on chronic neuropathic pain as a signalling problem, with
+the record of nine refuted conjectures, the simulations, the closed hard core
+above and the method used. The three questions in "The programme from
+2026-11-19" are the frame the briefs are read against.
+
+### What is no longer done
+
+No further predictions are registered and no further simulations are run. As a
+consequence, and as an interpretation D-004 flags for the owner to confirm, no
+further conjectures are filed and no further panels are run. The "Not to do" list
+below still holds.
+
+### How the briefs are maintained
+
+A brief is corrected when an error is found, with a dated note, and updated when
+a relevant paper appears. The existing rules apply: EPISTEMICS.md, citations
+resolved, queries logged, full text where it can be read, and the source-status
+tags used in E-11. The refutation ledger and the harness stay as published.
+Nothing here is medical advice (ETHICS.md §1, §3).
+
+### The review cycle is suspended (an interpretation, for the owner to confirm)
+
+The owner did not decide this; D-004 reads it from the owner's words. A second
+consecutive degenerating review closes the programme. With no predictions or
+simulations there is nothing for a progressive-or-degenerating review to assess,
+so the review cycle is read as suspended while D-004 stands. The every-ten-pieces
+trigger is already at ten, so the suspension is the only thing that prevents a
+second review. The first verdict (degenerating, 2026-11-19) stands. If work
+resumes under a D-005, the next review counts as the second.
+
+### What would reverse it (drafted, pending confirmation)
+
+Access to full texts by a declared human or institutional route (which resembles
+the option the owner did not choose, and is listed as what would be needed, not
+as a plan), together with a registered prediction the owner approves; or a
+published, validated model that reproduces its own results in this repository
+and bears on one of the three questions, as judged by the owner in D-005. Either
+needs D-005, written before any such work starts.

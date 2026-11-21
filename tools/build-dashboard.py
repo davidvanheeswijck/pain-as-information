@@ -833,7 +833,7 @@ def build_html(root: Path, generated_at: datetime.datetime) -> str:
     header = f"""
 <header class="page-header">
   <h1>Pain as Information — programme dashboard</h1>
-  <p class="thesis">Chronic neuropathic pain as a signalling problem, tested by trying to kill the idea, not to confirm it. The original hard core was closed on 2026-11-19 (D-003); the programme now appraises evidence on three clinical questions.</p>
+  <p class="thesis">Chronic neuropathic pain as a signalling problem, tested by trying to kill the idea, not to confirm it. The original hard core was closed on 2026-11-19 (D-003); since 2026-11-21 the repository is kept open as an evidence resource only (D-004), with no further predictions or simulations.</p>
   <p class="meta">
     Generated <span id="generated-ts">{ts_str}</span> from repository state
     at commit <code id="git-sha">{esc(sha)}</code>
