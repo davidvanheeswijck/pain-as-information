@@ -69,6 +69,33 @@ leave the original text readable. This replaces the older sentence under "Rules"
 text`, `number from abstract only`, `direction only` or `no data found`. They are
 defined in E-11 ("How to read the tables"). New rows use the same tags.
 
+**Rules added 2026-11-23, from the review of E-12.** Each has the case it
+comes from.
+
+- **Frame one query on the examination, not on the finding.** An absence
+  claim about an examination needs at least one query framed on the
+  examination and the population alone, without the finding term.
+  Case: E-12 row R8 and appendix A, "A miss, found in review". Thirty-eight
+  queries that all required a stenosis, root or disc term missed a lumbar
+  MRI cohort (row R10); Q39, framed without one, returned it.
+- **Read every title of a broad cross-check, or state the fraction read in
+  the row itself.**
+  Case: E-12 query Q6. Forty of 263 titles had been read; reading all 263
+  after review surfaced five further records (rows R9 and S5).
+- **Before calling guidance documents independent, check the issuing body
+  and the author overlap in the front matter.**
+  Case: E-12 row F4. Four documents came from two issuing bodies, three of
+  them from one society with shared authors.
+- **"Read in full text" applies to a quoted passage.** When a document was
+  not read end to end, the prose says "full text retrieved; passages found
+  by term search".
+  Case: E-12 rows F4 and M1, and appendix B, for the long guidance
+  documents.
+- **`efetch db=pmc` can return a record with no body. Check for a body
+  before tagging.**
+  Case: E-12 appendix A and B. Seven of 33 records requested returned an
+  abstract and no body text.
+
 ## Known gaps
 
 Tracked in [../ledger/OPEN.md](../ledger/OPEN.md) so they stay visible rather
