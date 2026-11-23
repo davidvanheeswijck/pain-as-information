@@ -89,7 +89,5 @@ level of a published review, at population level, that answers:
 | 23/11/2026 | owner | "Do both": the private questions and the evidence brief | session |
 
 ## Implemented by
-- The pull request titled "E-12: lumbar stenosis and nerve-root compression
-  in CRPS-labelled lower-limb pain": this intent record,
-  `evidence/12-lumbar-root-compression.md`, the E-12 line in
-  `evidence/README.md`, and the regenerated dashboard
+- #31 this intent record, `evidence/12-lumbar-root-compression.md`, the E-12
+  line in `evidence/README.md`, and the regenerated dashboard
