@@ -223,7 +223,8 @@ reading the full text changed" item 1).
   for Chronic Pain: Guidelines from the American Society of Pain and
   Neuroscience", and the abstract says it was developed "Through funding and
   organizational leadership by the American Society for Pain and
-  Neuroscience (ASPN)". ASPN also issued two other consensus documents that
+  Neuroscience (ASPN)" (spelling as in the source: "for" in the abstract,
+  "of" in the title). ASPN also issued two other consensus documents that
   E-12 uses: the "NEURON" consensus on low back pain (Deer et al. 2025,
   PMID 40104824, PMC11917438) and the "PEAK" training consensus (Pritzlaff
   et al. 2023, PMID 37727682, PMC10505612). The author lists overlap. By
@@ -571,6 +572,7 @@ Results are not yet posted.
 6. **Skin biopsy for intraepidermal nerve fibre density** to the EFNS/PNS guideline (PMID 20642627), with the caveat that reduction may be **bilateral**, so the contralateral limb is not a valid control.
 7. **Interrogate the device before considering explant.** Impedances, lead position and integrity, then the **NACC 2024 salvage ladder**: reprogramming, waveform change, **stimulation holiday** (best value, zero cost, +30.6 points in D'Souza's series), lead revision, target conversion. **Correction, 2026-11-19:** the +30.6 figure is from a dorsal column device, in a series that excluded hardware causes by design, had no comparison group, and in which 10 of 40 patients had 0% relief before and after; see the correction under "Salvage, before explant" in §4. "Best value" is not supported for a DRG system by that series.
 8. **If a focal generator is found and surgery is contemplated**, the applicable evidence for this subgroup is Poppler et al. (PMID 29189515). Realistic long-term expectation from the best lower-limb dataset (PMID 32513643, mean 8.9-year follow-up): **NRS 7.3 to 4.9; 59% improved, 19% with severe persistent pain.** Quote Hernigou 2025 on recurrence risk (8% to 32%, OR 5.4).
+   - **Correction, 2026-11-23 (E-12, row L3):** see the Correction of 2026-11-23 in §3 before using this figure. The 32% is a count, 9 of 28 people with a history of CRPS, across two non-randomised arms of a prevention study (4 of 21 and 5 of 7); it is not a single recurrence risk. It concerns limb surgery (knee replacement), not spinal surgery. This note is a pointer; it adds no step.
 9. **Screen the amputation question out, not in**, and put Gilanyi's 47% recurrence in front of the patient.
 
 ### 8b. European reference centres
