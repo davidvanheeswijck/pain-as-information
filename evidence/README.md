@@ -14,6 +14,7 @@ resolve, and marks what it could not verify.
 | [E-06](06-prior-art-ai-harness.md) | Prior art on multi-model harnesses for hypothesis evaluation | the harness itself |
 | [E-10](10-descending-modulation.md) | The pain brake: descending modulation, what the CPM test measures and predicts | HC-2, HC-3, PB-2, PB-3, S-2 |
 | [E-11](11-evidence-map.md) | Evidence map for the three questions, from full texts: which generator, why ganglion-stimulation benefit fades, whether allodynia and background pain separate | D-003, S-3 |
+| [E-12](12-lumbar-root-compression.md) | Lumbar stenosis and nerve-root compression in CRPS-labelled lower-limb pain: mimic or contributor, tests that separate them, the foramen and the stimulation lead, imaging with an implant | D-004, E-05 §1 and §8a, E-11 Q-A and Q-B |
 
 ## Rules
 
