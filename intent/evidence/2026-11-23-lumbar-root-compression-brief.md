@@ -91,3 +91,9 @@ level of a published review, at population level, that answers:
 ## Implemented by
 - #31 this intent record, `evidence/12-lumbar-root-compression.md`, the E-12
   line in `evidence/README.md`, and the regenerated dashboard
+- #32 "Record E-12; correct E-05 and annotate E-11 from the E-12
+  reading": the E-12 entry in `ledger/OPEN.md`, dated correction notes in
+  `evidence/05-crps.md`, dated notes in `evidence/11-evidence-map.md`, five
+  maintenance rules in `evidence/README.md`, and the regenerated dashboard.
+  The out-of-scope line above kept such corrections out of #31, where they
+  were proposed and not made. They are made in this later pull request.

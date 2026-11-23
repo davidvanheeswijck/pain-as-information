@@ -16,7 +16,7 @@
 
 ## 1. Diagnosis: a screening instrument doing the work of a diagnosis
 
-**The Budapest criteria were built for sensitivity and behave accordingly.** Bruehl et al. (*Pain* 1999;81:147-54, PMID 10353502) showed the 1994 IASP criteria had sensitivity 0.98 but **specificity 0.36**. The Budapest revision (Harden et al., *Pain Med* 2007;8:326-31, PMID 17610454) was validated by Harden et al. (*Pain* 2010;150:268-74, PMID 20493633): clinical version sensitivity **0.99, specificity 0.68**; research version specificity 0.79.
+**The Budapest criteria were built for sensitivity and behave accordingly.** Bruehl et al. (*Pain* 1999;81:147-54, PMID 10353502) showed the 1994 IASP criteria had sensitivity 0.98 but **specificity 0.36**. The Budapest revision (Harden et al., *Pain Med* 2007;8:326-31, PMID 17610454) was validated by Harden et al. (*Pain* 2010;150:268-74, PMID 20493633): clinical version sensitivity **0.99, specificity 0.68**; research version specificity 0.79. **Correction, 2026-11-23 (E-12, row R4; full text PMC2914601, methods 2.2, re-read on this date):** the 0.68 is given above without the group it was measured against. The abstract names the groups: "113 CRPS-I and 47 non-CRPS neuropathic pain patients". The methods give the mix of the 47: "Diagnoses in the non-CRPS group included peripheral neuropathy in a single extremity isolated to a specific nerve distribution (45%), radiculopathy (30%), diabetic peripheral neuropathy (15%), and carpal or tarsal tunnel syndrome (10%)." Pain location differed between the groups: "A lower extremity pain location was significantly more common in the non-CRPS patients than in the CRPS patients (74.4% versus 47.7%, p < .001)." The paper gives the specificity for the whole comparison group only, so the share of the radiculopathy patients who met the criteria is not known.
 
 The 5th-edition guidelines (Harden, McCabe, Goebel et al., *Pain Med* 2022;23(Suppl 1):S1-S53, PMID 35687369) call them "broad, inclusive and accessible **screening type** diagnostic criteria" and concede that "several larger trials have failed, probably due to using the broad general diagnostic criteria... in a multifactorial/multi-mechanism disease." That sentence is the field's own explanation for its treatment failures and it should be read before any of section 4.
 
@@ -32,11 +32,11 @@ Live: Drummond, Gierthmühlen, Bultitude et al. (IASP CRPS SIG), "Are complex re
 
 ### Diagnostic instability is the strongest and least-discussed evidence in the field
 
-- Mailis-Gagnon et al. (*Pain Med* 2014;15:1965-74, PMID 25339179), last author Harden: of 54 patients referred **as CRPS**, only **27.7% were confirmed**. Of the 39 non-CRPS patients, 74% had another diagnosable entity.
+- Mailis-Gagnon et al. (*Pain Med* 2014;15:1965-74, PMID 25339179), last author Harden: of 54 patients referred **as CRPS**, only **27.7% were confirmed**. Of the 39 non-CRPS patients, 74% had another diagnosable entity. **Correction, 2026-11-23 (E-12, row R1; PubMed abstract re-read on this date; full text not read):** the abstract does not count the entities one by one. Its words: "Of the 39 non-CRPS patients, 74% had other diagnosable entities (1/3 suffering from specific neuropathic pain conditions, e.g., radiculopathy, diabetic neuropathy, etc. and 2/3 from discreet musculoskeletal entities)". Radiculopathy is named as an example inside the neuropathic third. The abstract gives no count for it, and does not say which limb was affected or whether the spine was examined.
 - Raasveld, Wolff, Luan, Valerio, Eberlin (*Clin J Pain* 2025;41:e1291, PMID 40211731): 53 CRPS-labelled patients at a peripheral nerve clinic. Budapest criteria had been assessed in only **26%** before referral. On blinded re-adjudication, 42% CRPS by all raters, **26% determined not to have CRPS**, 32% inconsistent. **In 33% of those labelled CRPS type I, an inciting nerve injury was identified.** Companion outcomes (PMID 40815056): 66% had peripheral nerve surgery and **67% of those benefited**.
 - Kosy et al. (*J Knee Surg* 2018;31:797-803, PMID 29294499): prospectively, **zero** CRPS cases in 100 knee replacements by Budapest criteria, where 8 would have been diagnosed under the older Orlando criteria. Replicated at scale in **1,026 patients with zero cases** (PMID 42390455).
 - del Piñal's series are the strongest surgical version. *Plast Reconstr Surg* 2023;152:807-16 (PMID 36952596): 225 consecutive referred-as-CRPS patients, all reallocated to named conditions. Prospective series (PMID 39570217): 82 patients, pain 8.9 to 0.6, **79% full resolution**. All Level II to IV, uncontrolled, self-referred.
-- Independent corroboration that Budapest-positive patients can have a surgically correctable lesion: Lavigogne, Goubau et al. (Belgian), *Hand Surg Rehabil* 2026, PMID 42379301: 24 patients **all fulfilling Budapest criteria**, treated as irritative carpal tunnel syndrome, VAS 70 to 11 out of 100, 56% complete relief.
+- Independent corroboration that Budapest-positive patients can have a surgically correctable lesion: Lavigogne, Goubau et al. (Belgian), *Hand Surg Rehabil* 2026, PMID 42379301: 24 patients **all fulfilling Budapest criteria**, treated as irritative carpal tunnel syndrome, VAS 70 to 11 out of 100, 56% complete relief. **Correction, 2026-11-23 (E-12, row R3; PubMed abstract re-read on this date; full text not read):** the pain scores and the 56% are not from all 24. The abstract starts from "A retrospective cohort of 26 patients", of whom "2 patients were totally lost to follow-up, leaving an evaluation of 24 patients", and then reports: "Among patients completing full outcome measures (n = 18), mean VAS pain scores decreased from 70/100 pre-treatment to 11/100 post-treatment, with 56% of respondents reporting complete pain relief (p < 0.001)." So the complete-relief percentage rests on the 18 of 24 who completed all outcome measures. The abstract gives no count behind the 56%; 56% of 18 is about 10 people (this brief's arithmetic).
 - Dellon, Andonian, Rosson (*J Foot Ankle Surg* 2010;49:33-6, PMID 20123284) is the lower-extremity version, 55% excellent and 30% good, but it is **circular by design**: patients were selected by nerve-block response and then reported to benefit from treating the block-responsive lesion, with 43% follow-up and an unvalidated outcome scale. No published methodological critique of the Dellon CRPS papers was found in PubMed, so this criticism is analytic rather than citable.
 
 ### Natural history, and why the two headline numbers contradict
@@ -96,7 +96,7 @@ Singh, *Foot Ankle Surg* 2022;28:691-6 (PMID 34649761), adds the decisive bedsid
 
 There is **no RCT of botulinum toxin for CRPS dystonia**, no controlled trial of serial casting or manipulation under anaesthesia, and **no published series of flexor tendon lengthening in a CRPS limb**.
 
-On re-operating a CRPS limb, the legitimate source is Veldman and Goris (*Unfallchirurg* 1995;98:45-8, PMID 7886464): **13% recurrence in 47 operated limbs** under a defined precaution protocol. **Do not cite Scott Reuben** (PMID 15590255 and PMID 16428550, both confirmed retracted for fabrication). The best modern number is Belgian: Hernigou et al., *JBJS Am* 2025;107:2352-8 (PMID 40924823): a history of CRPS raised post-operative CRPS from 8% to **32% (OR 5.4, 95% CI 2.57-11.4)**.
+On re-operating a CRPS limb, the legitimate source is Veldman and Goris (*Unfallchirurg* 1995;98:45-8, PMID 7886464): **13% recurrence in 47 operated limbs** under a defined precaution protocol. **Do not cite Scott Reuben** (PMID 15590255 and PMID 16428550, both confirmed retracted for fabrication). The best modern number is Belgian: Hernigou et al., *JBJS Am* 2025;107:2352-8 (PMID 40924823): a history of CRPS raised post-operative CRPS from 8% to **32% (OR 5.4, 95% CI 2.57-11.4)**. **Correction, 2026-11-23 (E-12, row L3; PubMed abstract re-read on this date; full text not read):** the 32% is not a single recurrence risk. It is a count in 28 people with a history of CRPS ("Twenty-eight of these 960 patients had a history of CRPS"), in a "retrospective single-center observational cohort study" whose subject was a preventive measure given after the operation, and it blends that study's two non-randomised arms. Within the 28, the abstract gives recurrence as "19% (4 of 21)" in those who received the measure and "71% (5 of 7)" in those who did not; 4 plus 5 is the 9 of 28 behind the 32% (this brief's arithmetic). The measure is not named here, and nothing is drawn from this about prevention. Both figures in this paragraph concern surgery on a limb: operated limbs in Veldman and Goris, knee replacement in Hernigou. Neither source says anything about an operation on the spine, and E-12 (row L4) found no study of spinal surgery in people with existing CRPS of the leg.
 
 ---
 
@@ -215,6 +215,32 @@ reading the full text changed" item 1).
   explanted for inadequate pain relief" from the series, where the series'
   abstract says six. The statement conflicts with the Gatzinsky and Eldabe
   cohorts, in which devices were removed for diminished relief.
+
+  **Correction, 2026-11-23 (E-12, row F4; front matter of PMC10024474
+  re-read on this date):** "the consensus guidance" above does not say whose
+  it is. The issuing body is the American Society of Pain and Neuroscience
+  (ASPN). The title is "Best Practices for Dorsal Root Ganglion Stimulation
+  for Chronic Pain: Guidelines from the American Society of Pain and
+  Neuroscience", and the abstract says it was developed "Through funding and
+  organizational leadership by the American Society for Pain and
+  Neuroscience (ASPN)" (spelling as in the source: "for" in the abstract,
+  "of" in the title). ASPN also issued two other consensus documents that
+  E-12 uses: the "NEURON" consensus on low back pain (Deer et al. 2025,
+  PMID 40104824, PMC11917438) and the "PEAK" training consensus (Pritzlaff
+  et al. 2023, PMID 37727682, PMC10505612). The author lists overlap. By
+  E-12's comparison of the lists in the PMC records, repeated on this date,
+  this guideline shares five authors with NEURON and seven with PEAK, and
+  four people sign all three. These counts are approximate: they rest on
+  matching surname and first initial. In E-12's words, the three ASPN
+  documents are "one source saying related things in three places, not
+  three independent supports". This guideline is also a different document
+  from the two Neuromodulation Appropriateness Consensus Committee (NACC)
+  documents this brief cites (PMID 30246899, on ganglion stimulation;
+  PMID 38904643, on salvage), and from the safety practices of the
+  International Pain and Spine Intervention Society (IPSIS; Nagpal et al.
+  2025, PMID 40688010, PMC12274923). The two NACC documents were read as
+  abstracts only; each abstract names the International Neuromodulation
+  Society as the body behind the committee.
 - **Corrected reading.** The sponsor-authored 12-month claim is not
   established beyond 12 months, and the multi-year cohorts disagree on how
   often relief is lost. Two small independent cohorts (16 and 32 devices)
@@ -539,12 +565,14 @@ Results are not yet posted.
    - **High-resolution ultrasound**, which is complementary rather than redundant: Bianchi et al. (PMID 30215106) found nerve compression **missed by examination, radiographs and MRI** in 3 of 4 surgically proven cases.
    - **Controlled (comparative, not single) diagnostic blocks.** Uncontrolled blocks carry about a 30% false-positive rate (PMID 29913995). Carry the caveat from Yatziv and Devor (PMID 31095098): the DRG generates roughly three times more ectopic discharge than the neuroma site, so a **negative peripheral block does not exclude a peripheral lesion**.
    - **Do not rely on a normal nerve conduction study.** The AANEM review found only 4 Class III studies and could not determine sensitivity or specificity (PMID 16003732).
+   - **Correction, 2026-11-23 (E-12):** this step covers the nerves of the limb only. The lumbar nerve roots and the foramina are not covered here, or anywhere else in this brief. E-12 (`12-lumbar-root-compression.md`) reviews that question at population level. Its row R8 records that no reported yield of stenosis or root compression in people labelled with CRPS of the lower limb was found by its queries, and its row T11 that no test accuracy was found in that population. This note is a pointer; it adds no step.
 3. **Do not order a three-phase bone scan.** Sensitivity is duration-dependent and effectively spent after about 5 months (PMID 20173431: sensitivity 31-50%, duration the only significant predictor). **MRI cannot confirm CRPS** (PMID 41223627, sensitivity 6-91%) and is worth doing only to exclude alternatives.
 4. **Characterise the deformity.** Test whether the toe curl is **correctable under general anaesthesia** (PMID 34649761). If it is, the fixed-dystonia pathway applies and the Gray and Singh data say **do not operate**.
 5. **DFNS-protocol quantitative sensory testing** at a certified laboratory (PMID 16697110), reported against the new CRPS-specific three-cluster classification (Vollert, Baron, Forstenpointner, *Br J Anaesth* 2026, PMID 42538249, n=604). Be honest that phenotype-guided drug selection is a research strategy, not a standard: it worked for oxcarbazepine (PMID 25139589) and failed to replicate for lacosamide (PMID 37565715).
 6. **Skin biopsy for intraepidermal nerve fibre density** to the EFNS/PNS guideline (PMID 20642627), with the caveat that reduction may be **bilateral**, so the contralateral limb is not a valid control.
 7. **Interrogate the device before considering explant.** Impedances, lead position and integrity, then the **NACC 2024 salvage ladder**: reprogramming, waveform change, **stimulation holiday** (best value, zero cost, +30.6 points in D'Souza's series), lead revision, target conversion. **Correction, 2026-11-19:** the +30.6 figure is from a dorsal column device, in a series that excluded hardware causes by design, had no comparison group, and in which 10 of 40 patients had 0% relief before and after; see the correction under "Salvage, before explant" in §4. "Best value" is not supported for a DRG system by that series.
 8. **If a focal generator is found and surgery is contemplated**, the applicable evidence for this subgroup is Poppler et al. (PMID 29189515). Realistic long-term expectation from the best lower-limb dataset (PMID 32513643, mean 8.9-year follow-up): **NRS 7.3 to 4.9; 59% improved, 19% with severe persistent pain.** Quote Hernigou 2025 on recurrence risk (8% to 32%, OR 5.4).
+   - **Correction, 2026-11-23 (E-12, row L3):** see the Correction of 2026-11-23 in §3 before using this figure. The 32% is a count, 9 of 28 people with a history of CRPS, across two non-randomised arms of a prevention study (4 of 21 and 5 of 7); it is not a single recurrence risk. It concerns limb surgery (knee replacement), not spinal surgery. This note is a pointer; it adds no step.
 9. **Screen the amputation question out, not in**, and put Gilanyi's 47% recurrence in front of the patient.
 
 ### 8b. European reference centres
